@@ -1,0 +1,43 @@
+\begin{notes}
+    \item Netzwerkaufbau
+    \begin{notes}
+        \item Edge Computing (zentrale Verwaltung)
+        \begin{notes}
+            \item “a form of distributed computing in which processing and storage takes place on a set of networked machines which are near the edge, where the nearness is defined by the system’s requirements”  (ISO/IEC: Tr 30164:2020 - internet of things (iot) -edge computing. Tech. rep., ISO/IEC (2020))
+            \item Motivation: Latenzreduzierung, unbenutzte Resourcen verwenden
+            \item Fahrzeuge sind Edge Server
+            \item kann mit fest installierten Edge Server kombiniert werden
+            \item Basissatation zuständig für Verbindung zwischen lokale Edge server und Cloud Netzwerk 
+        \end{notes}
+        \item Fog Computing (lokale Fahrzeuge schließen sich zu Rehchenknoten zusammen)
+        \item “a horizontal system-level architecture that distributes computing, storage, and networking functions closer to the user along a cloud-to-thing continuum”  OpenFog Consortium (Group, O.C.A.W., et al.: Openfog reference architecture for fog computing. OPFRA001 20817, 162 (2017))
+        \item Mist Computing
+        \item Herausforderungen:
+        \begin{notes}
+            \item allgemeine Rechenaufgaben auf spezialisierte Hardware
+            \item Erkennung von Edge nodes
+            \item Task auslagerung und Verteilung
+            \item Keine Beeinträchtigumg der Funktionalität des Edge Gerätes (z.b. Überlastung)
+            \item Sicherheit
+        \end{notes}
+    \end{notes}
+    \item Kommunikation
+    \begin{notes}
+        \item Zertifikate (Public/Private Key)
+        \item identitätsverschlüsselung
+        \item Belohnung für bereitgestellte Rechenleistung
+    \end{notes}
+    \item Resourcenverteilung
+    \begin{notes}
+        \item Bestimmung der verfügbaren Rechenleistung 
+        \item Optimierungsalgorythmen
+        \item Stackelberg Model
+    \end{notes}
+    \item Softwarearchitektur in Fahrzeugen
+   \begin{notes}
+        \item RTOS
+        \item Moddle Layer (ROS, keine automotive alternative stand 2019)
+        \item Cloud
+    \end{notes}
+
+\end{notes}

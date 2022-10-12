@@ -1,0 +1,262 @@
+\documentclass[
+    a5paper, 
+    fontsize=12pt,	
+    bibliography=totoc,	% Schriftgröße (12pt, 11pt (Standard))
+    BCOR=20cm,			% Bindekorrektur, bspw. 1 cm+
+    DIV=calc,	
+    toc=indent,
+    listof=totoc,
+    twoside,			% doppelseitiges Layout
+    parskip=half,		% Absatzformatierung
+    titlepage=true		% in-page-Titel, keine eigene Titelseite
+]{scrbook}
+
+\RequirePackage[l2tabu, orthodox]{nag} %Prufen der Code Aktualität
+\usepackage[svgnames,table]{xcolor} % Farbpaket
+\usepackage{pdfpages}
+%\usepackage{pgfmorepages} %Mehrere Seiten Gedruckt auf einer einzelnen Seite 2xA5 auf A4
+%\pgfmorepagesloadextralayouts
+\usepackage[ngerman]{babel}
+\usepackage{fontspec}
+\usepackage[onehalfspacing]{setspace} % Paket für Zeilenabstand
+\usepackage[unicode,hidelinks]{hyperref} % Paket für Textverweise
+\usepackage{microtype}
+\usepackage{amssymb}    % Mathematische Symbole
+\usepackage{amsmath}    % Mathematische Formeln
+\usepackage{rotating}   % Paket zum Drehen von Grafiken
+\usepackage{graphicx}
+\usepackage[acronym,toc,automake]{glossaries-extra}
+\usepackage{tabularx} %Automatisch angepasste Tabellen
+\usepackage[locale=DE]{siunitx} %SI Einheiten
+\usepackage{subcaption} %Subfigure
+\usepackage{pgfplots} %Plots
+\pgfplotsset{compat=newest} %Festlegen der neusten Version von PGFPlots
+\usepackage{tikz} %Zeichnungen
+\usetikzlibrary{quotes,angles,decorations,babel,patterns,positioning,3d, arrows.meta} %Geladene Libraries
+\usepackage[RPvoltages, straightvoltages]{circuitikz} %Schaltungen in Tikz
+\usepackage{enumitem} %Control layout of itemize, enumerate, description
+\usepackage{listings} %Software Code formatieren
+\usepackage{placeins} %Floatbarrier fuer Grafiken
+\usepackage{minted}
+\usepackage[a4paper,top=3cm,bottom=2.5cm,inner=3cm,outer=2cm,headsep=1.25cm,footskip=1.25cm]{geometry} %Festlegen von Seitenrändern
+\usepackage[automark,headsepline,plainheadsepline]{scrlayer-scrpage} %Paket zur Gestaltung von Kopfzeile und Fußzeile
+\usepackage[justification=RaggedRight, singlelinecheck=false,figurename=Abb.,tablename=Tab.]{caption}[2015/09/17]  %Paket für Bildunterschriftren 
+\usepackage[block=par,giveninits=true,natbib=true,style=alphabetic,backend=biber,maxalphanames=1,minalphanames=1,maxbibnames=1000]{biblatex} %Literaturverzeichnis
+\usepackage{seqsplit}
+\usepackage{scrhack}
+\usepackage{csquotes} %Paket für Anführungszeichen
+
+
+%-----------------------------Font--------------------------------
+
+\setmainfont[ExternalLocation=fonts/,Ligatures=TeX,BoldFont=Arial_Bold.ttf,ItalicFont=Arial_Italic.ttf,BoldItalicFont=Arial_Bold_Italic.ttf]{Arial.ttf} %set main font to Arial
+\setmonofont[ExternalLocation=fonts/]{Consolas.ttf} %to be used with XeLaTeX or LuaLaTeX
+
+%----------------------------Colors-------------------------------
+\definecolor{yellowIKA}{rgb}{255,237,0}
+\definecolor{lightGrayIKA}{rgb}{150,150,150}
+\definecolor{darkGrayIKA}{rgb}{95,95,95}
+
+\definecolor{lightBlueRWTH}{rgb}{151,191,221}
+\definecolor{darkBlueRWTH}{rgb}{0,84,159}
+
+%---------------------Define Environments--------------------------
+
+\newenvironment{notes}
+{\begin{itemize} \color{Crimson}}
+{\end{itemize}}
+
+\newcommand{\placeholderImage}{
+\begin{tikzpicture}
+\draw (0,0) rectangle (\textwidth,0.5\textwidth);
+\node at (0.5\textwidth,0.25\textwidth) {Platzhalter};
+\end{tikzpicture}
+}
+    
+%-----------------------Layout Options------------------------------
+\setlength{\parindent}{0pt}
+\setminted{fontsize=\small}
+
+%---------------------Anpasssungen Inhaltsverzeichnis-------------
+\addto\captionsngerman{\renewcommand{\contentsname}{Inhalt}} %Inhaltsverzeichnis mit Inhalt beschriften
+
+ \setcounter{secnumdepth}{4} %Bis Subsubsections in Inhaltsverzeichnis Nummerierung anzeigen
+ \setcounter{tocdepth}{4} %Auch SubSubsections in Inhaltsverzeichnis anzeigen
+ 
+\addtokomafont{chapterentry}{\normalfont\normalsize} %Table of Content Chapter nicht fett gedruckt
+
+%---------------------Anpassungen Chapter, Section, etc.------------
+%Schriftgröße der Überschriften 
+\addtokomafont{chapter}{\normalsize\bfseries}
+\addtokomafont{section}{\normalsize\bfseries}
+\addtokomafont{subsection}{\normalsize\bfseries}
+\addtokomafont{subsubsection}{\normalsize\bfseries}
+
+\renewcommand{\autodot}{} %Entfernen des Punktes nach der Nummer der Überschrift
+
+%Abstand zwischen Heading Number und Heading Text (im Text nicht in Kopf- oder Fußzeile)
+\renewcommand*{\sectionformat}{\thesection\hspace{0.9cm}}
+\renewcommand*{\subsectionformat}{\thesubsection\hspace{0.9cm}}
+\renewcommand*{\subsubsectionformat}{\thesubsubsection\hspace{0.9cm}}
+\renewcommand*{\chapterformat}{\thechapter\hspace{0.6cm}} 
+
+%Anpassen der Einrückugnen in TOC und Abstand nach Heading im Text
+%afterskip eigentlich Laut CI-Fibel bei allen Wertenh 12pt. Es scheint jedoch mit 6pt naher an der CI Fibel zu sein.
+\RedeclareSectionCommand[tocindent=0pt,tocnumwidth=9mm,beforeskip=0pt,afterskip=6pt]{chapter}
+\RedeclareSectionCommand[tocindent=0.3cm,tocnumwidth=12.5mm,beforeskip=-6pt,afterskip=6pt]{section}
+\RedeclareSectionCommand[tocindent=0.6cm,tocnumwidth=13.5mm,beforeskip=-6pt,afterskip=6pt]{subsection}
+\RedeclareSectionCommand[tocindent=0.9cm,tocnumwidth=18mm,beforeskip=-6pt,afterskip=6pt]{subsubsection}
+
+%---------Formatierung von Kopf und Fußzeile---
+
+\renewcommand*{\chaptermarkformat}{\thechapter\hspace{1cm}} %1cm Abstand zwischen Kapitelnummer und Name im Seitenkopf
+
+%Festlegen des Seitenkopfes mit Kapitelname
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\automark[chapter]{chapter}
+\lehead[\pagemark]{\pagemark}
+\cehead[]{}
+\rehead[\rightmark]{\rightmark}
+\lohead[\leftmark]{\leftmark}
+\cohead[]{}
+\rohead[\pagemark]{\pagemark}
+
+\renewcommand{\headfont}{\normalfont\normalsize} %Header Title not italic
+
+%---------------------Anpassungen Grafiken, Tabellen etc.------------
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+\graphicspath{{./images/}} %Festlegen des Grafikordners um nicht immer den Gesamten Pfad angeben zu müssen.
+
+\renewcommand{\arraystretch}{1.5} %Tabellen Innenabstand
+
+\makeatletter
+\renewcommand\tagform@[1]{\maketag@@@ {Gl. \ignorespaces #1\unskip \@@italiccorr }} %Einfuegen von Gl. vor der Gleichungsnummer
+\makeatother
+
+\addto\extrasngerman{\renewcommand{\figureautorefname}{Abb.}}  %Autoref auf Abb. Win
+\addto\extrasngerman{\renewcommand{\tableautorefname}{Tab.}}  %Autoref auf Abb. Win
+\addto\extrasngerman{\def\equationautorefname{Gl.}}  %Autoref auf Abb. Win
+
+%Abstand zwischen Abb. und Nummer 
+\DeclareCaptionLabelFormat{mylabel}{#1 #2:\hspace{0.6cm}} 
+
+\captionsetup{
+   labelformat=mylabel, %Zuweisen des Vorher definierten Labelformat
+   labelsep=none,
+}
+
+%----------------------Anpassungen Literaturverzeichnis--------------
+
+\addbibresource{bibliography.bib} %Literaturverzeichnispfad
+\nocite{*} %Auch nicht zitierte Quellen erscheinen im Literaturverzeichnis
+
+%Für Biblatex > 3.3
+\DeclareNameFormat{author}{%
+	\MakeUppercase{\namepartfamily}%
+		\ifblank{\namepartgiven}{}{
+			,\space\MakeUppercase{\namepartgiveni}}
+	\ifthenelse{\value{listcount}<\value{liststop}}
+	{\addcomma\space}
+	{}}
+	
+%\renewcommand{\labelnamepunct}{\addspace}
+\renewcommand{\newunitpunct}{\addspace} %Entfernt den Punkt zwischen den Einzeleinträgen
+\renewcommand{\finentrypunct}{} %Entfernt den Punkt am Ende jeder Quelle
+
+\DeclareFieldFormat[book]{title}{#1} %Titel nicht italic
+\DeclareFieldFormat[online]{url}{#1} %Url nicht italic
+\DeclareFieldFormat[online]{title}{#1} %Titel nicht italic
+
+%Umsortieren der Reihenfolge von publisher, location, date
+\renewbibmacro*{publisher+location+date}{%
+  \printlist{publisher}%
+  \iflistundef{location}
+    {\setunit*{\addcomma\space}}
+    {\setunit*{\addcomma\space}}%
+  \printlist{location}%
+  \setunit*{\addcomma\space}%
+  \usebibmacro{date}%
+  \newunit}
+
+\renewcommand*{\labelalphaothers}{} %Entfernen des + Zeichens in der Zitierabkürzung bei mehreren Autoren
+
+\DeclareFieldFormat{labelalpha}{\MakeUppercase{#1}} %Fomatierung der Abkürzung zu Großbuchstaben
+
+%-----------------------------Babel-Hyphenation----------------------------------
+
+\babelhyphenation[ngerman]{Tief-pass Netz-werks}
+
+
+%------------------------------Abkürzungen--------------------------------------
+
+\setabbreviationstyle[acronym]{long-short}
+\setabbreviationstyle{long-short}
+
+\makeglossaries
+
+%%% Abkuerzungen
+% \input{content/abbreviations.tex}
+
+%%% Akronyme
+% \input{content/acronyms.tex}
+
+%%% Begriffe
+% \input{content/glossaries.tex}
+
+%----------------------------Hyperref Dokumentendaten----------------------------
+\hypersetup{
+pdftitle = {Dissertation},
+pdfsubject = {Thema der Arbeit},
+pdfauthor = {Autorname}
+pdfcreator = {Xelatex},
+}
+
+\addto\extrasngerman{
+\let\subsectionautorefname\sectionautorefname
+\let\subsubsectionautorefname\sectionautorefname
+}
+\addto\extrasenglish{
+\let\subsectionautorefname\sectionautorefname
+\let\subsubsectionautorefname\sectionautorefname
+}
+
+
+\begin{document}
+% Title Page
+% \input{content/title/title.tex}
+
+% Acknowledgements
+% \input{content/acknowledgments.tex}
+
+% Abstract
+% \input{content/abstract/abstract.tex}
+
+% Table of Content
+\tableofcontents
+
+% List of Figures
+\listoffigures
+
+% List of Tables
+\listoftables
+
+% Glossaries
+\printglossaries
+
+% Content
+ \input{content/content.tex}
+
+% Bibliography 
+\printbibliography[heading=bibnumbered]
+\cleardoublepage
+
+% Appendix
+\appendix
+\csname phantomsection\endcsname
+\addcontentsline{toc}{chapter}{Appendix}
+% \input{content/appendix/appendix.tex}
+
+\end{document}
