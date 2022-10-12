@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.1 (MiKTeX 22.8.28) (format=lualatex 2022.10.6)  12 OCT 2022 11:48
+This is LuaHBTeX, Version 1.15.1 (MiKTeX 22.8.28) (format=lualatex 2022.10.6)  12 OCT 2022 12:07
  system commands enabled.
  file:line:error style messages enabled.
 **c:/Users/bilkei/Documents/Diss/Dokument/main.tex
@@ -2411,7 +2411,7 @@ Here is how much of LuaTeX's memory you used:
 warning  (pdf backend): unreferenced destination with name 'section*.4'
 <./fonts/Arial_Bold.ttf><//?/c:/program files/miktex 2.9/fonts/opentype/public/l
 m/lmsans10-bold.otf><./fonts/Arial.ttf>
-Output written on main.pdf (6 pages, 66895 bytes).
+Output written on main.pdf (6 pages, 66927 bytes).
 
 PDF statistics: 72 PDF objects out of 1000 (max. 8388607)
  11 named destinations out of 1000 (max. 131072)
