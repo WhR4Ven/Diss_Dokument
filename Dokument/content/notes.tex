@@ -2,13 +2,6 @@
     \item Netzwerkaufbau
     \begin{notes}
         \item Edge Computing (zentrale Verwaltung)
-        \begin{notes}
-            \item “a form of distributed computing in which processing and storage takes place on a set of networked machines which are near the edge, where the nearness is defined by the system’s requirements”  (ISO/IEC: Tr 30164:2020 - internet of things (iot) -edge computing. Tech. rep., ISO/IEC (2020))
-            \item Motivation: Latenzreduzierung, unbenutzte Resourcen verwenden
-            \item Fahrzeuge sind Edge Server
-            \item kann mit fest installierten Edge Server kombiniert werden
-            \item Basissatation zuständig für Verbindung zwischen lokale Edge server und Cloud Netzwerk 
-        \end{notes}
         \item Fog Computing (lokale Fahrzeuge schließen sich zu Rehchenknoten zusammen)
         \item “a horizontal system-level architecture that distributes computing, storage, and networking functions closer to the user along a cloud-to-thing continuum”  OpenFog Consortium (Group, O.C.A.W., et al.: Openfog reference architecture for fog computing. OPFRA001 20817, 162 (2017))
         \item Mist Computing
@@ -51,15 +44,40 @@
 \begin{notes}
 \item Kommunikation
     \begin{notes}
+        \item Cloud Computing
+        \begin{notes}
+            \item IT resourcen werden flexibel nach Bedarf zur Verfügung bereitgestellt
+            \item Realisiert durch Rechenzentren, Kunden können Resourcen mieten anstatt eigene Server betreiben
+            \item Dienst wird in der Regel durch Internet zur Verfügung gestellt
+        \end{notes}
         \item Edge Computing
         \begin{notes}
-            \item CLoud Computing bereits verbreitet, zusammenschluss von mehreren Servern oder Serverzentren zu einer Recheneinheit
             \item Internet of Things: Objekte mit Sensoren, Rechenkapazität, die die Fähigkeit haben über Netzwerkverbindung Daten auszutauschen.
             \item Daten entstehen in Endgeräten, Applikationen, die die Daten verarbeiten sind zunehmend ebenfalls in Endgeräten
             \item Edge Computing ist das Konzept, dass anstatt zentrale Cloud Server, Daten zunehmend auf Endgeräten verarbeitet werden
             \item “a form of distributed computing in which processing and storage takes place on a set of networked machines which are near the edge, where the nearness is defined by the system’s requirements”  (ISO/IEC: Tr 30164:2020 - internet of things (iot) -edge computing. Tech. rep., ISO/IEC (2020))
+            \item Edge bezeichnet Geräte zwischen Datenquellen und cloud server
             \item Motivation: Latenzreduzierung, unbenutzte Resourcen verwenden
-            \item Edge Geräte sind 
+            \item Beispiel FLugzeuge oder autonome Fahrzeuge, generieren Daten in Größe von mehreren Gb pro Senkunde
+            \item Übertragung und Verarbeitung in der Cloud langsam/unmöglich wegen Bandbreite und Latenz
+            \item Anwendungsfälle:
+            \begin{notes}
+                \item Cloud Berechnungen auslagern
+                \item Smart Home, Daten lokal auswerten statt alles in die Cloud laden
+                \item Smart City
+            \end{notes}
+        \end{notes}
+        \item Fog Computing
+        \begin{notes} 
+            \item Fog Computing: zusätzliche schicht zwischen edge und cloud
+            \item Edge geräte kommunizieren mit Fog servern, die wiederrum für die Kommunikation zwishen Edge und Cloud zuständig sind
+            \item Fog Server übernehmen Datenverarbeitung lokal, für nur Lokal benötigte Daten, Leiten nur relevante Daten an Cloud weiter
+        \end{notes}
+        \item Mist Computing
+        \begin{notes} 
+            \item Datenverarbeitung direkt im Sensor.
+            \item Erlaubt z.b. einfache Monitoringfunktionen direkt im Sensor
+            \item Reduktion von benörigte Bandbreite und Rechenleistung in den übergeordneten Geräten
         \end{notes}
     \end{notes}
 \end{notes}
