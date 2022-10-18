@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.1 (MiKTeX 22.8.28) (format=lualatex 2022.10.6)  12 OCT 2022 17:32
+This is LuaHBTeX, Version 1.15.1 (MiKTeX 22.8.28) (format=lualatex 2022.10.6)  18 OCT 2022 15:40
  system commands enabled.
  file:line:error style messages enabled.
 **c:/Users/bilkei/Documents/Diss/Dokument/main.tex
@@ -2371,11 +2371,14 @@ Package tocbasic Info: character protrusion at lot deactivated on input line 24
 \tf@lot=\write13
 
 \openout13 = main.lot
- (./main.gls) (./main.acr) (./content/content.tex (./content/stateoftheart.tex) (./content/notes.tex [5]))
+ (./main.gls) (./main.acr) (./content/content.tex (./content/stateoftheart.tex) (./content/notes.tex [5] [6]))
 
 LaTeX Warning: Empty bibliography on input line 253.
 
-[6]
+[7] [8
+
+
+]
 runsystem(makeindex -s main.ist -t main.glg -o main.gls main.glo)...executed
 runsystem(makeindex -s main.ist -t main.alg -o main.acr main.acn)...executed
 
@@ -2397,23 +2400,23 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 84809 strings out of 477457
+ 84815 strings out of 477457
  100000,4101490 words of node,token memory allocated
- 870 words of node memory still in use:
-   8 hlist, 2 vlist, 2 rule, 1 local_par, 7 glue, 4 kern, 1 penalty, 3 glyph, 28
- attribute, 96 glue_spec, 16 attribute_list, 5 write, 2 close, 1 pdf_dest nodes
-   avail lists: 2:1130,3:276,4:135,5:120,6:91,7:3748,8:15,9:510,10:5,11:370,12:1
-
- 103275 multiletter control sequences out of 65536+600000
+ 852 words of node memory still in use:
+   8 hlist, 2 vlist, 2 rule, 1 local_par, 7 glue, 4 kern, 1 penalty, 3 glyph, 24
+ attribute, 96 glue_spec, 14 attribute_list, 3 write, 2 close, 1 pdf_dest nodes
+   avail lists: 2:1256,3:278,4:146,5:132,6:102,7:4077,8:15,9:518,10:5,11:419,12:
+1
+ 103279 multiletter control sequences out of 65536+600000
  51 fonts using 11512671 bytes
  110i,20n,128p,10638b,2455s stack positions out of 10000i,1000n,20000p,200000b,80000s
 
 warning  (pdf backend): unreferenced destination with name 'section*.4'
 <./fonts/Arial_Bold.ttf><//?/c:/program files/miktex 2.9/fonts/opentype/public/l
 m/lmsans10-bold.otf><./fonts/Arial.ttf>
-Output written on main.pdf (6 pages, 66966 bytes).
+Output written on main.pdf (8 pages, 70946 bytes).
 
-PDF statistics: 72 PDF objects out of 1000 (max. 8388607)
- 11 named destinations out of 1000 (max. 131072)
+PDF statistics: 80 PDF objects out of 1000 (max. 8388607)
+ 13 named destinations out of 1000 (max. 131072)
  40 words of extra memory for PDF output out of 10000 (max. 100000000)
 

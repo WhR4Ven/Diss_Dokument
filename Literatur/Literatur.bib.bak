@@ -194,4 +194,22 @@
   keywords  = {Cloud computing, Base stations, Performance evaluation, Servers, Hardware, Smart phones, edge computing, fog computing, edge nodes, distributed computing, cloud, cloudlet},
 }
 
+ 
+@Article{Shi2016,
+  author     = {Shi, Weisong and Cao, Jie and Zhang, Quan and Li, Youhuizi and Xu, Lanyu},
+  journal    = {IEEE Internet of Things Journal},
+  title      = {Edge {Computing}: {Vision} and {Challenges}},
+  year       = {2016},
+  issn       = {2327-4662},
+  month      = oct,
+  number     = {5},
+  pages      = {637--646},
+  volume     = {3},
+  abstract   = {The proliferation of Internet of Things (IoT) and the success of rich cloud services have pushed the horizon of a new computing paradigm, edge computing, which calls for processing the data at the edge of the network. Edge computing has the potential to address the concerns of response time requirement, battery life constraint, bandwidth cost saving, as well as data safety and privacy. In this paper, we introduce the definition of edge computing, followed by several case studies, ranging from cloud offloading to smart home and city, as well as collaborative edge to materialize the concept of edge computing. Finally, we present several challenges and opportunities in the field of edge computing, and hope this paper will gain attention from the community and inspire more research in this direction.},
+  doi        = {10.1109/JIOT.2016.2579198},
+  file       = {:Shi2016 - Edge Computing_ Vision and Challenges.pdf:PDF},
+  keywords   = {Cloud computing, Internet of things, Bandwidth, Time factors, Mobile handsets, Data privacy, Smart homes, Edge computing, Internet of Things (IoT), smart home and city},
+  shorttitle = {Edge {Computing}},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
