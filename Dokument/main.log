@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.1 (MiKTeX 22.8.28) (format=lualatex 2022.10.6)  21 OCT 2022 16:50
+This is LuaHBTeX, Version 1.15.1 (MiKTeX 22.8.28) (format=lualatex 2022.10.6)  26 OCT 2022 12:29
  system commands enabled.
  file:line:error style messages enabled.
 **c:/Users/bilkei/Documents/Diss/Dokument/main.tex
@@ -2371,50 +2371,50 @@ Package tocbasic Info: character protrusion at lot deactivated on input line 24
 \tf@lot=\write13
 
 \openout13 = main.lot
- (./main.gls) (./main.acr) (./content/content.tex (./content/stateoftheart.tex) (./content/notes.tex [5] [6] [7]))
+ (./main.gls) (./main.acr) (./content/content.tex (./content/stateoftheart.tex) (./content/notes.tex [5] [6] [7] [8])) [9] [10
 
-LaTeX Warning: Empty bibliography on input line 253.
 
-[8]
+]
+chapter 1.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `Consolas.ttf' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+[11] [12] [13] [14] [15] [16
+
+
+]
 runsystem(makeindex -s main.ist -t main.glg -o main.gls main.glo)...executed
 runsystem(makeindex -s main.ist -t main.alg -o main.acr main.acn)...executed
 
 No complaints by nag.
 (./main.aux)
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                main
-(biblatex)                and rerun LaTeX afterwards.
-
 Package logreq Info: Writing requests to 'main.run.xml'.
 
 \openout1 = main.run.xml
 )
 
 Here is how much of LuaTeX's memory you used:
- 84815 strings out of 477457
+ 85273 strings out of 477457
  100000,4101490 words of node,token memory allocated
- 881 words of node memory still in use:
-   8 hlist, 2 vlist, 2 rule, 1 local_par, 7 glue, 4 kern, 1 penalty, 1 margin_ke
-rn, 4 glyph, 28 attribute, 96 glue_spec, 16 attribute_list, 5 write, 2 close, 1 
-pdf_dest nodes
-   avail lists: 2:1245,3:276,4:149,5:132,6:103,7:4293,8:15,9:552,10:5,11:457,12:
-1
- 103279 multiletter control sequences out of 65536+600000
- 51 fonts using 11512671 bytes
+ 837 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 5 glue, 4 kern, 1 glyph, 24 attribute, 101 glue_spe
+c, 14 attribute_list, 3 write, 2 close, 1 pdf_dest, 1 pdf_action nodes
+   avail lists: 1:2,2:1579,3:304,4:153,5:183,6:144,7:4514,8:61,9:552,10:5,11:458
+,12:1
+ 103703 multiletter control sequences out of 65536+600000
+ 54 fonts using 13262295 bytes
  110i,20n,128p,10638b,2455s stack positions out of 10000i,1000n,20000p,200000b,80000s
 
 warning  (pdf backend): unreferenced destination with name 'section*.4'
-<./fonts/Arial_Bold.ttf><//?/c:/program files/miktex 2.9/fonts/opentype/public/l
-m/lmsans10-bold.otf><./fonts/Arial.ttf>
-Output written on main.pdf (8 pages, 72199 bytes).
+<./fonts/Consolas.ttf><./fonts/Arial_Italic.ttf><./fonts/Arial_Bold.ttf><//?/c:/
+program files/miktex 2.9/fonts/opentype/public/lm/lmsans10-bold.otf><./fonts/Ari
+al.ttf>
+Output written on main.pdf (16 pages, 148145 bytes).
 
-PDF statistics: 80 PDF objects out of 1000 (max. 8388607)
- 13 named destinations out of 1000 (max. 131072)
- 40 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 196 PDF objects out of 1000 (max. 8388607)
+ 43 named destinations out of 1000 (max. 131072)
+ 48 words of extra memory for PDF output out of 10000 (max. 100000000)
 

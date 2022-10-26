@@ -33,31 +33,29 @@
 \end{notes}
 
 \begin{notes}
-\item Motivation:
-    \begin{notes}
-        \item Zunehmende digitalisierung in Arbeits- und Privatumfeld
-        \item Bedarf an Netzwerk Bandbreite und Rechenleistung nimmt zu
-        \item Rechenleistung in Fahrzeugen stark angestiegen durch autonome Fahrfunktionen
-        \item Ungenutze Rechenleistung kann für externe Anwendungen zur verfügung gestellt werden
-        \item Einsparung in Internet Bandbreite, Serverinfrastruktur
-    \end{notes}
-\item Kommunikation
+\item Stand der Technik
     \begin{notes}
         \item Cloud Computing
         \begin{notes}
             \item IT resourcen werden flexibel nach Bedarf zur Verfügung bereitgestellt
             \item Realisiert durch Rechenzentren, Kunden können Resourcen mieten anstatt eigene Server betreiben
-            \item Dienst wird in der Regel durch Internet zur Verfügung gestellt
+            \item Resourcen sind von verschiednen Endgeräten erreichbar \cite{Sunyaev2020}
+            \item Cloud kann öffentlich oder privat sein, privat für sensible Daten \cite{Ibrahim2021}
         \end{notes}
+        \item Internet of Things (IoT)
+            \begin{notes}
+                \item Internet of Tings (Internet der Dinge) bezeichnet eindeutig identifizierbare Objekte und deren virtuelle repräsentation in interent-ähnliche Strukturen\cite{Jie2013} 
+                \item 
+            \end{notes}
         \item Edge Computing
         \begin{notes}
-            \item Internet of Things: Objekte mit Sensoren, Rechenkapazität, die die Fähigkeit haben über Netzwerkverbindung Daten auszutauschen.
+            \item Internet of Things: Objekte mit Sensoren, Rechenkapazität, die die Fähigkeit haben über Netzwerkverbindung Daten auszutauschen. \cite{Perez2022}
             \item Daten entstehen in Endgeräten, Applikationen, die die Daten verarbeiten sind zunehmend ebenfalls in Endgeräten
-            \item Edge Computing ist das Konzept, dass anstatt zentrale Cloud Server, Daten zunehmend auf Endgeräten verarbeitet werden
+            \item Edge Computing ist das Konzept, dass anstatt zentrale Cloud Server, Daten zunehmend auf Endgeräten verarbeitet werden \cite{Shi2016}
             \item “a form of distributed computing in which processing and storage takes place on a set of networked machines which are near the edge, where the nearness is defined by the system’s requirements”  (ISO/IEC: Tr 30164:2020 - internet of things (iot) -edge computing. Tech. rep., ISO/IEC (2020))
             \item Edge bezeichnet Geräte zwischen Datenquellen und cloud server
             \item Motivation: Latenzreduzierung, unbenutzte Resourcen verwenden
-            \item Beispiel FLugzeuge oder autonome Fahrzeuge, generieren Daten in Größe von mehreren Gb pro Senkunde
+            \item Beispiel Flugzeuge oder autonome Fahrzeuge, generieren Daten in Größe von mehreren Gb pro Senkunde \cite{Liu2019}
             \item Übertragung und Verarbeitung in der Cloud langsam/unmöglich wegen Bandbreite und Latenz
             \item Anwendungsfälle:
             \begin{notes}
@@ -94,10 +92,37 @@
                 \item Ausnutzung von Rechenleistung parkende Fahrzeuge
                 \item Möglichkeit, die unbenutzte Rechenleistung zu Vermieten (wie cloud service)
             \end{notes}
+        \item Publish/Subscribe Kommunikation:
+            \begin{notes}
+                \item Modell für Nachrichtenbasierte Kommunikation \cite{MadeWirawan2018}
+                \item Ereignisbasierte Kommunikation
+                \item Teilnehmer kommunizieren indem sie Nachrichten mit bestimmte Themen veröffentlichen (Publisher), Empfänger können Themen abonnieren (Subscriber) und bekommen nur die abonnierte Nachrichten
+                \item Kommunikation ist anonym
+                \item Komponenten: Publisher, Broker, Subscriber
+                \item Broker stellt Verbindungen zwischen Publisher und Subscriber her
+                \item Broker speichert die Subscriptions (Abos)
+                \item RTPS
+            \end{notes}
     \end{notes}
     \item Konzept UNICARagil:
         \begin{notes}
-            \item Modulare Systemarchitektur in allen Domänen
+            \item Modulare Systemarchitektur in allen Domänen 
+            \item Fahrzeuge können flexibel auf verschiedene Anwendungen angepasst werden: Taxi, Privatfahrzeug, Shuttle, Cargo
+            \item gemeinsamer mechanischer Platform
+            \item Sensoren und Aktoren mit definierte Schnittstellen
             \item Alle Fahrzeuge vernetzt: untereinander, zur Cloud, Infobiene, Benutzer 
         \end{notes}
+    \item Motivation:
+    \begin{notes}
+        \item Zunehmende digitalisierung in Arbeits- und Privatumfeld
+        \item Cloud Dienste bereits sehr verbreitet
+        \item steigende Zahl an vernetzte Endgeräte
+        \item Daten entstehen an Endgeräten, verarbeitete Daten werden ebenfalls an Endgeräten benötigt
+        \item Cloud basierte ansätze erfordern immer höhere Bandbreite und zentralisierte Rechenleistung
+        \item Endgeräte haben immer höhere Rechenleistung, die oft unbenutzt bleibt
+        \item So auch in Fahrzeugen, die wegen autonome Fahrfunktionen deutlich mehr rechenleistung bekommen
+        \item Ungenutze Rechenleistung kann für externe Anwendungen zur verfügung gestellt werden
+        \item Dezentralisierte Rechenleistung verringert physikalische Distanz zwischen Entstehung und Verarbeitung der Daten
+        \item Einsparung an Bandbreite und zusätzliche Server Rechenleistung
+    \end{notes}
 \end{notes} 

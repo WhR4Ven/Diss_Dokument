@@ -1,0 +1,1258 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global}
+    \entry{Chun2016}{inproceedings}{}
+      \name{author}{6}{}{%
+        {{hash=cdb87022d4e623ddf3d0a4001f87a54b}{%
+           family={Chun},
+           familyi={C\bibinitperiod},
+           given={Sejin},
+           giveni={S\bibinitperiod}}}%
+        {{hash=37265cca98a77bdfa6f5e803b5132fde}{%
+           family={Shin},
+           familyi={S\bibinitperiod},
+           given={Sangjin},
+           giveni={S\bibinitperiod}}}%
+        {{hash=b05423564d77489cc5c11e2c23c20b5f}{%
+           family={Seo},
+           familyi={S\bibinitperiod},
+           given={Seungmin},
+           giveni={S\bibinitperiod}}}%
+        {{hash=779293b51a72d2171b34de0f0a5117c1}{%
+           family={Eom},
+           familyi={E\bibinitperiod},
+           given={Sungkwang},
+           giveni={S\bibinitperiod}}}%
+        {{hash=1d13a3f23ba3b8cd5e4b9c3854ecbb1b}{%
+           family={Jung},
+           familyi={J\bibinitperiod},
+           given={Jooik},
+           giveni={J\bibinitperiod}}}%
+        {{hash=df19c12dd5d34857c9fe4233f0d1b025}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Kyong-Ho},
+           giveni={K\bibinithyphendelim H\bibinitperiod}}}%
+      }
+      \strng{namehash}{b18b3ceefba540e2e4ba8d29755cb803}
+      \strng{fullhash}{d0f2129bb38ff6e6610750cc3dbeacc5}
+      \strng{bibnamehash}{d0f2129bb38ff6e6610750cc3dbeacc5}
+      \strng{authorbibnamehash}{d0f2129bb38ff6e6610750cc3dbeacc5}
+      \strng{authornamehash}{b18b3ceefba540e2e4ba8d29755cb803}
+      \strng{authorfullhash}{d0f2129bb38ff6e6610750cc3dbeacc5}
+      \field{labelalpha}{Chu16}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Fog computing is a promising paradigm in terms of extending cloud computing to an edge network. In a broad sense, fog computing in Internet-of-Vehicles(IoV) provides low-latency services since fog nodes are closely located with moving cars and are locally distributed. In this paper, we propose a fog computing architecture based on a publish/subscribe model. After that, we describe a traffic congestion control scenario using a smart traffic light system which operates on top of the proposed architecture. Furthermore, we propose an upper-level domain ontology in order to enhance the expressivity of knowledge and describe a variety of semantic properties which interlink spatial information in IoV. Finally, we present an active rule where supports the exchange of event-driven messages between publishing and subscribing fog nodes.}
+      \field{booktitle}{2016 {IEEE} {International} {Conference} on {Cloud} {Computing} {Technology} and {Science} ({CloudCom})}
+      \field{issn}{2330-2186}
+      \field{month}{12}
+      \field{note}{ISSN: 2330-2186}
+      \field{title}{A {Pub}/{Sub}-{Based} {Fog} {Computing} {Architecture} for {Internet}-of-{Vehicles}}
+      \field{year}{2016}
+      \true{nocite}
+      \field{pages}{90\bibrangedash 93}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1109/CloudCom.2016.0029
+      \endverb
+      \verb{file}
+      \verb :Chun2016 - A Pub_Sub Based Fog Computing Architecture for Internet of Vehicles.pdf:PDF
+      \endverb
+      \keyw{Decision support systems,Conferences,Cloud computing,Semantic Web,Computers,Edge computing,Internet-of-Vehicles,Internet-of-Cars,Fog computing,OWL,Pub/Sub system}
+    \endentry
+    \entry{Dolejs2004}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=e61a1af1e7ed842d9f6ff05b265f277c}{%
+           family={Dolejs},
+           familyi={D\bibinitperiod},
+           given={O.},
+           giveni={O\bibinitperiod}}}%
+        {{hash=b63a178b76af02922798d62675a93243}{%
+           family={Smolik},
+           familyi={S\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=51f2e931b37122810e600461b8258831}{%
+           family={Hanzalek},
+           familyi={H\bibinitperiod},
+           given={Z.},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{df1d93318ace8797fb30add2eb25ff79}
+      \strng{fullhash}{df1d93318ace8797fb30add2eb25ff79}
+      \strng{bibnamehash}{df1d93318ace8797fb30add2eb25ff79}
+      \strng{authorbibnamehash}{df1d93318ace8797fb30add2eb25ff79}
+      \strng{authornamehash}{df1d93318ace8797fb30add2eb25ff79}
+      \strng{authorfullhash}{df1d93318ace8797fb30add2eb25ff79}
+      \field{labelalpha}{Dol04}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Ethernet is very attractive for the automation area due to its availability and low implementation cost. Due to its media access control (CSMA/CD), Ethernet is not deterministic in general and its behaviour under transient overload is not sufficient for any real-time application. On the other hand, if the applications have predictable and bounded number of requests, behaviour of Ethernet is "nearly" real-time (very low probability of delayed data delivery). This article tests ORTE (open real-time Ethernet), an open-source implementation of RTPS middleware (real-time publish-subscribe), built upon UDP/IP and tested on Ethernet. This middleware can be used in real-time control applications, which typically have limited and relatively small input load compared to the high bandwidth. To derive the influence of the operating system, we combined the application response time measurement with the simulation.}
+      \field{booktitle}{{IEEE} {International} {Workshop} on {Factory} {Communication} {Systems}, 2004. {Proceedings}.}
+      \field{month}{9}
+      \field{title}{On the {Ethernet} use for real-time publish-subscribe based applications}
+      \field{year}{2004}
+      \true{nocite}
+      \field{pages}{39\bibrangedash 44}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/WFCS.2004.1377674
+      \endverb
+      \verb{file}
+      \verb :Dolejs2004 - On the Ethernet Use for Real Time Publish Subscribe Based Applications.pdf:PDF
+      \endverb
+      \keyw{Ethernet networks,Publish-subscribe,Delay,Testing,Middleware,Automation,Costs,Media Access Protocol,Multiaccess communication,Open source software}
+    \endentry
+    \entry{Hou2016}{article}{}
+      \name{author}{6}{}{%
+        {{hash=0b98f3d70eb1eb9ee1fc4ad9c243b172}{%
+           family={Hou},
+           familyi={H\bibinitperiod},
+           given={Xueshi},
+           giveni={X\bibinitperiod}}}%
+        {{hash=78be8ea0cb80e4e1b59bf06100942e90}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Yong},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=fb194450e9046854896c4ca5f2dc8d01}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Min},
+           giveni={M\bibinitperiod}}}%
+        {{hash=65027af5f4f54f2e6c7bb140253872e2}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Di},
+           giveni={D\bibinitperiod}}}%
+        {{hash=9c1c5f267e8b3796621ee2579ced9d50}{%
+           family={Jin},
+           familyi={J\bibinitperiod},
+           given={Depeng},
+           giveni={D\bibinitperiod}}}%
+        {{hash=64288176f389838aa5917ebca5ce2455}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Sheng},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{06da68cf8f47351e31363bb4c970e409}
+      \strng{fullhash}{18824e44c705d9820e4be5584f2c1bab}
+      \strng{bibnamehash}{18824e44c705d9820e4be5584f2c1bab}
+      \strng{authorbibnamehash}{18824e44c705d9820e4be5584f2c1bab}
+      \strng{authornamehash}{06da68cf8f47351e31363bb4c970e409}
+      \strng{authorfullhash}{18824e44c705d9820e4be5584f2c1bab}
+      \field{labelalpha}{Hou16}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{With the emergence of ever-growing advanced vehicular applications, the challenges to meet the demands from both communication and computation are increasingly prominent. Without powerful communication and computational support, various vehicular applications and services will still stay in the concept phase and cannot be put into practice in the daily life. Thus, solving this problem is of great importance. The existing solutions, such as cellular networks, roadside units (RSUs), and mobile cloud computing, are far from perfect because they highly depend on and bear the cost of additional infrastructure deployment. Given tremendous number of vehicles in urban areas, putting these underutilized vehicular resources into use offers great opportunity and value. Therefore, we conceive the idea of utilizing vehicles as the infrastructures for communication and computation, named vehicular fog computing (VFC), which is an architecture that utilizes a collaborative multitude of end-user clients or near-user edge devices to carry out communication and computation, based on better utilization of individual communication and computational resources of each vehicle. By aggregating abundant resources of individual vehicles, the quality of services and applications can be enhanced greatly. In particular, by discussing four types of scenarios of moving and parked vehicles as the communication and computational infrastructures, we carry on a quantitative analysis of the capacities of VFC. We unveil an interesting relationship among the communication capability, connectivity, and mobility of vehicles, and we also find out the characteristics about the pattern of parking behavior, which benefits from the understanding of utilizing the vehicular resources. Finally, we discuss the challenges and open problems in implementing the proposed VFC system as the infrastructures. Our study provides insights for this novel promising paradigm, as well as research topics about vehicular information infrastructures.}
+      \field{issn}{1939-9359}
+      \field{journaltitle}{IEEE Transactions on Vehicular Technology}
+      \field{month}{6}
+      \field{number}{6}
+      \field{shorttitle}{Vehicular {Fog} {Computing}}
+      \field{title}{Vehicular {Fog} {Computing}: {A} {Viewpoint} of {Vehicles} as the {Infrastructures}}
+      \field{volume}{65}
+      \field{year}{2016}
+      \true{nocite}
+      \field{pages}{3860\bibrangedash 3873}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1109/TVT.2016.2532863
+      \endverb
+      \verb{file}
+      \verb :Hou2016 - Vehicular Fog Computing_ a Viewpoint of Vehicles As the Infrastructures.pdf:PDF
+      \endverb
+      \keyw{Vehicles,Cloud computing,Computer architecture,Mobile communication,Mobile computing,Real-time systems,Urban areas,Vehicular fog computing,infrastructures,cloud computing,vehicular network,vehicular fog computing (VFC)}
+    \endentry
+    \entry{Hou2017}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=3f700197bc611d3a99c7172d9fff2767}{%
+           family={Hou},
+           familyi={H\bibinitperiod},
+           given={Lu},
+           giveni={L\bibinitperiod}}}%
+        {{hash=95c93fcb04dc5b0e25093331b9843fc4}{%
+           family={Lei},
+           familyi={L\bibinitperiod},
+           given={Lei},
+           giveni={L\bibinitperiod}}}%
+        {{hash=4ac471b84e6b8c3d15eb682cc39ccdd0}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Kan},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{1fd247e1d84252b583075684194f37e6}
+      \strng{fullhash}{1fd247e1d84252b583075684194f37e6}
+      \strng{bibnamehash}{1fd247e1d84252b583075684194f37e6}
+      \strng{authorbibnamehash}{1fd247e1d84252b583075684194f37e6}
+      \strng{authornamehash}{1fd247e1d84252b583075684194f37e6}
+      \strng{authorfullhash}{1fd247e1d84252b583075684194f37e6}
+      \field{labelalpha}{Hou17}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The safety messages in vehicular networks require to be transmitted as fast as possible. On the other hand, the high mobility of vehicles poses an other major challenge on efficient message disseminations. In this paper, we present a design on publish/subscribe message dissemination (DPSMD) for vehicular networks with Mobile Edge Computing (MEC). Our design consists of message brokers that provide message exchange services, message handlers that excavate the potential value of messages and message hubs that bridge different parts of the system. MEC can be made use of in DPSMD to provide low-latency message services for vehicle users, while wide- area message disseminations are also well supported. The detailed descriptions is then given, including topic designs, subscription, publishing processes and message validating. Finally, a testbed is built up to evaluate the performance of the DPSMD in terms of the average time of message distributions.}
+      \field{booktitle}{2017 {IEEE} {Globecom} {Workshops} ({GC} {Wkshps})}
+      \field{month}{12}
+      \field{title}{Design on {Publish}/{Subscribe} {Message} {Dissemination} for {Vehicular} {Networks} with {Mobile} {Edge} {Computing}}
+      \field{year}{2017}
+      \true{nocite}
+      \field{pages}{1\bibrangedash 6}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/GLOCOMW.2017.8269200
+      \endverb
+      \verb{file}
+      \verb :Hou2017 - Design on Publish_Subscribe Message Dissemination for Vehicular Networks with Mobile Edge Computing.pdf:PDF
+      \endverb
+      \keyw{Servers,Cloud computing,Mobile computing,Mobile communication,Edge computing,Safety,Bridges}
+    \endentry
+    \entry{Huang2018}{article}{}
+      \name{author}{4}{}{%
+        {{hash=a49fc380031619d7da34d08565c2d5cc}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Xumin},
+           giveni={X\bibinitperiod}}}%
+        {{hash=6ffd0307503b69f5ed91d373fe019df7}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Rong},
+           giveni={R\bibinitperiod}}}%
+        {{hash=c63157d5fb4de020dfa6a7be017d5ef4}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Jianqi},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4c0680f90ff1fc49345832d1f5ca90a8}{%
+           family={Shu},
+           familyi={S\bibinitperiod},
+           given={Lei},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{33531847e88d8c8e29bbc617228d956f}
+      \strng{fullhash}{a7a8bcbefbc544ec30aa52432eb6e284}
+      \strng{bibnamehash}{a7a8bcbefbc544ec30aa52432eb6e284}
+      \strng{authorbibnamehash}{a7a8bcbefbc544ec30aa52432eb6e284}
+      \strng{authornamehash}{33531847e88d8c8e29bbc617228d956f}
+      \strng{authorfullhash}{a7a8bcbefbc544ec30aa52432eb6e284}
+      \field{extraname}{1}
+      \field{labelalpha}{Hua18}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Vehicular Edge Computing (VEC) has been studied as an important application of mobile edge computing in vehicular networks. Usually, the generalization of VEC involves large-scale deployment of dedicated servers, which will cause tremendous economic expense. We also observe that the Parked Vehicles (PVs) in addition to mobile vehicles have rich and underutilized resources for task execution in vehicular networks. Thus, we consider scheduling PVs as available edge computing nodes to execute tasks, and this leads to a new computing paradigm, called by parked vehicle edge computing (PVEC). In this paper, we investigate PVEC and explore opportunistic resources from PVs to run distributed mobile applications. PVs coordinate with VEC servers for collective task execution. First, a system architecture with primary network entities is proposed for enabling PVEC. We also elaborately design an interactive protocol to support mutual communications among them with security guarantee. Moreover, we measure the availability of opportunistic resources and formulate a resource scheduling optimization problem by using Stackelberg game approach. A subgradient-based iterative algorithm is presented to determine workload allocation among PVs and minimize the overall cost of users. Numerical results indicate that compared with existing schemes, PVEC serves more vehicles and reduces service fee for users. We also demonstrate that the Stackelberg game approach is effective and efficient.}
+      \field{issn}{2169-3536}
+      \field{journaltitle}{IEEE Access}
+      \field{shorttitle}{Parked {Vehicle} {Edge} {Computing}}
+      \field{title}{Parked {Vehicle} {Edge} {Computing}: {Exploiting} {Opportunistic} {Resources} for {Distributed} {Mobile} {Applications}}
+      \field{volume}{6}
+      \field{year}{2018}
+      \true{nocite}
+      \field{pages}{66649\bibrangedash 66663}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1109/ACCESS.2018.2879578
+      \endverb
+      \verb{file}
+      \verb :Huang2018 - Parked Vehicle Edge Computing_ Exploiting Opportunistic Resources for Distributed Mobile Applications.pdf:PDF
+      \endverb
+      \keyw{Servers,Task analysis,Edge computing,Mobile applications,Protocols,Processor scheduling,Systems architecture,intelligent vehicles,computational efficiency,resource management}
+    \endentry
+    \entry{Huang2020}{article}{}
+      \name{author}{4}{}{%
+        {{hash=a49fc380031619d7da34d08565c2d5cc}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Xumin},
+           giveni={X\bibinitperiod}}}%
+        {{hash=d4f9426a651335eb34999555946e0c64}{%
+           family={Ye},
+           familyi={Y\bibinitperiod},
+           given={Dongdong},
+           giveni={D\bibinitperiod}}}%
+        {{hash=6ffd0307503b69f5ed91d373fe019df7}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Rong},
+           giveni={R\bibinitperiod}}}%
+        {{hash=4c0680f90ff1fc49345832d1f5ca90a8}{%
+           family={Shu},
+           familyi={S\bibinitperiod},
+           given={Lei},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{33531847e88d8c8e29bbc617228d956f}
+      \strng{fullhash}{6d0c04b05c7cfaeedb942254b41187ad}
+      \strng{bibnamehash}{6d0c04b05c7cfaeedb942254b41187ad}
+      \strng{authorbibnamehash}{6d0c04b05c7cfaeedb942254b41187ad}
+      \strng{authornamehash}{33531847e88d8c8e29bbc617228d956f}
+      \strng{authorfullhash}{6d0c04b05c7cfaeedb942254b41187ad}
+      \field{extraname}{2}
+      \field{labelalpha}{Hua20}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Vehicular fog computing ( VFC ) has been envisioned as an important application of fog computing in vehicular networks. Parked vehicles with embedded computation resources could be exploited as a supplement for VFC. They cooperate with fog servers to process offloading requests at the vehicular network edge, leading to a new paradigm called parked vehicle assisted fog computing ( PVFC ) . However, each coin has two sides. There is a follow-up challenging issue in the distributed and trustless computing environment. The centralized computation offloading without tamper-proof audit causes security threats. It could not guard against false-reporting, free-riding behaviors, spoofing attacks and repudiation attacks. Thus, we leverage the blockchain technology to achieve decentralized PVFC. Request posting, workload undertaking, task evaluation and reward assignment are organized and validated automatically through smart contract executions. Network activities in computation offloading become transparent, verifiable and traceable to eliminate security risks. To this end, we introduce network entities and design interactive smart contract operations across them. The optimal smart contract design problem is formulated and solved within the Stackelberg game framework to minimize the total payments for users. Security analysis and extensive numerical results are provided to demonstrate that our scheme has high security and efficiency guarantee.}
+      \field{issn}{2329-9274}
+      \field{journaltitle}{IEEE/CAA Journal of Automatica Sinica}
+      \field{month}{3}
+      \field{number}{2}
+      \field{title}{Securing parked vehicle assisted fog computing with blockchain and optimal smart contract design}
+      \field{volume}{7}
+      \field{year}{2020}
+      \true{nocite}
+      \field{pages}{426\bibrangedash 441}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1109/JAS.2020.1003039
+      \endverb
+      \verb{file}
+      \verb :Huang2020 - Securing Parked Vehicle Assisted Fog Computing with Blockchain and Optimal Smart Contract Design.pdf:PDF
+      \endverb
+      \keyw{Contracts,Servers,Task analysis,Edge computing,Games}
+    \endentry
+    \entry{Ibrahim2021}{article}{}
+      \name{author}{2}{}{%
+        {{hash=410b5f33fa1ac7f3b516204238210dbd}{%
+           family={Ibrahim},
+           familyi={I\bibinitperiod},
+           given={Ibrahim\bibnamedelima Mahmood},
+           giveni={I\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=98c3975ef977b49a3edab06f5b84eded}{%
+           family={Al},
+           familyi={A\bibinitperiod},
+           given={Et},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{840b03511fc4c792312f5f7040d35371}
+      \strng{fullhash}{840b03511fc4c792312f5f7040d35371}
+      \strng{bibnamehash}{840b03511fc4c792312f5f7040d35371}
+      \strng{authorbibnamehash}{840b03511fc4c792312f5f7040d35371}
+      \strng{authornamehash}{840b03511fc4c792312f5f7040d35371}
+      \strng{authorfullhash}{840b03511fc4c792312f5f7040d35371}
+      \field{labelalpha}{Ibr21}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Cloud computing is the requirement based on clients and provides many resources that aim to share it as a service through the internet. For optimal use, Cloud computing resources such as storage, application, and other services need managing and scheduling these services. The principal idea behind the scheduling is to minimize loss time, workload, and maximize throughput. So, the scheduling task is essential to achieve accuracy and correctness on task completion. This paper gives an idea about various task scheduling algorithms in the cloud computing environment used by researchers. Finally, many authors applied different parameters like completion time, throughput, and cost to evaluate the system.}
+      \field{issn}{1309-4653}
+      \field{journaltitle}{Turkish Journal of Computer and Mathematics Education (TURCOMAT)}
+      \field{month}{4}
+      \field{number}{4}
+      \field{shorttitle}{Task {Scheduling} {Algorithms} in {Cloud} {Computing}}
+      \field{title}{Task {Scheduling} {Algorithms} in {Cloud} {Computing}: {A} {Review}}
+      \field{urlday}{24}
+      \field{urlmonth}{10}
+      \field{urlyear}{2022}
+      \field{volume}{12}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{1041\bibrangedash 1053}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.17762/turcomat.v12i4.612
+      \endverb
+      \verb{file}
+      \verb :Ibrahim2021 - Task Scheduling Algorithms in Cloud Computing_ a Review.pdf:PDF
+      \endverb
+      \verb{urlraw}
+      \verb https://turcomat.org/index.php/turkbilmat/article/view/612
+      \endverb
+      \verb{url}
+      \verb https://turcomat.org/index.php/turkbilmat/article/view/612
+      \endverb
+    \endentry
+    \entry{Jie2013}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=b6aedb71453da7dad4afa2497f9a9b0d}{%
+           family={Jie},
+           familyi={J\bibinitperiod},
+           given={Yin},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=f7eaf7549423810ca5ec37480fefe382}{%
+           family={Pei},
+           familyi={P\bibinitperiod},
+           given={Ji\bibnamedelima Yong},
+           giveni={J\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=5a1cf4a6ff26f1567d0a80ceae9929aa}{%
+           family={Jun},
+           familyi={J\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod}}}%
+        {{hash=6afdacf489d45237aed71676c3d6d725}{%
+           family={Yun},
+           familyi={Y\bibinitperiod},
+           given={Guo},
+           giveni={G\bibinitperiod}}}%
+        {{hash=626695f366ca26cccc0c0b6f262f2317}{%
+           family={Wei},
+           familyi={W\bibinitperiod},
+           given={Xu},
+           giveni={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{e370d87d151728cde8f8764570267f20}
+      \strng{fullhash}{ed94c729625b4e1de23511a1c060ebfb}
+      \strng{bibnamehash}{ed94c729625b4e1de23511a1c060ebfb}
+      \strng{authorbibnamehash}{ed94c729625b4e1de23511a1c060ebfb}
+      \strng{authornamehash}{e370d87d151728cde8f8764570267f20}
+      \strng{authorfullhash}{ed94c729625b4e1de23511a1c060ebfb}
+      \field{labelalpha}{Jie13}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The idea of applying IOT technologies to smart home system is introduced. An original architecture of the integrated system is analyzed with its detailed introduction. This architecture has great scalability. Based on this proposed architecture many applications can be integrated into the system through uniform interface. Agents are proposed to communicate with appliances through RFID tags. Key issues to be solved to promote the development of smart home system are also discussed.}
+      \field{booktitle}{2013 {International} {Conference} on {Computational} and {Information} {Sciences}}
+      \field{month}{6}
+      \field{title}{Smart {Home} {System} {Based} on {IOT} {Technologies}}
+      \field{year}{2013}
+      \field{pages}{1789\bibrangedash 1791}
+      \range{pages}{3}
+      \verb{doi}
+      \verb 10.1109/ICCIS.2013.468
+      \endverb
+      \verb{file}
+      \verb :Jie2013 - Smart Home System Based on IOT Technologies.pdf:PDF
+      \endverb
+      \keyw{Smart homes,Home appliances,Certification,Computer architecture,RFID tags,Internet,Monitoring,smart home,IOT,agent,RFID,architecture}
+    \endentry
+    \entry{Liu2019}{article}{}
+      \name{author}{6}{}{%
+        {{hash=b92d60f46947317a2bffd0ee2a844c9c}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Shaoshan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=e649bbf69db3c34cfecf2d1c6068a113}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Liangkai},
+           giveni={L\bibinitperiod}}}%
+        {{hash=d0b3008e85b1a8b38f46556abf1791c7}{%
+           family={Tang},
+           familyi={T\bibinitperiod},
+           given={Jie},
+           giveni={J\bibinitperiod}}}%
+        {{hash=acae0d16fe2fdc8a53507106044e646c}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Bo},
+           giveni={B\bibinitperiod}}}%
+        {{hash=386704fd3e20412d4cf404892e55a1e1}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Yifan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=f41bbc46c4cca943fa2a0c3bf70c8a04}{%
+           family={Shi},
+           familyi={S\bibinitperiod},
+           given={Weisong},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{922c3b5dd1670bdb908c09062019f2da}
+      \strng{fullhash}{ce778d3424b47004cf80977f11e6d1f0}
+      \strng{bibnamehash}{ce778d3424b47004cf80977f11e6d1f0}
+      \strng{authorbibnamehash}{ce778d3424b47004cf80977f11e6d1f0}
+      \strng{authornamehash}{922c3b5dd1670bdb908c09062019f2da}
+      \strng{authorfullhash}{ce778d3424b47004cf80977f11e6d1f0}
+      \field{extraname}{1}
+      \field{labelalpha}{Liu19}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extraalpha}{1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Safety is the most important requirement for autonomous vehicles; hence, the ultimate challenge of designing an edge computing ecosystem for autonomous vehicles is to deliver enough computing power, redundancy, and security so as to guarantee the safety of autonomous vehicles. Specifically, autonomous driving systems are extremely complex; they tightly integrate many technologies, including sensing, localization, perception, decision making, as well as the smooth interactions with cloud platforms for high-definition (HD) map generation and data storage. These complexities impose numerous challenges for the design of autonomous driving edge computing systems. First, edge computing systems for autonomous driving need to process an enormous amount of data in real time, and often the incoming data from different sensors are highly heterogeneous. Since autonomous driving edge computing systems are mobile, they often have very strict energy consumption restrictions. Thus, it is imperative to deliver sufficient computing power with reasonable energy consumption, to guarantee the safety of autonomous vehicles, even at high speed. Second, in addition to the edge system design, vehicle-to-everything (V2X) provides redundancy for autonomous driving workloads and alleviates stringent performance and energy constraints on the edge side. With V2X, more research is required to define how vehicles cooperate with each other and the infrastructure. Last, safety cannot be guaranteed when security is compromised. Thus, protecting autonomous driving edge computing systems against attacks at different layers of the sensing and computing stack is of paramount concern. In this paper, we review state-of-the-art approaches in these areas as well as explore potential solutions to address these challenges.}
+      \field{issn}{1558-2256}
+      \field{journaltitle}{Proceedings of the IEEE}
+      \field{month}{8}
+      \field{number}{8}
+      \field{shorttitle}{Edge {Computing} for {Autonomous} {Driving}}
+      \field{title}{Edge {Computing} for {Autonomous} {Driving}: {Opportunities} and {Challenges}}
+      \field{volume}{107}
+      \field{year}{2019}
+      \field{pages}{1697\bibrangedash 1716}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1109/JPROC.2019.2915983
+      \endverb
+      \verb{file}
+      \verb :Liu2019 - Edge Computing for Autonomous Driving_ Opportunities and Challenges.pdf:PDF
+      \endverb
+      \keyw{Autonomous vehicles,Edge computing,Sensors,Real-time systems,Vehicle-to-everything,Safety,Global navigation satellite system,Connected and autonomous vehicles (CAVs),edge computing,heterogeneous computing,security,vehicle-to-everything (V2X),vehicular operating system}
+    \endentry
+    \entry{Liu2019a}{article}{}
+      \name{author}{4}{}{%
+        {{hash=c4d8c39e3a63acab6d94c490b6d45028}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Yi},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=65682a2e31340e35269561d70034d1ff}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Huimin},
+           giveni={H\bibinitperiod}}}%
+        {{hash=0dda031be6d5f223ef471abe99490f27}{%
+           family={Xie},
+           familyi={X\bibinitperiod},
+           given={Shengli},
+           giveni={S\bibinitperiod}}}%
+        {{hash=28f91f3a4b62ce57b7a533e742e8aae1}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Yan},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{25448043b1d5de956b2f207fbb4e3dea}
+      \strng{fullhash}{c01cda715fd15ab6980c8bcf77d4cc71}
+      \strng{bibnamehash}{c01cda715fd15ab6980c8bcf77d4cc71}
+      \strng{authorbibnamehash}{c01cda715fd15ab6980c8bcf77d4cc71}
+      \strng{authornamehash}{25448043b1d5de956b2f207fbb4e3dea}
+      \strng{authorfullhash}{c01cda715fd15ab6980c8bcf77d4cc71}
+      \field{extraname}{2}
+      \field{labelalpha}{Liu19}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extraalpha}{2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Mobile Edge Computing (MEC) is a promising technology to extend the diverse services to the edge of Internet of Things (IoT) system. However, the static edge server deployment may cause “service hole” in IoT networks in which the location and service requests of the User Equipments (UEs) may be dynamically changing. In this paper, we firstly explore a vehicle edge computing network architecture in which the vehicles can act as the mobile edge servers to provide computation services for nearby UEs. Then, we propose as vehicle-assisted offloading scheme for UEs while considering the delay of the computation task. Accordingly, an optimization problem is formulated to maximize the long-term utility of the vehicle edge computing network. Considering the stochastic vehicle traffic, dynamic computation requests and time-varying communication conditions, the problem is further formulated as a semi-Markov process and two reinforcement learning methods: Q-learning based method and deep reinforcement learning (DRL) method, are proposed to obtain the optimal policies of computation offloading and resource allocation. Finally, we analyze the effectiveness of the proposed scheme in the vehicular edge computing network by giving numerical results.}
+      \field{issn}{1939-9359}
+      \field{journaltitle}{IEEE Transactions on Vehicular Technology}
+      \field{month}{11}
+      \field{number}{11}
+      \field{title}{Deep {Reinforcement} {Learning} for {Offloading} and {Resource} {Allocation} in {Vehicle} {Edge} {Computing} and {Networks}}
+      \field{volume}{68}
+      \field{year}{2019}
+      \true{nocite}
+      \field{pages}{11158\bibrangedash 11168}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/TVT.2019.2935450
+      \endverb
+      \verb{file}
+      \verb :Liu2019a - Deep Reinforcement Learning for Offloading and Resource Allocation in Vehicle Edge Computing and Networks.pdf:PDF
+      \endverb
+      \keyw{Task analysis,Edge computing,Servers,Internet of Things,Computational modeling,Iron,Reinforcement learning,Vehicle edge computing,resource allocation,IoT,deep reinforcement learning}
+    \endentry
+    \entry{Liu2020}{report}{}
+      \name{author}{7}{}{%
+        {{hash=e649bbf69db3c34cfecf2d1c6068a113}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Liangkai},
+           giveni={L\bibinitperiod}}}%
+        {{hash=ee70086695135ece1cec8d53116410d4}{%
+           family={Lu},
+           familyi={L\bibinitperiod},
+           given={Sidi},
+           giveni={S\bibinitperiod}}}%
+        {{hash=221ab94b342f6db825d59c803b27ea03}{%
+           family={Zhong},
+           familyi={Z\bibinitperiod},
+           given={Ren},
+           giveni={R\bibinitperiod}}}%
+        {{hash=8f99e6bdf4cc60822269dd6c96f95372}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Baofu},
+           giveni={B\bibinitperiod}}}%
+        {{hash=f77d24b963a2f2e88c9309b90e243fec}{%
+           family={Yao},
+           familyi={Y\bibinitperiod},
+           given={Yongtao},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=854d20acb68094bf1dd24006be0b8ced}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Qingyang},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=f41bbc46c4cca943fa2a0c3bf70c8a04}{%
+           family={Shi},
+           familyi={S\bibinitperiod},
+           given={Weisong},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{fc349d3f4309ad249070e4cc0a244d57}
+      \strng{fullhash}{5c4fd0a89cd8f5c55c9d0d12b08fff09}
+      \strng{bibnamehash}{5c4fd0a89cd8f5c55c9d0d12b08fff09}
+      \strng{authorbibnamehash}{5c4fd0a89cd8f5c55c9d0d12b08fff09}
+      \strng{authornamehash}{fc349d3f4309ad249070e4cc0a244d57}
+      \strng{authorfullhash}{5c4fd0a89cd8f5c55c9d0d12b08fff09}
+      \field{extraname}{3}
+      \field{labelalpha}{Liu20}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The recent proliferation of computing technologies (e.g., sensors, computer vision, machine learning, and hardware acceleration), and the broad deployment of communication mechanisms (e.g., DSRC, C-V2X, 5G) have pushed the horizon of autonomous driving, which automates the decision and control of vehicles by leveraging the perception results based on multiple sensors. The key to the success of these autonomous systems is making a reliable decision in real-time fashion. However, accidents and fatalities caused by early deployed autonomous vehicles arise from time to time. The real traffic environment is too complicated for current autonomous driving computing systems to understand and handle. In this paper, we present state-of-the-art computing systems for autonomous driving, including seven performance metrics and nine key technologies, followed by twelve challenges to realize autonomous driving. We hope this paper will gain attention from both the computing and automotive communities and inspire more research in this direction.}
+      \field{annotation}{Comment: Accepted to IEEE Internet of Things Journal (19 pages, 2 figures, 4 tables)}
+      \field{month}{12}
+      \field{note}{arXiv:2009.14349 [cs] type: article}
+      \field{shorttitle}{Computing {Systems} for {Autonomous} {Driving}}
+      \field{title}{Computing {Systems} for {Autonomous} {Driving}: {State}-of-the-{Art} and {Challenges}}
+      \field{type}{techreport}
+      \field{urlday}{19}
+      \field{urlmonth}{10}
+      \field{urlyear}{2022}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{file}
+      \verb :Liu2020 - Computing Systems for Autonomous Driving_ State of the Art and Challenges.pdf:PDF
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2009.14349
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2009.14349
+      \endverb
+      \keyw{Computer Science - Distributed,Parallel,and Cluster Computing,Computer Science - Robotics}
+    \endentry
+    \entry{MadeWirawan2018}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=0909c146b57b51be817aa490d783a613}{%
+           family={Made\bibnamedelima Wirawan},
+           familyi={M\bibinitperiod\bibinitdelim W\bibinitperiod},
+           given={I},
+           giveni={I\bibinitperiod}}}%
+        {{hash=3587e8f690cf55cffac9de89bf39d504}{%
+           family={Dwi\bibnamedelima Wahyono},
+           familyi={D\bibinitperiod\bibinitdelim W\bibinitperiod},
+           given={Irawan},
+           giveni={I\bibinitperiod}}}%
+        {{hash=c3c6aeda723892f3ebc44e1cbb4ee3c3}{%
+           family={Idfi},
+           familyi={I\bibinitperiod},
+           given={Gilang},
+           giveni={G\bibinitperiod}}}%
+        {{hash=568a373ca11fbd0d259036149b69ee71}{%
+           family={Radityo\bibnamedelima Kusumo},
+           familyi={R\bibinitperiod\bibinitdelim K\bibinitperiod},
+           given={Gradiyanto},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{9222ee53ae7d5daa5bf5e4f8fe7beaab}
+      \strng{fullhash}{635cfba4176c5d4a894bf9b51dd51003}
+      \strng{bibnamehash}{635cfba4176c5d4a894bf9b51dd51003}
+      \strng{authorbibnamehash}{635cfba4176c5d4a894bf9b51dd51003}
+      \strng{authornamehash}{9222ee53ae7d5daa5bf5e4f8fe7beaab}
+      \strng{authorfullhash}{635cfba4176c5d4a894bf9b51dd51003}
+      \field{labelalpha}{Mad18}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The development of the Internet of Thing (IoT) application has been very rapid in recent years. Research on IoT optimization continues to be done due to limited IoT resources. This research develops a river condition monitoring system for early warning using IoT with the Publish-Subscribe, communication model. Publisher as the sender of the river and Subscriber condition data as an application used to monitor river condition in the form of video data. The IoT Communication Model developed is the Adaptive Method. The use of the Adaptive method is due to continuous data changes and accepted by the user as monitoring data. An adaptive method is used to make efficient use of IoT resource due to big video data. Test results in this study indicate that the average efficiency of IoT resources is 34.7\%.}
+      \field{booktitle}{2018 {International} {Seminar} on {Application} for {Technology} of {Information} and {Communication}}
+      \field{month}{9}
+      \field{title}{{IoT} {Communication} {System} {Using} {Publish}-{Subscribe}}
+      \field{year}{2018}
+      \field{pages}{61\bibrangedash 65}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1109/ISEMANTIC.2018.8549814
+      \endverb
+      \verb{file}
+      \verb :MadeWirawan2018 - IoT Communication System Using Publish Subscribe.pdf:PDF
+      \endverb
+      \keyw{Monitoring,Publish-subscribe,Internet of Things,3G mobile communication,Bandwidth,Publishing,Adaptation models,IoT,monitoring,publish-subscribe}
+    \endentry
+    \entry{Maharjan2020}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=e8adbb34f3cb45418c5c68ac53cef629}{%
+           family={Maharjan},
+           familyi={M\bibinitperiod},
+           given={Amir\bibnamedelimb Man\bibnamedelima Singh},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=aef29f1322c26d6f8aae859930568685}{%
+           family={Elchouemi},
+           familyi={E\bibinitperiod},
+           given={Amr},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{2e46e010faf00bbf52100a31853ded14}
+      \strng{fullhash}{2e46e010faf00bbf52100a31853ded14}
+      \strng{bibnamehash}{2e46e010faf00bbf52100a31853ded14}
+      \strng{authorbibnamehash}{2e46e010faf00bbf52100a31853ded14}
+      \strng{authornamehash}{2e46e010faf00bbf52100a31853ded14}
+      \strng{authorfullhash}{2e46e010faf00bbf52100a31853ded14}
+      \field{labelalpha}{Mah20}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Rapid population growth and skyrocketing demand of private transportation bloom the market of automakers worldwide. The concept of automated parking system under smart city arises with the availability of the technology like fast internet connections, offloading computational resources, IoT devices communicating various devices each other, to uplift the quality of life. Revolution of cloud computing and ease of this technology also open the door for better opportunities for smart parking where a system can be served from the remote area, but there is an issue with cloud computing for cost of operation and latency of the services. In urban cities there is rapid growth of population and there is advancement of automotive industries, there are lots of vehicles that are being used in all the cities which creates a lot of issues like road congestions, issue in parking spaces. This paper proposes the fog computing architecture to reduce the latency and efficiently utilise all the available technologies together by building fog computing architecture network which is a multi-tier structure where applications runs jointly, communicates and compute with each other. Smart parking has gain massive attention due to ease and outcome from those technologies are exponential. The role of Internet of Things and fog computing enable the platform to minimize the take duration for finding the parking space, this reduces the time and excess use of fuel and emission of CO2, these are the consequence of over and unmanaged vehicles in the urban areas and unmanaged parking areas.}
+      \field{booktitle}{2020 5th {International} {Conference} on {Innovative} {Technologies} in {Intelligent} {Systems} and {Industrial} {Applications} ({CITISIA})}
+      \field{month}{11}
+      \field{title}{Smart {Parking} {Utilizing} {IoT} {Embedding} {Fog} {Computing} {Based} on {Smart} {Parking} {Architecture}}
+      \field{year}{2020}
+      \true{nocite}
+      \field{pages}{1\bibrangedash 9}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1109/CITISIA50690.2020.9371848
+      \endverb
+      \verb{file}
+      \verb :Maharjan2020 - Smart Parking Utilizing IoT Embedding Fog Computing Based on Smart Parking Architecture.pdf:PDF
+      \endverb
+      \keyw{Space vehicles,Cloud computing,Sociology,Computer architecture,Internet of Things,Statistics,Edge computing,Fog computing architecture,IoT,smart city,smart parking}
+    \endentry
+    \entry{Mokhtarian2020}{report}{}
+      \name{author}{4}{}{%
+        {{hash=a35cdfc1ab50c0c52f938f1118d45c0b}{%
+           family={Mokhtarian},
+           familyi={M\bibinitperiod},
+           given={Armin},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a9a420fc51ee920787975f0546c95f0d}{%
+           family={Kampmann},
+           familyi={K\bibinitperiod},
+           given={Alexandru},
+           giveni={A\bibinitperiod}}}%
+        {{hash=eaf68c5e298227ab078999d16b1acc88}{%
+           family={Alrifaee},
+           familyi={A\bibinitperiod},
+           given={Bassam},
+           giveni={B\bibinitperiod}}}%
+        {{hash=882993b479ae64df7d1f06efbc01e805}{%
+           family={Kowalewski},
+           familyi={K\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Institute for Automotive Engineering, RWTH Aachen University ; Aachen : Institute for Combustion Engines, RWTH Aachen University}%
+      }
+      \list{language}{1}{%
+        {de}%
+      }
+      \strng{namehash}{f21944fe5d3eeeb20b37a62399427414}
+      \strng{fullhash}{551dc0707313173a6636bc1fbb8f4ec5}
+      \strng{bibnamehash}{551dc0707313173a6636bc1fbb8f4ec5}
+      \strng{authorbibnamehash}{551dc0707313173a6636bc1fbb8f4ec5}
+      \strng{authornamehash}{f21944fe5d3eeeb20b37a62399427414}
+      \strng{authorfullhash}{551dc0707313173a6636bc1fbb8f4ec5}
+      \field{labelalpha}{Mok20}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Mokhtarian, Armin; Kampmann, Alexandru; Alrifaee, Bassam; Kowalewski, Stefan}
+      \field{title}{The {Dynamic} {Service}-oriented {Software} {Architecture} for the {UNICARagil} {Project}}
+      \field{type}{techreport}
+      \field{urlday}{25}
+      \field{urlmonth}{10}
+      \field{urlyear}{2022}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{doi}
+      \verb 10.18154/RWTH-2020-11256
+      \endverb
+      \verb{urlraw}
+      \verb https://publications.rwth-aachen.de/record/807282
+      \endverb
+      \verb{url}
+      \verb https://publications.rwth-aachen.de/record/807282
+      \endverb
+    \endentry
+    \entry{Perez2022}{article}{}
+      \name{author}{5}{}{%
+        {{hash=a991f832b9236d272602bb0cce8717ce}{%
+           family={Pérez},
+           familyi={P\bibinitperiod},
+           given={Jorge},
+           giveni={J\bibinitperiod}}}%
+        {{hash=023817475261b04d83a55450a6208e58}{%
+           family={Díaz},
+           familyi={D\bibinitperiod},
+           given={Jessica},
+           giveni={J\bibinitperiod}}}%
+        {{hash=b66df0d896315d454f9b708fa52cec98}{%
+           family={Berrocal},
+           familyi={B\bibinitperiod},
+           given={Javier},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1e2b8395f34e445ce25e368a061a7fab}{%
+           family={López-Viana},
+           familyi={L\bibinithyphendelim V\bibinitperiod},
+           given={Ramón},
+           giveni={R\bibinitperiod}}}%
+        {{hash=ebf585ea509eb1b6e11a7f304e03f521}{%
+           family={González-Prieto},
+           familyi={G\bibinithyphendelim P\bibinitperiod},
+           given={Ángel},
+           giveni={Á\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{d05db17dcccd9f3ea9a9bcb5a4019d18}
+      \strng{fullhash}{b04ee35e559597f2def9eee5372238b1}
+      \strng{bibnamehash}{b04ee35e559597f2def9eee5372238b1}
+      \strng{authorbibnamehash}{b04ee35e559597f2def9eee5372238b1}
+      \strng{authornamehash}{d05db17dcccd9f3ea9a9bcb5a4019d18}
+      \strng{authorfullhash}{b04ee35e559597f2def9eee5372238b1}
+      \field{labelalpha}{Pér22}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{IoT edge computing is a new computing paradigm “in the IoT domain” for performing calculations and processing at the edge of the network, closer to the user and the source of the data. This paradigm is relatively recent, and, together with cloud and fog computing, there may be some confusion about its meaning and implications. This paper aims to help practitioners and researchers better understand what the industry thinks about what IoT edge computing is, and the expected benefits and challenges associated with this paradigm. We conducted a survey using a semi-structured in-depth questionnaire to collect qualitative data from relevant stakeholders from 29 multinational companies and qualitatively analyzed these data using the Constructivist Grounded Theory (Charmaz) method. Several researchers participated in the coding process (collaborative coding). To ensure consensus on the constructs that support the theory and thus improve the rigor of qualitative research, we conducted an intercoder agreement analysis. From the analysis, we have derived a substantive and analytic theory of what companies perceive about IoT edge computing, its benefits and challenges. The theory is substantive in that the scope of validity refers to the 29 surveys processed and analytic in that it analyzes “what is” rather than explaining causality or attempting predictive generalizations. A public repository with all the data related to the information capture process and the products resulting from the analysis of this information is publicly available. This study aims to strengthen the evidence and support practitioners in making better informed decisions about why companies are adopting edge computing and the current challenges they face. Additionally, the testing theory phase shows that the results are aligned with the ISO/IEC TR 30164 standard.}
+      \field{issn}{1436-5057}
+      \field{journaltitle}{Computing}
+      \field{month}{7}
+      \field{title}{Edge computing}
+      \field{urlday}{11}
+      \field{urlmonth}{10}
+      \field{urlyear}{2022}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1007/s00607-022-01104-2
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:https\://link.springer.com/content/pdf/10.1007%2Fs00607-022-01104-2.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/s00607-022-01104-2
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/s00607-022-01104-2
+      \endverb
+      \keyw{Edge Computing,IoT,Grounded Theory,Inter-rater Reliability,Inter-rater Agreement,68-02,68Qxx}
+    \endentry
+    \entry{Qian2009}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=72b8110741fb0282b6330c5cb13dc9f0}{%
+           family={Qian},
+           familyi={Q\bibinitperiod},
+           given={Ling},
+           giveni={L\bibinitperiod}}}%
+        {{hash=e3cffa49a6f632474e24bd12af432cb3}{%
+           family={Luo},
+           familyi={L\bibinitperiod},
+           given={Zhiguo},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=9e5ecda47260e54fc07e402ec08d412b}{%
+           family={Du},
+           familyi={D\bibinitperiod},
+           given={Yujian},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=44310453ccaadc6ad3fb7986304d2268}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Leitao},
+           giveni={L\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=ec9e45a5f3c1c47ebf9cc134376e3cce}{%
+           family={Jaatun},
+           familyi={J\bibinitperiod},
+           given={Martin\bibnamedelima Gilje},
+           giveni={M\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=6128b0977ac21c043fda87cb3411bf94}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Gansen},
+           giveni={G\bibinitperiod}}}%
+        {{hash=24e263eb2f7a0987b3a504c49c760130}{%
+           family={Rong},
+           familyi={R\bibinitperiod},
+           given={Chunming},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{e032a10dca0940ddf340881e53bdc5f0}
+      \strng{fullhash}{71b08aafb833afc198d2861f07bc58f7}
+      \strng{bibnamehash}{71b08aafb833afc198d2861f07bc58f7}
+      \strng{authorbibnamehash}{71b08aafb833afc198d2861f07bc58f7}
+      \strng{authornamehash}{e032a10dca0940ddf340881e53bdc5f0}
+      \strng{authorfullhash}{71b08aafb833afc198d2861f07bc58f7}
+      \strng{editorbibnamehash}{feaf987e520554567f308b567fbef97b}
+      \strng{editornamehash}{feaf987e520554567f308b567fbef97b}
+      \strng{editorfullhash}{feaf987e520554567f308b567fbef97b}
+      \field{labelalpha}{Qia09}
+      \field{sortinit}{Q}
+      \field{sortinithash}{ce69a400a872ddd02ee7fdb3b38c6abd}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{In order to support the maximum number of user and elastic service with the minimum resource, the Internet service provider invented the cloud computing. within a few years, emerging cloud computing has became the hottest technology. From the publication of core papers by Google since 2003 to the commercialization of Amazon EC2 in 2006, and to the service offering of AT\&T Synaptic Hosting, the cloud computing has been evolved from internal IT system to public service, from cost-saving tools to revenue generator, and from ISP to telecom. This paper introduces the concept, history, pros and cons of cloud computing as well as the value chain and standardization effort.}
+      \field{booktitle}{Cloud {Computing}}
+      \field{isbn}{9783642106651}
+      \field{series}{Lecture {Notes} in {Computer} {Science}}
+      \field{shorttitle}{Cloud {Computing}}
+      \field{title}{Cloud {Computing}: {An} {Overview}}
+      \field{year}{2009}
+      \true{nocite}
+      \field{pages}{626\bibrangedash 631}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1007/978-3-642-10665-1_63
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:https\://link.springer.com/content/pdf/10.1007%2F978-3-642-10665-1_63.pdf:application/pdf
+      \endverb
+      \keyw{Cloud computing,Cloud Storage,Virtualization}
+    \endentry
+    \entry{Saito2021}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=2528fdadb73e3c5dfde45829788e144d}{%
+           family={Saito},
+           familyi={S\bibinitperiod},
+           given={Takumi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=d2dab7810e48fc4066f133f2102af5a4}{%
+           family={Nakamura},
+           familyi={N\bibinitperiod},
+           given={Shigenari},
+           giveni={S\bibinitperiod}}}%
+        {{hash=78af58980a4d4c59b268571f598c7ba1}{%
+           family={Enokido},
+           familyi={E\bibinitperiod},
+           given={Tomoya},
+           giveni={T\bibinitperiod}}}%
+        {{hash=e69a5970b059dd16460120715d18370d}{%
+           family={Takizawa},
+           familyi={T\bibinitperiod},
+           given={Makoto},
+           giveni={M\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=3349cc7f2eb505daba5932f95cc339c2}{%
+           family={Barolli},
+           familyi={B\bibinitperiod},
+           given={Leonard},
+           giveni={L\bibinitperiod}}}%
+        {{hash=8cc0af4afbd9d25aec7bb6ce55ea65ea}{%
+           family={Poniszewska-Maranda},
+           familyi={P\bibinithyphendelim M\bibinitperiod},
+           given={Aneta},
+           giveni={A\bibinitperiod}}}%
+        {{hash=78af58980a4d4c59b268571f598c7ba1}{%
+           family={Enokido},
+           familyi={E\bibinitperiod},
+           given={Tomoya},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{c01e1595293523d90f356e9787409c89}
+      \strng{fullhash}{ac099ec94f088b2f436c25beee4736ee}
+      \strng{bibnamehash}{ac099ec94f088b2f436c25beee4736ee}
+      \strng{authorbibnamehash}{ac099ec94f088b2f436c25beee4736ee}
+      \strng{authornamehash}{c01e1595293523d90f356e9787409c89}
+      \strng{authorfullhash}{ac099ec94f088b2f436c25beee4736ee}
+      \strng{editorbibnamehash}{ea55452acdd5a871a2a80f7e745693d9}
+      \strng{editornamehash}{ea55452acdd5a871a2a80f7e745693d9}
+      \strng{editorfullhash}{ea55452acdd5a871a2a80f7e745693d9}
+      \field{labelalpha}{Sai21}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In order to reduce the traffic of networks and servers in the IoT, types of the fog computing (FC) models are proposed, which are composed of fog nodes. A fog node supports application processes to calculate output data on sensor data and forward the output data to servers. A topic-based PS (publish/subscribe) model is a new contents-aware, event-driven model of a distributed system. Here, a process publishes a message whose contents are denoted by publication topics. A process specifies subscription topics and only is delivered messages whose publication topics include some of the subscription topics. In our previous studies, the MPSFC (Mobile PS (publish/subscribe) Fog Computing) model is proposed where mobile fog nodes like vehicles are interconnected and fog nodes communicate with one another in wireless networks by the PS model. In this paper, we propose a TBDT (Topic-based Data Transmission) protocol for mobile fog nodes to deliver messages to target nodes. In the evaluation, we show the number of messages in the TBDT protocol is fewer than the epidemic routing protocol while the delivery ratio is smaller.}
+      \field{booktitle}{Complex, {Intelligent} and {Software} {Intensive} {Systems}}
+      \field{isbn}{9783030504540}
+      \field{series}{Advances in {Intelligent} {Systems} and {Computing}}
+      \field{title}{A {Topic}-{Based} {Publish}/{Subscribe} {System} in a {Fog} {Computing} {Model} for the {IoT}}
+      \field{year}{2021}
+      \true{nocite}
+      \field{pages}{12\bibrangedash 21}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1007/978-3-030-50454-0_2
+      \endverb
+      \verb{file}
+      \verb :Saito2021 - A Topic Based Publish_Subscribe System in a Fog Computing Model for the IoT.pdf:PDF
+      \endverb
+      \keyw{IoT,Fog Computing (FC) model,Mobile Fog Computing (MFC) model,Topic-based publish/subscribe system,Mobile Publish/Subscribe Fog Computing (MPSFC) model}
+    \endentry
+    \entry{Shi2016}{article}{}
+      \name{author}{5}{}{%
+        {{hash=f41bbc46c4cca943fa2a0c3bf70c8a04}{%
+           family={Shi},
+           familyi={S\bibinitperiod},
+           given={Weisong},
+           giveni={W\bibinitperiod}}}%
+        {{hash=9c40aa498e849f7f722883a4ae1fb336}{%
+           family={Cao},
+           familyi={C\bibinitperiod},
+           given={Jie},
+           giveni={J\bibinitperiod}}}%
+        {{hash=fb6b65d4ecc7f7a867429776d35c7be7}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Quan},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=3753f139bbd88a53924ae0bdf3bafb76}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Youhuizi},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=e8e9d96c392da7b022a5897d8c64ca3c}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Lanyu},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{b13d56fe65b8052396f26390274b4978}
+      \strng{fullhash}{9eda1f9615db9420697f36712b056545}
+      \strng{bibnamehash}{9eda1f9615db9420697f36712b056545}
+      \strng{authorbibnamehash}{9eda1f9615db9420697f36712b056545}
+      \strng{authornamehash}{b13d56fe65b8052396f26390274b4978}
+      \strng{authorfullhash}{9eda1f9615db9420697f36712b056545}
+      \field{labelalpha}{Shi16}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The proliferation of Internet of Things (IoT) and the success of rich cloud services have pushed the horizon of a new computing paradigm, edge computing, which calls for processing the data at the edge of the network. Edge computing has the potential to address the concerns of response time requirement, battery life constraint, bandwidth cost saving, as well as data safety and privacy. In this paper, we introduce the definition of edge computing, followed by several case studies, ranging from cloud offloading to smart home and city, as well as collaborative edge to materialize the concept of edge computing. Finally, we present several challenges and opportunities in the field of edge computing, and hope this paper will gain attention from the community and inspire more research in this direction.}
+      \field{issn}{2327-4662}
+      \field{journaltitle}{IEEE Internet of Things Journal}
+      \field{month}{10}
+      \field{number}{5}
+      \field{shorttitle}{Edge {Computing}}
+      \field{title}{Edge {Computing}: {Vision} and {Challenges}}
+      \field{volume}{3}
+      \field{year}{2016}
+      \field{pages}{637\bibrangedash 646}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1109/JIOT.2016.2579198
+      \endverb
+      \verb{file}
+      \verb :Shi2016 - Edge Computing_ Vision and Challenges.pdf:PDF
+      \endverb
+      \keyw{Cloud computing,Internet of things,Bandwidth,Time factors,Mobile handsets,Data privacy,Smart homes,Edge computing,Internet of Things (IoT),smart home and city}
+    \endentry
+    \entry{Sunyaev2020}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=0aace507a7fdfb4a9fb1cef030e81151}{%
+           family={Sunyaev},
+           familyi={S\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=0aace507a7fdfb4a9fb1cef030e81151}{%
+           family={Sunyaev},
+           familyi={S\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{0aace507a7fdfb4a9fb1cef030e81151}
+      \strng{fullhash}{0aace507a7fdfb4a9fb1cef030e81151}
+      \strng{bibnamehash}{0aace507a7fdfb4a9fb1cef030e81151}
+      \strng{authorbibnamehash}{0aace507a7fdfb4a9fb1cef030e81151}
+      \strng{authornamehash}{0aace507a7fdfb4a9fb1cef030e81151}
+      \strng{authorfullhash}{0aace507a7fdfb4a9fb1cef030e81151}
+      \strng{editorbibnamehash}{0aace507a7fdfb4a9fb1cef030e81151}
+      \strng{editornamehash}{0aace507a7fdfb4a9fb1cef030e81151}
+      \strng{editorfullhash}{0aace507a7fdfb4a9fb1cef030e81151}
+      \field{labelalpha}{Sun20}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Cloud computing is an evolution of information technology and a dominant business model for delivering IT resources. With cloud computing, individuals and organizations can gain on-demand network access to a shared pool of managed and scalable IT resources, such as servers, storage, and applications. Recently, academics as well as practitioners have paid a great deal of attention to cloud computing. We rely heavily on cloud services in our daily lives, e.g., for storing data, writing documents, managing businesses, and playing games online. Cloud computing also provides the infrastructure that has powered key digital trends such as mobile computing, the Internet of Things, big data, and artificial intelligence, thereby accelerating industry dynamics, disrupting existing business models, and fueling the digital transformation. Still, cloud computing not only provides a vast number of benefits and opportunities; it also comes with several challenges and concerns, e.g., regarding protecting customers’ data.}
+      \field{isbn}{9783030349578}
+      \field{title}{Cloud {Computing}}
+      \field{urlday}{24}
+      \field{urlmonth}{10}
+      \field{urlyear}{2022}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{195\bibrangedash 236}
+      \range{pages}{42}
+      \verb{doi}
+      \verb 10.1007/978-3-030-34957-8_7
+      \endverb
+      \verb{file}
+      \verb :Sunyaev2020 - Cloud Computing.pdf:PDF
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-030-34957-8_7
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-030-34957-8_7
+      \endverb
+    \endentry
+    \entry{Varghese2016}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=f91598d5d3e88514d4dfc89dc4266d41}{%
+           family={Varghese},
+           familyi={V\bibinitperiod},
+           given={Blesson},
+           giveni={B\bibinitperiod}}}%
+        {{hash=a766f0e2c24e1cc8e05b56d8e9d180c4}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Nan},
+           giveni={N\bibinitperiod}}}%
+        {{hash=1c56527fb4a8a4609010ae4a6a0b23cb}{%
+           family={Barbhuiya},
+           familyi={B\bibinitperiod},
+           given={Sakil},
+           giveni={S\bibinitperiod}}}%
+        {{hash=323105f0e62160e7e4668b8518a131ae}{%
+           family={Kilpatrick},
+           familyi={K\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=37a354c29ee0396d52da206f01dbe563}{%
+           family={Nikolopoulos},
+           familyi={N\bibinitperiod},
+           given={Dimitrios\bibnamedelima S.},
+           giveni={D\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{e77fc0c2c02c9a50323f36dd6eb4dc1d}
+      \strng{fullhash}{d668aa2c212aef87bc367f0ead8c03b5}
+      \strng{bibnamehash}{d668aa2c212aef87bc367f0ead8c03b5}
+      \strng{authorbibnamehash}{d668aa2c212aef87bc367f0ead8c03b5}
+      \strng{authornamehash}{e77fc0c2c02c9a50323f36dd6eb4dc1d}
+      \strng{authorfullhash}{d668aa2c212aef87bc367f0ead8c03b5}
+      \field{labelalpha}{Var16}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Many cloud-based applications employ a data centers as a central server to process data that is generated by edge devices, such as smartphones, tablets and wearables. This model places ever increasing demands on communication and computational infrastructure with inevitable adverse effect on Quality-of-Service and Experience. The concept of Edge Computing is predicated on moving some of this computational load towards the edge of the network to harness computational capabilities that are currently untapped in edge nodes, such as base stations, routers and switches. This position paper considers the challenges and opportunities that arise out of this new direction in the computing landscape.}
+      \field{booktitle}{2016 {IEEE} {International} {Conference} on {Smart} {Cloud} ({SmartCloud})}
+      \field{month}{11}
+      \field{title}{Challenges and {Opportunities} in {Edge} {Computing}}
+      \field{year}{2016}
+      \true{nocite}
+      \field{pages}{20\bibrangedash 26}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1109/SmartCloud.2016.18
+      \endverb
+      \keyw{Cloud computing,Base stations,Performance evaluation,Servers,Hardware,Smart phones,edge computing,fog computing,edge nodes,distributed computing,cloud,cloudlet}
+    \endentry
+    \entry{Wu2021}{article}{}
+      \name{author}{5}{}{%
+        {{hash=2cd5d42e095773e30e518f98e46676ec}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Yalan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=7d9a2bf11a4f6c6afc4dfdd4100490b3}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Jigang},
+           giveni={J\bibinitperiod}}}%
+        {{hash=2b01d303567b99056235e81bd74fd50e}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Long},
+           giveni={L\bibinitperiod}}}%
+        {{hash=f8a1980a7c0dc95fd49b8af6dd25335c}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Gangqiang},
+           giveni={G\bibinitperiod}}}%
+        {{hash=6ebe15eaba88309241c68c4d0dfb02d4}{%
+           family={Yan},
+           familyi={Y\bibinitperiod},
+           given={Jiaquan},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{4f9d314c6c49313ddc30e569ee49c0f1}
+      \strng{fullhash}{ccd65e82c3ce4965fc2ad44db0b75442}
+      \strng{bibnamehash}{ccd65e82c3ce4965fc2ad44db0b75442}
+      \strng{authorbibnamehash}{ccd65e82c3ce4965fc2ad44db0b75442}
+      \strng{authornamehash}{4f9d314c6c49313ddc30e569ee49c0f1}
+      \strng{authorfullhash}{ccd65e82c3ce4965fc2ad44db0b75442}
+      \field{labelalpha}{Wu21}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Vehicular fog computing (VFC) has become an appealing paradigm to provide services for vehicles and traffic systems. However, high mobility is one of the great challenges to the communication and computation service qualities in VFC. A network model for directional vehicle mobility is proposed in this paper to guarantee the service qualities of vehicles in VFC. In the model, vehicles are configured into three vehicular subnetworks according to their turning directions at the next crossing. For each subnetwork, vehicles communicate with each other via vehicle-to-vehicle communication, and with roadside units via vehicle-to-infrastructure communication. The aim is to minimize the average response time of the tasks originated from vehicles. By carefully choosing neighboring vehicles as task processing helpers, a greedy algorithm is proposed to solve the mentioned optimization problem. Besides, two bipartite matching based algorithms, named BMA1 and BMA2, are proposed by exploiting Kuhn-Munkras approach and minimum-cost maximum-flow approach, respectively. Performance of the proposed model and the offloading algorithms are evaluated on the combined simulation platform by open street map, SUMO and NS-3. Simulation results show that, the proposed model outperforms four existing models in terms of average response time, when the five models have similar number of unsuccessful tasks. Moreover, the proposed BMA1 and BMA2 are superior to the existing greedy algorithm in terms of the average response time of tasks, and the proposed greedy algorithm significantly accelerates the generation of offloading decisions in comparison to BMA1, BMA2 and the existing greedy algorithm.}
+      \field{issn}{1558-0016}
+      \field{journaltitle}{IEEE Transactions on Intelligent Transportation Systems}
+      \field{month}{5}
+      \field{number}{5}
+      \field{title}{Fog {Computing} {Model} and {Efficient} {Algorithms} for {Directional} {Vehicle} {Mobility} in {Vehicular} {Network}}
+      \field{volume}{22}
+      \field{year}{2021}
+      \true{nocite}
+      \field{pages}{2599\bibrangedash 2614}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1109/TITS.2020.2971343
+      \endverb
+      \verb{file}
+      \verb :Wu2021 - Fog Computing Model and Efficient Algorithms for Directional Vehicle Mobility in Vehicular Network.pdf:PDF
+      \endverb
+      \keyw{Computational modeling,Task analysis,Time factors,Greedy algorithms,Roads,Edge computing,Handover,Vehicular fog computing,vehicular network,task offloading,algorithm}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -229,4 +229,34 @@
   urldate    = {2022-10-19},
 }
 
-@Comment{jabref-meta: databaseType:bibtex;}
+ 
+@InProceedings{Qian2009,
+  author     = {Qian, Ling and Luo, Zhiguo and Du, Yujian and Guo, Leitao},
+  booktitle  = {Cloud {Computing}},
+  title      = {Cloud {Computing}: {An} {Overview}},
+  year       = {2009},
+  address    = {Berlin, Heidelberg},
+  editor     = {Jaatun, Martin Gilje and Zhao, Gansen and Rong, Chunming},
+  pages      = {626--631},
+  publisher  = {Springer},
+  series     = {Lecture {Notes} in {Computer} {Science}},
+  abstract   = {In order to support the maximum number of user and elastic service with the minimum resource, the Internet service provider invented the cloud computing. within a few years, emerging cloud computing has became the hottest technology. From the publication of core papers by Google since 2003 to the commercialization of Amazon EC2 in 2006, and to the service offering of AT\&T Synaptic Hosting, the cloud computing has been evolved from internal IT system to public service, from cost-saving tools to revenue generator, and from ISP to telecom. This paper introduces the concept, history, pros and cons of cloud computing as well as the value chain and standardization effort.},
+  doi        = {10.1007/978-3-642-10665-1_63},
+  file       = {Full Text PDF:https\://link.springer.com/content/pdf/10.1007%2F978-3-642-10665-1_63.pdf:application/pdf},
+  isbn       = {9783642106651},
+  keywords   = {Cloud computing, Cloud Storage, Virtualization},
+  language   = {en},
+  shorttitle = {Cloud {Computing}},
+}
+
+ 
+@InCollection{Sunyaev2020,
+  author    = {Sunyaev, Ali},
+  publisher = {Springer International Publishing},
+  title     = {Cloud {Computing}},
+  year      = {2020},
+  address   = {Cham},
+  editor    = {Sunyaev, Ali},
+  isbn      = {9783030349578},
+  pages     = {195--236},
+  abstract  = {Cloud computing is an evolution of information technology and a dominant business model for delivering IT resources. With cloud computing, individuals and organizations can gain on-demand network access to a shared pool of managed and scalable IT resources, such as servers, storage, and applications. Recently, academics as well as practitioners have paid a great deal of attention to cloud computing. We rely heavily on cloud services in our daily lives, e.g., for storing data, writing documents, managing businesses, and playing games online. Cloud computing also provides the infrastructure that has powered key digital trends such as mobile computing, the Internet of Things, big data, and artificial intelligence, thereby accelerating industry dynamics, disrupting existing business models, and fueling the digital transformation. Still, cloud computing not only provides a vast number of benefits and o
