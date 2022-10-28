@@ -259,4 +259,115 @@
   editor    = {Sunyaev, Ali},
   isbn      = {9783030349578},
   pages     = {195--236},
-  abstract  = {Cloud computing is an evolution of information technology and a dominant business model for delivering IT resources. With cloud computing, individuals and organizations can gain on-demand network access to a shared pool of managed and scalable IT resources, such as servers, storage, and applications. Recently, academics as well as practitioners have paid a great deal of attention to cloud computing. We rely heavily on cloud services in our daily lives, e.g., for storing data, writing documents, managing businesses, and playing games online. Cloud computing also provides the infrastructure that has powered key digital trends such as mobile computing, the Internet of Things, big data, and artificial intelligence, thereby accelerating industry dynamics, disrupting existing business models, and fueling the digital transformation. Still, cloud computing not only provides a vast number of benefits and o
+  abstract  = {Cloud computing is an evolution of information technology and a dominant business model for delivering IT resources. With cloud computing, individuals and organizations can gain on-demand network access to a shared pool of managed and scalable IT resources, such as servers, storage, and applications. Recently, academics as well as practitioners have paid a great deal of attention to cloud computing. We rely heavily on cloud services in our daily lives, e.g., for storing data, writing documents, managing businesses, and playing games online. Cloud computing also provides the infrastructure that has powered key digital trends such as mobile computing, the Internet of Things, big data, and artificial intelligence, thereby accelerating industry dynamics, disrupting existing business models, and fueling the digital transformation. Still, cloud computing not only provides a vast number of benefits and opportunities; it also comes with several challenges and concerns, e.g., regarding protecting customers’ data.},
+  doi       = {10.1007/978-3-030-34957-8_7},
+  file      = {:Sunyaev2020 - Cloud Computing.pdf:PDF},
+  language  = {en},
+  url       = {https://doi.org/10.1007/978-3-030-34957-8_7},
+  urldate   = {2022-10-24},
+}
+
+ 
+@Article{Ibrahim2021,
+  author     = {Ibrahim, Ibrahim Mahmood and Al, Et},
+  journal    = {Turkish Journal of Computer and Mathematics Education (TURCOMAT)},
+  title      = {Task {Scheduling} {Algorithms} in {Cloud} {Computing}: {A} {Review}},
+  year       = {2021},
+  issn       = {1309-4653},
+  month      = apr,
+  number     = {4},
+  pages      = {1041--1053},
+  volume     = {12},
+  abstract   = {Cloud computing is the requirement based on clients and provides many resources that aim to share it as a service through the internet. For optimal use, Cloud computing resources such as storage, application, and other services need managing and scheduling these services. The principal idea behind the scheduling is to minimize loss time, workload, and maximize throughput. So, the scheduling task is essential to achieve accuracy and correctness on task completion. This paper gives an idea about various task scheduling algorithms in the cloud computing environment used by researchers. Finally, many authors applied different parameters like completion time, throughput, and cost to evaluate the system.},
+  copyright  = {Copyright (c) 2021},
+  doi        = {10.17762/turcomat.v12i4.612},
+  file       = {:Ibrahim2021 - Task Scheduling Algorithms in Cloud Computing_ a Review.pdf:PDF},
+  language   = {en},
+  shorttitle = {Task {Scheduling} {Algorithms} in {Cloud} {Computing}},
+  url        = {https://turcomat.org/index.php/turkbilmat/article/view/612},
+  urldate    = {2022-10-24},
+}
+
+ 
+@InProceedings{MadeWirawan2018,
+  author    = {Made Wirawan, I and Dwi Wahyono, Irawan and Idfi, Gilang and Radityo Kusumo, Gradiyanto},
+  booktitle = {2018 {International} {Seminar} on {Application} for {Technology} of {Information} and {Communication}},
+  title     = {{IoT} {Communication} {System} {Using} {Publish}-{Subscribe}},
+  year      = {2018},
+  month     = sep,
+  pages     = {61--65},
+  abstract  = {The development of the Internet of Thing (IoT) application has been very rapid in recent years. Research on IoT optimization continues to be done due to limited IoT resources. This research develops a river condition monitoring system for early warning using IoT with the Publish-Subscribe, communication model. Publisher as the sender of the river and Subscriber condition data as an application used to monitor river condition in the form of video data. The IoT Communication Model developed is the Adaptive Method. The use of the Adaptive method is due to continuous data changes and accepted by the user as monitoring data. An adaptive method is used to make efficient use of IoT resource due to big video data. Test results in this study indicate that the average efficiency of IoT resources is 34.7\%.},
+  doi       = {10.1109/ISEMANTIC.2018.8549814},
+  file      = {:MadeWirawan2018 - IoT Communication System Using Publish Subscribe.pdf:PDF},
+  keywords  = {Monitoring, Publish-subscribe, Internet of Things, 3G mobile communication, Bandwidth, Publishing, Adaptation models, IoT, monitoring, publish-subscribe},
+}
+
+ 
+@TechReport{Mokhtarian2020,
+  author   = {Mokhtarian, Armin and Kampmann, Alexandru and Alrifaee, Bassam and Kowalewski, Stefan},
+  title    = {The {Dynamic} {Service}-oriented {Software} {Architecture} for the {UNICARagil} {Project}},
+  year     = {2020},
+  abstract = {Mokhtarian, Armin; Kampmann, Alexandru; Alrifaee, Bassam; Kowalewski, Stefan},
+  doi      = {10.18154/RWTH-2020-11256},
+  language = {de},
+  school   = {Institute for Automotive Engineering, RWTH Aachen University ; Aachen : Institute for Combustion Engines, RWTH Aachen University},
+  url      = {https://publications.rwth-aachen.de/record/807282},
+  urldate  = {2022-10-25},
+}
+
+ 
+@InProceedings{Dolejs2004,
+  author    = {Dolejs, O. and Smolik, P. and Hanzalek, Z.},
+  booktitle = {{IEEE} {International} {Workshop} on {Factory} {Communication} {Systems}, 2004. {Proceedings}.},
+  title     = {On the {Ethernet} use for real-time publish-subscribe based applications},
+  year      = {2004},
+  month     = sep,
+  pages     = {39--44},
+  abstract  = {Ethernet is very attractive for the automation area due to its availability and low implementation cost. Due to its media access control (CSMA/CD), Ethernet is not deterministic in general and its behaviour under transient overload is not sufficient for any real-time application. On the other hand, if the applications have predictable and bounded number of requests, behaviour of Ethernet is "nearly" real-time (very low probability of delayed data delivery). This article tests ORTE (open real-time Ethernet), an open-source implementation of RTPS middleware (real-time publish-subscribe), built upon UDP/IP and tested on Ethernet. This middleware can be used in real-time control applications, which typically have limited and relatively small input load compared to the high bandwidth. To derive the influence of the operating system, we combined the application response time measurement with the simulation.},
+  doi       = {10.1109/WFCS.2004.1377674},
+  file      = {:Dolejs2004 - On the Ethernet Use for Real Time Publish Subscribe Based Applications.pdf:PDF},
+  keywords  = {Ethernet networks, Publish-subscribe, Delay, Testing, Middleware, Automation, Costs, Media Access Protocol, Multiaccess communication, Open source software},
+}
+
+ 
+@InProceedings{Jie2013,
+  author    = {Jie, Yin and Pei, Ji Yong and Jun, Li and Yun, Guo and Wei, Xu},
+  booktitle = {2013 {International} {Conference} on {Computational} and {Information} {Sciences}},
+  title     = {Smart {Home} {System} {Based} on {IOT} {Technologies}},
+  year      = {2013},
+  month     = jun,
+  pages     = {1789--1791},
+  abstract  = {The idea of applying IOT technologies to smart home system is introduced. An original architecture of the integrated system is analyzed with its detailed introduction. This architecture has great scalability. Based on this proposed architecture many applications can be integrated into the system through uniform interface. Agents are proposed to communicate with appliances through RFID tags. Key issues to be solved to promote the development of smart home system are also discussed.},
+  doi       = {10.1109/ICCIS.2013.468},
+  file      = {:Jie2013 - Smart Home System Based on IOT Technologies.pdf:PDF},
+  keywords  = {Smart homes, Home appliances, Certification, Computer architecture, RFID tags, Internet, Monitoring, smart home, IOT, agent, RFID, architecture},
+}
+
+ 
+@Article{Wortmann2015,
+  author   = {Wortmann, Felix and Flüchter, Kristina},
+  journal  = {Business \& Information Systems Engineering},
+  title    = {Internet of {Things}},
+  year     = {2015},
+  issn     = {1867-0202},
+  month    = jun,
+  number   = {3},
+  pages    = {221--224},
+  volume   = {57},
+  doi      = {10.1007/s12599-015-0383-3},
+  file     = {:Wortmann2015 - Internet of Things.pdf:PDF},
+  keywords = {Internet of things, Technology stack, Platforms},
+  language = {en},
+  url      = {https://doi.org/10.1007/s12599-015-0383-3},
+  urldate  = {2022-10-26},
+}
+
+ 
+@InProceedings{Kampmann2019,
+  author    = {Kampmann, Alexandru and Wüstenberg, Andreas and Alrifaee, Bassam and Kowalewski, Stefan},
+  booktitle = {2019 {IEEE} {Intelligent} {Transportation} {Systems} {Conference} ({ITSC})},
+  title     = {A {Portable} {Implementation} of the {Real}-{Time} {Publish}-{Subscribe} {Protocol} for {Microcontrollers} in {Distributed} {Robotic} {Applications}},
+  year      = {2019},
+  month     = oct,
+  pages     = {443--448},
+  abstract  = {This paper presents embeddedRTPS, a portable and open source implementation of the Real-Time Publish-Subscribe Protocol (RTPS). RTPS is the underlying protocol for the Data Distribution Service (DDS), which is a standardized middleware that allows for implementi

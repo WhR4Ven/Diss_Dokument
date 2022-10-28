@@ -1194,6 +1194,60 @@
       \endverb
       \keyw{Cloud computing,Base stations,Performance evaluation,Servers,Hardware,Smart phones,edge computing,fog computing,edge nodes,distributed computing,cloud,cloudlet}
     \endentry
+    \entry{Wortmann2015}{article}{}
+      \name{author}{2}{}{%
+        {{hash=fd9a8756e8a15d6611917de492d210dc}{%
+           family={Wortmann},
+           familyi={W\bibinitperiod},
+           given={Felix},
+           giveni={F\bibinitperiod}}}%
+        {{hash=256575756cb544b9ea07af62dc60a3ef}{%
+           family={Flüchter},
+           familyi={F\bibinitperiod},
+           given={Kristina},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{45c2f34fce6c8cbdcb974f49e526e068}
+      \strng{fullhash}{45c2f34fce6c8cbdcb974f49e526e068}
+      \strng{bibnamehash}{45c2f34fce6c8cbdcb974f49e526e068}
+      \strng{authorbibnamehash}{45c2f34fce6c8cbdcb974f49e526e068}
+      \strng{authornamehash}{45c2f34fce6c8cbdcb974f49e526e068}
+      \strng{authorfullhash}{45c2f34fce6c8cbdcb974f49e526e068}
+      \field{labelalpha}{Wor15}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1867-0202}
+      \field{journaltitle}{Business \& Information Systems Engineering}
+      \field{month}{6}
+      \field{number}{3}
+      \field{title}{Internet of {Things}}
+      \field{urlday}{26}
+      \field{urlmonth}{10}
+      \field{urlyear}{2022}
+      \field{volume}{57}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \field{pages}{221\bibrangedash 224}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1007/s12599-015-0383-3
+      \endverb
+      \verb{file}
+      \verb :Wortmann2015 - Internet of Things.pdf:PDF
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/s12599-015-0383-3
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/s12599-015-0383-3
+      \endverb
+      \keyw{Internet of things,Technology stack,Platforms}
+    \endentry
     \entry{Wu2021}{article}{}
       \name{author}{5}{}{%
         {{hash=2cd5d42e095773e30e518f98e46676ec}{%

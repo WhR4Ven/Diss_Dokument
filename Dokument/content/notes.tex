@@ -42,21 +42,23 @@
             \item Resourcen sind von verschiednen Endgeräten erreichbar \cite{Sunyaev2020}
             \item Cloud kann öffentlich oder privat sein, privat für sensible Daten \cite{Ibrahim2021}
         \end{notes}
-        \item Internet of Things (IoT)
-            \begin{notes}
-                \item Internet of Tings (Internet der Dinge) bezeichnet eindeutig identifizierbare Objekte und deren virtuelle repräsentation in interent-ähnliche Strukturen\cite{Jie2013} 
-                \item 
-            \end{notes}
+        \item \gls{IoT} (IoT) 
+        \begin{notes}
+            \item Internet of Tings (Internet der Dinge) bezeichnet eindeutig identifizierbare Objekte und deren virtuelle repräsentation in interent-ähnliche Strukturen\cite{Jie2013} 
+            \item IoT findet mittlerweile in fast allen Bereichen Anwendung
+            \item Industrie: Produktionsanlagen, die durch vernetzte Systeme flexibel angepasst werden können (Beispiel: Produktvarianten)
+            \item Smart Home: Sensoren und Aktoren im Haus vernetzen \cite{Wortmann2015}
+        \end{notes}
         \item Edge Computing
         \begin{notes}
-            \item Internet of Things: Objekte mit Sensoren, Rechenkapazität, die die Fähigkeit haben über Netzwerkverbindung Daten auszutauschen. \cite{Perez2022}
             \item Daten entstehen in Endgeräten, Applikationen, die die Daten verarbeiten sind zunehmend ebenfalls in Endgeräten
-            \item Edge Computing ist das Konzept, dass anstatt zentrale Cloud Server, Daten zunehmend auf Endgeräten verarbeitet werden \cite{Shi2016}
-            \item “a form of distributed computing in which processing and storage takes place on a set of networked machines which are near the edge, where the nearness is defined by the system’s requirements”  (ISO/IEC: Tr 30164:2020 - internet of things (iot) -edge computing. Tech. rep., ISO/IEC (2020))
-            \item Edge bezeichnet Geräte zwischen Datenquellen und cloud server
-            \item Motivation: Latenzreduzierung, unbenutzte Resourcen verwenden
             \item Beispiel Flugzeuge oder autonome Fahrzeuge, generieren Daten in Größe von mehreren Gb pro Senkunde \cite{Liu2019}
+            \item Traditionell werden Daten in der Cloud ausgewertet und wieder an den Benutzer zur Verfügung gestellt, diese ist aber mit zusätzlichem Resourcenaufwand verbunden wegen lange Übertragungsstrecken. \cite{Perez2022} 
             \item Übertragung und Verarbeitung in der Cloud langsam/unmöglich wegen Bandbreite und Latenz
+            \item Edge Computing ist das Konzept, dass anstatt zentrale Cloud Server, Daten zunehmend auf Endgeräten verarbeitet werden \cite{Shi2016}
+            \item Edge bezeichnet Geräte zwischen Datenquellen und cloud server
+            \item “a form of distributed computing in which processing and storage takes place on a set of networked machines which are near the edge, where the nearness is defined by the system’s requirements”  (ISO/IEC: Tr 30164:2020 - internet of things (iot) -edge computing. Tech. rep., ISO/IEC (2020))
+            \item Motivation: Latenzreduzierung, unbenutzte Resourcen verwenden
             \item Anwendungsfälle:
             \begin{notes}
                 \item Cloud Berechnungen auslagern
@@ -101,7 +103,13 @@
                 \item Komponenten: Publisher, Broker, Subscriber
                 \item Broker stellt Verbindungen zwischen Publisher und Subscriber her
                 \item Broker speichert die Subscriptions (Abos)
-                \item RTPS
+                \item Weit verbreitete Implementierung: MQTT
+                \item RTPS:
+                \begin{notes}
+                    \item Real Time Publish Subscribe
+                    \item Kommunikation erfolgt ebenfalls über Themen
+                    \item Kein Broker, Teilnehmeridentifizierung erfolgt zur Laufzeit dezentralisiert
+                \end{notes}
             \end{notes}
     \end{notes}
     \item Konzept UNICARagil:

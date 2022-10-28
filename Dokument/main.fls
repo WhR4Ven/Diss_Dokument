@@ -1439,6 +1439,10 @@ OUTPUT main.glo
 OUTPUT main.glo
 OUTPUT main.acn
 OUTPUT main.acn
+INPUT .\content\glossaries.tex
+INPUT .\content\glossaries.tex
+INPUT .\content\glossaries.tex
+INPUT .\content\glossaries.tex
 INPUT .\main.aex
 INPUT .\main.aex
 INPUT .\main.aex

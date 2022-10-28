@@ -329,4 +329,37 @@
   keywords  = {Ethernet networks, Publish-subscribe, Delay, Testing, Middleware, Automation, Costs, Media Access Protocol, Multiaccess communication, Open source software},
 }
 
+ 
+@InProceedings{Jie2013,
+  author    = {Jie, Yin and Pei, Ji Yong and Jun, Li and Yun, Guo and Wei, Xu},
+  booktitle = {2013 {International} {Conference} on {Computational} and {Information} {Sciences}},
+  title     = {Smart {Home} {System} {Based} on {IOT} {Technologies}},
+  year      = {2013},
+  month     = jun,
+  pages     = {1789--1791},
+  abstract  = {The idea of applying IOT technologies to smart home system is introduced. An original architecture of the integrated system is analyzed with its detailed introduction. This architecture has great scalability. Based on this proposed architecture many applications can be integrated into the system through uniform interface. Agents are proposed to communicate with appliances through RFID tags. Key issues to be solved to promote the development of smart home system are also discussed.},
+  doi       = {10.1109/ICCIS.2013.468},
+  file      = {:Jie2013 - Smart Home System Based on IOT Technologies.pdf:PDF},
+  keywords  = {Smart homes, Home appliances, Certification, Computer architecture, RFID tags, Internet, Monitoring, smart home, IOT, agent, RFID, architecture},
+}
+
+ 
+@Article{Wortmann2015,
+  author   = {Wortmann, Felix and Flüchter, Kristina},
+  journal  = {Business \& Information Systems Engineering},
+  title    = {Internet of {Things}},
+  year     = {2015},
+  issn     = {1867-0202},
+  month    = jun,
+  number   = {3},
+  pages    = {221--224},
+  volume   = {57},
+  doi      = {10.1007/s12599-015-0383-3},
+  file     = {:Wortmann2015 - Internet of Things.pdf:PDF},
+  keywords = {Internet of things, Technology stack, Platforms},
+  language = {en},
+  url      = {https://doi.org/10.1007/s12599-015-0383-3},
+  urldate  = {2022-10-26},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
