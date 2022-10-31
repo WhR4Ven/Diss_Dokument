@@ -109,6 +109,9 @@
                     \item Real Time Publish Subscribe
                     \item Kommunikation erfolgt ebenfalls über Themen
                     \item Kein Broker, Teilnehmeridentifizierung erfolgt zur Laufzeit dezentralisiert
+                    \item Quality of Service parameter: Reliable writer speichert Sequenznummer der Nachrichten und kann erneut versenden bei Übertraugungsfehler, Best effort Writer hat diese Funktionalität nicht
+                    \item Heartbeat message: writer gibt die verfügbaren nachrichten ID-s and
+                    \item AckNack message: kommunikation von empfangenen und nicht erhaltenen Nachrichten
                 \end{notes}
             \end{notes}
     \end{notes}
