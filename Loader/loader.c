@@ -9,12 +9,21 @@
 
 #include <err.h>
 
+#include <sys/ipc.h>
+#include <sys/shm.h>
+
 /* for errno */
 #include <errno.h>
 
+
+typedef struct{
+    int LoaderInput;
+    int BinaryInput;
+    int BinTerminated;
+}exchange_t;
+
 int main(int argc, char **argv, char **envp)
 {
-    int     filedes[2], nbytes;
     FILE * pFile;
     long size;
     int fd;
@@ -47,22 +56,15 @@ int main(int argc, char **argv, char **envp)
     }
     free(buffer);
 
-    pipe(filedes); // create the pipe
-    int* pipe_ptr = &filedes[0];
+    const char * const argv_c[] = {"script", NULL};
+    const char * const envp_c[] = {"", NULL};
 
 
     pid_t pid = fork(); //fork process
+
     printf("pid %d\n", pid);
 
     if (pid == 0) { //child
-    char    readbuffer[80];
-
-    const char * const argv_c[] = {"script", NULL};
-    const char * const envp_c[] = {(char*)pipe_ptr, NULL};
-    pipe_ptr = (int*)*envp_c;
-
-    nbytes = read(*pipe_ptr, readbuffer, sizeof(readbuffer));
-    printf("Read string_c: %s\n", readbuffer);
 
     if (fexecve(fd, (char * const *) argv_c, (char * const *) envp_c) == -1)
          exit(errno);
@@ -71,15 +73,35 @@ int main(int argc, char **argv, char **envp)
         err(1, "%s failed", "fork");
     else    //parent
     {
-        char    string[] = "Hello, world!\n";
-        printf("host write pipe\n");
-        write(filedes[1], string, (strlen(string)+1));
-        for(int i = 0; i < 10; ++i)
+        int num = 1;
+
+        char    string[] = "pipe write host\n";
+         // ftok to generate unique key
+        key_t key = ftok("shmfile2",65);
+    
+        // shmget returns an identifier in shmid
+        int shmid = shmget(key,1024,0666|IPC_CREAT);
+    
+        // shmat to attach to shared memory
+        exchange_t *exchange_struct = (exchange_t*) shmat(shmid,(void*)0,0);
+
+        while(exchange_struct->BinTerminated == 0)
         {
-        //printf("parent process\n");
-        sleep(1);
+            exchange_struct->BinaryInput += 1;
+
+            printf("parent process input: %d\n", exchange_struct->LoaderInput);
+
+
+            sleep(1);
         }
+    //detach from shared memory 
+    shmdt(exchange_struct);
+
+    // destroy the shared memory
+    shmctl(shmid,IPC_RMID,NULL);
     }
 
     printf("Host terminates: %ld\n", (long)getpid());  ;
+
+
 }
