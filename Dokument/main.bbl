@@ -19,6 +19,70 @@
 
 \refsection{0}
   \datalist[entry]{anyt/global//global/global}
+    \entry{Cheng2018}{article}{}
+      \name{author}{6}{}{%
+        {{hash=b9359e37b98db04db8950022034eccdd}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Bin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=d40d2f0ee20889e068099daa9df2a31a}{%
+           family={Solmaz},
+           familyi={S\bibinitperiod},
+           given={Gürkan},
+           giveni={G\bibinitperiod}}}%
+        {{hash=7d54d8df1cb493fe291549f2b97f8fa2}{%
+           family={Cirillo},
+           familyi={C\bibinitperiod},
+           given={Flavio},
+           giveni={F\bibinitperiod}}}%
+        {{hash=a681d3769f3fbb45be45129e4ee80540}{%
+           family={Kovacs},
+           familyi={K\bibinitperiod},
+           given={Ernö},
+           giveni={E\bibinitperiod}}}%
+        {{hash=f45f9cbfb6d9a96d928feec0ccc4ce77}{%
+           family={Terasawa},
+           familyi={T\bibinitperiod},
+           given={Kazuyuki},
+           giveni={K\bibinitperiod}}}%
+        {{hash=e74528cf77d53d56b9c036ea8740d5d2}{%
+           family={Kitazawa},
+           familyi={K\bibinitperiod},
+           given={Atsushi},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{a5de317f9df56dad4ad1801972d1d59d}
+      \strng{fullhash}{eb531825e7baa9bbebd791aab3b28b5c}
+      \strng{bibnamehash}{eb531825e7baa9bbebd791aab3b28b5c}
+      \strng{authorbibnamehash}{eb531825e7baa9bbebd791aab3b28b5c}
+      \strng{authornamehash}{a5de317f9df56dad4ad1801972d1d59d}
+      \strng{authorfullhash}{eb531825e7baa9bbebd791aab3b28b5c}
+      \field{labelalpha}{Che18}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Smart city infrastructure is forming a large scale Internet of Things (IoT) system with widely deployed IoT devices, such as sensors and actuators that generate a huge volume of data. Given this large scale and geo-distributed nature of such IoT systems, fog computing has been considered as an affordable and sustainable computing paradigm to enable smart city IoT services. However, it is still a major challenge for developers to program their services to leverage benefits of fog computing. Developers have to figure out many details, such as how to dynamically configure and manage data processing tasks over cloud and edges and how to optimize task allocation for minimal latency and bandwidth consumption. In addition, most of the existing fog computing frameworks either lack service programming models or define a programming model only based on their own private data model and interfaces; therefore, as a smart city platform, they are quite limited in terms of openness and interoperability. To tackle these problems, we propose a standard-based approach to design and implement a new fog computing-based framework, namely FogFlow, for IoT smart city platforms. FogFlow’s programming model allows IoT service developers to program elastic IoT services easily over cloud and edges. Moreover, it supports standard interfaces to share and reuse contextual data across services. To showcase how smart city use cases can be realized with FogFlow, we describe three use cases and implement an example application for anomaly detection of energy consumption in smart cities. We also analyze FogFlow’s performance based on microbenchmarking results for message propagation latency, throughput, and scalability.}
+      \field{issn}{2327-4662}
+      \field{journaltitle}{IEEE Internet of Things Journal}
+      \field{month}{4}
+      \field{number}{2}
+      \field{shorttitle}{{FogFlow}}
+      \field{title}{{FogFlow}: {Easy} {Programming} of {IoT} {Services} {Over} {Cloud} and {Edges} for {Smart} {Cities}}
+      \field{volume}{5}
+      \field{year}{2018}
+      \true{nocite}
+      \field{pages}{696\bibrangedash 707}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1109/JIOT.2017.2747214
+      \endverb
+      \verb{file}
+      \verb :Cheng2018 - FogFlow_ Easy Programming of IoT Services Over Cloud and Edges for Smart Cities.pdf:PDF
+      \endverb
+      \keyw{Programming,Smart cities,Computational modeling,Cloud computing,Edge computing,Logic gates,Data models,Edge computing,Internet of Things (IoT),parallel programming}
+    \endentry
     \entry{Chun2016}{inproceedings}{}
       \name{author}{6}{}{%
         {{hash=cdb87022d4e623ddf3d0a4001f87a54b}{%
@@ -125,6 +189,86 @@
       \verb :Dolejs2004 - On the Ethernet Use for Real Time Publish Subscribe Based Applications.pdf:PDF
       \endverb
       \keyw{Ethernet networks,Publish-subscribe,Delay,Testing,Middleware,Automation,Costs,Media Access Protocol,Multiaccess communication,Open source software}
+    \endentry
+    \entry{Evensky1999}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=279b7e03181b208b6ce3df78e6033631}{%
+           family={Evensky},
+           familyi={E\bibinitperiod},
+           given={David\bibnamedelima A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=3f538eb914753e9f33fc54f7fb98aece}{%
+           family={Gentile},
+           familyi={G\bibinitperiod},
+           given={Ann\bibnamedelima C.},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=be3ba6de30ee6c390d96bbbc84d3fe22}{%
+           family={Wyckoff},
+           familyi={W\bibinitperiod},
+           given={Pete},
+           giveni={P\bibinitperiod}}}%
+        {{hash=131aaef7a7763e6b7bcc90e5513bf3fd}{%
+           family={Armstrong},
+           familyi={A\bibinitperiod},
+           given={Robert\bibnamedelima C.},
+           giveni={R\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=22488f8adf3dfe320c5577d0babc3858}{%
+           family={Kutvonen},
+           familyi={K\bibinitperiod},
+           given={Lea},
+           giveni={L\bibinitperiod}}}%
+        {{hash=759036e28d37a5f639fb8e520f373cd3}{%
+           family={König},
+           familyi={K\bibinitperiod},
+           given={Hartmut},
+           giveni={H\bibinitperiod}}}%
+        {{hash=4759d55043cee632c116d4b76f8309aa}{%
+           family={Tienari},
+           familyi={T\bibinitperiod},
+           given={Martti},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Boston, MA}%
+      }
+      \list{publisher}{1}{%
+        {Springer US}%
+      }
+      \strng{namehash}{8fe8393be6f49c34dce4ddf5cc6fe68c}
+      \strng{fullhash}{2d5c8971eb5b865d81da1cfbcc3b04e0}
+      \strng{bibnamehash}{2d5c8971eb5b865d81da1cfbcc3b04e0}
+      \strng{authorbibnamehash}{2d5c8971eb5b865d81da1cfbcc3b04e0}
+      \strng{authornamehash}{8fe8393be6f49c34dce4ddf5cc6fe68c}
+      \strng{authorfullhash}{2d5c8971eb5b865d81da1cfbcc3b04e0}
+      \strng{editorbibnamehash}{47effd9f55e382e5391c84936c4df354}
+      \strng{editornamehash}{47effd9f55e382e5391c84936c4df354}
+      \strng{editorfullhash}{47effd9f55e382e5391c84936c4df354}
+      \field{labelalpha}{Eve99}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Lilith is a general purpose framework written in Java, that provides a highly scalable distribution of user code across a heterogeneous computing platform. By creation of suitable user code, the Lilith framework can be used for tool development. Lilith promotes rapid development since it handles all the details of code distribution and communication, while the user code need only define the tool functionality on a single node, in accordance with a simple API. The scalable performance provided by Lilith is crucial to the production of time-effective tools for large distributed systems. This time-efficiency, however, allows both constructive and destructive tasks to be accomplished quickly; therefore, security is a concern. We present the Lilith API and a prototype example of the usage of Lilith in distributed computing and we discuss the security model, which is currently under design.}
+      \field{booktitle}{Distributed {Applications} and {Interoperable} {Systems} {II}}
+      \field{isbn}{9780387355658}
+      \field{series}{{IFIP} — {The} {International} {Federation} for {Information} {Processing}}
+      \field{title}{The {Lilith} {Framework} for the {Rapid} {Development} of {Secure} {Scalable} {Tools} for {Distributed} {Computing}}
+      \field{year}{1999}
+      \true{nocite}
+      \field{pages}{163\bibrangedash 168}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1007/978-0-387-35565-8_12
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:https\://link.springer.com/content/pdf/10.1007%2F978-0-387-35565-8_12.pdf:application/pdf
+      \endverb
+      \keyw{Scalable tools,secure tools,frameworks,distributed computing}
     \endentry
     \entry{Hou2016}{article}{}
       \name{author}{6}{}{%
@@ -451,6 +595,211 @@
       \endverb
       \keyw{Smart homes,Home appliances,Certification,Computer architecture,RFID tags,Internet,Monitoring,smart home,IOT,agent,RFID,architecture}
     \endentry
+    \entry{Kampmann2019a}{inproceedings}{}
+      \name{author}{8}{}{%
+        {{hash=a9a420fc51ee920787975f0546c95f0d}{%
+           family={Kampmann},
+           familyi={K\bibinitperiod},
+           given={Alexandru},
+           giveni={A\bibinitperiod}}}%
+        {{hash=eaf68c5e298227ab078999d16b1acc88}{%
+           family={Alrifaee},
+           familyi={A\bibinitperiod},
+           given={Bassam},
+           giveni={B\bibinitperiod}}}%
+        {{hash=841b927ec401aae305eb7595d71c375e}{%
+           family={Kohout},
+           familyi={K\bibinitperiod},
+           given={Markus},
+           giveni={M\bibinitperiod}}}%
+        {{hash=64a55d66076cc469230c9e7f2aff051c}{%
+           family={Wüstenberg},
+           familyi={W\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=05d38bb1fbb55294315d5639c3603d09}{%
+           family={Woopen},
+           familyi={W\bibinitperiod},
+           given={Timo},
+           giveni={T\bibinitperiod}}}%
+        {{hash=5afd7626abdfeac65ad4ff208814b032}{%
+           family={Nolte},
+           familyi={N\bibinitperiod},
+           given={Marcus},
+           giveni={M\bibinitperiod}}}%
+        {{hash=175f35cd7ccffb357f0e8c7a458e5508}{%
+           family={Eckstein},
+           familyi={E\bibinitperiod},
+           given={Lutz},
+           giveni={L\bibinitperiod}}}%
+        {{hash=882993b479ae64df7d1f06efbc01e805}{%
+           family={Kowalewski},
+           familyi={K\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{4e91ec8ddda6cf698324a02f3c1fd86d}
+      \strng{fullhash}{cae70f060b4b8ef43798b9cb600b5e58}
+      \strng{bibnamehash}{cae70f060b4b8ef43798b9cb600b5e58}
+      \strng{authorbibnamehash}{cae70f060b4b8ef43798b9cb600b5e58}
+      \strng{authornamehash}{4e91ec8ddda6cf698324a02f3c1fd86d}
+      \strng{authorfullhash}{cae70f060b4b8ef43798b9cb600b5e58}
+      \field{extraname}{1}
+      \field{labelalpha}{Kam19}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extraalpha}{1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2019 {IEEE} {Intelligent} {Transportation} {Systems} {Conference} ({ITSC})}
+      \field{title}{A dynamic service-oriented software architecture for highly automated vehicles}
+      \field{year}{2019}
+      \true{nocite}
+      \field{pages}{2101\bibrangedash 2108}
+      \range{pages}{8}
+    \endentry
+    \entry{Kampmann2019}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=a9a420fc51ee920787975f0546c95f0d}{%
+           family={Kampmann},
+           familyi={K\bibinitperiod},
+           given={Alexandru},
+           giveni={A\bibinitperiod}}}%
+        {{hash=64a55d66076cc469230c9e7f2aff051c}{%
+           family={Wüstenberg},
+           familyi={W\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=eaf68c5e298227ab078999d16b1acc88}{%
+           family={Alrifaee},
+           familyi={A\bibinitperiod},
+           given={Bassam},
+           giveni={B\bibinitperiod}}}%
+        {{hash=882993b479ae64df7d1f06efbc01e805}{%
+           family={Kowalewski},
+           familyi={K\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{4e91ec8ddda6cf698324a02f3c1fd86d}
+      \strng{fullhash}{f90caba59f88eb09e723b6482514d1ea}
+      \strng{bibnamehash}{f90caba59f88eb09e723b6482514d1ea}
+      \strng{authorbibnamehash}{f90caba59f88eb09e723b6482514d1ea}
+      \strng{authornamehash}{4e91ec8ddda6cf698324a02f3c1fd86d}
+      \strng{authorfullhash}{f90caba59f88eb09e723b6482514d1ea}
+      \field{extraname}{2}
+      \field{labelalpha}{Kam19}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extraalpha}{2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper presents embeddedRTPS, a portable and open source implementation of the Real-Time Publish-Subscribe Protocol (RTPS). RTPS is the underlying protocol for the Data Distribution Service (DDS), which is a standardized middleware that allows for implementing distributed, loosely-coupled applications. DDS is not only the core protocol for the Robot Operating System (ROS) 2, but is also one of the few protocols that are part of the AUTOSAR Adaptive platform. In contrast to the available open-source RTPS implementations, embeddedRTPS is based on FreeRTOS and lightweightIP and targets resource-constrained embedded platforms. Our contribution allows microcontrollers to become independent, first-class participants in distributed automotive and robotic applications. We benchmark our implementation using a consumer-grade STM32 microprocessor as well as an ASIL-D certified, automotive microcontroller.}
+      \field{booktitle}{2019 {IEEE} {Intelligent} {Transportation} {Systems} {Conference} ({ITSC})}
+      \field{month}{10}
+      \field{title}{A {Portable} {Implementation} of the {Real}-{Time} {Publish}-{Subscribe} {Protocol} for {Microcontrollers} in {Distributed} {Robotic} {Applications}}
+      \field{year}{2019}
+      \true{nocite}
+      \field{pages}{443\bibrangedash 448}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/ITSC.2019.8916835
+      \endverb
+      \verb{file}
+      \verb :Kampmann2019 - A Portable Implementation of the Real Time Publish Subscribe Protocol for Microcontrollers in Distributed Robotic Applications.pdf:PDF
+      \endverb
+      \keyw{Protocols,Automotive engineering,Message systems,Real-time systems,Microcontrollers,Middleware,Operating systems}
+    \endentry
+    \entry{Kampmann2022}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=a9a420fc51ee920787975f0546c95f0d}{%
+           family={Kampmann},
+           familyi={K\bibinitperiod},
+           given={Alexandru},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e20671099a8bd8a2665704c26d6b8fbf}{%
+           family={Lüer},
+           familyi={L\bibinitperiod},
+           given={Maximilian},
+           giveni={M\bibinitperiod}}}%
+        {{hash=882993b479ae64df7d1f06efbc01e805}{%
+           family={Kowalewski},
+           familyi={K\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=eaf68c5e298227ab078999d16b1acc88}{%
+           family={Alrifaee},
+           familyi={A\bibinitperiod},
+           given={Bassam},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{4e91ec8ddda6cf698324a02f3c1fd86d}
+      \strng{fullhash}{fe94a4b95b43763796cc8f6340aa674c}
+      \strng{bibnamehash}{fe94a4b95b43763796cc8f6340aa674c}
+      \strng{authorbibnamehash}{fe94a4b95b43763796cc8f6340aa674c}
+      \strng{authornamehash}{4e91ec8ddda6cf698324a02f3c1fd86d}
+      \strng{authorfullhash}{fe94a4b95b43763796cc8f6340aa674c}
+      \field{extraname}{3}
+      \field{labelalpha}{Kam22}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2022 {IEEE} {Intelligent} {Vehicles} {Symposium} ({IV})}
+      \field{title}{Optimization-based {Resource} {Allocation} for an {Automotive} {Service}-oriented {Software} {Architecture}}
+      \field{year}{2022}
+      \true{nocite}
+      \field{pages}{678\bibrangedash 687}
+      \range{pages}{10}
+    \endentry
+    \entry{Lewis1996}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=eba3f37a677ab3ea6cc20da718db7779}{%
+           family={Lewis},
+           familyi={L\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=15701838d7633749488aa626f7584437}{%
+           family={Grimshaw},
+           familyi={G\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c7466af447274b57746f4daa1f6a763}
+      \strng{fullhash}{9c7466af447274b57746f4daa1f6a763}
+      \strng{bibnamehash}{9c7466af447274b57746f4daa1f6a763}
+      \strng{authorbibnamehash}{9c7466af447274b57746f4daa1f6a763}
+      \strng{authornamehash}{9c7466af447274b57746f4daa1f6a763}
+      \strng{authorfullhash}{9c7466af447274b57746f4daa1f6a763}
+      \field{labelalpha}{Lew96}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The Legion project at the University of Virginia is an architecture for designing and building system services that provide the illusion of a single virtual machine to users, a virtual machine that provides secure shared object and shared name spaces, application adjustable fault tolerance, improved response time, and greater throughput. Legion targets wide area assemblies of workstations, supercomputers, and parallel supercomputers. Legion tackles problems not solved by existing workstation based parallel processing tools; the system will enable fault tolerance, wide area parallel processing, interoperability, heterogeneity, a single global name space, protection, security, efficient scheduling, and comprehensive resource management. The paper describes the core Legion object model, which specifies the composition and functionality of Legion's core objects-those objects that cooperate to create, locate, manage, and remove objects in the Legion system. The object model facilitates a flexible extensible implementation, provides a single global name space, grants site autonomy to participating organizations, and scales to millions of sites and trillions of objects.}
+      \field{booktitle}{Proceedings of 5th {IEEE} {International} {Symposium} on {High} {Performance} {Distributed} {Computing}}
+      \field{issn}{1082-8907}
+      \field{month}{8}
+      \field{note}{ISSN: 1082-8907}
+      \field{title}{The core {Legion} object model}
+      \field{year}{1996}
+      \true{nocite}
+      \field{pages}{551\bibrangedash 561}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/HPDC.1996.546226
+      \endverb
+      \verb{file}
+      \verb :Lewis1996 - The Core Legion Object Model.pdf:PDF
+      \endverb
+      \keyw{Virtual machining,Fault tolerant systems,Workstations,Supercomputers,Parallel processing,Buildings,Delay,Throughput,Assembly,Protection}
+    \endentry
     \entry{Liu2019}{article}{}
       \name{author}{6}{}{%
         {{hash=b92d60f46947317a2bffd0ee2a844c9c}{%
@@ -719,6 +1068,7 @@
       \field{labelalpha}{Mah20}
       \field{sortinit}{M}
       \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extraalpha}{1}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Rapid population growth and skyrocketing demand of private transportation bloom the market of automakers worldwide. The concept of automated parking system under smart city arises with the availability of the technology like fast internet connections, offloading computational resources, IoT devices communicating various devices each other, to uplift the quality of life. Revolution of cloud computing and ease of this technology also open the door for better opportunities for smart parking where a system can be served from the remote area, but there is an issue with cloud computing for cost of operation and latency of the services. In urban cities there is rapid growth of population and there is advancement of automotive industries, there are lots of vehicles that are being used in all the cities which creates a lot of issues like road congestions, issue in parking spaces. This paper proposes the fog computing architecture to reduce the latency and efficiently utilise all the available technologies together by building fog computing architecture network which is a multi-tier structure where applications runs jointly, communicates and compute with each other. Smart parking has gain massive attention due to ease and outcome from those technologies are exponential. The role of Internet of Things and fog computing enable the platform to minimize the take duration for finding the parking space, this reduces the time and excess use of fuel and emission of CO2, these are the consequence of over and unmanaged vehicles in the urban areas and unmanaged parking areas.}
@@ -736,6 +1086,65 @@
       \verb :Maharjan2020 - Smart Parking Utilizing IoT Embedding Fog Computing Based on Smart Parking Architecture.pdf:PDF
       \endverb
       \keyw{Space vehicles,Cloud computing,Sociology,Computer architecture,Internet of Things,Statistics,Edge computing,Fog computing architecture,IoT,smart city,smart parking}
+    \endentry
+    \entry{Mahmud2020}{article}{}
+      \name{author}{3}{}{%
+        {{hash=8669c511057b7a1e533d55ad3ba46d9d}{%
+           family={Mahmud},
+           familyi={M\bibinitperiod},
+           given={Redowan},
+           giveni={R\bibinitperiod}}}%
+        {{hash=b6fb14c7c121144249fdc97049b51169}{%
+           family={Ramamohanarao},
+           familyi={R\bibinitperiod},
+           given={Kotagiri},
+           giveni={K\bibinitperiod}}}%
+        {{hash=029e03ba4e08a5605b31a31f86375741}{%
+           family={Buyya},
+           familyi={B\bibinitperiod},
+           given={Rajkumar},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{4ee6a9e3c31bdb6d002ef13608e6ed88}
+      \strng{fullhash}{4ee6a9e3c31bdb6d002ef13608e6ed88}
+      \strng{bibnamehash}{4ee6a9e3c31bdb6d002ef13608e6ed88}
+      \strng{authorbibnamehash}{4ee6a9e3c31bdb6d002ef13608e6ed88}
+      \strng{authornamehash}{4ee6a9e3c31bdb6d002ef13608e6ed88}
+      \strng{authorfullhash}{4ee6a9e3c31bdb6d002ef13608e6ed88}
+      \field{labelalpha}{Mah20}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extraalpha}{2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The Internet of Things (IoT) paradigm is being rapidly adopted for the creation of smart environments in various domains. The IoT-enabled cyber-physical systems associated with smart city, healthcare, Industry 4.0 and Agtech handle a huge volume of data and require data processing services from different types of applications in real time. The Cloud-centric execution of IoT applications barely meets such requirements as the Cloud datacentres reside at a multi-hop distance from the IoT devices. Fog computing, an extension of Cloud at the edge network, can execute these applications closer to data sources. Thus, Fog computing can improve application service delivery time and resist network congestion. However, the Fog nodes are highly distributed and heterogeneous, and most of them are constrained in resources and spatial sharing. Therefore, efficient management of applications is necessary to fully exploit the capabilities of Fog nodes. In this work, we investigate the existing application management strategies in Fog computing and review them in terms of architecture, placement and maintenance. Additionally, we propose a comprehensive taxonomy and highlight the research gaps in Fog-based application management. We also discuss a perspective model and provide future research directions for further improvement of application management in Fog computing.}
+      \field{issn}{0360-0300}
+      \field{journaltitle}{ACM Computing Surveys}
+      \field{month}{7}
+      \field{number}{4}
+      \field{shorttitle}{Application {Management} in {Fog} {Computing} {Environments}}
+      \field{title}{Application {Management} in {Fog} {Computing} {Environments}: {A} {Taxonomy}, {Review} and {Future} {Directions}}
+      \field{urlday}{15}
+      \field{urlmonth}{12}
+      \field{urlyear}{2022}
+      \field{volume}{53}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{88:1\bibrangedash 88:43}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1145/3403955
+      \endverb
+      \verb{file}
+      \verb :Mahmud2020 - Application Management in Fog Computing Environments_ a Taxonomy, Review and Future Directions.pdf:PDF
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/3403955
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/3403955
+      \endverb
+      \keyw{application maintenance,application architecture,Fog computing,application placement,Internet of Things}
     \endentry
     \entry{Mokhtarian2020}{report}{}
       \name{author}{4}{}{%
@@ -772,6 +1181,7 @@
       \strng{authorbibnamehash}{551dc0707313173a6636bc1fbb8f4ec5}
       \strng{authornamehash}{f21944fe5d3eeeb20b37a62399427414}
       \strng{authorfullhash}{551dc0707313173a6636bc1fbb8f4ec5}
+      \field{extraname}{1}
       \field{labelalpha}{Mok20}
       \field{sortinit}{M}
       \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
@@ -794,6 +1204,77 @@
       \endverb
       \verb{url}
       \verb https://publications.rwth-aachen.de/record/807282
+      \endverb
+    \endentry
+    \entry{Mokhtarian2021}{report}{}
+      \name{author}{5}{}{%
+        {{hash=a35cdfc1ab50c0c52f938f1118d45c0b}{%
+           family={Mokhtarian},
+           familyi={M\bibinitperiod},
+           given={Armin},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a9a420fc51ee920787975f0546c95f0d}{%
+           family={Kampmann},
+           familyi={K\bibinitperiod},
+           given={Alexandru},
+           giveni={A\bibinitperiod}}}%
+        {{hash=eaf68c5e298227ab078999d16b1acc88}{%
+           family={Alrifaee},
+           familyi={A\bibinitperiod},
+           given={Bassam},
+           giveni={B\bibinitperiod}}}%
+        {{hash=e20671099a8bd8a2665704c26d6b8fbf}{%
+           family={Lüer},
+           familyi={L\bibinitperiod},
+           given={Maximilian},
+           giveni={M\bibinitperiod}}}%
+        {{hash=882993b479ae64df7d1f06efbc01e805}{%
+           family={Kowalewski},
+           familyi={K\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Elsevier}%
+      }
+      \list{language}{1}{%
+        {de}%
+      }
+      \strng{namehash}{f21944fe5d3eeeb20b37a62399427414}
+      \strng{fullhash}{8bb52f03b10f0a4cebedf1092897ab5c}
+      \strng{bibnamehash}{8bb52f03b10f0a4cebedf1092897ab5c}
+      \strng{authorbibnamehash}{8bb52f03b10f0a4cebedf1092897ab5c}
+      \strng{authornamehash}{f21944fe5d3eeeb20b37a62399427414}
+      \strng{authorfullhash}{8bb52f03b10f0a4cebedf1092897ab5c}
+      \field{extraname}{2}
+      \field{labelalpha}{Mok21}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Mokhtarian, Armin; Kampmann, Alexandru; Lüer, Maximilian; Kowalewski, Stefan; Alrifaee, Bassam}
+      \field{issn}{2405-8963}
+      \field{journaltitle}{IFAC-PapersOnLine}
+      \field{number}{2}
+      \field{title}{A {Cloud} {Architecture} for {Networked} and {Autonomous} {Vehicles}}
+      \field{type}{techreport}
+      \field{urlday}{2}
+      \field{urlmonth}{11}
+      \field{urlyear}{2022}
+      \field{volume}{54}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{233}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.ifacol.2021.06.028
+      \endverb
+      \verb{urlraw}
+      \verb https://publications.rwth-aachen.de/record/828696
+      \endverb
+      \verb{url}
+      \verb https://publications.rwth-aachen.de/record/828696
       \endverb
     \endentry
     \entry{Perez2022}{article}{}

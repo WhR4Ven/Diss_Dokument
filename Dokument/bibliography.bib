@@ -1,4 +1,23 @@
  
+@InProceedings{Evensky1999,
+  author    = {Evensky, David A. and Gentile, Ann C. and Wyckoff, Pete and Armstrong, Robert C.},
+  booktitle = {Distributed {Applications} and {Interoperable} {Systems} {II}},
+  title     = {The {Lilith} {Framework} for the {Rapid} {Development} of {Secure} {Scalable} {Tools} for {Distributed} {Computing}},
+  year      = {1999},
+  address   = {Boston, MA},
+  editor    = {Kutvonen, Lea and König, Hartmut and Tienari, Martti},
+  pages     = {163--168},
+  publisher = {Springer US},
+  series    = {{IFIP} — {The} {International} {Federation} for {Information} {Processing}},
+  abstract  = {Lilith is a general purpose framework written in Java, that provides a highly scalable distribution of user code across a heterogeneous computing platform. By creation of suitable user code, the Lilith framework can be used for tool development. Lilith promotes rapid development since it handles all the details of code distribution and communication, while the user code need only define the tool functionality on a single node, in accordance with a simple API. The scalable performance provided by Lilith is crucial to the production of time-effective tools for large distributed systems. This time-efficiency, however, allows both constructive and destructive tasks to be accomplished quickly; therefore, security is a concern. We present the Lilith API and a prototype example of the usage of Lilith in distributed computing and we discuss the security model, which is currently under design.},
+  doi       = {10.1007/978-0-387-35565-8_12},
+  file      = {Full Text PDF:https\://link.springer.com/content/pdf/10.1007%2F978-0-387-35565-8_12.pdf:application/pdf},
+  isbn      = {9780387355658},
+  keywords  = {Scalable tools, secure tools, frameworks, distributed computing},
+  language  = {en},
+}
+
+ 
 @InProceedings{Hou2017,
   author    = {Hou, Lu and Lei, Lei and Zheng, Kan},
   booktitle = {2017 {IEEE} {Globecom} {Workshops} ({GC} {Wkshps})},
@@ -360,6 +379,112 @@
   language = {en},
   url      = {https://doi.org/10.1007/s12599-015-0383-3},
   urldate  = {2022-10-26},
+}
+
+ 
+@InProceedings{Kampmann2019,
+  author    = {Kampmann, Alexandru and Wüstenberg, Andreas and Alrifaee, Bassam and Kowalewski, Stefan},
+  booktitle = {2019 {IEEE} {Intelligent} {Transportation} {Systems} {Conference} ({ITSC})},
+  title     = {A {Portable} {Implementation} of the {Real}-{Time} {Publish}-{Subscribe} {Protocol} for {Microcontrollers} in {Distributed} {Robotic} {Applications}},
+  year      = {2019},
+  month     = oct,
+  pages     = {443--448},
+  abstract  = {This paper presents embeddedRTPS, a portable and open source implementation of the Real-Time Publish-Subscribe Protocol (RTPS). RTPS is the underlying protocol for the Data Distribution Service (DDS), which is a standardized middleware that allows for implementing distributed, loosely-coupled applications. DDS is not only the core protocol for the Robot Operating System (ROS) 2, but is also one of the few protocols that are part of the AUTOSAR Adaptive platform. In contrast to the available open-source RTPS implementations, embeddedRTPS is based on FreeRTOS and lightweightIP and targets resource-constrained embedded platforms. Our contribution allows microcontrollers to become independent, first-class participants in distributed automotive and robotic applications. We benchmark our implementation using a consumer-grade STM32 microprocessor as well as an ASIL-D certified, automotive microcontroller.},
+  doi       = {10.1109/ITSC.2019.8916835},
+  file      = {:Kampmann2019 - A Portable Implementation of the Real Time Publish Subscribe Protocol for Microcontrollers in Distributed Robotic Applications.pdf:PDF},
+  keywords  = {Protocols, Automotive engineering, Message systems, Real-time systems, Microcontrollers, Middleware, Operating systems},
+}
+
+ 
+@TechReport{Mokhtarian2021,
+  author   = {Mokhtarian, Armin and Kampmann, Alexandru and Alrifaee, Bassam and Lüer, Maximilian and Kowalewski, Stefan},
+  title    = {A {Cloud} {Architecture} for {Networked} and {Autonomous} {Vehicles}},
+  year     = {2021},
+  number   = {2},
+  abstract = {Mokhtarian, Armin; Kampmann, Alexandru; Lüer, Maximilian; Kowalewski, Stefan; Alrifaee, Bassam},
+  doi      = {10.1016/j.ifacol.2021.06.028},
+  issn     = {2405-8963},
+  journal  = {IFAC-PapersOnLine},
+  language = {de},
+  pages    = {233},
+  school   = {Elsevier},
+  url      = {https://publications.rwth-aachen.de/record/828696},
+  urldate  = {2022-11-02},
+  volume   = {54},
+}
+
+ 
+@InProceedings{Kampmann2022,
+  author    = {Kampmann, Alexandru and Lüer, Maximilian and Kowalewski, Stefan and Alrifaee, Bassam},
+  booktitle = {2022 {IEEE} {Intelligent} {Vehicles} {Symposium} ({IV})},
+  title     = {Optimization-based {Resource} {Allocation} for an {Automotive} {Service}-oriented {Software} {Architecture}},
+  year      = {2022},
+  pages     = {678--687},
+  publisher = {IEEE},
+}
+
+ 
+@InProceedings{Kampmann2019a,
+  author    = {Kampmann, Alexandru and Alrifaee, Bassam and Kohout, Markus and Wüstenberg, Andreas and Woopen, Timo and Nolte, Marcus and Eckstein, Lutz and Kowalewski, Stefan},
+  booktitle = {2019 {IEEE} {Intelligent} {Transportation} {Systems} {Conference} ({ITSC})},
+  title     = {A dynamic service-oriented software architecture for highly automated vehicles},
+  year      = {2019},
+  pages     = {2101--2108},
+  publisher = {IEEE},
+}
+
+ 
+@InProceedings{Lewis1996,
+  author    = {Lewis, M. and Grimshaw, A.},
+  booktitle = {Proceedings of 5th {IEEE} {International} {Symposium} on {High} {Performance} {Distributed} {Computing}},
+  title     = {The core {Legion} object model},
+  year      = {1996},
+  month     = aug,
+  note      = {ISSN: 1082-8907},
+  pages     = {551--561},
+  abstract  = {The Legion project at the University of Virginia is an architecture for designing and building system services that provide the illusion of a single virtual machine to users, a virtual machine that provides secure shared object and shared name spaces, application adjustable fault tolerance, improved response time, and greater throughput. Legion targets wide area assemblies of workstations, supercomputers, and parallel supercomputers. Legion tackles problems not solved by existing workstation based parallel processing tools; the system will enable fault tolerance, wide area parallel processing, interoperability, heterogeneity, a single global name space, protection, security, efficient scheduling, and comprehensive resource management. The paper describes the core Legion object model, which specifies the composition and functionality of Legion's core objects-those objects that cooperate to create, locate, manage, and remove objects in the Legion system. The object model facilitates a flexible extensible implementation, provides a single global name space, grants site autonomy to participating organizations, and scales to millions of sites and trillions of objects.},
+  doi       = {10.1109/HPDC.1996.546226},
+  file      = {:Lewis1996 - The Core Legion Object Model.pdf:PDF},
+  issn      = {1082-8907},
+  keywords  = {Virtual machining, Fault tolerant systems, Workstations, Supercomputers, Parallel processing, Buildings, Delay, Throughput, Assembly, Protection},
+}
+
+ 
+@Article{Mahmud2020,
+  author     = {Mahmud, Redowan and Ramamohanarao, Kotagiri and Buyya, Rajkumar},
+  journal    = {ACM Computing Surveys},
+  title      = {Application {Management} in {Fog} {Computing} {Environments}: {A} {Taxonomy}, {Review} and {Future} {Directions}},
+  year       = {2020},
+  issn       = {0360-0300},
+  month      = jul,
+  number     = {4},
+  pages      = {88:1--88:43},
+  volume     = {53},
+  abstract   = {The Internet of Things (IoT) paradigm is being rapidly adopted for the creation of smart environments in various domains. The IoT-enabled cyber-physical systems associated with smart city, healthcare, Industry 4.0 and Agtech handle a huge volume of data and require data processing services from different types of applications in real time. The Cloud-centric execution of IoT applications barely meets such requirements as the Cloud datacentres reside at a multi-hop distance from the IoT devices. Fog computing, an extension of Cloud at the edge network, can execute these applications closer to data sources. Thus, Fog computing can improve application service delivery time and resist network congestion. However, the Fog nodes are highly distributed and heterogeneous, and most of them are constrained in resources and spatial sharing. Therefore, efficient management of applications is necessary to fully exploit the capabilities of Fog nodes. In this work, we investigate the existing application management strategies in Fog computing and review them in terms of architecture, placement and maintenance. Additionally, we propose a comprehensive taxonomy and highlight the research gaps in Fog-based application management. We also discuss a perspective model and provide future research directions for further improvement of application management in Fog computing.},
+  doi        = {10.1145/3403955},
+  file       = {:Mahmud2020 - Application Management in Fog Computing Environments_ a Taxonomy, Review and Future Directions.pdf:PDF},
+  keywords   = {application maintenance, application architecture, Fog computing, application placement, Internet of Things},
+  shorttitle = {Application {Management} in {Fog} {Computing} {Environments}},
+  url        = {https://doi.org/10.1145/3403955},
+  urldate    = {2022-12-15},
+}
+
+ 
+@Article{Cheng2018,
+  author     = {Cheng, Bin and Solmaz, Gürkan and Cirillo, Flavio and Kovacs, Ernö and Terasawa, Kazuyuki and Kitazawa, Atsushi},
+  journal    = {IEEE Internet of Things Journal},
+  title      = {{FogFlow}: {Easy} {Programming} of {IoT} {Services} {Over} {Cloud} and {Edges} for {Smart} {Cities}},
+  year       = {2018},
+  issn       = {2327-4662},
+  month      = apr,
+  number     = {2},
+  pages      = {696--707},
+  volume     = {5},
+  abstract   = {Smart city infrastructure is forming a large scale Internet of Things (IoT) system with widely deployed IoT devices, such as sensors and actuators that generate a huge volume of data. Given this large scale and geo-distributed nature of such IoT systems, fog computing has been considered as an affordable and sustainable computing paradigm to enable smart city IoT services. However, it is still a major challenge for developers to program their services to leverage benefits of fog computing. Developers have to figure out many details, such as how to dynamically configure and manage data processing tasks over cloud and edges and how to optimize task allocation for minimal latency and bandwidth consumption. In addition, most of the existing fog computing frameworks either lack service programming models or define a programming model only based on their own private data model and interfaces; therefore, as a smart city platform, they are quite limited in terms of openness and interoperability. To tackle these problems, we propose a standard-based approach to design and implement a new fog computing-based framework, namely FogFlow, for IoT smart city platforms. FogFlow’s programming model allows IoT service developers to program elastic IoT services easily over cloud and edges. Moreover, it supports standard interfaces to share and reuse contextual data across services. To showcase how smart city use cases can be realized with FogFlow, we describe three use cases and implement an example application for anomaly detection of energy consumption in smart cities. We also analyze FogFlow’s performance based on microbenchmarking results for message propagation latency, throughput, and scalability.},
+  doi        = {10.1109/JIOT.2017.2747214},
+  file       = {:Cheng2018 - FogFlow_ Easy Programming of IoT Services Over Cloud and Edges for Smart Cities.pdf:PDF},
+  keywords   = {Programming, Smart cities, Computational modeling, Cloud computing, Edge computing, Logic gates, Data models, Edge computing, Internet of Things (IoT), parallel programming},
+  shorttitle = {{FogFlow}},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

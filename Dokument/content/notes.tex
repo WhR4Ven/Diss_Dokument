@@ -27,7 +27,7 @@
     \item Softwarearchitektur in Fahrzeugen
    \begin{notes}
         \item RTOS
-        \item Moddle Layer (ROS, keine automotive alternative stand 2019)
+        \item Middle Layer (ROS, keine automotive alternative stand 2019)
         \item Cloud
     \end{notes}
 \end{notes}
@@ -44,7 +44,7 @@
         \end{notes}
         \item \gls{IoT} (IoT) 
         \begin{notes}
-            \item Internet of Tings (Internet der Dinge) bezeichnet eindeutig identifizierbare Objekte und deren virtuelle repräsentation in interent-ähnliche Strukturen\cite{Jie2013} 
+            \item Internet of Things (Internet der Dinge) bezeichnet eindeutig identifizierbare Objekte und deren virtuelle repräsentation in interent-ähnliche Strukturen\cite{Jie2013} 
             \item IoT findet mittlerweile in fast allen Bereichen Anwendung
             \item Industrie: Produktionsanlagen, die durch vernetzte Systeme flexibel angepasst werden können (Beispiel: Produktvarianten)
             \item Smart Home: Sensoren und Aktoren im Haus vernetzen \cite{Wortmann2015}
@@ -68,9 +68,23 @@
         \end{notes}
         \item Fog Computing
         \begin{notes} 
-            \item Fog Computing: zusätzliche schicht zwischen edge und cloud
-            \item Edge geräte kommunizieren mit Fog servern, die wiederrum für die Kommunikation zwishen Edge und Cloud zuständig sind
-            \item Fog Server übernehmen Datenverarbeitung lokal, für nur Lokal benötigte Daten, Leiten nur relevante Daten an Cloud weiter
+            \item Fog Computing: Eine Form von Edge Computing, zusätzliche Schicht zwischen Endgeräte und Cloud
+            \item Edge Geräte kommunizieren mit Fog nodes, die wiederrum für die Kommunikation zwishen Edge und Cloud zuständig sind
+            \item Fog nodes übernehmen Datenverarbeitung lokal, für nur Lokal benötigte Daten, Leiten nur relevante Daten an Cloud weiter
+            \item Fog nodes können PC-s, raspberry PI-s, nano-server, micro-datenzentren sein. \cite{Mahmud2020}
+            \item Beispiele:
+            \begin{notes} 
+                \item Iot for All
+                \item FogFlow
+            \end{notes}
+            \item Applikationsverwaltung:
+            \begin{notes}
+                \item Quality of service (QoS): Anforderungen der Applikation (Rechenaufwand, max Latenz, Bandbreite, Safety Relevanz)
+                \item Wie soll die Applikation zusammengesetzt sein
+                \item wie soll die Applikation platziert werden
+                \item Wie soll die Applikation verwaltet werden
+                \item 
+            \end{notes}
         \end{notes}
         \item Mist Computing
         \begin{notes} 
