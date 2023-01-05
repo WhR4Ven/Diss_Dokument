@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber main"] 1671208009 "main.bcf" "main.bbl" "main" 1671211525
+["biber main"] 1672909782 "main.bcf" "main.bbl" "main" 1672937759
   "bibliography.bib" 1671207990 52192 4416b340091b4a77f7bdf4b9b7019c30 ""
-  "main.bcf" 1671211524 107954 5948e4aa4cf96ad0d09fec728ec4e111 "lualatex"
+  "main.bcf" 1672937758 107954 5948e4aa4cf96ad0d09fec728ec4e111 "lualatex"
   (generated)
   "main.bbl"
   "main.blg"
-["lualatex"] 1671211513 "c:/Users/bilkei/Documents/Diss/Dokument/main.tex" "main.pdf" "main" 1671211525
+["lualatex"] 1672937748 "c:/Users/bilkei/Documents/Diss/Dokument/main.tex" "main.pdf" "main" 1672937759
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1233951848 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1233951854 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -427,22 +427,22 @@
   "c:/Users/bilkei/Documents/Diss/Dokument/main.tex" 1666852923 9667 25e633f7eebb793feb9f2518968d088b ""
   "content/content.tex" 1665150238 66 0a0ca0739cdc37f2ccef789c2d73dff2 ""
   "content/glossaries.tex" 1666852769 72 d50352f733ad81212bac16711b986bba ""
-  "content/notes.tex" 1671211512 9513 18f8aefed2f33b1a04e453121e5b03e4 ""
+  "content/notes.tex" 1672937747 13276 c7fab801a0fa67ef8f09e6fbafd1365b ""
   "content/stateoftheart.tex" 0 -1 0 ""
   "fonts/Arial.ttf" 1575709706 1036584 1a12609fb6c38568eb7f927f872bf8fa ""
   "fonts/Arial_Bold.ttf" 1575709706 980756 50b9afb8f77b134f824f1bf0c48c7705 ""
   "fonts/Arial_Italic.ttf" 1575709706 717428 b86d5973f7103568a95147d35b79cd40 ""
   "fonts/Consolas.ttf" 1575709717 459180 a0fd1831d3970dea362eb0593715a8e9 ""
   "main.acr" 0 -1 0 ""
-  "main.aux" 1671211524 5810 64897197d9df5c68261f54ee4fef10a3 "lualatex"
-  "main.bbl" 1671208013 102478 8a1042e7533521e079ebcda3746f4456 "biber main"
+  "main.aux" 1672937758 5810 35d3308dabd4a9d240e143985e2bde1b "lualatex"
+  "main.bbl" 1672909788 102478 8a1042e7533521e079ebcda3746f4456 "biber main"
   "main.gls" 0 -1 0 ""
-  "main.lof" 1671211524 115 82683642893c3b7d20132889bf8fb8de "lualatex"
-  "main.lot" 1671211524 115 82683642893c3b7d20132889bf8fb8de "lualatex"
+  "main.lof" 1672937758 115 82683642893c3b7d20132889bf8fb8de "lualatex"
+  "main.lot" 1672937758 115 82683642893c3b7d20132889bf8fb8de "lualatex"
   "main.out" 0 -1 0 "lualatex"
-  "main.run.xml" 1671211524 2412 494d5477d249529439207c5c9febb340 "lualatex"
+  "main.run.xml" 1672937758 2412 494d5477d249529439207c5c9febb340 "lualatex"
   "main.tex" 1666852923 9667 25e633f7eebb793feb9f2518968d088b ""
-  "main.toc" 1671211524 313 56c579143c70e311017ced3bf48892e2 "lualatex"
+  "main.toc" 1672937758 313 9811b68741c2f0780849343fead36269 "lualatex"
   (generated)
   "main.acn"
   "main.aux"

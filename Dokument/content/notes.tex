@@ -77,14 +77,6 @@
                 \item Iot for All
                 \item FogFlow
             \end{notes}
-            \item Applikationsverwaltung:
-            \begin{notes}
-                \item Quality of service (QoS): Anforderungen der Applikation (Rechenaufwand, max Latenz, Bandbreite, Safety Relevanz)
-                \item Wie soll die Applikation zusammengesetzt sein
-                \item wie soll die Applikation platziert werden
-                \item Wie soll die Applikation verwaltet werden
-                \item 
-            \end{notes}
         \end{notes}
         \item Mist Computing
         \begin{notes} 
@@ -149,5 +141,85 @@
         \item Ungenutze Rechenleistung kann für externe Anwendungen zur verfügung gestellt werden
         \item Dezentralisierte Rechenleistung verringert physikalische Distanz zwischen Entstehung und Verarbeitung der Daten
         \item Einsparung an Bandbreite und zusätzliche Server Rechenleistung
+    \end{notes}
+
+    \item Konzept:
+    \begin{notes}
+        \item Applikation Architektur:
+        \begin{notes}
+            \item monolithische Architektur
+            \begin{notes}
+                \item Applikation beinhaltet alle operationen
+                \item die gleiche Applikation kann mehrfach ausgeführt werden für parallele berechnungen
+            \end{notes}
+            \item Verteilt:
+            \begin{notes}
+                \item Modulbasiert:
+
+                    \item Applikation auf Module aufgeteilt, abhängig voneinander
+                    \item Bedienen Daten von einer Quelle
+ 
+                \item Micro-Services:
+                    \item Applikation setzt sich aus unabhängigen Prozessen zusammen
+                    \item Ein Microservice erfüllt nur eine Aufgabe
+            \end{notes}
+        \end{notes}
+        \item Applikation Platzierung:
+        \begin{notes}
+            \item Bestimmung verfügbare Rechenresourcen:
+            \begin{notes}
+                \item Profilierung: Applikation wird auf jedem Node ausgeführt, Rechenleistung wird aus Ausführungszeit bestimmt
+                \item Prädiktiv: Rechenleistung wird aus vergangenen Berechnungen ermittelt
+                \item Nach Bedarf: Je nach Erwartungen der Benutzer und Anforderungen an die Ausführungszeit wird nach Profil oder Prädiktiv verteilt
+            \end{notes}
+            \item Offloading Methoden:
+            \begin{notes}
+                \item Bottom-Up: Edge Geräte verlagern Applikationen in die Node Server
+                \item Top-Down: Applikationen aus der Cloud oder Fog Node werden in Edge Geräte ausgelagert
+                \item Hybrid: Top-Down, Bottom-Up, Edge geräte können Applikationen direkt untereinander austauschen
+            \end{notes}
+            \item Resourcenorientierung -Netzwerkstruktur
+            \begin{notes}
+                \item Hierarchie: Fog node server sind in Hierarchieebenen eingeteilt. Anzahl der Nodes auf einer Ebene nimmt nach unten hin zu. 
+                \item Cluster: Fog nodes sind alle untereinander verbunden. Edge geräte werden in jeweilige Cluster gruppiert. Bessere horizontale Skalierung als bei Hierarchie.
+                \item Client-Server: Einige Fog Nodes funktionieren als Server, die anderen als client. Client nodes leiten ihre daten an den server weiter.
+                \item Master-Slave: Master node verteilt daten an slave nodes. Verwaltet die slave nodes. Master node kommuniziert die Ergebnisse.
+            \end{notes}
+            \item Mapping:
+            \begin{notes}
+                \item Prioritätsbasiert: Priorisiert app platzierung auf bestimmte fog nodes, meistens heuristische methoden (best fit, first fit). 
+                \item Optimierung: Kostenfunktion für die optimale Aufteilung erstellen und optimieren
+                \item multi-objective trade-off: nach mehreren Anforderungen gleichzeitig optimieren wie Energieverbrauch, verfügbarkeit, kosten
+            \end{notes}
+            \item Platzierung
+            \begin{notes}
+                \item Statisch: 
+                \item dynamischen
+                \item Ereignisbasiert
+            \end{notes}
+        \end{notes}
+        \item Applikationsverwaltung:
+        \begin{notes}
+            \item t
+        \end{notes}
+    \end{notes}
+    \item Security:
+    \begin{notes}
+        \item Container:
+        \begin{notes}
+            \item Abstraktionsebene zwischen Prozesse und OS
+            \item Packt die Prozesse und deren Abhängigkeiten zusammen so dass sie einfach auf andere Systeme portiert werden können
+            \item definiert schnittstelle
+            \item Läuft als Teil des Betriebssystems
+            \item Software kann auch "bare metal" oder in hypervisor virtuelle machine ausgeführt werden
+        \end{notes}
+        \item Hypervisor:
+        \begin{notes}
+            \item Virtuelle Machine manager
+            \item Jede Anwendung läuft im eigenen virtuellen OS (guest)
+            \item Anwendung hat ggf. keine Information darüber dass es in virtuellen Umgebung läuft
+            \item jede Anwendung läuft getrennt in eigenem Runtime Umgebung
+            \item 
+        \end{notes}
     \end{notes}
 \end{notes} 
