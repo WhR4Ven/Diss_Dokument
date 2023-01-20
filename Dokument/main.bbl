@@ -19,6 +19,72 @@
 
 \refsection{0}
   \datalist[entry]{anyt/global//global/global}
+    \entry{Ashraf2022}{article}{}
+      \name{author}{4}{}{%
+        {{hash=c8b2628d8c102f731fbd7d32e399259f}{%
+           family={Ashraf},
+           familyi={A\bibinitperiod},
+           given={Maria},
+           giveni={M\bibinitperiod}}}%
+        {{hash=10179f9b08e17ea793fa16b9d85a3e62}{%
+           family={Shiraz},
+           familyi={S\bibinitperiod},
+           given={Muhammad},
+           giveni={M\bibinitperiod}}}%
+        {{hash=5c055b37ac4e5f295d94947223e718e9}{%
+           family={Abbasi},
+           familyi={A\bibinitperiod},
+           given={Almas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=99e1d8e76b871ce3892be3caf86c8df7}{%
+           family={Albahli},
+           familyi={A\bibinitperiod},
+           given={Saleh},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{dce1058a6dd3ac936e548c165640a6e5}
+      \strng{fullhash}{19f9325abf37bf187834c2f0fce36f65}
+      \strng{bibnamehash}{19f9325abf37bf187834c2f0fce36f65}
+      \strng{authorbibnamehash}{19f9325abf37bf187834c2f0fce36f65}
+      \strng{authornamehash}{dce1058a6dd3ac936e548c165640a6e5}
+      \strng{authorfullhash}{19f9325abf37bf187834c2f0fce36f65}
+      \field{labelalpha}{Ash22}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{With tremendous advancements in smart phone industry and IoT devices, edge computing has emerged to provide computational services at edge of the network. As a result, applications can be executed in a distributive manner to meet the latency requirements of applications. Despite these advancements, these devices are still considered to have limited energy, memory and computational resources compared to stationary standalone devices. Mobile edge computing extends mobile cloud computing close to end-users, decreasing latency and bandwidth utilisation by offloading tasks to edge servers. Fog computing places nodes between cloud and edge servers. A challenging approach in these paradigms is establishing offloading decision to edge/fog server, and distributed application execution at run time for heterogeneous devices. This paper reviews execution of resource-intensive tasks on mobile devices in distributed frameworks. The objective is to identify research gaps and highlight new research directions that can be pursued in future. Application execution involves application partitioning, task allocation, task execution and task resumption. In this paper, we propose a separate taxonomy for each step in application execution, reviews state-of-the-art techniques, and analyses critical aspects of application execution in a distributed manner. It further investigates similarities and differences among these techniques based on each step of application execution.}
+      \field{issn}{1319-1578}
+      \field{journaltitle}{Journal of King Saud University - Computer and Information Sciences}
+      \field{month}{7}
+      \field{number}{7}
+      \field{shorttitle}{Distributed application execution in fog computing}
+      \field{title}{Distributed application execution in fog computing: {A} taxonomy, challenges and future directions}
+      \field{urlday}{11}
+      \field{urlmonth}{1}
+      \field{urlyear}{2023}
+      \field{volume}{34}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \field{pages}{3887\bibrangedash 3909}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1016/j.jksuci.2022.05.002
+      \endverb
+      \verb{file}
+      \verb :Ashraf2022 - Distributed Application Execution in Fog Computing_ a Taxonomy, Challenges and Future Directions.html:URL
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S1319157822001513
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S1319157822001513
+      \endverb
+      \keyw{Distributed application execution,Fog computing,Mobile edge computing,Application partitioning,Task allocation,Task execution,Task resumption}
+    \endentry
     \entry{Cheng2018}{article}{}
       \name{author}{6}{}{%
         {{hash=b9359e37b98db04db8950022034eccdd}{%
@@ -81,7 +147,7 @@
       \verb{file}
       \verb :Cheng2018 - FogFlow_ Easy Programming of IoT Services Over Cloud and Edges for Smart Cities.pdf:PDF
       \endverb
-      \keyw{Programming,Smart cities,Computational modeling,Cloud computing,Edge computing,Logic gates,Data models,Edge computing,Internet of Things (IoT),parallel programming}
+      \keyw{Programming,Smart cities,Computational modeling,Cloud computing,Edge computing,Logic gates,Data models,Internet of Things (IoT),parallel programming}
     \endentry
     \entry{Chun2016}{inproceedings}{}
       \name{author}{6}{}{%
@@ -144,6 +210,71 @@
       \verb :Chun2016 - A Pub_Sub Based Fog Computing Architecture for Internet of Vehicles.pdf:PDF
       \endverb
       \keyw{Decision support systems,Conferences,Cloud computing,Semantic Web,Computers,Edge computing,Internet-of-Vehicles,Internet-of-Cars,Fog computing,OWL,Pub/Sub system}
+    \endentry
+    \entry{Costa2022}{article}{}
+      \name{author}{4}{}{%
+        {{hash=ffd3c7a41f0666f745482ec3eab90d67}{%
+           family={Costa},
+           familyi={C\bibinitperiod},
+           given={Breno},
+           giveni={B\bibinitperiod}}}%
+        {{hash=1b387b145428dcdce58718e905fe59ec}{%
+           family={Bachiega},
+           familyi={B\bibinitperiod},
+           given={Joao},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0d8b5d25d53babab1b425f96fe6eb6b3}{%
+           family={Carvalho},
+           familyi={C\bibinitperiod},
+           given={Leonardo\bibnamedelima Rebouças},
+           giveni={L\bibinitperiod\bibinitdelim R\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+        {{hash=cae66095e182452fd9ac8991d55b399c}{%
+           family={Araujo},
+           familyi={A\bibinitperiod},
+           given={Aleteia\bibnamedelimb P.\bibnamedelimi F.},
+           giveni={A\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \strng{namehash}{366a0c3056b2c40eaf47b7ebb8d84347}
+      \strng{fullhash}{3acc8a163c12ec4edb743eba3e2a7671}
+      \strng{bibnamehash}{3acc8a163c12ec4edb743eba3e2a7671}
+      \strng{authorbibnamehash}{3acc8a163c12ec4edb743eba3e2a7671}
+      \strng{authornamehash}{366a0c3056b2c40eaf47b7ebb8d84347}
+      \strng{authorfullhash}{3acc8a163c12ec4edb743eba3e2a7671}
+      \field{labelalpha}{Cos22}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Fog computing is a paradigm that brings computational resources and services to the network edge in the vicinity of user devices, lowering latency and connecting with cloud computing resources. Unlike cloud computing, fog resources are based on constrained and heterogeneous nodes whose connectivity can be unstable. In this complex scenario, there is a need to define and implement orchestration processes to ensure that applications and services can be provided, considering the settled agreements. Although some publications have dealt with orchestration in fog computing, there are still some diverse definitions and functional intersection with other areas, such as resource management and monitoring. This article presents a systematic review of the literature with focus on orchestration in fog computing. A generic architecture of fog orchestration is presented, created from the consolidation of the analyzed proposals, bringing to light the essential functionalities addressed in the literature. This work also highlights the main challenges and open research questions.}
+      \field{issn}{0360-0300}
+      \field{journaltitle}{ACM Computing Surveys}
+      \field{month}{1}
+      \field{number}{2}
+      \field{shorttitle}{Orchestration in {Fog} {Computing}}
+      \field{title}{Orchestration in {Fog} {Computing}: {A} {Comprehensive} {Survey}}
+      \field{urlday}{13}
+      \field{urlmonth}{1}
+      \field{urlyear}{2023}
+      \field{volume}{55}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \field{pages}{29:1\bibrangedash 29:34}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1145/3486221
+      \endverb
+      \verb{file}
+      \verb :Costa2022 - Orchestration in Fog Computing_ a Comprehensive Survey.pdf:PDF
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/3486221
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/3486221
+      \endverb
+      \keyw{resource management,monitoring,Fog computing,orchestration}
     \endentry
     \entry{Dolejs2004}{inproceedings}{}
       \name{author}{3}{}{%
@@ -757,6 +888,87 @@
       \true{nocite}
       \field{pages}{678\bibrangedash 687}
       \range{pages}{10}
+    \endentry
+    \entry{Lakhan2022}{article}{}
+      \name{author}{7}{}{%
+        {{hash=a57ce32962c7e5611ef97e953d94008d}{%
+           family={Lakhan},
+           familyi={L\bibinitperiod},
+           given={Abdullah},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a276b266dc4657322b529b13a605713c}{%
+           family={Memon},
+           familyi={M\bibinitperiod},
+           given={Muhammad\bibnamedelima Suleman},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=6a911750af290d6e730e7e40de1ce786}{%
+           family={Mastoi},
+           familyi={M\bibinitperiod},
+           given={Qurat-ul-ain},
+           giveni={Q\bibinithyphendelim a\bibinitperiod}}}%
+        {{hash=7cb6ffb56069e2d3e3c9c807318ee433}{%
+           family={Elhoseny},
+           familyi={E\bibinitperiod},
+           given={Mohamed},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ed577542f6659986b0c58ff7d1f49a6b}{%
+           family={Mohammed},
+           familyi={M\bibinitperiod},
+           given={Mazin\bibnamedelima Abed},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=c4efc462f5f6e33f9b7d231f6cfb2bcc}{%
+           family={Qabulio},
+           familyi={Q\bibinitperiod},
+           given={Mumtaz},
+           giveni={M\bibinitperiod}}}%
+        {{hash=be1d6830ea921c773bde2537f9cef38d}{%
+           family={Abdel-Basset},
+           familyi={A\bibinithyphendelim B\bibinitperiod},
+           given={Mohamed},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{92aff86d2d543afd45fea8f7f858f85d}
+      \strng{fullhash}{9a664ca4dbce8a6e1ba5aedcc988a7ad}
+      \strng{bibnamehash}{9a664ca4dbce8a6e1ba5aedcc988a7ad}
+      \strng{authorbibnamehash}{9a664ca4dbce8a6e1ba5aedcc988a7ad}
+      \strng{authornamehash}{92aff86d2d543afd45fea8f7f858f85d}
+      \strng{authorfullhash}{9a664ca4dbce8a6e1ba5aedcc988a7ad}
+      \field{labelalpha}{Lak22}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{These days, the usage of the internet of Vehicle Things (IVoT) applications such as E-Business, E-Train, E-Ambulance has been growing progressively. These applications require mobility-aware delay-sensitive services to execute their tasks. With this motivation, the study has the following contribution. Initially, the study devises a novel cooperative vehicular fog cloud network (VFCN) based on container microservices which offers cost-efficient and mobility-aware services with rich resources for processing. This study devises the cost-efficient task offloading and scheduling (CEMOTS) algorithm framework, which consists of the mobility aware task offloading phase (MTOP) method, which determines the optimal offloading time to minimize the communication cost of applications. Furthermore, CEMOTS offers Cooperative Task Offloading Scheduling (CTOS), including task sequencing and scheduling. The goal is to reduce the application costs of communication cost and computational costs under a given deadline constraint. Performance evaluation shows the CTOS and MTOP outperform existing task offloading and scheduling methods in the VCFN in terms of costs and the deadline for IoT applications.}
+      \field{issn}{1573-7543}
+      \field{journaltitle}{Cluster Computing}
+      \field{month}{6}
+      \field{number}{3}
+      \field{title}{Cost-efficient mobility offloading and task scheduling for microservices {IoVT} applications in container-based fog cloud network}
+      \field{urlday}{10}
+      \field{urlmonth}{1}
+      \field{urlyear}{2023}
+      \field{volume}{25}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{2061\bibrangedash 2083}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1007/s10586-021-03333-0
+      \endverb
+      \verb{file}
+      \verb :Lakhan2022 - Cost Efficient Mobility Offloading and Task Scheduling for Microservices IoVT Applications in Container Based Fog Cloud Network.pdf:PDF
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/s10586-021-03333-0
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/s10586-021-03333-0
+      \endverb
+      \keyw{Task offloading,Internet of things,Task scheduling,VFCN,Mobility,Task latency,System costs}
     \endentry
     \entry{Lewis1996}{inproceedings}{}
       \name{author}{2}{}{%
@@ -1622,6 +1834,72 @@
       \verb{url}
       \verb https://doi.org/10.1007/978-3-030-34957-8_7
       \endverb
+    \endentry
+    \entry{Tuli2019}{article}{}
+      \name{author}{4}{}{%
+        {{hash=a9f80684cd8ca2d88be59301babd9cd5}{%
+           family={Tuli},
+           familyi={T\bibinitperiod},
+           given={Shreshth},
+           giveni={S\bibinitperiod}}}%
+        {{hash=8669c511057b7a1e533d55ad3ba46d9d}{%
+           family={Mahmud},
+           familyi={M\bibinitperiod},
+           given={Redowan},
+           giveni={R\bibinitperiod}}}%
+        {{hash=a8cf3f25cf2d5ab9eba2afe7d4e992de}{%
+           family={Tuli},
+           familyi={T\bibinitperiod},
+           given={Shikhar},
+           giveni={S\bibinitperiod}}}%
+        {{hash=029e03ba4e08a5605b31a31f86375741}{%
+           family={Buyya},
+           familyi={B\bibinitperiod},
+           given={Rajkumar},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{6ca7b4c6e705e4311ba9cdee7b69646e}
+      \strng{fullhash}{ed9b31548813df052fd5fdc2d55be163}
+      \strng{bibnamehash}{ed9b31548813df052fd5fdc2d55be163}
+      \strng{authorbibnamehash}{ed9b31548813df052fd5fdc2d55be163}
+      \strng{authornamehash}{6ca7b4c6e705e4311ba9cdee7b69646e}
+      \strng{authorfullhash}{ed9b31548813df052fd5fdc2d55be163}
+      \field{labelalpha}{Tul19}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Recently much emphasize is given on integrating Edge, Fog and Cloud infrastructures to support the execution of various latency sensitive and computing intensive Internet of Things (IoT) applications. Although different real-world frameworks attempt to assist such integration, they have limitations in respect of platform independence, security, resource management and multi-application execution. To address these limitations, we propose a framework, named FogBus that facilitates end-to-end IoT-Fog(Edge)-Cloud integration. FogBus offers platform independent interfaces to IoT applications and computing instances for execution and interaction. It not only assists developers to build applications but also helps users to run multiple applications at a time and service providers to manage their resources. Moreover, FogBus applies Blockchain, authentication and encryption techniques to secure operations on sensitive data. Due to its simplified and cross platform software systems, it is easy to deploy, scalable and cost efficient. We demonstrate the effectiveness of FogBus by creating a computing environment with it that integrates finger pulse oximeters as IoT devices with Smartphone-based gateway and Raspberry Pi-based Fog nodes for Sleep Apnea analysis. We also evaluate the characteristics of FogBus in respect of other existing frameworks and the impact of various FogBus settings on system parameters through deployment of a real-world IoT application. The experimental results show that FogBus is comparatively lightweight and responsive, and different FogBus settings can tune the computing environment as per the situation demands.}
+      \field{issn}{0164-1212}
+      \field{journaltitle}{Journal of Systems and Software}
+      \field{month}{8}
+      \field{shorttitle}{{FogBus}}
+      \field{title}{{FogBus}: {A} {Blockchain}-based {Lightweight} {Framework} for {Edge} and {Fog} {Computing}}
+      \field{urlday}{6}
+      \field{urlmonth}{1}
+      \field{urlyear}{2023}
+      \field{volume}{154}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{22\bibrangedash 36}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1016/j.jss.2019.04.050
+      \endverb
+      \verb{file}
+      \verb :Tuli2019 - FogBus_ a Blockchain Based Lightweight Framework for Edge and Fog Computing.html:URL
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0164121219300822
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0164121219300822
+      \endverb
+      \keyw{Fog computing,Edge computing,Cloud computing,Internet of Things(IoT),Blockchain}
     \endentry
     \entry{Varghese2016}{inproceedings}{}
       \name{author}{5}{}{%

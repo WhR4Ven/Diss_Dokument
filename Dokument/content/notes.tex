@@ -143,7 +143,7 @@
         \item Einsparung an Bandbreite und zusätzliche Server Rechenleistung
     \end{notes}
 
-    \item Konzept:
+    \item Konzept: \cite{Mahmud2020}
     \begin{notes}
         \item Applikation Architektur:
         \begin{notes}
@@ -158,13 +158,14 @@
 
                     \item Applikation auf Module aufgeteilt, abhängig voneinander
                     \item Bedienen Daten von einer Quelle
+                    \item partitionierung von Applikationen \cite{Ashraf2022}
  
                 \item Micro-Services:
                     \item Applikation setzt sich aus unabhängigen Prozessen zusammen
                     \item Ein Microservice erfüllt nur eine Aufgabe
             \end{notes}
         \end{notes}
-        \item Applikation Platzierung:
+        \item Applikation Platzierung: \cite{Mahmud2020}
         \begin{notes}
             \item Bestimmung verfügbare Rechenresourcen:
             \begin{notes}
@@ -193,17 +194,70 @@
             \end{notes}
             \item Platzierung
             \begin{notes}
-                \item Statisch: 
-                \item dynamischen
-                \item Ereignisbasiert
+                \item Statisch: Applikation wird einmal für jede Applikation platziert
+                \item dynamischen: Mehrere Instanzen einer Applikation können ausgeführt werden oder Applikation wird nur für eine Berechnung ausgeführt
+                \item Ereignisbasiert: Applikation wird zur Laufzeit umgezogen
+            \end{notes}
+            \item Ausführungsumgebung:
+            \begin{notes}
+                \item Bare metal
+                \item Virtuelle machine
+                \item container: \cite{Costa2022}
+                \item   weniger overhead als virtuelle maschine
+                \item   verschiedene runtimes bereits verfügbar: Docker
+                \item   Orchestrierungsmöglichkeiten verfügbar: Kubernetes, Docker Swarm, Nomad, Marathon, Mesos
+                \item   Kontainerorchestrator ermöglicht Lebenszyklus, Skalierung, selbsthailung, migrierung, 
+                \item   Keine Unterscheidung bei Gerätetypen
+                \item   Keine Unterscheidung bei Geolocation
+            \end{notes}
+            \item Platzierungskriterien:
+            \begin{notes}
+                \item Quality of Service
+                \item Service level Agreement
+                \item Zeit und deadline
+                \item Profit
+                \item User-erfahrung
+                \item Kosten
+                \item externe Vorgaben
+                \item Energie
+                \item verfügbarkeit
+                \item Mobilität
             \end{notes}
         \end{notes}
-        \item Applikationsverwaltung:
+        \item Applikationsverwaltung: \cite{Mahmud2020}
         \begin{notes}
-            \item t
+            \item Fog Netzwerkverwaltung: \cite{Costa2022}
+            \begin{notes}
+                \item zentralisiert: fog orchestrator an zentraler Stelle. Hat gesamtüberblick über das Netzwerk
+                \item dezentralisiert: 
+                \item Verteilt:
+            \end{notes}
+            \item Safety:
+            \begin{notes}
+                \item Datenintegrität
+                \item Verschlüsselung
+                \item Authentifizierung
+            \end{notes}
+            \item Leistungsüberwachung
+            \begin{notes}
+                \item Implikationbasiert: 
+                \item Grenzwertbasiert:
+            \end{notes}
+            \item Finanzielle Unterstützung
+            \begin{notes}
+                \item Kompensation: Bei Serviceausfall werden benutzer kompensiert
+                \item Anreize: Verfügbare resourcen werden bei Bedarf zur verfügung gestellt, besitzer der Resourcen werden vergütet
+                \item Reservierung: Verfügbare rechenleistung kann reserviert werden damit Verfügbarkeit garantiert wird
+            \end{notes}
+            \item resillienz:
+            \begin{notes}
+                \item Backup-Restore
+                \item Verfielfachung
+                \item Operator Migration
+            \end{notes}
         \end{notes}
     \end{notes}
-    \item Security:
+    \item Security: \cite{Mahmud2020}
     \begin{notes}
         \item Container:
         \begin{notes}
@@ -223,3 +277,12 @@
         \end{notes}
     \end{notes}
 \end{notes} 
+
+\begin{notes}
+    \item Netzwerkstruktur:
+    \begin{notes}
+        \item Autotechagil Struktur gegeben: Cloud: Leitwarte, Edge device: Fahrzeuge, Infobiene
+        \item Zentraler Struktur bietet sich an: Leitwarte auch Fog Orchestrator
+        \item 
+    \end{notes}
+\end{notes}
