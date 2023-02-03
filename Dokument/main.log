@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.1 (MiKTeX 22.8.28) (format=lualatex 2022.10.6)  18 JAN 2023 16:45
+This is LuaHBTeX, Version 1.15.1 (MiKTeX 22.8.28) (format=lualatex 2022.10.6)  3 FEB 2023 17:54
  system commands enabled.
  file:line:error style messages enabled.
 **c:/Users/bilkei/Documents/diss/Dokument/main.tex
@@ -2410,7 +2410,7 @@ Here is how much of LuaTeX's memory you used:
  861 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 5 glue, 4 kern, 1 glyph, 28 attribute, 101 glue_spe
 c, 16 attribute_list, 3 write, 2 close, 1 pdf_dest, 3 pdf_action nodes
-   avail lists: 1:2,2:1608,3:320,4:162,5:179,6:169,7:4757,8:71,9:568,10:5,11:524
+   avail lists: 1:2,2:1608,3:320,4:162,5:180,6:169,7:4757,8:71,9:568,10:5,11:524
 ,12:1
  103825 multiletter control sequences out of 65536+600000
  54 fonts using 13262295 bytes
@@ -2422,7 +2422,7 @@ warning  (pdf backend): unreferenced destination with name 'glo:IoT'
 <./fonts/Consolas.ttf><./fonts/Arial_Italic.ttf><./fonts/Arial_Bold.ttf><//?/c:/
 program files/miktex 2.9/fonts/opentype/public/lm/lmsans10-bold.otf><./fonts/Ari
 al.ttf>
-Output written on main.pdf (22 pages, 175350 bytes).
+Output written on main.pdf (22 pages, 175756 bytes).
 
 PDF statistics: 271 PDF objects out of 1000 (max. 8388607)
  63 named destinations out of 1000 (max. 131072)

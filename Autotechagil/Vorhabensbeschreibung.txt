@@ -1,0 +1,22 @@
+Zu AP 2.1.7 Plattformkomponente zur Nutzung von Fahrzeugrechner-Ressourcen für
+internes und externes verteiltes Rechnen:
+• Methoden erarbeiten für das Ausrollen von Applikationen auf die Zonen-
+Controller über ASOA-Schnittstelle (2 PM RWTH-IKA)
+• Erarbeitung von Methoden, die ermöglichen parallelisierbare Berechnungen auf
+Zonen-Controllern zu verteilen (3 PM RWTH-IKA)
+• Implementierung eines Verwaltungsdienstes und Kapselung für die Nutzung von
+Rechenleistung auf den Zonen-Controllern (2 PM RWTH-IKA)
+• Implementierung einer Applikation welche ermöglicht vorkompilierte Applikationen
+durch ASOA Schnittstelle von Extern auf das Zonensteuergerät zu laden (2 PM
+RWTH-IKA)
+• Erstellung einer Softwareumgebung auf dem Zonensteuergerät, welche die
+externe Applikation auf dem Controller ausführt (3 PM RWTH-IKA)
+• Entwicklung von Methoden, die ermöglichen, dass Applikationen aus Zonen-
+Controllern auf einen Zentralrechner (Leitwarte) ausgelagert werden (2 PM
+RWTH-IKA)
+• Implementierung einer Applikation für das Zonensteuergerät, die Applikationen
+auf einen Zentralrechner auslagern kann. (2 PM RWTH-IKA)
+• Erarbeitung von Sicherheitsmaßnahmen (Security), die unberechtigte Zugriffe auf
+die Steuergeräte verhindern (2 PM RWTH-IKA)
+• Erarbeitung von Sicherheitsmaßnahmen (Security), die unberechtigte Zugriffe
+durch die Applikation auf den Steuergeräten verhindern (2 PM RWTH-IKA)
