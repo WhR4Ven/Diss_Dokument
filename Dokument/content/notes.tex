@@ -273,7 +273,6 @@
             \item Jede Anwendung läuft im eigenen virtuellen OS (guest)
             \item Anwendung hat ggf. keine Information darüber dass es in virtuellen Umgebung läuft
             \item jede Anwendung läuft getrennt in eigenem Runtime Umgebung
-            \item t
         \end{notes}
     \end{notes}
 \end{notes} 
@@ -289,6 +288,33 @@
         \item Lebenszyklus verwalten
         \item Sicherheitsmaßnahmen vorsehen
         \item Buchhaltung über Angefragte und gelieferte Rechenleistung
+
+        \item Verwaltungsdienst:
+        \begin{notes}
+            \item Kommunikationsschnittstelle für den Kunden
+            \item Erkennung von Teilnehmern (edge devices)
+            \item Informationen über die Fähigkeiten der Teilnehmer sammeln (Architektur, Rechenleistung, Verfügbarkeit, Latenz)
+            \item Ermittung einer optimalen Verteilung von Kundenaufgaben an Teilnehmer
+            \item Verteilung von Kundenapplikationen an geeignete Teilnehmer
+            \item Kommunikationsschnittstelle zu den verteilten Kundenapps
+            \item Kommunikationsschnittstelle für den Kunden
+            \item Datenbank über Angeforderte und geleistete Berechnungen
+            \item Vergütungsausschüttung nach Leistung
+        \end{notes}
+        \item Loader Applikation:
+        \begin{notes}
+            \item Meldet verfügbarkeit an Verwaltungsdienst
+            \item Meldet Architektur, Rechenleistung, Verfügbarkeit an Verwaltungsdienst
+            \item Bietet Kommunikationsschnittstelle für die Übertraung von komppilierten Kundenapps
+            \item Bietet Kommunikationsschnittstelle für die Kommunikation mit Kundenapplikationen
+            \item Bietet Kommunikationsschnittstelle für die Verwaltung durch Verwaltungsdienst
+            \item Richtet Laufzeitumgebung für Kundenapplikation ein
+            \item Zugriffsrechte der Kundenapplikation werden eingeschränkt
+            \item Kann Kundenapplikation starten und beenden
+            \item Kommuniziert Applikationsstatus an Verwaltung
+        \end{notes}
+
+
     \end{notes}
     \item Netzwerkstruktur:
     \begin{notes}
