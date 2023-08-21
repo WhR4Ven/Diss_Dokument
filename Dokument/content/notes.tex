@@ -1,11 +1,133 @@
+
+\subsection*{Motivation}
 \begin{notes}
-    \item Netzwerkaufbau
+    \item Herausforderungen bei Verteiltem Rechnen auf Fahrzeugen:
     \begin{notes}
-        \item Edge Computing (zentrale Verwaltung)
-        \item Fog Computing (lokale Fahrzeuge schließen sich zu Rehchenknoten zusammen)
-        \item “a horizontal system-level architecture that distributes computing, storage, and networking functions closer to the user along a cloud-to-thing continuum”  OpenFog Consortium (Group, O.C.A.W., et al.: Openfog reference architecture for fog computing. OPFRA001 20817, 162 (2017))
-        \item Mist Computing
+        \item Resourcenmanagement
+        \item Netzwerk Konnektivität
+        \item Sicherheit
+        \item Privatsphäre
+        \item Standardisierung
+        \item Kompatibilität
     \end{notes}
+\end{notes}
+
+\subsection*{Stand der Technik}
+\begin{notes}
+    \item Cloud Computing
+    \begin{notes}
+        \item: Definition
+        \item IT resourcen werden flexibel nach Bedarf zur Verfügung bereitgestellt
+        \item Realisiert durch Rechenzentren, Kunden können Resourcen mieten anstatt eigene Server betreiben
+        \item Resourcen sind von verschiednen Endgeräten erreichbar \cite{Sunyaev2020}
+        \item Cloud kann öffentlich oder privat sein, privat für sensible Daten \cite{Ibrahim2021}
+        \item Relevante Anwendungsfälle:
+    \end{notes}
+    \item Edge Computing
+    \begin{notes}
+        \item Daten entstehen in Endgeräten, Applikationen, die die Daten verarbeiten sind zunehmend ebenfalls in Endgeräten
+        \item Beispiel Flugzeuge oder autonome Fahrzeuge, generieren Daten in Größe von mehreren Gb pro Senkunde \cite{Liu2019}
+        \item Traditionell werden Daten in der Cloud ausgewertet und wieder an den Benutzer zur Verfügung gestellt, diese ist aber mit zusätzlichem Resourcenaufwand verbunden wegen lange Übertragungsstrecken. \cite{Perez2022} 
+        \item Übertragung und Verarbeitung in der Cloud langsam/unmöglich wegen Bandbreite und Latenz
+        \item Edge Computing ist das Konzept, dass anstatt zentrale Cloud Server, Daten zunehmend auf Endgeräten verarbeitet werden \cite{Shi2016}
+        \item Edge bezeichnet Geräte zwischen Datenquellen und cloud server
+        \item “a form of distributed computing in which processing and storage takes place on a set of networked machines which are near the edge, where the nearness is defined by the system’s requirements”  (ISO/IEC: Tr 30164:2020 - internet of things (iot) -edge computing. Tech. rep., ISO/IEC (2020))
+        \item Motivation: Latenzreduzierung, unbenutzte Resourcen verwenden
+        \item Anwendungsfälle:
+        \begin{notes}
+            \item Cloud Berechnungen auslagern
+            \item Smart Home, Daten lokal auswerten statt alles in die Cloud laden
+            \item Smart City
+        \end{notes}
+        \item Cloudlets
+        \item Mobile Edge Computing
+        \item Edge Computing Gateway
+        \item Fog Computing
+        \begin{notes} 
+            \item Fog Computing: Eine Form von Edge Computing, zusätzliche Schicht zwischen Endgeräte und Cloud
+            \item Edge Geräte kommunizieren mit Fog nodes, die wiederrum für die Kommunikation zwishen Edge und Cloud zuständig sind
+            \item Fog nodes übernehmen Datenverarbeitung lokal, für nur Lokal benötigte Daten, Leiten nur relevante Daten an Cloud weiter
+            \item Fog nodes können PC-s, raspberry PI-s, nano-server, micro-datenzentren sein. \cite{Mahmud2020}
+            \item Beispiele:
+            \begin{notes} 
+                \item Iot for All
+                \item FogFlow
+            \end{notes}
+        \end{notes}
+        \item Mist Computing
+        \begin{notes} 
+            \item Datenverarbeitung direkt im Sensor.
+            \item Erlaubt z.b. einfache Monitoringfunktionen direkt im Sensor
+            \item Reduktion von benörigte Bandbreite und Rechenleistung in den übergeordneten Geräten
+        \end{notes}
+        \item Distributed Cloud
+    \end{notes}
+    \item Internet of Things \gls{IoT} (IoT) 
+    \begin{notes}
+        \item Internet of Things (Internet der Dinge) bezeichnet eindeutig identifizierbare Objekte und deren virtuelle repräsentation in interent-ähnliche Strukturen\cite{Jie2013} 
+        \item IoT findet mittlerweile in fast allen Bereichen Anwendung
+        \item Industrie: Produktionsanlagen, die durch vernetzte Systeme flexibel angepasst werden können (Beispiel: Produktvarianten)
+        \item Smart Home: Sensoren und Aktoren im Haus vernetzen \cite{Wortmann2015}
+    \end{notes}
+
+    \item Security: \cite{Mahmud2020}
+    \begin{notes}
+        \item Container: \cite{Costa2022}
+        \begin{notes}
+            \item Abstraktionsebene zwischen Prozesse und OS
+            \item Packt die Prozesse und deren Abhängigkeiten zusammen so dass sie einfach auf andere Systeme portiert werden können
+            \item definiert schnittstelle
+            \item Läuft als Teil des Betriebssystems
+            \item Software kann auch "bare metal" oder in hypervisor virtuelle machine ausgeführt werden
+        \end{notes}
+        \item Hypervisor:
+        \begin{notes}
+            \item Virtuelle Machine manager
+            \item Jede Anwendung läuft im eigenen virtuellen OS (guest)
+            \item Anwendung hat ggf. keine Information darüber dass es in virtuellen Umgebung läuft
+            \item jede Anwendung läuft getrennt in eigenem Runtime Umgebung
+        \end{notes}
+    \end{notes}
+    \item Kommunikation
+    \begin{notes}
+        \item Punkt zu Punkt
+        \item Client-Server
+        \item Remote Procedure Call
+        \item Message oriented Middleware
+        \item Direct Data Access
+        \item Peer to Peer
+        \item Publish/Subscribe:
+            \begin{notes}
+                \item Modell für Nachrichtenbasierte Kommunikation \cite{MadeWirawan2018}
+                \item Ereignisbasierte Kommunikation
+                \item Teilnehmer kommunizieren indem sie Nachrichten mit bestimmte Themen veröffentlichen (Publisher), Empfänger können Themen abonnieren (Subscriber) und bekommen nur die abonnierte Nachrichten
+                \item Kommunikation ist anonym
+                \item Komponenten: Publisher, Broker, Subscriber
+                \item Broker stellt Verbindungen zwischen Publisher und Subscriber her
+                \item Broker speichert die Subscriptions (Abos)
+                \item Weit verbreitete Implementierung: MQTT
+                \item RTPS:
+                \begin{notes}
+                    \item Real Time Publish Subscribe
+                    \item Kommunikation erfolgt ebenfalls über Themen
+                    \item Kein Broker, Teilnehmeridentifizierung erfolgt zur Laufzeit dezentralisiert
+                    \item Quality of Service parameter: Reliable writer speichert Sequenznummer der Nachrichten und kann erneut versenden bei Übertraugungsfehler, Best effort Writer hat diese Funktionalität nicht
+                    \item Heartbeat message: writer gibt die verfügbaren nachrichten ID-s and
+                    \item AckNack message: kommunikation von empfangenen und nicht erhaltenen Nachrichten
+                \end{notes}
+            \end{notes}
+    \end{notes}
+    \item Resourcenmanagement:
+    \begin{notes}
+        \item t
+    \end{notes}
+    \item Softwarearchitektur
+    \item 
+\end{notes}
+
+
+\begin{notes}
+
     \item Kommunikation
     \begin{notes}
         \item Zertifikate (Public/Private Key)
@@ -35,64 +157,7 @@
 \begin{notes}
 \item Stand der Technik
     \begin{notes}
-        \item Cloud Computing
-        \begin{notes}
-            \item IT resourcen werden flexibel nach Bedarf zur Verfügung bereitgestellt
-            \item Realisiert durch Rechenzentren, Kunden können Resourcen mieten anstatt eigene Server betreiben
-            \item Resourcen sind von verschiednen Endgeräten erreichbar \cite{Sunyaev2020}
-            \item Cloud kann öffentlich oder privat sein, privat für sensible Daten \cite{Ibrahim2021}
-        \end{notes}
-        \item \gls{IoT} (IoT) 
-        \begin{notes}
-            \item Internet of Things (Internet der Dinge) bezeichnet eindeutig identifizierbare Objekte und deren virtuelle repräsentation in interent-ähnliche Strukturen\cite{Jie2013} 
-            \item IoT findet mittlerweile in fast allen Bereichen Anwendung
-            \item Industrie: Produktionsanlagen, die durch vernetzte Systeme flexibel angepasst werden können (Beispiel: Produktvarianten)
-            \item Smart Home: Sensoren und Aktoren im Haus vernetzen \cite{Wortmann2015}
-        \end{notes}
-        \item Edge Computing
-        \begin{notes}
-            \item Daten entstehen in Endgeräten, Applikationen, die die Daten verarbeiten sind zunehmend ebenfalls in Endgeräten
-            \item Beispiel Flugzeuge oder autonome Fahrzeuge, generieren Daten in Größe von mehreren Gb pro Senkunde \cite{Liu2019}
-            \item Traditionell werden Daten in der Cloud ausgewertet und wieder an den Benutzer zur Verfügung gestellt, diese ist aber mit zusätzlichem Resourcenaufwand verbunden wegen lange Übertragungsstrecken. \cite{Perez2022} 
-            \item Übertragung und Verarbeitung in der Cloud langsam/unmöglich wegen Bandbreite und Latenz
-            \item Edge Computing ist das Konzept, dass anstatt zentrale Cloud Server, Daten zunehmend auf Endgeräten verarbeitet werden \cite{Shi2016}
-            \item Edge bezeichnet Geräte zwischen Datenquellen und cloud server
-            \item “a form of distributed computing in which processing and storage takes place on a set of networked machines which are near the edge, where the nearness is defined by the system’s requirements”  (ISO/IEC: Tr 30164:2020 - internet of things (iot) -edge computing. Tech. rep., ISO/IEC (2020))
-            \item Motivation: Latenzreduzierung, unbenutzte Resourcen verwenden
-            \item Anwendungsfälle:
-            \begin{notes}
-                \item Cloud Berechnungen auslagern
-                \item Smart Home, Daten lokal auswerten statt alles in die Cloud laden
-                \item Smart City
-            \end{notes}
-        \end{notes}
-        \item Fog Computing
-        \begin{notes} 
-            \item Fog Computing: Eine Form von Edge Computing, zusätzliche Schicht zwischen Endgeräte und Cloud
-            \item Edge Geräte kommunizieren mit Fog nodes, die wiederrum für die Kommunikation zwishen Edge und Cloud zuständig sind
-            \item Fog nodes übernehmen Datenverarbeitung lokal, für nur Lokal benötigte Daten, Leiten nur relevante Daten an Cloud weiter
-            \item Fog nodes können PC-s, raspberry PI-s, nano-server, micro-datenzentren sein. \cite{Mahmud2020}
-            \item Beispiele:
-            \begin{notes} 
-                \item Iot for All
-                \item FogFlow
-            \end{notes}
-        \end{notes}
-        \item Mist Computing
-        \begin{notes} 
-            \item Datenverarbeitung direkt im Sensor.
-            \item Erlaubt z.b. einfache Monitoringfunktionen direkt im Sensor
-            \item Reduktion von benörigte Bandbreite und Rechenleistung in den übergeordneten Geräten
-        \end{notes}
-        \item Herausforderungen:
-        \begin{notes}
-            \item allgemeine Rechenaufgaben auf spezialisierte Hardware
-            \item Erkennung von Edge nodes
-            \item Effiziente identifikation bei der großen und sich dynamischen ändernden Anzahl an Geräten
-            \item Task auslagerung und Verteilung
-            \item Keine Beeinträchtigumg der Funktionalität des Edge Gerätes (z.b. Überlastung)
-            \item Sicherheit
-        \end{notes}
+
         \item Anwendungsfälle für Fahrzeuge:
             \begin{notes}
                 \item Unbenutzte Rechenleistung von Hardware nutzen, autonome Fahrzeugen haben leistungsfähige Steuergeräte
@@ -100,26 +165,7 @@
                 \item Ausnutzung von Rechenleistung parkende Fahrzeuge
                 \item Möglichkeit, die unbenutzte Rechenleistung zu Vermieten (wie cloud service)
             \end{notes}
-        \item Publish/Subscribe Kommunikation:
-            \begin{notes}
-                \item Modell für Nachrichtenbasierte Kommunikation \cite{MadeWirawan2018}
-                \item Ereignisbasierte Kommunikation
-                \item Teilnehmer kommunizieren indem sie Nachrichten mit bestimmte Themen veröffentlichen (Publisher), Empfänger können Themen abonnieren (Subscriber) und bekommen nur die abonnierte Nachrichten
-                \item Kommunikation ist anonym
-                \item Komponenten: Publisher, Broker, Subscriber
-                \item Broker stellt Verbindungen zwischen Publisher und Subscriber her
-                \item Broker speichert die Subscriptions (Abos)
-                \item Weit verbreitete Implementierung: MQTT
-                \item RTPS:
-                \begin{notes}
-                    \item Real Time Publish Subscribe
-                    \item Kommunikation erfolgt ebenfalls über Themen
-                    \item Kein Broker, Teilnehmeridentifizierung erfolgt zur Laufzeit dezentralisiert
-                    \item Quality of Service parameter: Reliable writer speichert Sequenznummer der Nachrichten und kann erneut versenden bei Übertraugungsfehler, Best effort Writer hat diese Funktionalität nicht
-                    \item Heartbeat message: writer gibt die verfügbaren nachrichten ID-s and
-                    \item AckNack message: kommunikation von empfangenen und nicht erhaltenen Nachrichten
-                \end{notes}
-            \end{notes}
+
     \end{notes}
     \item Konzept UNICARagil:
         \begin{notes}
@@ -207,8 +253,7 @@
                 \item   verschiedene runtimes bereits verfügbar: Docker
                 \item   Orchestrierungsmöglichkeiten verfügbar: Kubernetes, Docker Swarm, Nomad, Marathon, Mesos
                 \item   Kontainerorchestrator ermöglicht Lebenszyklus, Skalierung, selbsthailung, migrierung, 
-                \item   Keine Unterscheidung bei Gerätetypen
-                \item   Keine Unterscheidung bei Geolocation
+                \item   Docker als verbreitete Implmenetierung
             \end{notes}
             \item Platzierungskriterien:
             \begin{notes}
@@ -257,24 +302,7 @@
             \end{notes}
         \end{notes}
     \end{notes}
-    \item Security: \cite{Mahmud2020}
-    \begin{notes}
-        \item Container:
-        \begin{notes}
-            \item Abstraktionsebene zwischen Prozesse und OS
-            \item Packt die Prozesse und deren Abhängigkeiten zusammen so dass sie einfach auf andere Systeme portiert werden können
-            \item definiert schnittstelle
-            \item Läuft als Teil des Betriebssystems
-            \item Software kann auch "bare metal" oder in hypervisor virtuelle machine ausgeführt werden
-        \end{notes}
-        \item Hypervisor:
-        \begin{notes}
-            \item Virtuelle Machine manager
-            \item Jede Anwendung läuft im eigenen virtuellen OS (guest)
-            \item Anwendung hat ggf. keine Information darüber dass es in virtuellen Umgebung läuft
-            \item jede Anwendung läuft getrennt in eigenem Runtime Umgebung
-        \end{notes}
-    \end{notes}
+   
 \end{notes} 
 
 \begin{notes}
@@ -320,6 +348,23 @@
     \begin{notes}
         \item Autotechagil Struktur gegeben: Cloud: Leitwarte, Edge device: Fahrzeuge, Infobiene
         \item Zentraler Struktur bietet sich an: Leitwarte auch Fog Orchestrator
+        \item 
+    \end{notes}
+\end{notes}
+
+\begin{notes}
+    \item Container Interface (OCI kompatibilität):
+    \begin{notes}
+        \item Create
+        \item Start
+        \item State
+        \item Kill
+        \item Delete
+    \end{notes}
+    \item Container Parameter:
+    \begin{notes}
+        \item Stack size
+        \item Distroless
         \item 
     \end{notes}
 \end{notes}
