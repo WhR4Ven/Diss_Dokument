@@ -476,7 +476,7 @@
 	"editor.multiCursorPaste": "spread",
 
 	// Controls whether the editor should highlight semantic symbol occurrences.
-	"editor.occurrencesHighlight": true,
+	"editor.occurrencesHighlight": "singleFile",
 
 	// Controls whether a border should be drawn around the overview ruler.
 	"editor.overviewRulerBorder": true,
@@ -820,7 +820,7 @@
 	"editor.useTabStops": true,
 
 	// Controls whether completions should be computed based on words in the document.
-	"editor.wordBasedSuggestions": true,
+	"editor.wordBasedSuggestions": "matchingDocuments",
 
 	// Controls from which documents word based completions are computed.
 	//  - currentDocument: Only suggest words from the active document.
@@ -965,9 +965,6 @@
 	//  - focus: Focus side bar if the clicked item is already visible.
 	"workbench.activityBar.iconClickBehavior": "toggle",
 
-	// Controls the visibility of the activity bar in the workbench.
-	"workbench.activityBar.visible": true,
-
 	// Overrides colors from the currently selected color theme.
 	"workbench.colorCustomizations": {},
 
@@ -1100,7 +1097,7 @@
 	"workbench.editor.showIcons": true,
 
 	// Controls whether opened editors should show in tabs or not.
-	"workbench.editor.showTabs": true,
+	"workbench.editor.showTabs": "multiple",
 
 	// Controls the layout for when an editor is split in an editor group to be either vertical or horizontal.
 	//  - vertical: Editors are positioned from top to bottom.
@@ -1127,9 +1124,6 @@
 	//  - default: The default size.
 	//  - large: Increases the size, so it can be grabbed more easily with the mouse.
 	"workbench.editor.titleScrollbarSizing": "default",
-
-	// Controls if the untitled text hint should be visible in the editor.
-	"workbench.editor.untitled.hint": "text",
 
 	// Controls the format of the label for an untitled editor.
 	//  - content: The name of the untitled file is derived from the contents of its first line unless it has an associated file path. It will fallback to the name in case the line is empty or contains no word characters.
@@ -1630,9 +1624,6 @@
 
 	// Controls whether turning on Zen Mode also hides the status bar at the bottom of the workbench.
 	"zenMode.hideStatusBar": true,
-
-	// Controls whether turning on Zen Mode also hides workbench tabs.
-	"zenMode.hideTabs": true,
 
 	// Controls whether a window should restore to zen mode if it was exited in zen mode.
 	"zenMode.restore": true,
@@ -7145,5 +7136,11 @@
 
 	// The symbols to include in the query results when 'Go to Symbol in Workspace' is invoked.
 	"C_Cpp.workspaceSymbols": "Just My Code",
+	"zenMode.showTabs": "single",
+	"workbench.editor.empty.hint": "text",
+	"workbench.editor.tabActionLocation": "right",
+	"[c][cpp][cuda-cpp]": {
+		"editor.wordBasedSuggestions": "off"
+	},
 
 }
