@@ -1,0 +1,12 @@
+Erst Anwendungsbeispiele dann Anforderungen ableiten
+Ausarbeiten wieso vorhandene Systemen nicht optimal geeignet sind
+Zugriffseinschränkung, Authentifizierung
+Besonderheiten für Fahrzeuganwednung herausheben
+Unplanbarer als im Infromationstechnik
+Wie geht man mit plötzliche Änderungen um, Berechnung abbrechen, umverlegen?
+Anforderungen anpassen: Nur managte Flotten wo bekannt ist wann sie verfügbar sind
+Anforderungen an Rechenaufgaben: Nur relativ kurze berechnungen erlaubt?
+
+
+
+Communications & Distributed Systems -> Klaus Wehrle 
