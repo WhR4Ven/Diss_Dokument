@@ -1487,6 +1487,15 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\koma-script\lscape.hak
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\koma-script\lscape.hak
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\koma-script\lscape.hak
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\koma-script\lscape.hak
+INPUT .\main.out
+INPUT .\main.out
+INPUT .\main.out
+INPUT .\main.out
+INPUT .\main.out
+INPUT .\main.out
+INPUT .\main.out
+INPUT .\main.out
+INPUT .\main.out
 OUTPUT main.out
 OUTPUT main.out
 OUTPUT main.pdf
@@ -1525,8 +1534,19 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\lbx\german.lbx
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\lbx\german.lbx
 OUTPUT main.bcf
 OUTPUT main.bcf
+INPUT .\main.bbl
+INPUT .\main.bbl
+INPUT .\main.bbl
+INPUT .\main.bbl
+INPUT .\main.bbl
+INPUT .\main.bbl
+INPUT .\main.bbl
 INPUT C:\Users\bilkei\AppData\Local\MiKTeX\2.9\luatex-cache\generic\fonts\otl\lmsans12-regular.luc
 INPUT C:\Users\bilkei\AppData\Local\MiKTeX\2.9\luatex-cache\generic\fonts\otl\lmsans10-bold.luc
+INPUT .\main.toc
+INPUT .\main.toc
+INPUT .\main.toc
+INPUT .\main.toc
 OUTPUT main.toc
 OUTPUT main.toc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi12.tfm
@@ -1588,12 +1608,30 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr6.tfm
 INPUT C:\ProgramData\MiKTeX\2.9\fonts\map\pdftex\pdftex.map
 OUTPUT main.ist
 OUTPUT main.ist
+INPUT .\main.lof
+INPUT .\main.lof
+INPUT .\main.lof
+INPUT .\main.lof
 OUTPUT main.lof
 OUTPUT main.lof
+INPUT .\main.lot
+INPUT .\main.lot
+INPUT .\main.lot
+INPUT .\main.lot
 OUTPUT main.lot
 OUTPUT main.lot
-INPUT .\main.glo
-INPUT .\main.glo
+INPUT .\main.gls
+INPUT .\main.gls
+INPUT .\main.gls
+INPUT .\main.gls
+INPUT .\main.gls
+INPUT .\main.gls
+INPUT .\main.acr
+INPUT .\main.acr
+INPUT .\main.acr
+INPUT .\main.acr
+INPUT .\main.acr
+INPUT .\main.acr
 INPUT .\content\content.tex
 INPUT .\content\content.tex
 INPUT .\content\content.tex
@@ -1617,9 +1655,3 @@ INPUT .\main.run.xml
 INPUT .\main.run.xml
 OUTPUT main.run.xml
 OUTPUT main.run.xml
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi12.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi12.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi8.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi8.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
