@@ -4,22 +4,40 @@ In diesem Kapitel werden die aktuelle technische Lösungen im Bereich Cloud Comp
  vorgestellt, sowie die gängigsten Softwarewerkzeuge mit denen diese Systeme erzeugt und verwaltet werden können.
 
 \subsection*{Cloud Computing}
-Cloud Computing hat in der Literatur mehrere Definitionen. \cite{Marston2011} Die am meisten verbreitete Definition
-wurde vom National Institute of Standards and Technology (NIST) festgelegt.
-Nach dieser Definition ist Cloud Computing ein Modell, das einen allgegenwärtigen,
-bequemen, bedarfsgerechten Zugang zu einem gemeinsamen Pool an konfigurierbarer Rechenressourcen
-die jederzeit und von jedem Ort aus über das Internet oder ein Netzwerk schnell zur Verfügung gestellt 
-werden können \cite{Mell2011} 
+Cloud Computing besitzt in der Literatur mehrere Definitionen.\cite{Marston2011} Die am weitesten verbreitete Definition wurde vom National Institute of Standards and Technology (NIST) festgelegt.Nach dieser Definition ist Cloud Computing ein Modell, das einen allgegenwärtigen, bequemen, bedarfsgerechten Zugang zu einem gemeinsamen Pool an konfigurierbarer Rechenressourcen die jederzeit und von jedem Ort aus über das Internet oder ein Netzwerk schnell zur Verfügung gestellt 
+werden können. Es wird durch fünf Eigenschaften chracterisiert:   \\
+On-Demand und Selbstbedienung: Kunden können die Rechenresourcen selbständig nach Bedarf ohen menschliche Interaktion anfordern \\
+Breiter Netzzugang: Ressourcen sind über Netzwerkverbindung erreichbar über standardisierte Zugriffsmechanismen\\
+Ressourcen-Pooling: Die Ressourcen des Anbieters werden aus mehreren physikalischen Recheneinheiten zusammengelegt, die auch geographisch nicht an einem Ort sein müssen. Mit einem Multi-Tenant Modell werden die Ressourcen dynamisch je nach Kundenbedarf zugewiesen. Der Kunde hat keinen Kenntnis oder Kontrolle über den genauen Standort der bereitgestellten Ressourcen. \\
+Schnelle Elastizität: Bereitgestellte Ressourcen können flexibel bereitgestellt und freigegeben werden. Für den Kunden erscheint die Menge der bereitgestellten Ressourcen unbegrenzt, sie können jederzeit in beliebiger Menge gebucht werden.\\
+Measured Service: Nurzung der Cloud Systeme wird automatisch gemessen und optimiert anhand einer Messfunktion, die nach Metriken wie Speicher, Verarbeitung, Bandbreite und Benutzerknoten die Ressourcennutzung ermittelt. Kosten für den Cloud Dienst werden nach der gemessenen Nutzung ermittelt (Pay per use) \cite{Mell2011} \\
 
-Cloud Computing ermöglicht Organisationen rechenkapazitäten zu erhalten, die sie selber nicht anschaffen und 
-betreiben können.\cite{Arasaratnam2011}
+Cloud Computing ist ein Geschäftsmodell für die Bereitstellung von IT Infrastruktur, komponenten und Anwendungen, welches mittlerweile den Markt dominiert. \cite{Benlian2018} Cloud Service Anbieter betreiben die IT Infrastruktur und stellen sie für Kunden zur Verfügung. Kunden müssen nicht ihre eigene Infrastruktur aufbauen, sie können die benötigten Kapazitäten je nach aktueller Bedarf einkaufen. Diese Lösung ermöglicht den Kunden hohe Rechenkapazitäten zu verwenden, die diese Kapazitäten selber nicht aufbauen und betreiben können.\cite{Arasaratnam2011} Der Markt für Cloud Infrastruktur ist ein weiterhin wachsender Markt (Stand Q4 2023) mit 270 Milliarden US Dollar Gesamtausgaben für das Jahr 2023. Die größten Cloud Service Anbieter und deren Marktanteil ist in der Tabelle \ref{cloud_marktanteile} aufgelistet.
 
-Es hat sich als dominantes Geschäftsmodell in der IT Infrastruktur durchgesetzt. \cite{Benlian2018}
-
-Characteristiken:
-    "On-Demand": Kunden werden Rechenkapazitäten automatisch bereitbestellt, ohne menschliche Interaktion
-    "Breiter Netzzugang:" 
-    "Ressourcen-Pooling:" 
-    "Schnelle Elastizität:" 
-    "Measured Service:" 
-\clearpage
+\begin{table}
+    \begin{center}
+    \caption{Cloud Anbieter und deren Marktanteile}
+    \label{cloud_marktanteile}
+    \begin{tabular}{|c | c|} 
+     \hline
+     Anbieter & Marktanteil in Prozent \\
+     \hline\hline
+     AWS & 31\%\\ 
+     \hline
+     Azure & 24\% \\
+     \hline
+     Google Cloud & 11\% \\
+     \hline
+     Alibaba Cloud & 4\% \\
+     \hline
+     salesforce & 3\% \\
+     \hline
+     IBM Cloud & 2\% \\ 
+     \hline
+     ORACLE & 2\% \\ 
+     \hline
+     Tencent Cloud & 2\% \\ 
+     \hline
+    \end{tabular}
+\end{center}
+\end{table}

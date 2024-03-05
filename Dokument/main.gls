@@ -1,0 +1,6 @@
+\glossarysection[\glossarytoctitle]{\glossarytitle}\glossarypreamble
+\begin{theglossary}\glossaryheader
+\glsgroupheading{I}\relax \glsresetentrylist %
+\glossentry{IoT}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{11}}}%
+\end{theglossary}\glossarypostamble
