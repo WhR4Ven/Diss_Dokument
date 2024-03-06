@@ -198,13 +198,13 @@
 \makeglossaries
 
 %%% Abkuerzungen
-% \input{content/abbreviations.tex}
-% printglossaries
+\input{content/abbreviations.tex}
+
 %%% Akronyme
-% \input{content/acronyms.tex}
+\input{content/acronyms.tex}
 
 %%% Begriffe
- \input{content/glossaries.tex}
+\input{content/glossaries.tex}
 
 %----------------------------Hyperref Dokumentendaten----------------------------
 \hypersetup{
@@ -226,13 +226,13 @@ pdfcreator = {Xelatex},
 
 \begin{document}
 % Title Page
-% \input{content/title/title.tex}
+\input{content/title/title.tex}
 
 % Acknowledgements
-% \input{content/acknowledgments.tex}
+\input{content/acknowledgments.tex}
 
 % Abstract
-% \input{content/abstract/abstract.tex}
+\input{content/abstract/abstract.tex}
 
 % Table of Content
 \tableofcontents
@@ -247,7 +247,7 @@ pdfcreator = {Xelatex},
 \printglossaries
 
 % Content
- \input{content/content.tex}
+\input{content/content.tex}
 
 % Bibliography 
 \printbibliography[heading=bibnumbered]
@@ -257,6 +257,6 @@ pdfcreator = {Xelatex},
 \appendix
 \csname phantomsection\endcsname
 \addcontentsline{toc}{chapter}{Appendix}
-% \input{content/appendix/appendix.tex}
+\input{content/appendix/appendix.tex}
 
 \end{document}
