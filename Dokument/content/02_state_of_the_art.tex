@@ -5,17 +5,19 @@ vorgestellt, sowie die gängigsten Softwarewerkzeuge mit denen diese Systeme erz
 
 \subsection*{Cloud Computing}
 Cloud Computing besitzt in der Literatur mehrere Definitionen.\cite{Marston2011} Die am weitesten verbreitete Definition wurde vom National Institute of Standards and Technology (NIST) festgelegt.Nach dieser Definition ist Cloud Computing ein Modell, das einen allgegenwärtigen, bequemen, bedarfsgerechten Zugang zu einem gemeinsamen Pool an konfigurierbarer Rechenressourcen die jederzeit und von jedem Ort aus über das Internet oder ein Netzwerk schnell zur Verfügung gestellt 
-werden können. Es wird durch fünf Eigenschaften chracterisiert:   \\
-On-Demand und Selbstbedienung: Kunden können die Rechenresourcen selbständig nach Bedarf ohen menschliche Interaktion anfordern \\
-Breiter Netzzugang: Ressourcen sind über Netzwerkverbindung erreichbar über standardisierte Zugriffsmechanismen\\
-Ressourcen-Pooling: Die Ressourcen des Anbieters werden aus mehreren physikalischen Recheneinheiten zusammengelegt, die auch geographisch nicht an einem Ort sein müssen. Mit einem Multi-Tenant Modell werden die Ressourcen dynamisch je nach Kundenbedarf zugewiesen. Der Kunde hat keinen Kenntnis oder Kontrolle über den genauen Standort der bereitgestellten Ressourcen. \\
-Schnelle Elastizität: Bereitgestellte Ressourcen können flexibel bereitgestellt und freigegeben werden. Für den Kunden erscheint die Menge der bereitgestellten Ressourcen unbegrenzt, sie können jederzeit in beliebiger Menge gebucht werden.\\
-Measured Service: Nurzung der Cloud Systeme wird automatisch gemessen und optimiert anhand einer Messfunktion, die nach Metriken wie Speicher, Verarbeitung, Bandbreite und Benutzerknoten die Ressourcennutzung ermittelt. Kosten für den Cloud Dienst werden nach der gemessenen Nutzung ermittelt (Pay per use) \cite{Mell2011} \\
+werden können. Es wird durch fünf Eigenschaften charakterisiert:   \\
+\begin{itemize}
+	\item On-Demand und Selbstbedienung: Kunden können die Rechenressourcen selbständig nach Bedarf ohne menschliche Interaktion anfordern
+	\item Breiter Netzzugang: Ressourcen sind über Netzwerkverbindung erreichbar über standardisierte Zugriffsmechanismen
+	\item Ressourcen-Pooling: Die Ressourcen des Anbieters werden aus mehreren physikalischen Recheneinheiten zusammengelegt, die auch geographisch nicht an einem Ort sein müssen. Mit einem Multi-Tenant Modell werden die Ressourcen dynamisch je nach Kundenbedarf zugewiesen. Der Kunde hat keinen Kenntnis oder Kontrolle über den genauen Standort der bereitgestellten Ressourcen.
+	\item Schnelle Elastizität: Bereitgestellte Ressourcen können flexibel bereitgestellt und freigegeben werden. Für den Kunden erscheint die Menge der bereitgestellten Ressourcen unbegrenzt, sie können jederzeit in beliebiger Menge gebucht werden.
+	\item Measured Service: Nutzung der Cloud Systeme wird automatisch gemessen und optimiert anhand einer Messfunktion, die nach Metriken wie Speicher, Verarbeitung, Bandbreite und Benutzerknoten die Ressourcennutzung ermittelt. Kosten für den Cloud Dienst werden nach der gemessenen Nutzung ermittelt (Pay per use) \cite{Mell2011}
+\end{itemize}
 
-Cloud Computing ist ein Geschäftsmodell für die Bereitstellung von IT Infrastruktur, komponenten und Anwendungen, welches mittlerweile den Markt dominiert. \cite{Benlian2018} Cloud Service Anbieter betreiben die IT Infrastruktur und stellen sie für Kunden zur Verfügung. Kunden müssen nicht ihre eigene Infrastruktur aufbauen, sie können die benötigten Kapazitäten je nach aktueller Bedarf einkaufen. Diese Lösung ermöglicht den Kunden hohe Rechenkapazitäten zu verwenden, die diese Kapazitäten selber nicht aufbauen und betreiben können.\cite{Arasaratnam2011} Der Markt für Cloud Infrastruktur ist ein weiterhin wachsender Markt (Stand Q4 2023) mit 270 Milliarden US Dollar Gesamtausgaben für das Jahr 2023. Die größten Cloud Service Anbieter und deren Marktanteil ist in der Tabelle \ref{cloud_marktanteile} aufgelistet.
+Cloud Computing ist ein Geschäftsmodell für die Bereitstellung von IT Infrastruktur, Komponenten und Anwendungen, welches mittlerweile den Markt dominiert. \cite{Benlian2018} Cloud Service Anbieter betreiben die IT Infrastruktur und stellen sie für Kunden zur Verfügung. Kunden müssen nicht ihre eigene Infrastruktur aufbauen, sie können die benötigten Kapazitäten je nach aktueller Bedarf einkaufen. Diese Lösung ermöglicht den Kunden hohe Rechenkapazitäten zu verwenden, die diese Kapazitäten selber nicht aufbauen und betreiben können.\cite{Arasaratnam2011} Der Markt für Cloud Infrastruktur ist ein weiterhin wachsender Markt (Stand Q4 2023) mit 270 Milliarden US Dollar Gesamtausgaben für das Jahr 2023. Die größten Cloud Service Anbieter und deren Marktanteil ist in der Tabelle \ref{cloud_marktanteile} aufgelistet.
 
 \begin{table}
-	\begin{center}
+	\centering
 		\caption{Cloud Anbieter und deren Marktanteile}
 		\label{cloud_marktanteile}
 		\begin{tabular}{|c | c|} 
@@ -39,10 +41,27 @@ Cloud Computing ist ein Geschäftsmodell für die Bereitstellung von IT Infrastr
 			Tencent Cloud & 2\% \\ 
 			\hline
 		\end{tabular}
-	\end{center}
 \end{table}
 
-In der heutigen Zeit sind viele im Alltag verbreitete Applikationen als Cloud Service ausgelegt. Datenspeicherung (Dropbox, Google Drive), Dokumente bearbeiten (Office 365, Google Docs), Business-management (SAP ByDesign) und Videospiele (Geforce Now) sind Anwendungsbereiche, wo Cloud-Services verbreitet sind.
+In der heutigen Zeit sind viele im Alltag verbreitete Applikationen als Cloud Service ausgelegt. Datenspeicherung (Dropbox, Google Drive), Dokumente bearbeiten (Office 365, Google Docs), Business-management (SAP ByDesign) und Videospiele (Geforce Now) sind typische Anwendungsbereiche hierfür.
 
 \subsection*{Distributed Computing}
 
+Distributed Computing bezeichnet verteilte Systeme, die aus dem Zusammenschluss von mehreren physikalischen Recheneinheiten bestehen. Auf dieser Weise können sie an einem gemeinsamen Problem arbeiten. Hierdurch ist es möglich auch große Datenmengen oder komplexe Rechenaufgaben effizienter zu verarbeiten als mit einzelnen Recheneinheiten. \cite{AWS2023} Die einzelnen Recheneinheiten in einem Verteilten System werden als Nodes genannt. \cite{ord1994scale} Verteilte Systeme sind heutzutage Stand der Technik, da die Rechenleistung von einzelnen Rechenkernen nicht beliebig skalierbar ist. Wenn also hohe Rechenleistung benötigt wird, kann dies  durch die Zusammenschaltung von mehreren Recheneinheiten und die Parallelisierung von Rechenaufgaben erfolgen, die den Ansatz der Distributed Computing verfolgt. Provider die Internetdienste anbieten (Google, Facebook) verwenden verteilte Systeme für ihre Infrastruktur. \cite{arpaci2018operating} 
+
+\subsection*{Edge Computing}
+
+Edge Computing ist eine Form von Distributed Computing. In diesem Kontext werden die Endgeräte, wo Daten entstehen oder benötigt werden als Edge bezeichnet. Durch die zunehmende Digitalisierung der Stadt Infrastruktur und alltägliche Gegenstände wie Mobiltelefone, Uhren, Hausgegenstände entstehen immer höhere Datenmengen, die verarbeitet werden müssen. Im Cloud Computing Ansatz werden die Daten in geographisch weit entfernten Cloud Servern verarbeitet und wieder an die Endgeräte auf der Edge Ebene zurückgesendet. Hierdurch erhöht sich die Latenz sowie die insgesamt benötigte Netzwerkbandbreite. Edge Computing verlagert die Datenverarbeitung in die Nähe der Geräte, wo die Daten entstehen und die verarbeiteten Daten benötigt werden, also in die Edge Ebene und reduziert damit die Latenz und benötigte Bandbreite zu entfernten Cloud Servern. \cite{Wang2019} Motiviert wird diese Entwicklung dadurch, dass Netzwerkbandbreite sich deutlich langsamer entwickelt als die Zunahme an erzeuge Datenmengen.\cite{Shi2016}
+
+\cite{Lin2020}
+
+
+Distributed Computing hat folgende Eigenschaften:
+
+\begin{itemize}
+	\item Skalierbarkeit: Die verteilte Rechensysteme sind einfach erweiterbar, indem neue physikalische Recheneinheiten hinzugefügt werden.
+	\item Verfügbarkeit: Der Zusammenschluss von mehreren Recheneinheiten erzeugt Redundanz im System. Wenn ein Recheneinheit ausfällt, führt es nicht zum Ausfall des gesamten Systems.
+	\item Konsistenz: Verteilte Systeme duplizieren die zu verarbeitende Daten, das System verwaltet die Datenkonsistenz unter den Teilnehmern. Hiermit wird die Fehlertoleranz erhöht.
+	\item Transparenz: Die verteilte Natur der Recheneinheiten ist für den Benutzer nicht sichtbar. Das System wirkt wie ein einzelner Recheneinheit, obwohl sie unterschiedliche Hardware, Middleware, Software und Betriebssysteme haben können. 
+	\item Effizienz: 
+\end{itemize}
