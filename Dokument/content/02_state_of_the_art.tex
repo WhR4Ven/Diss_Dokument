@@ -51,17 +51,7 @@ Distributed Computing bezeichnet verteilte Systeme, die aus dem Zusammenschluss 
 
 \subsection*{Edge Computing}
 
-Edge Computing ist eine Form von Distributed Computing. In diesem Kontext werden die Endgeräte, wo Daten entstehen oder benötigt werden als Edge bezeichnet. Durch die zunehmende Digitalisierung der Stadt Infrastruktur und alltägliche Gegenstände wie Mobiltelefone, Uhren, Hausgegenstände entstehen immer höhere Datenmengen, die verarbeitet werden müssen. Im Cloud Computing Ansatz werden die Daten in geographisch weit entfernten Cloud Servern verarbeitet und wieder an die Endgeräte auf der Edge Ebene zurückgesendet. Hierdurch erhöht sich die Latenz sowie die insgesamt benötigte Netzwerkbandbreite. Edge Computing verlagert die Datenverarbeitung in die Nähe der Geräte, wo die Daten entstehen und die verarbeiteten Daten benötigt werden, also in die Edge Ebene und reduziert damit die Latenz und benötigte Bandbreite zu entfernten Cloud Servern. \cite{Wang2019} Motiviert wird diese Entwicklung dadurch, dass Netzwerkbandbreite sich deutlich langsamer entwickelt als die Zunahme an erzeuge Datenmengen.\cite{Shi2016}
+Edge Computing ist eine Form von Distributed Computing. In diesem Kontext werden die Endgeräte, wo Daten entstehen oder benötigt werden als Edge bezeichnet. Durch die zunehmende Digitalisierung der Stadt Infrastruktur und alltägliche Gegenstände wie Mobiltelefone, Uhren, Hausgegenstände entstehen immer höhere Datenmengen, die verarbeitet werden müssen. Im Cloud Computing Ansatz werden die Daten in geographisch weit entfernten Cloud Servern verarbeitet und wieder an die Endgeräte auf der Edge Ebene zurückgesendet. Hierdurch erhöht sich die Latenz sowie die insgesamt benötigte Netzwerkbandbreite. Edge Computing verlagert die Datenverarbeitung in die Nähe der Geräte, wo die Daten entstehen und die verarbeiteten Daten benötigt werden, also in die Edge Ebene und reduziert damit die Latenz und die benötigte Gesamtbandbreite zu entfernten Cloud Servern. \cite{Wang2019} Motiviert wird diese Entwicklung dadurch, dass Netzwerkbandbreite sich deutlich langsamer entwickelt als die Zunahme an erzeuge Datenmengen.\cite{Shi2016} Latenzreduzierung ist relevant für Echtzeitsysteme wie Datenauswertung für autonome Fahrzeuge, aber auch für Anwendungen, wo Berührungsrückmeldungen an dem Benutzer zurückgemeldet werden sollen. Damit der Mensch keinen Latenz empfindet, muss die Kommunikation und Datenverarbeitung innerhalb von 1 ms erfolgen. \cite{Varsha2017} Edge Computing ist eine Alternative für lokale Berechnungen auf dem jeweiligen Endgerät. Diese Endgeräte haben in vielen Fällen nur begrenzte Rechenleistung, so dass die lokale Datenverarbeitung nicht sinnvoll umsetzbar ist. Rechenoperationen können auch in Cloud Systeme ausgelagert werden, allerdings resultiert dieser Ansatz in höhere Latenzen und Bandbreitenauslastungen. \cite{Lin2020}
 
-\cite{Lin2020}
+\subsection*{Applikationsmanagement}
 
-
-Distributed Computing hat folgende Eigenschaften:
-
-\begin{itemize}
-	\item Skalierbarkeit: Die verteilte Rechensysteme sind einfach erweiterbar, indem neue physikalische Recheneinheiten hinzugefügt werden.
-	\item Verfügbarkeit: Der Zusammenschluss von mehreren Recheneinheiten erzeugt Redundanz im System. Wenn ein Recheneinheit ausfällt, führt es nicht zum Ausfall des gesamten Systems.
-	\item Konsistenz: Verteilte Systeme duplizieren die zu verarbeitende Daten, das System verwaltet die Datenkonsistenz unter den Teilnehmern. Hiermit wird die Fehlertoleranz erhöht.
-	\item Transparenz: Die verteilte Natur der Recheneinheiten ist für den Benutzer nicht sichtbar. Das System wirkt wie ein einzelner Recheneinheit, obwohl sie unterschiedliche Hardware, Middleware, Software und Betriebssysteme haben können. 
-	\item Effizienz: 
-\end{itemize}
