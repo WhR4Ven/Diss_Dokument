@@ -741,4 +741,63 @@
   urldate   = {2024-03-18},
 }
 
+ 
+@Article{Pahl2015,
+  author   = {Pahl, Claus},
+  journal  = {IEEE Cloud Computing},
+  title    = {Containerization and the {PaaS} {Cloud}},
+  year     = {2015},
+  issn     = {2325-6095},
+  month    = may,
+  number   = {3},
+  pages    = {24--31},
+  volume   = {2},
+  abstract = {Containerization is widely discussed as a lightweight virtualization solution. Apart from exhibiting benefits over traditional virtual machines in the cloud, containers are especially relevant for platform-as-a-service (PaaS) clouds to manage and orchestrate applications through containers as an application packaging mechanism. This article discusses the requirements that arise from having to facilitate applications through distributed multicloud platforms.},
+  doi      = {10.1109/MCC.2015.51},
+  file     = {:Pahl2015 - Containerization and the PaaS Cloud.html:URL},
+  keywords = {Containerization, Virtualization, File systems, Linux, Computer architecture, Packaging, cloud, cloud computing, cluster, container, Docker, Kubernetes, multicloud, PaaS, virtualization},
+  url      = {https://ieeexplore.ieee.org/document/7158965},
+  urldate  = {2024-03-25},
+}
+
+ 
+@Article{Bugnion2012,
+  author   = {Bugnion, Edouard and Devine, Scott and Rosenblum, Mendel and Sugerman, Jeremy and Wang, Edward Y.},
+  journal  = {ACM Transactions on Computer Systems},
+  title    = {Bringing {Virtualization} to the x86 {Architecture} with the {Original} {VMware} {Workstation}},
+  year     = {2012},
+  issn     = {0734-2071},
+  month    = nov,
+  number   = {4},
+  pages    = {12:1--12:51},
+  volume   = {30},
+  abstract = {This article describes the historical context, technical challenges, and main implementation techniques used by VMware Workstation to bring virtualization to the x86 architecture in 1999. Although virtual machine monitors (VMMs) had been around for decades, they were traditionally designed as part of monolithic, single-vendor architectures with explicit support for virtualization. In contrast, the x86 architecture lacked virtualization support, and the industry around it had disaggregated into an ecosystem, with different vendors controlling the computers, CPUs, peripherals, operating systems, and applications, none of them asking for virtualization. We chose to build our solution independently of these vendors. As a result, VMware Workstation had to deal with new challenges associated with (i) the lack of virtualization support in the x86 architecture, (ii) the daunting complexity of the architecture itself, (iii) the need to support a broad combination of peripherals, and (iv) the need to offer a simple user experience within existing environments. These new challenges led us to a novel combination of well-known virtualization techniques, techniques from other domains, and new techniques. VMware Workstation combined a hosted architecture with a VMM. The hosted architecture enabled a simple user experience and offered broad hardware compatibility. Rather than exposing I/O diversity to the virtual machines, VMware Workstation also relied on software emulation of I/O devices. The VMM combined a trap-and-emulate direct execution engine with a system-level dynamic binary translator to efficiently virtualize the x86 architecture and support most commodity operating systems. By relying on x86 hardware segmentation as a protection mechanism, the binary translator could execute translated code at near hardware speeds. The binary translator also relied on partial evaluation and adaptive retranslation to reduce the overall overheads of virtualization. Written with the benefit of hindsight, this article shares the key lessons we learned from building the original system and from its later evolution.},
+  doi      = {10.1145/2382553.2382554},
+  file     = {:Bugnion2012 - Bringing Virtualization to the X86 Architecture with the Original VMware Workstation.pdf:PDF},
+  keywords = {VMM, Virtualization, dynamic binary translation, hypervisors, virtual machine monitors, x86},
+  url      = {https://dl.acm.org/doi/10.1145/2382553.2382554},
+  urldate  = {2024-03-27},
+}
+
+ 
+@Article{Bhardwaj2021,
+  author     = {Bhardwaj, Aditya and Krishna, C. Rama},
+  journal    = {Arabian Journal for Science and Engineering},
+  title      = {Virtualization in {Cloud} {Computing}: {Moving} from {Hypervisor} to {Containerization}—{A} {Survey}},
+  year       = {2021},
+  issn       = {2191-4281},
+  month      = sep,
+  number     = {9},
+  pages      = {8585--8601},
+  volume     = {46},
+  abstract   = {Containers emerged as a lightweight alternative to virtual machines that offer better microservice architecture support. They are widely used by organizations to deploy their increasingly diverse workloads derived from modern applications such as big data, IoT, and edge/fog computing in either proprietary clusters or private, public cloud data centers. With the growing interest in container-based virtualization technologies, the requirement to explore the deployment and orchestration of clusters of containers has become a central research problem. Although progress has been made to study containerization, systematic consolidation of the existing literature with a summative evaluation is still missing. To fill this gap, in this paper, we first taxonomically classify the existing research studies on the performance comparison between hypervisor and container technology and then analyze state-of-the-art for container cluster management orchestration systems, its performance monitoring tools, and finally future research trends. This results in a better understanding of container technology with attention to provide summative analysis in terms of (i) how much performance overhead is generated by a hypervisor compared to container-based virtualization, (ii) which container technology is suited for a cloud application deployment based on the type of benchmark executing, (iii) how to provide management of containers deployed in a cluster environment, (iv) container performance monitoring tools, and (v) finally emerging concerns for future research directions.},
+  doi        = {10.1007/s13369-021-05553-3},
+  file       = {:Bhardwaj2021 - Virtualization in Cloud Computing_ Moving from Hypervisor to Containerization—A Survey.pdf:PDF},
+  keywords   = {Cloud computing, Virtualization, Hypervisor, Containerization},
+  language   = {en},
+  shorttitle = {Virtualization in {Cloud} {Computing}},
+  url        = {https://doi.org/10.1007/s13369-021-05553-3},
+  urldate    = {2024-03-27},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
