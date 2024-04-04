@@ -664,13 +664,16 @@
 
  
 @Misc{AWS2023,
-  title      = {Was ist verteiltes {Computing}? - {Verteiltes} {Computing} erklärt - {AWS}},
-  abstract   = {Was ist verteiltes Computing, wie und warum Unternehmen verteiltes Computing verwenden und wie verteiltes Computing mit AWS verwendet wird.},
-  journal    = {Amazon Web Services, Inc.},
-  language   = {de-DE},
-  shorttitle = {Was ist verteiltes {Computing}?},
-  url        = {https://aws.amazon.com/de/what-is/distributed-computing/},
-  urldate    = {2024-03-06},
+  author       = {AWS23},
+  howpublished = {Website},
+  title        = {Was ist verteiltes {Computing}? - {Verteiltes} {Computing} erklärt - {AWS}},
+  year         = {2023},
+  abstract     = {Was ist verteiltes Computing, wie und warum Unternehmen verteiltes Computing verwenden und wie verteiltes Computing mit AWS verwendet wird.},
+  journal      = {Amazon Web Services, Inc.},
+  language     = {de-DE},
+  shorttitle   = {Was ist verteiltes {Computing}?},
+  url          = {https://aws.amazon.com/de/what-is/distributed-computing/},
+  urldate      = {2024-03-06},
 }
 
  
@@ -798,6 +801,44 @@
   shorttitle = {Virtualization in {Cloud} {Computing}},
   url        = {https://doi.org/10.1007/s13369-021-05553-3},
   urldate    = {2024-03-27},
+}
+
+ 
+@Article{Mavridis2019,
+  author   = {Mavridis, Ilias and Karatza, Helen},
+  journal  = {Future Generation Computer Systems},
+  title    = {Combining containers and virtual machines to enhance isolation and extend functionality on cloud computing},
+  year     = {2019},
+  issn     = {0167-739X},
+  month    = may,
+  pages    = {674--696},
+  volume   = {94},
+  abstract = {Virtualization technology is the underlying element of cloud computing. Traditionally, cloud computing has employed virtual machines to distribute available resources and provide isolated environments among users. Multiple virtual machines, with their own operating system and services, can be deployed and run simultaneously on the same physical machine on the cloud infrastructure. Recently, a more lightweight virtualization technology is being rapidly adopted and it is based on containers. A key difference between virtual machines and containers, is that containers share the same underlying operating system. In this work, we studied the combination of these two virtualization technologies by running containers on top of virtual machines. This synergy aims to enhance containers’ main drawback, which is isolation and, among others, to simplify the system management and upgrade, and to introduce the new functionalities of containerized applications to virtual machines. The benefits of this method have been recognized by big cloud companies, which have been employing this approach for years. With this paper, we aimed to present the advantages of running containers on virtual machines and to explore how various virtualization techniques and configurations affect the performance of this method. Although, in bibliography there are a few papers that used this method partially to conduct experiments, there is not any research which considers this method from our integral aspect of view. In this study, we ran Docker containers and evaluated their performances, not only on KVM and XEN virtual machines, but also we ran Linux containers on Windows Server. We adopted an empirical approach, to quantify the performance overhead introduced by the additional virtualization layer of virtual machines, by executing various benchmarks and deploying real world applications as use cases. Furthermore, we presented for first time, how isolation is applied on virtual machines and containers, we evaluated different operating systems optimized to host containers, mechanisms of storing persistent data and, last but not least, we experimentally quantified the power and energy consumption overhead of containers running on virtual machines.},
+  doi      = {10.1016/j.future.2018.12.035},
+  file     = {ScienceDirect Full Text PDF:https\://www.sciencedirect.com/science/article/pii/S0167739X18305764/pdfft?md5=01e5d2e537b6ce4ca0b8ace916621880&pid=1-s2.0-S0167739X18305764-main.pdf&isDTMRedir=Y:application/pdf},
+  keywords = {Docker, VMs, Containers, KVM, XEN, Hyper-V, Performance evaluation, Energy consumption},
+  url      = {https://www.sciencedirect.com/science/article/pii/S0167739X18305764},
+  urldate  = {2024-04-03},
+}
+
+ 
+@Article{Martin2018,
+  author   = {Martin, John Paul and Kandasamy, A. and Chandrasekaran, K.},
+  journal  = {Human-centric Computing and Information Sciences},
+  title    = {Exploring the support for high performance applications in the container runtime environment},
+  year     = {2018},
+  issn     = {2192-1962},
+  month    = jan,
+  number   = {1},
+  pages    = {1},
+  volume   = {8},
+  abstract = {Cloud computing is the driving power behind the current technological era. Virtualization is rightly referred to as the backbone of cloud computing. Impacts of virtualization employed in high performance computing (HPC) has been much reviewed by researchers. The overhead in the virtualization layer was one of the reasons which hindered its application in the HPC environment. Recent developments in virtualization, especially the OS container based virtualization provides a solution that employs a lightweight virtualization layer and promises lesser overhead. Containers are advantageous over virtual machines in terms of performance overhead which is a major concern in the case of both data intensive applications and compute intensive applications. Currently, several industries have adopted container technologies such as Docker. While Docker is widely used, it has certain pitfalls such as security issues. The recently introduced CoreOS Rkt container technology overcomes these shortcomings of Docker. There has not been much research on how the Rkt environment is suited for high performance applications. The differences in the stack of the Rkt containers suggest better support for high performance applications. High performance applications consist of CPU-intensive and data-intensive applications. The High Performance Linpack Library and the Graph500 are the commonly used computation intensive and data-intensive benchmark applications respectively. In this work, we explore the feasibility of this inter-operable Rkt container in high performance applications by running the HPL and Graph500 applications and compare its performance with the commonly used container technologies such as LXC and Docker containers.},
+  doi      = {10.1186/s13673-017-0124-3},
+  file     = {:Martin2018 - Exploring the Support for High Performance Applications in the Container Runtime Environment.pdf:PDF},
+  keywords = {Cloud computing, Containers, High performance computing, Core OS Rkt, Docker, LXC, Linpack, Graph 500},
+  language = {en},
+  url      = {https://doi.org/10.1186/s13673-017-0124-3},
+  urldate  = {2024-04-03},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
