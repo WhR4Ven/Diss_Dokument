@@ -42,13 +42,15 @@ Cloud Computing ist ein Geschäftsmodell für die Bereitstellung von IT Infrastr
 		\end{tabular}
 \end{table}
 
-In der heutigen Zeit sind viele im Alltag verbreitete Applikationen als Cloud Service ausgelegt. Datenspeicherung (Dropbox, Google Drive), Dokumente bearbeiten (Office 365, Google Docs), Business-management (SAP ByDesign) und Videospiele (Geforce Now) sind typische Anwendungsbereiche hierfür. Cloud Computing kann verschiedene Geschäftsmodelle für Kunden anbieten, die je nach Kundenbedarf fertigen Softwareplattform oder reine Rechenressourcen für eigene Applikationen bereitstellen:
+Cloud Computing bietet verschiedene Geschäftsmodelle für Kunden an, die je nach Kundenbedarf fertigen Softwareplattform oder reine Rechenressourcen für eigene Applikationen bereitstellen:
 
 \begin{itemize}
-	\item Software as a Service (SaaS): Cloud Anbieter stellt den Kunden eine oder mehrere vom Cloud Anbieter angebotene Applikationen zur Verfügung. Der Anbieter übernimmt die Einrichtung von Laufzeitumgebung und Bereitstellung der benötigten Rechenressourcen. Kunde Kann die Software durch bereitgestellten Software Interface über Netzwerk/Internet benutzen und konfigurieren. 
-	\item Platform as a Service (PaaS): Kunde lässt eine eigene Applikation auf der Cloud Infrastruktur ausführen. Cloud Anbieter übernimmt die Einrichtung der Laufzeitumgebung fü die Applikation, sowie die Zuteilung der benötigten Rechenressourcen. 
+	\item Software as a Service (SaaS): Cloud Anbieter bietet online Applikationen an Kunden an. Der Anbieter stellt dabei die benötigte IT Infrastruktur bereit, inklusive Einrichtung der Laufzeitumgebung und Bereitstellung der Rechenressourcen. Kunde benutzt die bereitgestellte Applikatioen über definierte Benutzeroberfläche, meistens wird eine über Web Browser erreichbare Web Benutzeroberfläche angeboten. Der Kunde ist in diesem Modell der Endbenutzer der vom Cloud Anbieter gestellten Applikation.
+	\item Platform as a Service (PaaS): Kunde lässt eine eigene Applikation auf der Cloud Infrastruktur ausführen. Cloud Anbieter übernimmt die Einrichtung der Laufzeitumgebung für die Applikation, sowie die Zuteilung der benötigten Rechenressourcen. 
 	\item Infrastructure as a Service (IaaS): Kunde kauft Rechenressourcen nach Bedarf ein, Cloud Anbieter stellt eine \gls{virtuelle Maschine} dem Kunden zur Verfügung. Kunde muss die Laufzeitumgebung und Software selber einrichten und betreiben. 
 \end{itemize} \cite{Mell2011}
+
+In der heutigen Zeit sind viele im Alltag verbreitete Applikationen als Cloud Service ausgelegt. Datenspeicherung (Dropbox, Google Drive), Dokumente bearbeiten (Office 365, Google Docs), Business-management (SAP ByDesign) und Videospiele (Geforce Now) sind typische Anwendungsbereiche hierfür. 
 
 \section{Distributed Computing}
 
@@ -83,12 +85,15 @@ In Cloud Systemen wurden in den letzten Jahrzehnten hauptsächlich virtuelle Mas
 
 Um die vorhin genannte Nachteile der virtuellen Maschinen zu umgehen, haben sich Container als alternative Methode für Virtualisierung in den letzten Jahren verbreitet. Containerisierung ist eine Virtualisierungsmethode, die im Gegensatz zu virtuellen Maschinen keine neue Betriebssysteme für neue virtuelle Umgebungen ausführt. Applikationen werden direkt auf dem Betriebssystem des physikalischen Systems ausgeführt.  Hierdurch sind Container kleiner, da sie kein Betriebssystem zusätzlich enthalten müssen im Vergleich zu virtuelle Maschinen. Container sind durch das Wegfallen des zusätzlichen Betriebssystems auch effizienter im Bezug auf Rechenressourcen. Zusätzlich können Container auch deutlich schneller gestartet werden da kein Betriebssystem beim Startvorgang gebootet werden muss (etwa 50ms bei Container, 30-40s bei virtuelle Maschinen). \cite{Martin2018} Ähnlich wie virtuelle Maschinen auf einem System durch den Hypervisor verwaltet werden, werden Container mit einem Container Runtime Softwaremodul verwaltet. Die Isolierung erfolg bei Cointainer nicht durch virtuelle Hardwarekomponenten sondern auf Betriebssystemebene. Container nutzen die Möglichkeiten des Linux Kernels Applikationen voneinander zu isolieren. Dies wird durch sogenannte namespaces ermöglicht. Namespaces können eine bestimmte globale Ressource für ein Prozess isolieren, so dass es wie eine eigene Instanz erscheint. Folgende namespaces sind im Linux Kernel verfügbar:
 \begin{itemize}
-	\item Mount Namespace: Isoliert das Dateisystem im Prozess. Der Prozess kann nur die Pfade im Dateisystem sehen und darauf zugreifen die explizit per mount() Funktion zum jeweiligen Namespace hinzugefügt wurden.
-	\item UTS Namespace: Der Prozess 
-	\item IPC Namespace:
-	\item PID Namespace:
-	\item Network Namespace:
-\end{itemize}
+	\item Mount Namespace: Isoliert das Dateisystem im Container. Die Prozesse im Container können nur die Pfade im Dateisystem sehen und darauf zugreifen die explizit per mount() Funktion zum jeweiligen Namespace hinzugefügt wurden.
+	\item UTS Namespace: Isoliert die Prozessidentifikatoren für den Container. Prozessnamen und Domänenamen können dadurch beliebig umbenannt werden. Dies ist nützlich wenn in Prozessen Aufstartskripte verwendet werden, die bestimmte Prozessnamen voraussetzen.
+	\item IPC Namespace: Isoliert die zwischen-Prozess Kommunikation (Inter Process Communication) ressourcen im Container. Hierdurch können Container die verschiedene IPC namespaces zugehören ressourcen für zwischen-Ptozess Kommunikation wie Semaphoren oder Shared Memory mit gleichen Namen anlegen, ohne dass sie miteinander kommunizieren können.
+	\item PID Namespace: Prozesse im Container haben eigene Prozessidentifikationsnummern (PID). Somit kann in jedem Container ein Initizalisierungsprozess mit PID 1 exisitieren. Ein weiterer Effekt der PID Isolierung ist, dass jeder Container einen eigenen /proc Ordner erhält, das bedeutet dass Container nur ihre eigene Prozesse einsehen können, die restlichen Prozesse im System sind von innerhalb des Containers unsichtbar. Das System selbst kann die Containerprozesse sehen, allerdings haben diese Containerprozesse andere PIDs wenn man sie von außen betrachtet.
+	\item Network Namespace: Isoliert Netzwerkressourcen für die Container. Dies beinhaltet Netzwerkadapter, Firewall und Routingtabellen. Die Netzwerkkonfiguration kann in jedem Container unterschiedlich angepasst werden, es ist möglich verschiedene virtuelle oder physikalische Netzwerkadapter zum Container hinzuzufügen. Die konfigurierbare Routingtabelle pro Container ermöglicht einen konfigurierbaren Maß an Netzwerkisolation.
+\end{itemize} 
 
+Namespaces decken den Bedarf an Prozess und Laufzeitumgebungisolation für die Virtualisierung ab. Eine weitere Anforderung ist die Begrenzung von verfügbaren Ressourcen für die jeweiligen virtuellen Umgebungen. Um dies zu ermöglichen bietet Linux ebenfalls im Kernel eine Möglichkeit an. Cgroups ermöglichen die Gruppierung von Prozessen um deren Ressourcen zu verwalten. Es kann die CPU Zeit, Speicherverbrauch und Netzwerkbandbreite für die Gruppen eingeschränkt werden. Bei der Virtualisierung mit Container bekommt jeder Container eine eigene cgroup, so dass deren Ressourcenverbrauch durch den Container Runtime eingeschränkt werden kann. \cite{Red2024} 
 Die systematische Darstellung eines Systems mit Container als Virtualisierungsmethode ist in der Abbildung \ref{virtualisierung_optionen} in der rechten Spalte dargestellt. 
+
+\section{Orchestrierung von virtuellen Umgebungen}
 
