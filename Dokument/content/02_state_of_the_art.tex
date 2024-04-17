@@ -45,10 +45,20 @@ Cloud Computing ist ein Geschäftsmodell für die Bereitstellung von IT Infrastr
 Cloud Computing bietet verschiedene Geschäftsmodelle für Kunden an, die je nach Kundenbedarf fertigen Softwareplattform oder reine Rechenressourcen für eigene Applikationen bereitstellen:
 
 \begin{itemize}
-	\item Software as a Service (SaaS): Cloud Anbieter bietet online Applikationen an Kunden an. Der Anbieter stellt dabei die benötigte IT Infrastruktur bereit, inklusive Einrichtung der Laufzeitumgebung und Bereitstellung der Rechenressourcen. Kunde benutzt die bereitgestellte Applikationen über definierte Benutzeroberfläche, meistens wird eine über Web Browser erreichbare Web Benutzeroberfläche angeboten. Der Kunde ist in diesem Modell der Endbenutzer der vom Cloud Anbieter gestellten Applikation.
-	\item Platform as a Service (PaaS): Kunde lässt eine eigene Applikation auf der Cloud Infrastruktur ausführen. Cloud Anbieter übernimmt die Einrichtung der Laufzeitumgebung für die Applikation, sowie die Zuteilung der benötigten Rechenressourcen. 
-	\item Infrastructure as a Service (IaaS): Kunde kauft Rechenressourcen nach Bedarf ein, Cloud Anbieter stellt eine \gls{virtuelle Maschine} dem Kunden zur Verfügung. Kunde muss die Laufzeitumgebung und Software selber einrichten und betreiben. 
+	\item Infrastructure as a Service (IaaS): Kunde kauft Rechenressourcen nach Bedarf ein, Cloud Anbieter stellt eine \gls{virtuelle Maschine} dem Kunden zur Verfügung. Kunde kann über eine API auf die gemietete Infrastruktur zugreifen. Er kann Komponenten wie Betriebssystem, Applikationen und Laufzeitumgebung selber verwalten. Cloud Anbieter ist für die Bereitstellung der Rechenressourcen wie Rechenleistung, Speicher, Netzwerk sowie jegliche Hardwareausfälle verantwortlich.
+	\item Platform as a Service (PaaS): Kunde lässt eine eigene Applikation auf der Cloud Infrastruktur ausführen. Cloud Anbieter übernimmt die Bereitstellung der Hardware und Ressourcen wie bei IaaS, zusätzlich aber auch das Betriebssystem und Laufzeitumgebung. So kann der Kunde seine Daten und Applikationen direkt in die gemietete Cloud Umgebung platzieren.
+	\item Software as a Service (SaaS): Cloud Anbieter bietet online Applikationen an Kunden an. Der Anbieter stellt dabei die benötigte IT Infrastruktur bereit, inklusive Einrichtung der Laufzeitumgebung und Bereitstellung der Rechenressourcen (IaaS und PaaS). Kunde benutzt die bereitgestellte Applikationen über definierte Benutzeroberfläche, meistens wird eine über Web Browser erreichbare Web Benutzeroberfläche angeboten. Der Kunde ist in diesem Modell der Endbenutzer der vom Cloud Anbieter gestellten Applikation.
+
 \end{itemize} \cite{Mell2011}
+
+Die Zuständigkeiten zwischen Cloud Anbieter und Kunde des Cloud Dienstes für die verschiedenen Geschäftsmodelle ist in der Abbildung \ref{cloud_modelle} dargestellt. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{./content/graphics/cloud_models.pdf}
+	\caption{Vergleich der Zuständigkeiten zwischen Cloud Anbieter und Kunden bei verschiedenen Geschäftsmodellen}
+	\label{cloud_modelle}
+\end{figure}
 
 In der heutigen Zeit sind viele im Alltag verbreitete Applikationen als Cloud Service ausgelegt. Datenspeicherung (Dropbox, Google Drive), Dokumente bearbeiten (Office 365, Google Docs), Business-management (SAP ByDesign) und Videospiele (Geforce Now) sind typische Anwendungsbereiche hierfür. 
 
@@ -92,9 +102,9 @@ Um die vorhin genannte Nachteile der virtuellen Maschinen zu umgehen, haben sich
 	\item Network Namespace: Isoliert Netzwerkressourcen für die Container. Dies beinhaltet Netzwerkadapter, Firewall und Routingtabellen. Die Netzwerkkonfiguration kann in jedem Container unterschiedlich angepasst werden, es ist möglich verschiedene virtuelle oder physikalische Netzwerkadapter zum Container hinzuzufügen. Die konfigurierbare Routingtabelle pro Container ermöglicht einen konfigurierbaren Maß an Netzwerkisolation.
 \end{itemize} 
 
-Namespaces decken den Bedarf an Prozess und Laufzeitumgebunsgisolation für die Virtualisierung ab. Eine weitere Anforderung ist die Begrenzung von verfügbaren Ressourcen für die jeweiligen virtuellen Umgebungen. Um dies zu ermöglichen bietet Linux ebenfalls im Kernel eine Möglichkeit an. Cgroups ermöglichen die Gruppierung von Prozessen um deren Ressourcen zu verwalten. Es kann die CPU Zeit, Speicherverbrauch und Netzwerkbandbreite für die Gruppen eingeschränkt werden. Bei der Virtualisierung mit Container bekommt jeder Container eine eigene cgroup, so dass deren Ressourcenverbrauch durch den Container Runtime eingeschränkt werden kann. \cite{Red2024} 
+Namespaces decken den Bedarf an Prozess und Laufzeitumgebungsisolation für die Virtualisierung ab. Eine weitere Anforderung ist die Begrenzung von verfügbaren Ressourcen für die jeweiligen virtuellen Umgebungen. Um dies zu ermöglichen bietet Linux ebenfalls im Kernel eine Möglichkeit an. Cgroups ermöglichen die Gruppierung von Prozessen um deren Ressourcen zu verwalten. Es kann die CPU Zeit, Speicherverbrauch und Netzwerkbandbreite für die Gruppen eingeschränkt werden. Bei der Virtualisierung mit Container bekommt jeder Container eine eigene cgroup, so dass deren Ressourcenverbrauch durch den Container Runtime eingeschränkt werden kann. \cite{Red2024} 
 Die systematische Darstellung eines Systems mit Container als Virtualisierungsmethode ist in der Abbildung \ref{virtualisierung_optionen} in der rechten Spalte dargestellt. 
 
 \section{Orchestrierung von virtuellen Umgebungen}
 
-Softwarekomponenten wie Hypervisor und Container Runtime verwalten die virtuellen Umgebungen auf einem System. Cloud Serverzentren bestehen aus vielen Systemen die in vielen Fällen auch örtlich verteilt sind. 
+Softwarekomponenten wie Hypervisor und Container Runtime verwalten die virtuellen Umgebungen auf einer physikalischen Maschine. Sie eignen sich also dazu, Rechenressourcen lokal flexibel zu verwalten und bilden damit die Grundlage für Cloud Computing Geschäftsmodelle. Cloud Systeme bestehen allerdings aus viele physikalische Maschinen, die oft auch örtlich verteilt sind. Für diese Systeme wäre es sehr aufwändig, die einzelnen physikalischen Maschinen manuell zu verwalten, aus diesem Grund werden Orchestrierungswerkzeuge verwendet, die die Verwaltung von virtuellen Umgebungen auf verschiedenen physikalischen Systemen automatisieren. 
