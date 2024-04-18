@@ -46,12 +46,12 @@ Cloud Computing bietet verschiedene Geschäftsmodelle für Kunden an, die je nac
 
 \begin{itemize}
 	\item Infrastructure as a Service (IaaS): Kunde kauft Rechenressourcen nach Bedarf ein, Cloud Anbieter stellt eine \gls{virtuelle Maschine} dem Kunden zur Verfügung. Kunde kann über eine API auf die gemietete Infrastruktur zugreifen. Er kann Komponenten wie Betriebssystem, Applikationen und Laufzeitumgebung selber verwalten. Cloud Anbieter ist für die Bereitstellung der Rechenressourcen wie Rechenleistung, Speicher, Netzwerk sowie jegliche Hardwareausfälle verantwortlich.
-	\item Platform as a Service (PaaS): Kunde lässt eine eigene Applikation auf der Cloud Infrastruktur ausführen. Cloud Anbieter übernimmt die Bereitstellung der Hardware und Ressourcen wie bei IaaS, zusätzlich aber auch das Betriebssystem und Laufzeitumgebung. So kann der Kunde seine Daten und Applikationen direkt in die gemietete Cloud Umgebung platzieren.
+	\item Platform as a Service (PaaS): Kunde lässt eine eigene Applikation auf der Cloud Infrastruktur ausführen. Cloud Anbieter übernimmt die Bereitstellung der Hardware und Ressourcen wie bei IaaS, zusätzlich aber auch das Betriebssystem und Laufzeitumgebung. So kann der Kunde seine Daten und Applikationen direkt in die gemietete Cloud Umgebung platzieren ohne weitere Aufwände.
 	\item Software as a Service (SaaS): Cloud Anbieter bietet online Applikationen an Kunden an. Der Anbieter stellt dabei die benötigte IT Infrastruktur bereit, inklusive Einrichtung der Laufzeitumgebung und Bereitstellung der Rechenressourcen (IaaS und PaaS). Kunde benutzt die bereitgestellte Applikationen über definierte Benutzeroberfläche, meistens wird eine über Web Browser erreichbare Web Benutzeroberfläche angeboten. Der Kunde ist in diesem Modell der Endbenutzer der vom Cloud Anbieter gestellten Applikation.
 
 \end{itemize} \cite{Mell2011}
 
-Die Zuständigkeiten zwischen Cloud Anbieter und Kunde des Cloud Dienstes für die verschiedenen Geschäftsmodelle ist in der Abbildung \ref{cloud_modelle} dargestellt. 
+Die Zuständigkeiten zwischen Cloud Anbieter und Kunde des Cloud Dienstes für die verschiedenen Geschäftsmodelle ist in der Abbildung \ref{cloud_modelle} dargestellt. Hier ist es gut erkennbar wie die Zuständigkeiten von IaaS zu Saas hin immer mehr richtung Cloud Anbieter verlagert werden.
 
 \begin{figure}
 	\centering
@@ -107,4 +107,4 @@ Die systematische Darstellung eines Systems mit Container als Virtualisierungsme
 
 \section{Orchestrierung von virtuellen Umgebungen}
 
-Softwarekomponenten wie Hypervisor und Container Runtime verwalten die virtuellen Umgebungen auf einer physikalischen Maschine. Sie eignen sich also dazu, Rechenressourcen lokal flexibel zu verwalten und bilden damit die Grundlage für Cloud Computing Geschäftsmodelle. Cloud Systeme bestehen allerdings aus viele physikalische Maschinen, die oft auch örtlich verteilt sind. Für diese Systeme wäre es sehr aufwändig, die einzelnen physikalischen Maschinen manuell zu verwalten, aus diesem Grund werden Orchestrierungswerkzeuge verwendet, die die Verwaltung von virtuellen Umgebungen auf verschiedenen physikalischen Systemen automatisieren. 
+Softwarekomponenten wie Hypervisor und Container Runtime verwalten die virtuellen Umgebungen auf einer physikalischen Maschine. Sie eignen sich also dazu, Rechenressourcen lokal flexibel zu verwalten und bilden damit die Grundlage für Cloud Computing Systeme. Cloud Systeme bestehen allerdings aus viele physikalische Maschinen, die oft auch örtlich verteilt sind. Für diese Systeme wäre es sehr aufwändig, die virtuellen Umgebungen auf den einzelnen physikalischen Maschinen manuell zu verwalten, aus diesem Grund werden Programme für die Orchestrierung verwendet, die die Verwaltung von den virtuellen Umgebungen auf verschiedenen physikalischen Systemen automatisieren. 
