@@ -111,7 +111,7 @@ Softwarekomponenten wie Hypervisor und Container Runtime verwalten die virtuelle
 
 \subsection{Virtuelle Maschine Orchestrierung}
 
-Cloud Systeme werden mit CLoud System Management Plattforme verwaltet. Diese sind in der Regel modular aufgebaut und bieten diverse Module für die Einrichtung, Verwaltung und Überwachung von Cloud Systemen an. Virtuelle Maschinen sind in Cloud Systemen weiterhin stark verbreitet. Aus diesem Grund bieten diese Management Plattforme auch entsprechende Hypervisor und Orchestrierer Module an.
+Cloud Systeme werden mit CLoud System Management Plattforme verwaltet. Diese sind in der Regel modular aufgebaut und bieten diverse Module für die Einrichtung, Verwaltung und Überwachung von Cloud Systemen an. Virtuelle Maschinen sind in Cloud Systemen weiterhin stark verbreitet. Aus diesem Grund bieten diese Management Plattforme auch entsprechende Hypervisor und Orchestrierer Module an. 
 
 Für die beispielhafte Vorstellung eines solchen Management Platforms wird die Architektur des Open Source Plattforms OpenStack genommen. Es verfolgt ebenfalls eine modulare Struktur, wo verschiedene Module, die Services genannt werden verschiedene Aufgaben übernehmen. Eine schematische Darstellung der Kernkomponenten kann in der Abbildung \ref{openstack_arch} betrachtet werden. Im folgenden Abschnitt wird die Funktion der einzelnen Module kurz erklärt:
 
@@ -128,17 +128,23 @@ Für die beispielhafte Vorstellung eines solchen Management Platforms wird die A
 	\item Identity (Keystone): Stellt Authentifizierung und Authorisierung für Benutzer zur Verfügung. Unterstützt verschiedene Methoden für Authentifizierung, wie Benutzername und Passwort, Token oder Amazon Web Services log-in.
 	\item Networking (Neutron): Erstellt und verwaltet das virtuelle Netzwerkinfrastruktur im Cloud System. 
 	\item Block Storage: Block Storage ist ein persistenter Speicher, der Daten in rohem Binärformat in gleich große Blöcke speichert. Der Blockspeicher in diesem Cloud System fasst viele physikalische Festplatten zu virtuellen Festplatten zusammen, die von den virtuellen Maschinen genutzt werden können. 
-	\item Compute: Stellt virtuelle Maschinen nach Bedarf zur Verfügung. Es kann auf ausgewählten Nodes virtuelle Umgebungen erstellen indem es mit deren Virtualisierungsmethode interagiert. Im Falle von virtuellen Maschinen werden die Hypervisoren auf den Nodes durch Compute gesteuert. 
+	\item Compute (Nova): Stellt virtuelle Maschinen nach Bedarf zur Verfügung. Es kann auf ausgewählten Nodes virtuelle Umgebungen erstellen indem es mit deren Virtualisierungsmethode interagiert. Im Falle von virtuellen Maschinen werden die Hypervisoren auf den Nodes durch Compute gesteuert. 
 	\item Image: Speicher für virtuelle Festplatten images. Diese können entweder von bestehenden Servern erstellt werden, oder neu hinzugefügt werden als Vorlage für neue Server. 
 	\item Object Storage: persistenter Speicher wo große Datenmengen als Objekte gespeichert werden können. Die gespeicherten Daten sind typischerweise Videos, Bilder, Emails, Dateien. Daten werden in Binärformat gespeichert mit Metadaten, die die Eigenschaften beschreiben. 
 	\item Telemetrie: Sammelt Nutzungsstatistiken im Cloud System. Diese Daten können für Kostenabrechnungen für Kunden benutzt werden ("Pay per Use"), für Überwachung und für Warnungen.
 \end{itemize} \cite{Red2_2024}
+
+Für die Orchestrierung von virtuellen Maschinen ist das Compute Modul (Codename Nova) zuständig. Es ist ein eigenes Teilprojekt innerhalb des OpenStack Projekts. Compute selber besteht aus mehreren Prozessen. Die Kommunikation mit den anderen OpenStack Modulen erfolgt über eine definierte REST API. Modulintern kommunizieren die einzelnen Prozesse mit RPC Nachrichten. Für die Verarbeitung der REST API Nachrichten, bei Bedarf versenden der RCP Nachrichten an die anderen Prozesse und die Generierung von Antworten über REST API ist ein API Server Prozess zuständig. 
+
+
 
 Google Compute Engine
 
 Microsoft Azure Logic Apps
 
 VMware vRealize Suite
+
+Amazon Web Services
 
 OpenStack
 
