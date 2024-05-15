@@ -134,9 +134,16 @@ Für die beispielhafte Vorstellung eines solchen Management Platforms wird die A
 	\item Telemetrie: Sammelt Nutzungsstatistiken im Cloud System. Diese Daten können für Kostenabrechnungen für Kunden benutzt werden ("Pay per Use"), für Überwachung und für Warnungen.
 \end{itemize} \cite{Red2_2024}
 
-Für die Orchestrierung von virtuellen Maschinen ist das Compute Modul (Codename Nova) zuständig. Es ist ein eigenes Teilprojekt innerhalb des OpenStack Projekts. Compute selber besteht aus mehreren Prozessen. Die Kommunikation mit den anderen OpenStack Modulen erfolgt über eine definierte REST API. Modulintern kommunizieren die einzelnen Prozesse mit RPC Nachrichten. Für die Verarbeitung der REST API Nachrichten, bei Bedarf versenden der RCP Nachrichten an die anderen Prozesse und die Generierung von Antworten über REST API ist ein API Server Prozess zuständig. 
+Für die Orchestrierung von virtuellen Maschinen ist das Compute Modul (Codename Nova) zuständig. Es ist ein eigenes Teilprojekt innerhalb des OpenStack Projekts. Compute selber besteht aus mehreren Prozessen. Die Kommunikation mit den anderen OpenStack Modulen erfolgt über eine definierte REST API. Die einzelnen Compute Prozesse kommunizieren mit RPC Nachrichten. Die Architektur ist so ausgelegt, dass die einzelnen Prozesse keine gemeinsamen Ressourcen teilen, Datenaustausch findet ausschließlich über die RCP Nachrichten statt. Dieser Ansatz ermöglicht, dass einzelne Prozesse auf mehreren Servern verteilt werden können. Eine Ausnahme hiervon bildet der Compute Prozess, da dieser Prozess auf dem Hypervisor läuft, den es verwaltet. Als Datenbank nutzt das Compute Modul einen SQL Datenbank. Dieser Datenbank wird zwischen den anderen Modulen geteilt. Die Kommunikation zu diesem Datenbank erfolgt über ein separates Nachrichtenprotokoll. Die einzelnen Module und die Kommunikationspfade sind in der Abbildung \ref{compute_arch} dargestellt. 
 
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{./content/graphics/compute_arch.pdf}
+	\caption{Schematische Darstellung der OpenStack Compute Architektur}
+	\label{compute_arch}
+\end{figure}
 
+Das Compute Modul interagiert mit den Hypervisoren durch einen API Server. Es unterstützt verschiedene Hypervisoren, die in der Cloud auch gemischt werden können. 
 
 Google Compute Engine
 
