@@ -134,7 +134,7 @@ Für die beispielhafte Vorstellung eines solchen Management Platforms wird die A
 	\item Telemetrie: Sammelt Nutzungsstatistiken im Cloud System. Diese Daten können für Kostenabrechnungen für Kunden benutzt werden ("Pay per Use"), für Überwachung und für Warnungen.
 \end{itemize} \cite{Red2_2024}
 
-Für die Orchestrierung von virtuellen Maschinen ist das Compute Modul (Codename Nova) zuständig. Es ist ein eigenes Teilprojekt innerhalb des OpenStack Projekts. Compute selber besteht aus mehreren Prozessen. Die Kommunikation mit den anderen OpenStack Modulen erfolgt über eine definierte REST API. Die einzelnen Compute Prozesse kommunizieren mit RPC Nachrichten. Die Architektur ist so ausgelegt, dass die einzelnen Prozesse keine gemeinsamen Ressourcen teilen, Datenaustausch findet ausschließlich über die RCP Nachrichten statt. Dieser Ansatz ermöglicht, dass einzelne Prozesse auf mehreren Servern verteilt werden können. Eine Ausnahme hiervon bildet der Compute Prozess, da dieser Prozess auf dem Hypervisor läuft, den es verwaltet. Als Datenbank nutzt das Compute Modul einen SQL Datenbank. Dieser Datenbank wird zwischen den anderen Modulen geteilt. Die Kommunikation zu diesem Datenbank erfolgt über ein separates Nachrichtenprotokoll. Die einzelnen Module und die Kommunikationspfade sind in der Abbildung \ref{compute_arch} dargestellt. 
+Für die Orchestrierung von virtuellen Maschinen ist das Compute Modul (Codename Nova) zuständig. Es ist ein eigenes Teilprojekt innerhalb des OpenStack Projekts. Compute selber besteht aus mehreren Prozessen. Die Kommunikation mit den anderen OpenStack Modulen erfolgt über eine definierte REST API mit HTTP Protokoll. Die einzelnen Compute Prozesse kommunizieren mit RPC Nachrichten. Die Architektur ist so ausgelegt, dass die einzelnen Prozesse keine gemeinsamen Ressourcen teilen, Datenaustausch findet ausschließlich über die RCP Nachrichten statt. Dieser Ansatz ermöglicht, dass einzelne Prozesse auf mehreren Servern verteilt werden können. Eine Ausnahme hiervon bildet der Compute Prozess, da dieser Prozess auf dem Hypervisor läuft, den es verwaltet. Als Datenbank nutzt das Compute Modul einen SQL Datenbank. Dieser Datenbank wird zwischen den anderen Modulen geteilt. Die Kommunikation zu diesem Datenbank erfolgt über ein separates Nachrichtenprotokoll. Die einzelnen Module und die Kommunikationspfade sind in der Abbildung \ref{compute_arch} dargestellt. 
 
 \begin{figure}
 	\centering
@@ -143,7 +143,7 @@ Für die Orchestrierung von virtuellen Maschinen ist das Compute Modul (Codename
 	\label{compute_arch}
 \end{figure}
 
-Das Compute Modul interagiert mit den Hypervisoren durch einen API Server. Es unterstützt verschiedene Hypervisoren, die in der Cloud auch gemischt werden können. Die Enwticklung findet hauptsächlich mit Kernelbasierten Virtuellen Maschine statt (KVM), die ein Modul des Linux Kernels ist.
+Das Compute Modul interagiert mit den Hypervisoren durch einen API Server. Es unterstützt verschiedene Hypervisor implementierungen, die in der Cloud auch gemischt verwendet werden können. Das Compute Modul wird allerdings bei der Entwicklung hauptsächlich mit Kernelbasierter virtuellen Maschine (KVM) getestet, die ein Modul des Linux Kernels ist. 
 
 Google Compute Engine
 
@@ -157,4 +157,8 @@ OpenStack
 
 
 
-\subsection{Containerorchestrierung}
+\subsection{Container Orchestrierung}
+
+Container Orchestrierung übernimmt die automatische Platzierung, Skalierung und Management von containerisierte Applikationen. 
+
+Eine der meistverbreiteten Implementierungen von Container Orchestrierungstools ist Kubernetes. Anhand dessen Funktionsweise und Architektur wird beispielhaft gezeigt, wie Tools für Container Orchestrierung umgesetzt werden können. 
