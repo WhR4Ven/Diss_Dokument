@@ -159,9 +159,25 @@ OpenStack
 
 \subsection{Container Orchestrierung}
 
-Container Orchestrierung übernimmt die automatische Platzierung, Skalierung und Management von containerisierte Applikationen. 
+Container Orchestrierung übernimmt die automatische Platzierung, Skalierung und Management von containerisierte Applikationen. Das Konzept ist dabei ähnlich wie bei der Orchestrierung von virtuellen Maschinen. Eine zentrale Orchestrierungsinstazn verwaltet mehrere Container Runtimes die oft auf verschiedenen physikalischen Maschinen laufen.
 
-Eine der meistverbreiteten Implementierungen von Container Orchestrierungstools ist Kubernetes. Anhand dessen Funktionsweise und Architektur wird beispielhaft gezeigt, wie Tools für Container Orchestrierung umgesetzt werden können. 
+Eine der meistverbreiteten Implementierungen von Container Orchestrierungstools ist Kubernetes. Anhand dessen Funktionsweise und Architektur wird beispielhaft gezeigt, wie Tools für Container Orchestrierung umgesetzt werden können. Dieser ist in der Abbildung \ref{kubernetes_arch} dargestellt.
+
+Die containerisierte Applikationen werden bei Kubernetes in Pods gelegt, die auf den sogenannten \enquote{Worker Nodes} ausgeführt werden. Diese Nodes können sowohl auf virtuellen Maschinen als auch auf physikalischen Maschinen ausgeführt werden. Ein Node besteht aus mehreren Komponenten:
+
+\begin{itemize}
+	\item kubelet: Diese Komponente verwaltet die Container die in den Pods laufen. Hierfür werden PodSpecs Konfigurationen verwendet, die die Sollzustände der Container beschreiben in dem jeweiligen Pod beschreiben.
+	\item kube-proxy: verwaltet die Netzwerkregeln auf den Nodes. Diese Regeln gelten für die Netzwerkkommunikation zu den Pods aus dem Netzwerk. 
+	\item container runtime: Container Runtimes implementieren die Erstellung und Verwaltung von Container auf dem Betriebssystem. Kubernetes unterstützt verschiedene container runtimes, am häufigsten wird Docker/containerd verwendet. 
+\end{itemize}
+
+Die \enquote{Worker Nodes} werden von der \enquote{Control Plane} verwaltet. Diese besteht ebenfalls aus mehreren Komponenten, die die globale Entscheidungen über das Cluster treffen. Hierzu gehört die Verteilung der Container aber auch die Überwachung und das reagieren auf Ereignisse. Die einzelnen Komponenten können auch verteilt auf verschiedene Maschinen ausgeführt werden, in kleineren CLustern werden typischerweise alle Control Plane Komponenten auf derselben Maschine ausgeführt, die keine Worker Nodes ausführt. In größeren Produktionsumgebungen werden die Komponenten über mehrere Systeme verteilt ausgeführt. Die Control Plane besteht aus den folgenden Komponenten:
+
+\begin{itemize}
+	\item API Server: Der API server ist die API Schnittstelle für Kubernetes. 
+\end{itemize}
+
+Nodes können sich selber registrieren oder manuell hinzugefügt werden. FÜr die Registrierung ist die kubelet Komponente zuständig. 
 
 \begin{figure}
 	\centering
