@@ -163,25 +163,43 @@ Container Orchestrierung übernimmt die automatische Platzierung, Skalierung und
 
 Eine der meistverbreiteten Implementierungen von Container Orchestrierungstools ist Kubernetes. Anhand dessen Funktionsweise und Architektur wird beispielhaft gezeigt, wie Tools für Container Orchestrierung umgesetzt werden können. Dieser ist in der Abbildung \ref{kubernetes_arch} dargestellt.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{./content/graphics/kubernetes_arch.pdf}
+	\caption{Schematische Darstellung der Kubernetes Cluster Architektur}
+	\label{kubernetes_arch}
+\end{figure}
+
 Die containerisierte Applikationen werden bei Kubernetes in Pods gelegt, die auf den sogenannten \enquote{Worker Nodes} ausgeführt werden. Diese Nodes können sowohl auf virtuellen Maschinen als auch auf physikalischen Maschinen ausgeführt werden. Ein Node besteht aus mehreren Komponenten:
 
 \begin{itemize}
 	\item kubelet: Diese Komponente verwaltet die Container die in den Pods laufen. Hierfür werden PodSpecs Konfigurationen verwendet, die die Sollzustände der Container beschreiben in dem jeweiligen Pod beschreiben.
 	\item kube-proxy: verwaltet die Netzwerkregeln auf den Nodes. Diese Regeln gelten für die Netzwerkkommunikation zu den Pods aus dem Netzwerk. 
-	\item container runtime: Container Runtimes implementieren die Erstellung und Verwaltung von Container auf dem Betriebssystem. Kubernetes unterstützt verschiedene container runtimes, am häufigsten wird Docker/containerd verwendet. 
+	\item container runtime: Container Runtimes implementieren die Erstellung und Verwaltung von Container auf dem Betriebssystem. Kubernetes unterstützt verschiedene container Runtimes, am häufigsten wird Docker/Containerd verwendet. 
 \end{itemize}
 
 Die \enquote{Worker Nodes} werden von der \enquote{Control Plane} verwaltet. Diese besteht ebenfalls aus mehreren Komponenten, die die globale Entscheidungen über das Cluster treffen. Hierzu gehört die Verteilung der Container aber auch die Überwachung und das reagieren auf Ereignisse. Die einzelnen Komponenten können auch verteilt auf verschiedene Maschinen ausgeführt werden, in kleineren CLustern werden typischerweise alle Control Plane Komponenten auf derselben Maschine ausgeführt, die keine Worker Nodes ausführt. In größeren Produktionsumgebungen werden die Komponenten über mehrere Systeme verteilt ausgeführt. Die Control Plane besteht aus den folgenden Komponenten:
 
 \begin{itemize}
-	\item API Server: Der API server ist die API Schnittstelle für Kubernetes. 
+	\item API Server: Der API Server stellt die API Schnittstelle für Kubernetes zur Verfügung. Es ist sowohl für die Kommunikation zwischen Benutzer und Kubernetes Cluster als auch für die Kubernetes Komponenten untereinander innerhalb des Clusters zuständig. 
+	\item etcd Datenbank: Datenbank für alle Cluster Daten. Es ist nach dem Key-Value Storage 
+	%\glsadd{Key-Value Storage}% 
+	Prinzip implementiert. Änderungen erzeugen immer eine neue Version, 
+	\item kube-scheduler: Diese Komponente erkennt neue Pods im System, die auf keinem Worker Node ausgeführt werden und wählt geeignete Nodes für sie aus, wo sie ausgeführt werden können. Die Auswahl an geeignete Worker Nodes wird an verschiedenen Kriterien festgelegt: individuelle und kollektive Ressourcenanforderungen, Hardware-/Software-/Richtlinienbeschränkungen, Affinitäts- und Anti-Affinitäts-Spezifikationen, Datenlokalität, Beeinträchtigung zwischen Workloads und Fristen.
+	\item kube-controller-manager: Komponente der Control Plane, die Controller-Prozesse ausführt.
+	
+	Jede Art von Controller ist logisch ein separater Prozess, jedoch sind sie alle in einem Binärdatei Kompiliert und laufen in einem einzigen Prozess.
+	
+	Es gibt viele verschiedene Arten von Controllern. Einige Beispiele sind:
+
+    Node Controller: Verantwortlich für das Erkennen und Reagieren, wenn Knoten ausfallen.
+    Job Controller: Überwacht Job-Objekte, die einmalige Aufgaben darstellen, und erstellt Pods, um diese Aufgaben zu erfüllen.
+    EndpointSlice Controller: Füllt EndpointSlice-Objekte aus (um eine Verbindung zwischen Services und Pods herzustellen).
+    ServiceAccount Controller: Erstellt Standard-ServiceAccounts für neue Namespaces.
+
+	Die obige Liste ist nicht vollständig.
 \end{itemize}
 
-Nodes können sich selber registrieren oder manuell hinzugefügt werden. FÜr die Registrierung ist die kubelet Komponente zuständig. 
+Neue Worker Nodes im Kubernetes Cluster müssen im Control Plane registriert werden bevor sie Pods ausführen können. Dies erfolgt über den API Server. In der Standardkonfiguration registrieren sich Nodes selbständig, eine manuelle Registrierung ist ebenfalls möglich. Wenn alle nötigen Softwarekomponenten des Nodes laufen, wird es als Gesund deklariert und kann Pods ausführen. Identifikation der Nodes erfolgt über den Namen. Der Name darf aus diesem Grund nur einmalig im Cluster vorhanden sein. 
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{./content/graphics/kubernetes_arch.pdf}
-	\caption{Schematische Darstellung der OpenStack Compute Architektur}
-	\label{kubernetes_arch}
-\end{figure}
+Die Verfügbarkeit von Nodes wird durch \enquote{Heartbeat} Nachrichten sichergestellt. Diese Nachrichten werden periodisch an die Control Plane gesendet, damit der aktuelle Node Status aktualisiert werden kann und ein nicht mehr verfügbarer Node erkannt werden kann.
