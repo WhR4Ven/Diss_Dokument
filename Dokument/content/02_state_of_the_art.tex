@@ -161,7 +161,7 @@ OpenStack
 
 Container Orchestrierung übernimmt die automatische Platzierung, Skalierung und Management von containerisierte Applikationen. Das Konzept ist dabei ähnlich wie bei der Orchestrierung von virtuellen Maschinen. Eine zentrale Orchestrierungsinstazn verwaltet mehrere Container Runtimes die oft auf verschiedenen physikalischen Maschinen laufen.
 
-Eine der meistverbreiteten Implementierungen von Container Orchestrierungstools ist Kubernetes. Anhand dessen Funktionsweise und Architektur wird beispielhaft gezeigt, wie Tools für Container Orchestrierung umgesetzt werden können. Dieser ist in der Abbildung \ref{kubernetes_arch} dargestellt.
+Eine der meistverbreiteten Implementierungen von Container Orchestrierungstools ist Kubernetes. Es kann entweder direkt auf dem Host Betriebssystem verwendet werden als Virtualisierungsmethode, oder auch in Kombination mit Cloud System Management verwendet werden um Applikationen auf den virtuellen Maschinen zu verwalten. Anhand der Funktionsweise und Architektur von Kubernetes wird im folgenden Abschnitt beispielhaft gezeigt, wie Tools für Container Orchestrierung umgesetzt werden können. Dieser ist in der Abbildung \ref{kubernetes_arch} dargestellt.
 
 \begin{figure}
 	\centering
@@ -202,4 +202,10 @@ Die \enquote{Worker Nodes} werden von der \enquote{Control Plane} verwaltet. Die
 
 Neue Worker Nodes im Kubernetes Cluster müssen im Control Plane registriert werden bevor sie Pods ausführen können. Dies erfolgt über den API Server. In der Standardkonfiguration registrieren sich Nodes selbständig, eine manuelle Registrierung ist ebenfalls möglich. Wenn alle nötigen Softwarekomponenten des Nodes laufen, wird es als Gesund deklariert und kann Pods ausführen. Identifikation der Nodes erfolgt über den Namen. Der Name darf aus diesem Grund nur einmalig im Cluster vorhanden sein. 
 
-Die Verfügbarkeit von Nodes wird durch \enquote{Heartbeat} Nachrichten sichergestellt. Diese Nachrichten werden periodisch an die Control Plane gesendet, damit der aktuelle Node Status aktualisiert werden kann und ein nicht mehr verfügbarer Node erkannt werden kann.
+Die Verfügbarkeit von Nodes wird durch \enquote{Heartbeat} Nachrichten sichergestellt. Diese Nachrichten werden periodisch an die Control Plane gesendet, damit der aktuelle Node Status aktualisiert werden kann und ein nicht mehr verfügbarer Node erkannt werden kann. 
+
+Innerhalb der Control Plane verwaltet die Node Controller Komponente des Controller Managers die verschiedenen Aspekte der Knoten. Sie erstellt eine Liste der im Cluster verfügbaren Knoten und deren Status. Sie weist den Knoten 
+%\glsadd{CIDR}% 
+CIDR Block zu, falls diese Einstellung aktiviert ist, und übernimmt somit die Verwaltung der Netzwerkkonfiguration im Cluster. Wenn Kubernetes im Cloud Management System verwendet wird, wird die Liste der Nodes mit der Liste der verfügbaren virtuellen Maschinen des Cloud Systems synchron gehalten. Ist ein Node nicht verfügbar, kommuniziert der Node Controller mit dem Cloud Management System und prüft, ob die virtuelle Maschine für den Node noch verfügbar ist. Ist dies nicht der Fall, wird der Node gelöscht. Die Nodes werden ebenfalls auf ihre korrekte Funktionalität überwacht, wenn ein Node nicht unerreichbar ist, werden Pods, die auf dem Node laufen sollten auf andere Nodes umgelagert. 
+
+Die verfügbaren Rechenressourcen der jeweiligen Nodes wird bei der Registrierung übertragen. Dies beinhaltet beispielweise die verfügbare menge an Arbeitsspeicher und die Anzahl an CPU Kerne. Bei der automatischen Registrierung der Nodes passiert dies automatisch, wenn ein Node manuell hinzugefügt wird, müssen diese Informationen ebenfalls angegeben werden. 
