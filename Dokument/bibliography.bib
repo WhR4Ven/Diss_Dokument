@@ -924,4 +924,104 @@
   file   = {:-.pdf:PDF},
 }
 
+ 
+@InProceedings{Nayak2023,
+  author     = {Nayak, Naresh and Grewe, Dennis and Schildt, Sebastian},
+  booktitle  = {2023 {IEEE} {Vehicular} {Networking} {Conference} ({VNC})},
+  title      = {Automotive {Container} {Orchestration}: {Requirements}, {Challenges} and {Open} {Directions}},
+  year       = {2023},
+  month      = apr,
+  note       = {ISSN: 2157-9865},
+  pages      = {61--64},
+  abstract   = {After having changed the landscape of software development and operations in cloud computing, virtualization technologies such as containers have now become a technology of interest for in-vehicular E/E architectures. Packaging software components and all their dependencies into portable containers is promising to simplify the deployments on modern in-vehicle platforms. A key component to distribute and manage containerized applications within a computing system is the orchestrator. As a logically centralized component, it is responsible to deploy, manage and monitor containerized applications and their health state and migrate them if necessary, e.g., in event of failures. However, the design of the existing orchestration solutions, such as Kubernetes (k8s), is mainly driven by cloud or IoT applications, not addressing the requirements of automotive applications such as heterogeneous communication networks or functional safety. In this paper, we discuss the functions of an automotive grade container orchestrator in an in-vehicular network and elicit its requirements. We explore k3s, a specialized orchestration framework for edge computing, and highlight its shortcomings for usage in automotive networks. Finally, we conclude with a set of open challenges and directions towards the development of an automotive grade container orchestrator.},
+  doi        = {10.1109/VNC57357.2023.10136278},
+  file       = {:Nayak2023 - Automotive Container Orchestration_ Requirements, Challenges and Open Directions.html:URL},
+  issn       = {2157-9865},
+  keywords   = {Cloud computing, Computer architecture, Containers, Packaging, Market research, Software, Safety, Containerization, Orchestration, Safety, Requirements Engineering},
+  shorttitle = {Automotive {Container} {Orchestration}},
+  url        = {https://ieeexplore.ieee.org/document/10136278},
+  urldate    = {2024-06-03},
+}
+
+ 
+@Article{Sinha2021,
+  author   = {Sinha, Soham and West, Richard},
+  journal  = {ACM Transactions on Embedded Computing Systems},
+  title    = {Towards an {Integrated} {Vehicle} {Management} {System} in {DriveOS}},
+  year     = {2021},
+  issn     = {1539-9087},
+  month    = sep,
+  number   = {5s},
+  pages    = {82:1--82:24},
+  volume   = {20},
+  abstract = {Modern automotive systems feature dozens of electronic control units (ECUs) for chassis, body and powertrain functions. These systems are costly and inflexible to upgrade, requiring ever increasing numbers of ECUs to support new features such as advanced driver assistance (ADAS), autonomous technologies, and infotainment. To counter these challenges, we propose DriveOS, a safe, secure, extensible, and timing-predictable system for modern vehicle management in a centralized platform. DriveOS is based on a separation kernel, where timing and safety-critical ECU functions are implemented in a real-time OS (RTOS) alongside non-critical software in Linux or Android. The system enforces the separation, or partitioning, of both software and hardware among different OSes. DriveOS runs on a relatively low-cost embedded PC-class platform, supporting multiple cores and hardware virtualization capabilities. Instrument cluster, in-vehicle infotainment and advanced driver assistance system services are implemented in a Yocto Linux guest, which communicates with critical real-time services via secure shared memory. The RTOS manages a real-time controller area network (CAN) interface that is inaccessible to Linux services except via well-defined and legitimate communication channels. In this work, we integrate three Qt-based services written for Yocto Linux, running in parallel with a real-time longitudinal controller task and multiple CAN bus concentrators, for vehicular sensor data processing and actuation. We demonstrate the benefits and performance of DriveOS with a hardware-in-the-loop CARLA simulation using a real car dataset.},
+  doi      = {10.1145/3477013},
+  file     = {:Sinha2021 - Towards an Integrated Vehicle Management System in DriveOS.pdf:PDF},
+  keywords = {Automotive systems, safety-criticality, partitioning hypervisor},
+  url      = {https://dl.acm.org/doi/10.1145/3477013},
+  urldate  = {2024-06-05},
+}
+
+ 
+@Article{Talpes2020,
+  author   = {Talpes, Emil and Sarma, Debjit Das and Venkataramanan, Ganesh and Bannon, Peter and McGee, Bill and Floering, Benjamin and Jalote, Ankit and Hsiong, Christopher and Arora, Sahil and Gorti, Atchyuth and Sachdev, Gagandeep S.},
+  journal  = {IEEE Micro},
+  title    = {Compute {Solution} for {Tesla}'s {Full} {Self}-{Driving} {Computer}},
+  year     = {2020},
+  issn     = {1937-4143},
+  month    = mar,
+  number   = {2},
+  pages    = {25--35},
+  volume   = {40},
+  abstract = {Tesla's full self-driving (FSD) computer is the world's first purpose-built computer for the highly demanding workloads of autonomous driving. It is based on a new System on a Chip (SoC) that integrates industry standard components such as CPUs, ISP, and GPU, together with our custom neural network accelerators. The FSD computer is capable of processing up to 2300 frames per second, a 21× improvement over Tesla's previous hardware and at a lower cost, and when fully utilized, enables a new level of safety and autonomy on the road.},
+  doi      = {10.1109/MM.2020.2975764},
+  file     = {:Talpes2020 - Compute Solution for Tesla's Full Self Driving Computer.html:URL},
+  keywords = {Convolution, Autonomous systems, Artificial neural networks, Random access memory, Graphics processing units},
+  url      = {https://ieeexplore.ieee.org/document/9007413},
+  urldate  = {2024-06-05},
+}
+
+ 
+@Book{Reinhardt2013,
+  author = {Reinhardt, Dominik and Kucera, Markus},
+  title  = {Domain {Controlled} {Architecture} - {A} {New} {Approach} for {Large} {Scale} {Software} {Integrated} {Automotive} {Systems}},
+  year   = {2013},
+  month  = jan,
+  file   = {ResearchGate Link:https\://www.researchgate.net/publication/259623365_Domain_Controlled_Architecture_-_A_New_Approach_for_Large_Scale_Software_Integrated_Automotive_Systems:},
+  pages  = {226},
+}
+
+ 
+@Article{DiNatale2010,
+  author     = {Di Natale, Marco and Sangiovanni-Vincentelli, Alberto Luigi},
+  journal    = {Proceedings of the IEEE},
+  title      = {Moving {From} {Federated} to {Integrated} {Architectures} in {Automotive}: {The} {Role} of {Standards}, {Methods} and {Tools}},
+  year       = {2010},
+  issn       = {1558-2256},
+  month      = apr,
+  number     = {4},
+  pages      = {603--620},
+  volume     = {98},
+  abstract   = {Cost pressure, flexibility, extensibility and the need for coping with increased functional complexity are changing the fundamental paradigms for the definition of automotive and aeronautics architectures. Traditional designs are based on the concept of a Federated Architecture in which integrated hardware/software components [Electronic Control Units (ECUs)] realize mostly independent or loosely interconnected functions. These components are connected by bus and cooperate by exchanging messages. This paradigm is now being replaced by the Integrated Architecture,—the concept comes from Integrated Modular Avionics (IMA) introduced by the avionics community (see C. B. Watkins and R. Walter, “Transitioning from federated avionics architectures to integrated modular avionics,” in Proc. 26th Digital Avionics Syst. Conf., Oct. 2007) but it is certainly general and applicable to other fields and in particular, automotive—in which software components can be supplied from multiple sources, integrated on the same hardware platform or physically distributed and possibly moved from one CPU to another without loss of functional and time correctness and providing a guaranteed level of reliability. This shift will decouple software design from the hardware platform design and provide opportunities for the optimization of the architecture configuration, increased extensibility, flexibility and modularity. However, the integration of software components in a distributed system realizing a complex functional behavior and characterized by safety, time and reliability constraints requires a much tighter control on the component model and its semantics, new methods and tools for analyzing the results of the composition, whether by simulation or formal methods, and methods for exploring the architecture solution space and optimizing the configuration. We provide a general overview of existing challenges and possible solutions to the design and analysis problem, with special focus on the automotive domain. The development of such methods and tools must necessarily consider compatibility with existing modeling languages and standards, including UML, AUTOSAR and synchronous reactive models, on which the widely used commercial products Simulink and SCADE are based.},
+  doi        = {10.1109/JPROC.2009.2039550},
+  file       = {:DiNatale2010 - Moving from Federated to Integrated Architectures in Automotive_ the Role of Standards, Methods and Tools.html:URL},
+  keywords   = {Automotive engineering, Aerospace electronics, Computer architecture, Hardware, Software safety, Cost function, Software design, Design optimization, Software tools, Time factors, Architecture, automotive electronic system, automotive software, design methodology, design space exploration, system design},
+  shorttitle = {Moving {From} {Federated} to {Integrated} {Architectures} in {Automotive}},
+  url        = {https://ieeexplore.ieee.org/document/5440059},
+  urldate    = {2024-06-06},
+}
+
+ 
+@Misc{Amend2017,
+  author       = {James M. Amend},
+  howpublished = {Webpage},
+  month        = sep,
+  title        = {Delphi {Automotive} {\textbar} {Suppliers} {Sees} {Shift} to {Centralized} {Computing}},
+  year         = {2017},
+  abstract     = {Delphi Automotive sees shift to centralized computing in vehicles from hundreds of individual electronic control units, partners with startup Renovo.},
+  language     = {en},
+  url          = {https://www.wardsauto.com/suppliers/delphi-industry-must-go-digital-or-die},
+  urldate      = {2024-06-07},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
