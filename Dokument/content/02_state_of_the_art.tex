@@ -53,7 +53,7 @@ Cloud Computing bietet verschiedene Geschäftsmodelle für Kunden an, die je nac
 
 Die Zuständigkeiten zwischen Cloud Anbieter und Kunde des Cloud Dienstes für die verschiedenen Geschäftsmodelle ist in der Abbildung \ref{cloud_modelle} dargestellt. Hier ist es gut erkennbar wie die Zuständigkeiten von IaaS zu Saas hin immer mehr Richtung Cloud Anbieter verlagert werden.
 
-\begin{figure}
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./content/graphics/cloud_models.pdf}
 	\caption{Vergleich der Zuständigkeiten zwischen Cloud Anbieter und Kunden bei verschiedenen Geschäftsmodellen}
@@ -74,7 +74,7 @@ Edge Computing ist eine Form von Distributed Computing. In diesem Kontext werden
 
 Applikationen haben in den meisten Fällen Abhängigkeiten zu weiteren Softwarekomponenten, die auf dem ausführenden Betriebssystem installiert werden muss. Das Betriebssystem und die darauf installierte Softwarekomponenten nennt man Laufzeitumgebung. Verschiedene Applikationen können verschiedene Versionen von zusätzlichen Softwarekomponenten nutzen, so dass sie nicht gleichzeitig auf dem selben Betriebssystem und Laufzeitumgebung ausführbar sind. In traditionellen Architekturen wird deswegen eine begrenzte Anzahl an Applikationen mit kompatibler Laufzeitumgebung auf einer physikalischen Maschine ausgeführt, die in eine nicht optimale Auslastung der Hardwareressourcen resultiert. Um die Auslastung zu optimieren, wurde das Konzept der Virtualisierung entwickelt. Die physische Ressourcen werden in mehrere virtuelle Ressourcen aufgeteilt. Hierdurch ist es möglich auf einer physikalischen Maschine mehrere voneinander unabhängige Laufzeitumgebungen einzurichten. Virtualisierung wurde bereits in den 1960-er Jahren entwickelt, allerdings wurde dafür spezielle Hardware benötigt. Für die aktuell verbreitete x86-er Architektur wurde die Virtualisierung von VMWare in 1999 umgesetzt. \cite{Bugnion2012} In der Informationstechnik haben sich zwei Virtualisierungsmethoden durchgesetzt, die in den folgenden Abschnitten vorgestellt werden. Ein Überblick über die Struktur der beiden Methoden im Vergleich zu einem klassischen System ohne Virtualisierung ist in der Abbildung \ref{virtualisierung_optionen} dargestellt. 
 
-\begin{figure}
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./content/graphics/applikation_management.pdf}
 	\caption{Vergleich keine Virtualisierung zu den beiden verwendeten Virtualisierungsansätzen}
@@ -115,7 +115,7 @@ Cloud Systeme werden mit CLoud System Management Plattforme verwaltet. Diese sin
 
 Für die beispielhafte Vorstellung eines solchen Management Platforms wird die Architektur des Open Source Plattforms OpenStack genommen. Es verfolgt ebenfalls eine modulare Struktur, wo verschiedene Module, die Services genannt werden verschiedene Aufgaben übernehmen. Eine schematische Darstellung der Kernkomponenten kann in der Abbildung \ref{openstack_arch} betrachtet werden. Im folgenden Abschnitt wird die Funktion der einzelnen Module kurz erklärt:
 
-\begin{figure}
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./content/graphics/openstack_arch.pdf}
 	\caption{Schematische Darstellung der OpenStack Architektur}
@@ -136,7 +136,7 @@ Für die beispielhafte Vorstellung eines solchen Management Platforms wird die A
 
 Für die Orchestrierung von virtuellen Maschinen ist das Compute Modul (Codename Nova) zuständig. Es ist ein eigenes Teilprojekt innerhalb des OpenStack Projekts. Compute selber besteht aus mehreren Prozessen. Die Kommunikation mit den anderen OpenStack Modulen erfolgt über eine definierte REST API mit HTTP Protokoll. Die einzelnen Compute Prozesse kommunizieren mit RPC Nachrichten. Die Architektur ist so ausgelegt, dass die einzelnen Prozesse keine gemeinsamen Ressourcen teilen, Datenaustausch findet ausschließlich über die RCP Nachrichten statt. Dieser Ansatz ermöglicht, dass einzelne Prozesse auf mehreren Servern verteilt werden können. Eine Ausnahme hiervon bildet der Compute Prozess, da dieser Prozess auf dem Hypervisor läuft, den es verwaltet. Als Datenbank nutzt das Compute Modul einen SQL Datenbank. Dieser Datenbank wird zwischen den anderen Modulen geteilt. Die Kommunikation zu diesem Datenbank erfolgt über ein separates Nachrichtenprotokoll. Die einzelnen Module und die Kommunikationspfade sind in der Abbildung \ref{compute_arch} dargestellt. 
 
-\begin{figure}
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./content/graphics/compute_arch.pdf}
 	\caption{Schematische Darstellung der OpenStack Compute Architektur}
@@ -163,7 +163,7 @@ Container Orchestrierung übernimmt die automatische Platzierung, Skalierung und
 
 Eine der meistverbreiteten Implementierungen von Container Orchestrierungstools ist Kubernetes. Es kann entweder direkt auf dem Host Betriebssystem verwendet werden als Virtualisierungsmethode, oder auch in Kombination mit Cloud System Management verwendet werden um Applikationen auf den virtuellen Maschinen zu verwalten. Anhand der Funktionsweise und Architektur von Kubernetes wird im folgenden Abschnitt beispielhaft gezeigt, wie Tools für Container Orchestrierung umgesetzt werden können. Dieser ist in der Abbildung \ref{kubernetes_arch} dargestellt.
 
-\begin{figure}
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./content/graphics/kubernetes_arch.pdf}
 	\caption{Schematische Darstellung der Kubernetes Cluster Architektur}
@@ -216,9 +216,14 @@ Die zunehmende Automatisierung der Fahrfunktionen hat erhebliche Änderungen bei
 
 \subsection{Hardwareumgebung in Fahrzeugen}
 
-Traditionell wurden elektrische Komponenten in Fahrzeugen dezentralisiert entwickelt. In diesem Ansatz sind einzelne Steuergeräte mit deren Software möglichst alleinig für bestimmte Funktionalitäten verantwortlich, die Kopplung zwischen den einzelnen Steuergeräten ist möglichst lose gestaltet, die über Bussysteme untereinander Daten austauschen können. Dies ermöglicht eine einfache Separation von Zuständigkeiten und eine simple Verifikation der Integrationsvoraussetzungen. \cite{DiNatale2010} Dieser Ansatz bietet eine höhere Kontrolle über die einzelnen Systeme und eine hohe Flexibilität für verschiedene Varianten. Nachteilig ist, dass wenn implementierte Funktionen nicht mehr auf einzelne Steuergeräte beschränkt werden können, ein Overhead aufgrund der nötigen Kommunikation zwischen Steuergeräte entsteht. Dies führt einerseits zu hohe Auslastungen auf den Kommunikationsbussen und einem erhöhten Aufwand bei der Abstimmung der Kommunikationsschnittstellen. \cite{Reinhardt2013} Die dezentralisierte Architektur hat sich in den 1980-er Jahren etabliert, durch die Zunahme an automatisierte Fahrfunktionen und Komfortfunktionen steigt die Anzahl an Steuergeräte in modernen Fahrzeugen auf über 100 Stück. \cite{Amend2017} Insgesamt führt diese Architektur zu höheren Kosten aufgrund der hohen Anzahl an Steuergeräten und benötigte Busbandbreite. Aus diesem Grund entwickelt sich die E/E Architektur von modernen Fahrzeugen Richtung zentralisierte Architektur. 
+Traditionell wurden elektrische Komponenten in Fahrzeugen dezentralisiert entwickelt. In diesem Ansatz sind einzelne Steuergeräte mit deren Software möglichst alleinig für bestimmte Funktionalitäten verantwortlich, die Kopplung zwischen den einzelnen Steuergeräten ist möglichst lose gestaltet, die über Bussysteme untereinander Daten austauschen können. Dies ermöglicht eine einfache Separation von Zuständigkeiten und eine simple Verifikation der Integrationsvoraussetzungen. \cite{DiNatale2010} Dieser Ansatz bietet eine höhere Kontrolle über die einzelnen Systeme und eine hohe Flexibilität für verschiedene Varianten. Nachteilig ist, dass wenn implementierte Funktionen nicht mehr auf einzelne Steuergeräte beschränkt werden können, ein Overhead aufgrund der nötigen Kommunikation zwischen Steuergeräte entsteht. Dies führt einerseits zu hohe Auslastungen auf den Kommunikationsbussen und einem erhöhten Aufwand bei der Abstimmung der Kommunikationsschnittstellen. \cite{Reinhardt2013} Die dezentralisierte Architektur hat sich in den 1980-er Jahren etabliert, durch die Zunahme an automatisierte Fahrfunktionen und Komfortfunktionen stieg die Anzahl an Steuergeräte in modernen Fahrzeugen auf über 100 Stück. \cite{Amend2017} Insgesamt führt diese Architektur zu höheren Kosten aufgrund der hohen Anzahl an Steuergeräten und benötigte Busbandbreite. Aus diesem Grund entwickelt sich die E/E Architektur von modernen Fahrzeugen Richtung zentralisierte Architektur. Eine Übersicht der Architekturen in Fahrzeugen bietet die Abbildung \ref{E/E_arch}.
 
- 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./content/graphics/EE_arch.pdf}
+	\caption{Überblick über den E/E Architekturen in Fahrzeugen}
+	\label{E/E_arch}
+\end{figure}
 
 
 
