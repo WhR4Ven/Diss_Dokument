@@ -220,16 +220,25 @@ Traditionell wurden elektrische Komponenten in Fahrzeugen dezentralisiert entwic
 
 Der erste Entwicklungsschritt nach der dezentralisierten Architektur ist die Domänenarchitektur. Fahrzeugdomänen sind Gruppen von Systemen und Funktionen, die einem bestimmten Entwicklungsbereich zugeordnet werden können. Diese sind beispielweise Antriebsstrang, Bremssystem, Chassis, Elektronik, Mensch-Maschine Schnittstellen. \cite{continental2024} Bei dieser Architektur sind Steuergeräte der gleichen Domäne miteinander vernetzt. Zusätzlich bekommt jede Domäne ein Domänensteuergerät, das als Master Steuergerät Funktionalitäten von mehreren herkömmlichen Steuergeräten vereint. Kommunikation zwischen Domänen ist durch eine Gateway Komponente möglich, die Nachrichten zwischen den verschiedenen Bussen überträgt. Diese Architektur ist in modernen Fahrzeugen sehr verbreitet. Durch fortschreiten der autonomen Fahrfunktionen und Infotainment Funktionalitäten ist diese Architektur mittlerweile auch nicht mehr Effizient, da die Abgrenzung der Funktionen auf einzelne Domänen nicht mehr möglich ist. Ein Abstandshalter Tempomat muss beispielweise sowohl Antriebsstrang als auch Bremse bedienen können. Für vollautonomes Fahren müssen weiterhin auch Lenkfunktionen, sowie mehrere Sensoren und Kameradaten kombiniert werden. Aus diesem Grund ist die Aufteilung der E/E Architektur auf Fahrzeugdomänen für zukünftige Fahrzeuge nicht mehr Zielführend. 
 
-Die Zonenarchitektur teilt die Implementierte Funktionalitäten der Steuergeräte nicht nach Fahrzeugdomäne ein, sondern nach örtliche Anordnung im Fahrzeug. \cite{Chou2023} Diese Zonencontroller übernehmen Domänenübergreifende Funktionen und reduzieren die Anzahl an Busverbindungen und Steuergeräte. 
+Die Zonenarchitektur teilt die Implementierte Funktionalitäten der Steuergeräte nicht nach Fahrzeugdomäne ein, sondern nach örtliche Anordnung im Fahrzeug. \cite{Chou2023} Diese Zonencontroller übernehmen Domänenübergreifende Funktionen und reduzieren die Anzahl an Busverbindungen und Steuergeräte. Ein zentrales Hochleistungssteuergerät übernimmt die Koordination der Kommunikation zwischen den Zonen und Funktionalitäten die Zonenübergreifend sind. Hierzu gehören beispielweise Autonome Fahrfunktionen. In dieser Ansatz wird also die Anzahl an Steuergeräte weiter reduziert indem die einzelnen Steuergeräte leistungsstärker sind und mehr Funktionen implementieren. 
 
-die  Eine Übersicht der Architekturen in Fahrzeugen bietet die Abbildung \ref{E/E_arch}.
+Die zentrale Architektur ist ein Konzept, welches die Funktionsbereiche der Zonensteuergeräte ebenfalls in das zentralen Steuergerät verlagert. Hierdurch wird die Anzahl an Steuergeräte auf ein Minimum reduziert. Eine Übersicht der vorgestellten Architekturen in Fahrzeugen bietet die Abbildung \ref{E/E_arch}.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./content/graphics/EE_arch.pdf}
-	\caption{Überblick über den E/E Architekturen in Fahrzeugen}
+	\caption{Überblick über die E/E Architekturen in Fahrzeugen}
 	\label{E/E_arch}
 \end{figure}
+
+Sowohl durch die Zentralisierung der Funktionalitäten als auch durch die technische Entwicklung im Bereich Fahrfunktionen und Infotainment steigt die benötigte Rechenleistung für die Steuergeräte. Im dezentralisierten Ansatz werden Steuergeräte verwendet die auf ihre Funktion spezialisiert sind. Sie benötigen nur begrenzt hohe Rechenleistung und eine begrenzte Anzahl an Interfaces um ihre Funktion zu erfüllen. 
+
+Zonensteuergeräte, die im Zonenarchitektur zur Verwendung kommen, haben drei hauptrollen:
+	\begin{itemize}
+		\item Gateway: Implementiert eine Kommunikationsschnittstelle zwischen den Bussen der jeweiligen Zone und das Zentralsteuergerät.  Zudem interpretiert und verteilt es Befehle vom zentralen Fahrzeugcomputer an lokale Steuergeräte und Aktoren. Das Steuergerät ist is also auch für die Kommunikationssicherheit und lokale Netzwerküberwachung zuständig. 
+		\item Aktuator: Konzeptabhängig implementiert das Zonensteuergerät zonenspezifische Funktionen wie Karosserieaktuation, Batteriemanagement, LED-Steuerung, Motorsteuerung oder andere Fahrwerks- und Antriebsfunktionen, die sicherheitskritisch sein können. 
+		\item Spannungsversorgung: Das Zonensteuergerät agiert als intelligente Leistungsverteileinheit um die Zonenkomponenten mit Spannung zu versorgen und deren Leistungsverbrauch zu überwachen. 
+	\end{itemize} \cite{Heurtefeux2021}
 
 
 
