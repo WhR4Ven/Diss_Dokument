@@ -204,9 +204,7 @@ Neue Worker Nodes im Kubernetes Cluster müssen im Control Plane registriert wer
 
 Die Verfügbarkeit von Nodes wird durch \enquote{Heartbeat} Nachrichten sichergestellt. Diese Nachrichten werden periodisch an die Control Plane gesendet, damit der aktuelle Node Status aktualisiert werden kann und ein nicht mehr verfügbarer Node erkannt werden kann. 
 
-Innerhalb der Control Plane verwaltet die Node Controller Komponente des Controller Managers die verschiedenen Aspekte der Knoten. Sie erstellt eine Liste der im Cluster verfügbaren Knoten und deren Status. Sie weist den Knoten 
-%\glsadd{CIDR}% 
-CIDR Block zu, falls diese Einstellung aktiviert ist, und übernimmt somit die Verwaltung der Netzwerkkonfiguration im Cluster. Wenn Kubernetes im Cloud Management System verwendet wird, wird die Liste der Nodes mit der Liste der verfügbaren virtuellen Maschinen des Cloud Systems synchron gehalten. Ist ein Node nicht verfügbar, kommuniziert der Node Controller mit dem Cloud Management System und prüft, ob die virtuelle Maschine für den Node noch verfügbar ist. Ist dies nicht der Fall, wird der Node gelöscht. Die Nodes werden ebenfalls auf ihre korrekte Funktionalität überwacht, wenn ein Node nicht unerreichbar ist, werden Pods, die auf dem Node laufen sollten auf andere Nodes umgelagert. 
+Innerhalb der Control Plane verwaltet die Node Controller Komponente des Controller Managers die verschiedenen Aspekte der Knoten. Sie erstellt eine Liste der im Cluster verfügbaren Knoten und deren Status. Sie weist den Knoten, falls diese Einstellung aktiviert ist, einen \gls{CIDR} Block zu und übernimmt somit die Verwaltung der Netzwerkkonfiguration im Cluster. Wenn Kubernetes im Cloud Management System verwendet wird, wird die Liste der Nodes mit der Liste der verfügbaren virtuellen Maschinen des Cloud Systems synchron gehalten. Ist ein Node nicht verfügbar, kommuniziert der Node Controller mit dem Cloud Management System und prüft, ob die virtuelle Maschine für den Node noch verfügbar ist. Ist dies nicht der Fall, wird der Node gelöscht. Die Nodes werden ebenfalls auf ihre korrekte Funktionalität überwacht, wenn ein Node nicht unerreichbar ist, werden Pods, die auf dem Node laufen sollten auf andere Nodes umgelagert. 
 
 Die verfügbaren Rechenressourcen der jeweiligen Nodes wird bei der Registrierung übertragen. Dies beinhaltet beispielweise die verfügbare menge an Arbeitsspeicher und die Anzahl an CPU Kerne. Bei der automatischen Registrierung der Nodes passiert dies automatisch, wenn ein Node manuell hinzugefügt wird, müssen diese Informationen dabei angegeben werden. 
 
@@ -220,7 +218,7 @@ Traditionell wurden elektrische Komponenten in Fahrzeugen dezentralisiert entwic
 
 Der erste Entwicklungsschritt nach der dezentralisierten Architektur ist die Domänenarchitektur. Fahrzeugdomänen sind Gruppen von Systemen und Funktionen, die einem bestimmten Entwicklungsbereich zugeordnet werden können. Diese sind beispielweise Antriebsstrang, Bremssystem, Chassis, Elektronik, Mensch-Maschine Schnittstellen. \cite{continental2024} Bei dieser Architektur sind Steuergeräte der gleichen Domäne miteinander vernetzt. Zusätzlich bekommt jede Domäne ein Domänensteuergerät, das als Master Steuergerät Funktionalitäten von mehreren herkömmlichen Steuergeräten vereint. Kommunikation zwischen Domänen ist durch eine Gateway Komponente möglich, die Nachrichten zwischen den verschiedenen Bussen überträgt. Diese Architektur ist in modernen Fahrzeugen sehr verbreitet. Durch fortschreiten der autonomen Fahrfunktionen und Infotainment Funktionalitäten ist diese Architektur mittlerweile auch nicht mehr Effizient, da die Abgrenzung der Funktionen auf einzelne Domänen nicht mehr möglich ist. Ein Abstandshalter Tempomat muss beispielweise sowohl Antriebsstrang als auch Bremse bedienen können. Für vollautonomes Fahren müssen weiterhin auch Lenkfunktionen, sowie mehrere Sensoren und Kameradaten kombiniert werden. Aus diesem Grund ist die Aufteilung der E/E Architektur auf Fahrzeugdomänen für zukünftige Fahrzeuge nicht mehr Zielführend. 
 
-Die Zonenarchitektur teilt die Implementierte Funktionalitäten der Steuergeräte nicht nach Fahrzeugdomäne ein, sondern nach örtliche Anordnung im Fahrzeug. \cite{Chou2023} Diese Zonencontroller übernehmen Domänenübergreifende Funktionen und reduzieren die Anzahl an Busverbindungen und Steuergeräte. Ein zentrales Hochleistungssteuergerät übernimmt die Koordination der Kommunikation zwischen den Zonen und Funktionalitäten die Zonenübergreifend sind. Hierzu gehören beispielweise Autonome Fahrfunktionen. In dieser Ansatz wird also die Anzahl an Steuergeräte weiter reduziert indem die einzelnen Steuergeräte leistungsstärker sind und mehr Funktionen implementieren. 
+Die Zonenarchitektur teilt die Implementierte Funktionalitäten der Steuergeräte nicht nach Fahrzeugdomäne ein, sondern nach örtliche Anordnung im Fahrzeug. \cite{Chou2023} Diese Zonencontroller übernehmen Domänenübergreifende Funktionen und reduzieren die Anzahl an Busverbindungen und Steuergeräte. Ein zentrales Hochleistungssteuergerät übernimmt die Koordination der Kommunikation zwischen den Zonen sowie Funktionalitäten, die Zonenübergreifend sind. Hierzu gehören beispielweise Autonome Fahrfunktionen. In dieser Ansatz wird also die Anzahl an Steuergeräte weiter reduziert indem die einzelnen Steuergeräte leistungsstärker sind und mehr Funktionen implementieren. 
 
 Die zentrale Architektur ist ein Konzept, welches die Funktionsbereiche der Zonensteuergeräte ebenfalls in das zentralen Steuergerät verlagert. Hierdurch wird die Anzahl an Steuergeräte auf ein Minimum reduziert. Eine Übersicht der vorgestellten Architekturen in Fahrzeugen bietet die Abbildung \ref{E/E_arch}.
 
@@ -240,10 +238,27 @@ Zonensteuergeräte, die im Zonenarchitektur zur Verwendung kommen, haben drei ha
 		\item Spannungsversorgung: Das Zonensteuergerät agiert als intelligente Leistungsverteileinheit um die Zonenkomponenten mit Spannung zu versorgen und deren Leistungsverbrauch zu überwachen. 
 	\end{itemize} \cite{Heurtefeux2021}
 
+Zonensteuergeräte müssen die Konnektivität zu Busverbindungen zur Verfügung stellen, präzise Zeitsynchronisation ermöglichen und Nachrichten mit niedrige Latenzen umleiten können (innerhalb von wenigen Mikrosekunden). Für die Aktuator und Leistungsverteileinheit Funktionen muss das Steuergerät die entsprechenden Schnittstellen zur Verfügung stellen wie PWM, SPI, UART, GPIO und ADC-s. Ein Ansatz ist, hierfür generische Steuergeräte zu entwickeln die flexibel für verschiedene Fahrzeuge eingesetzt werden können.\cite{Maier2023}
 
+Zentralsteuergeräte sind sowohl in der Domänenarchitektur als auch in der Zentralen Architektur vorhanden. Sie übernehmen rechenintensive, Zonenübergreifende Funktionen wie zum Beispiel autonome Fahrfunktionen. Aus diesem Grund benötigen diese Steuergeräte eine deutlich höhere Rechenleistung als es in dezentralisierten Ansätzen üblich war. Für diese höhere Anforderungen werden \glsxtrshort{SoC}-s verwendet. Als Beispiel kann das FSD Steuergerät von Tesla betrachtet werden. 
+
+Das Steuergerät nutzt zwei separate FSD Chips, die unabhängig voneinander jeweils ihr eigenes Betriebssystem ausführen. Die beiden Chips sind redundant ausgelegt für maximale Sicherheit, besitzen eigene Spannungsversorgungen und eigene Sensoren. Der FSD Chip ist ein \glsxtrshort{SoC} und beinhaltet folgende Hauptkomponenten:
+
+\begin{itemize}
+	\item 12 CPUs der Typ A72
+	\item GPU der Typ G71
+	\item 2 Neural Network Accelerator
+	\item ISP und Video Encoding
+\end{itemize}
+
+Die Algorithmen für die autonome Fahrfunktionen werden auf den CPU Kernen ausgeführt. Neue Eingangsdaten werden zuerst vom Signalprozessor verarbeitet und anschließend im Speicher abgelegt. Wenn neue Daten verfügbar sind, überreicht die CPU die Daten an den Neural Network Accelerator. Sobald die Ausgangsdaten verfügbar sind, führt die CPU die entsprechenden Algorithmen aus. \cite{Talpes2020}
+
+Zentralsteuergeräte implementieren viele gängige Architekturansätze aus der Informationstechnik um die benötigte Rechenleistung zu erreichen. Die verwendeten Mikroprozessoren besitzen mehrere Rechenkerne, es wird eine GPU für höhere Grafikleistung verwendet sowie andere spezifische Recheneinheiten verwendet, wie für das Ausführen von neuronalen Netzen. Diese einzelnen Komponenten werden meistens als \glsxtrshort{SoC} in einem Chip kombiniert.
 
 \subsection{Softwareumgebung in Fahrzeugen}
 
-Tesla SFD\cite{Talpes2020}
+Sowohl die gestiegene Rechenleistung und Komplexität der Steuergeräte, die durch die Zentralisierung der E/E Architektur eingeleitet wurde, also auch die gestiegene Funktionsumfang, Komplexität und Bedarf an Aktualisierbarkeit der Softwarefunktionen stellen neue Anforderugen an die verwendeten Software in den Steuergeräten. 
+
+\cite{Bandur2021}
 
 DriveOS \cite{Sinha2021}
