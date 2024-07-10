@@ -10,6 +10,9 @@
    xml:space="preserve"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
    sodipodi:docname="Cv.svg"
+   inkscape:export-filename="Cv.pdf"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -26,15 +29,20 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.88952131"
-     inkscape:cx="236.64413"
-     inkscape:cy="496.33437"
+     inkscape:cx="-198.98343"
+     inkscape:cy="590.76718"
      inkscape:window-width="2558"
      inkscape:window-height="1360"
-     inkscape:window-x="3433"
+     inkscape:window-x="3440"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1" /><defs
      id="defs2"><rect
+       x="402.46366"
+       y="782.44331"
+       width="474.41247"
+       height="332.76325"
+       id="rect509" /><rect
        x="-73.07301"
        y="936.45873"
        width="591.32928"
@@ -57,8 +65,8 @@
        id="rect17" /><rect
        x="457.54946"
        y="364.24085"
-       width="346.87107"
-       height="467.60511"
+       width="355.86467"
+       height="538.42972"
        id="rect3" /><rect
        x="431.34374"
        y="216.88671"
@@ -215,9 +223,9 @@
        transform="translate(0,24)"><tspan
          x="27.326172"
          y="55.150469"
-         id="tspan3281"><tspan
+         id="tspan732"><tspan
            style="font-size:46.6667px"
-           id="tspan3279">Gergely Bilkei-Gorzo</tspan></tspan></text><text
+           id="tspan730">Gergely Bilkei-Gorzo</tspan></tspan></text><text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:46.6667px;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1"
        x="31.697243"
@@ -282,135 +290,179 @@
        transform="translate(-30.004416,-26.346761)"><tspan
          x="457.54883"
          y="379.85328"
-         id="tspan3283">2018 - present   |   Institute for Automotive    
+         id="tspan734">2018 - present  |  Research Assistent/PhD 
 </tspan><tspan
          x="457.54883"
          y="401.51991"
-         id="tspan3285">                               Engineering
+         id="tspan736">                              candidate
 </tspan><tspan
          x="457.54883"
          y="423.18653"
-         id="tspan3287">   - Lecturer for various industry partners 
+         id="tspan738">   Institute for Automotive Engineering
 </tspan><tspan
          x="457.54883"
          y="444.85316"
-         id="tspan3289">   - Worked von different hardware 
-</tspan><tspan
+         id="tspan742"> <tspan
+   style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+   id="tspan740">  - Lecturer for various industry partners 
+</tspan></tspan><tspan
          x="457.54883"
          y="466.51978"
-         id="tspan3291">      designs and 
-</tspan><tspan
+         id="tspan746"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan744">   - Worked on different hardware 
+</tspan></tspan><tspan
          x="457.54883"
          y="488.18641"
-         id="tspan3293">      layouts
-</tspan><tspan
+         id="tspan750"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan748">      designs and layouts for prototype and 
+</tspan></tspan><tspan
          x="457.54883"
          y="509.85304"
-         id="tspan3295">      for prototype and series production 
-</tspan><tspan
+         id="tspan754"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan752">      series production hardware
+</tspan></tspan><tspan
          x="457.54883"
          y="531.51966"
-         id="tspan3297">      hardware
-</tspan><tspan
+         id="tspan758"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan756">   - Performend hardware tests and 
+</tspan></tspan><tspan
          x="457.54883"
          y="553.18629"
-         id="tspan3299">   - Developed software for various 
-</tspan><tspan
+         id="tspan762"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan760">     consulted industry partner on 
+</tspan></tspan><tspan
          x="457.54883"
          y="574.85291"
-         id="tspan3301">      embedded 
-</tspan><tspan
+         id="tspan766"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan764">     recommended changes
+</tspan></tspan><tspan
          x="457.54883"
          y="596.51954"
-         id="tspan3303">      platforms
-</tspan><tspan
+         id="tspan770"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan768">   - Developed software for various   
+</tspan></tspan><tspan
          x="457.54883"
          y="618.18617"
-         id="tspan3305">      for integration in prototype vehicles 
-</tspan><tspan
+         id="tspan774"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan772">     embedded platforms for integration in 
+</tspan></tspan><tspan
          x="457.54883"
          y="639.85279"
-         id="tspan3307">2024 - present   |   Specialist Embedded 
-</tspan><tspan
+         id="tspan778"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan776">     prototype vehicles
+</tspan></tspan><tspan
          x="457.54883"
          y="661.51942"
-         id="tspan3309">                                Systems
+         id="tspan782"><tspan
+   style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+   id="tspan780">   - responsible person to the customer</tspan>
 </tspan><tspan
          x="457.54883"
          y="683.18604"
-         id="tspan3311">   - Lecturer for various industry partners 
+         id="tspan784">2024 - present  |  Specialist Embedded 
 </tspan><tspan
          x="457.54883"
          y="704.85267"
-         id="tspan3313">   - Development of a container 
+         id="tspan786">                              System 
 </tspan><tspan
          x="457.54883"
          y="726.5193"
-         id="tspan3315">     management system for automotive 
+         id="tspan788">   Institute for Automotive Engineering
 </tspan><tspan
          x="457.54883"
          y="748.18592"
-         id="tspan3317">     applications
-</tspan><tspan
+         id="tspan792"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan790">   - Lecturer for various industry partners 
+</tspan></tspan><tspan
          x="457.54883"
          y="769.85255"
-         id="tspan3319">
-</tspan><tspan
+         id="tspan796"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan794">   - Development of a container 
+</tspan></tspan><tspan
          x="457.54883"
          y="791.51917"
-         id="tspan3321">
-</tspan><tspan
+         id="tspan800"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan798">     management system for automotive 
+</tspan></tspan><tspan
          x="457.54883"
          y="813.1858"
-         id="tspan3323">
+         id="tspan804"><tspan
+   style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+   id="tspan802">     applications</tspan>
 </tspan><tspan
          x="457.54883"
          y="834.85243"
-         id="tspan3325">
+         id="tspan806">
+</tspan><tspan
+         x="457.54883"
+         y="856.51905"
+         id="tspan808">
+</tspan><tspan
+         x="457.54883"
+         y="878.18568"
+         id="tspan810">
+</tspan><tspan
+         x="457.54883"
+         y="899.8523"
+         id="tspan812">
 </tspan></text><text
        xml:space="preserve"
        id="text2-10"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect3-3);display:inline;fill:#000000;fill-opacity:1;stroke:none"
-       transform="translate(-423.36673,533.87874)"><tspan
+       transform="translate(-423.36673,525.87874)"><tspan
          x="457.54883"
          y="379.85328"
-         id="tspan3329"><tspan
-           style="font-size:17.3333px"
-           id="tspan3327">Gergely Bilkei-Gorzo
+         id="tspan816"><tspan
+           style="font-weight:normal;font-size:17.3333px;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan814">Gergely Bilkei-Gorzo
 </tspan></tspan><tspan
          x="457.54883"
          y="401.51991"
-         id="tspan3333"><tspan
-           style="font-size:17.3333px"
-           id="tspan3331">Vaalser Str. 150A, 52074 Aachen
+         id="tspan820"><tspan
+           style="font-weight:normal;font-size:17.3333px;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan818">Vaalser Str. 150A, 52074 Aachen
 </tspan></tspan><tspan
          x="457.54883"
          y="423.18653"
-         id="tspan3337"><tspan
-           style="font-size:17.3333px"
-           id="tspan3335">Phone: +49 15122981347
+         id="tspan824"><tspan
+           style="font-weight:normal;font-size:17.3333px;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan822">Phone: +49 15122981347
 </tspan></tspan><tspan
          x="457.54883"
          y="444.85316"
-         id="tspan3341"><tspan
-   style="font-size:17.3333px"
-   id="tspan3339">Email: gergelybilkei@gmail.com</tspan>
-</tspan><tspan
+         id="tspan830"><tspan
+           style="font-weight:normal;font-size:17.3333px;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan826">Email: gergelybilkei@gmail.com</tspan><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan828">
+</tspan></tspan><tspan
          x="457.54883"
          y="464.11783"
-         id="tspan3343">
+         id="tspan832">
 </tspan><tspan
          x="457.54883"
          y="482.45121"
-         id="tspan3345">
+         id="tspan834">
 </tspan><tspan
          x="457.54883"
          y="500.78458"
-         id="tspan3347">
+         id="tspan836">
 </tspan><tspan
          x="457.54883"
          y="519.11796"
-         id="tspan3349">
+         id="tspan838">
 </tspan></text><text
        xml:space="preserve"
        id="text2-10-5"
@@ -418,184 +470,242 @@
        transform="translate(-422.55253,-26.364157)"><tspan
          x="457.54883"
          y="379.85328"
-         id="tspan3351">- Very good in C, Matlab/Simulink and 
-</tspan><tspan
+         id="tspan842"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan840">- Very good in C, Matlab/Simulink and 
+</tspan></tspan><tspan
          x="457.54883"
          y="401.51991"
-         id="tspan3353">   embedded systems (firmware, RTOS, 
-</tspan><tspan
+         id="tspan846"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan844">   embedded systems (firmware, RTOS, 
+</tspan></tspan><tspan
          x="457.54883"
          y="423.18653"
-         id="tspan3355">   bootloader, protocols, bus    
-</tspan><tspan
+         id="tspan850"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan848">   bootloader, protocols, bus    
+</tspan></tspan><tspan
          x="457.54883"
          y="444.85316"
-         id="tspan3357">   communication, 
-</tspan><tspan
+         id="tspan854"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan852">   communication, 
+</tspan></tspan><tspan
          x="457.54883"
          y="466.51978"
-         id="tspan3359">   circuit design)
-</tspan><tspan
+         id="tspan858"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan856">   circuit design)
+</tspan></tspan><tspan
          x="457.54883"
          y="488.18641"
-         id="tspan3361">- Good in Python and C++
-</tspan><tspan
+         id="tspan862"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan860">- Good in Python and C++
+</tspan></tspan><tspan
          x="457.54883"
          y="509.85304"
-         id="tspan3363">- Good in containerisation   
-</tspan><tspan
+         id="tspan866"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan864">- Good in containerisation   
+</tspan></tspan><tspan
          x="457.54883"
          y="531.51966"
-         id="tspan3365">   implementations using POSIX 
-</tspan><tspan
+         id="tspan870"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan868">   implementations using POSIX 
+</tspan></tspan><tspan
          x="457.54883"
          y="553.18629"
-         id="tspan3367">   functions
-</tspan><tspan
+         id="tspan874"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan872">   functions
+</tspan></tspan><tspan
          x="457.54883"
          y="574.85291"
-         id="tspan3369">- Experienced in hardware testing for 
-</tspan><tspan
+         id="tspan878"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan876">- Experienced in hardware testing for 
+</tspan></tspan><tspan
          x="457.54883"
          y="596.51954"
-         id="tspan3371">   series 
-</tspan><tspan
+         id="tspan882"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan880">   series 
+</tspan></tspan><tspan
          x="457.54883"
          y="618.18617"
-         id="tspan3373">  production desings
-</tspan><tspan
+         id="tspan886"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan884">  production desings
+</tspan></tspan><tspan
          x="457.54883"
          y="639.85279"
-         id="tspan3375">- Experienced in system integration in 
-</tspan><tspan
+         id="tspan890"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan888">- Experienced in system integration for 
+</tspan></tspan><tspan
          x="457.54883"
          y="661.51942"
-         id="tspan3377">  prototype vehicles
-</tspan><tspan
+         id="tspan894"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan892">  prototype vehicles
+</tspan></tspan><tspan
          x="457.54883"
          y="683.18604"
-         id="tspan3379">- Very good knowledge in Steer-by-Wire  
-</tspan><tspan
+         id="tspan898"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan896">- Very good knowledge in Steer-by-Wire  
+</tspan></tspan><tspan
          x="457.54883"
          y="704.85267"
-         id="tspan3381">   systems
-</tspan><tspan
+         id="tspan902"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan900">   systems
+</tspan></tspan><tspan
          x="457.54883"
          y="726.5193"
-         id="tspan3383">- basics in container development with 
-</tspan><tspan
+         id="tspan906"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan904">- basics in container development with 
+</tspan></tspan><tspan
          x="457.54883"
          y="748.18592"
-         id="tspan3385">   docker
-</tspan><tspan
+         id="tspan910"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan908">   docker
+</tspan></tspan><tspan
          x="457.54883"
          y="769.85255"
-         id="tspan3387">- Languages: Hungarian: Native, 
-</tspan><tspan
+         id="tspan914"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan912">- experience in personnel management
+</tspan></tspan><tspan
          x="457.54883"
          y="791.51917"
-         id="tspan3389">  German: Bilingual Proficiency, 
-</tspan><tspan
+         id="tspan918"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan916">- Languages: 
+</tspan></tspan><tspan
          x="457.54883"
          y="813.1858"
-         id="tspan3391">  English: Professional Working 
-</tspan><tspan
+         id="tspan922"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan920">     - Hungarian: Native
+</tspan></tspan><tspan
          x="457.54883"
          y="834.85243"
-         id="tspan3393">   Proficiency</tspan></text><text
+         id="tspan926"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan924">     - German: Bilingual Proficiency
+</tspan></tspan><tspan
+         x="457.54883"
+         y="856.51905"
+         id="tspan930"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan928">     - English: Professional Working 
+</tspan></tspan><tspan
+         x="457.54883"
+         y="878.18568"
+         id="tspan934"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan932">                      Proficiency</tspan></tspan></text><text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        x="422.09354"
-       y="768.05023"
+       y="814.05023"
        id="text1-2"><tspan
          sodipodi:role="line"
          id="tspan17"
          x="422.09354"
-         y="768.05023"
+         y="814.05023"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:17.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Education</tspan></text><path
        style="fill:none;stroke:#000000;stroke-width:1.88976;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
-       d="M 419.52757,776.89068 H 771.02364"
+       d="M 419.52757,822.89068 H 771.02364"
        id="path1-4" /><text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        x="27.884123"
-       y="884.05023"
+       y="876.05023"
        id="text1-2-4"><tspan
          sodipodi:role="line"
          id="tspan1101"
          x="27.884123"
-         y="884.05023"
+         y="876.05023"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:17.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Contact</tspan></text><path
        style="fill:none;stroke:#000000;stroke-width:1.88976;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
-       d="M 25.855749,892.89135 H 377.3518"
+       d="M 25.855749,884.89135 H 377.3518"
        id="path1-4-0" /><text
        xml:space="preserve"
        id="text2-1"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:17.3333px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect3-5);display:inline;fill:#000000;fill-opacity:1;stroke:none"
-       transform="translate(-30.004416,418.35556)"><tspan
+       transform="translate(-30.004416,464.35556)"><tspan
          x="457.54883"
          y="379.85328"
-         id="tspan3395">2016 - 2018   |   Automation Engineering 
+         id="tspan936">2016 - 2018   |   Automation Engineering 
 </tspan><tspan
          x="457.54883"
          y="401.51991"
-         id="tspan3397">                          (RWTH Aachen)
+         id="tspan938">                          (RWTH Aachen)
 </tspan><tspan
          x="457.54883"
          y="423.18653"
-         id="tspan3399">   - Master Thesis: Smart Power 
-</tspan><tspan
+         id="tspan942"> <tspan
+   style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+   id="tspan940">  - Master Thesis: Smart Power Distrbution 
+</tspan></tspan><tspan
          x="457.54883"
          y="444.85316"
-         id="tspan3401">     Distrbution Unit 
-</tspan><tspan
+         id="tspan946"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan944">     Unit for 48V automotive power net
+</tspan></tspan><tspan
          x="457.54883"
          y="466.51978"
-         id="tspan3403">     for 48V automotive power net
-</tspan><tspan
+         id="tspan950"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan948">   - Student assistant for 400V to 48V 
+</tspan></tspan><tspan
          x="457.54883"
          y="488.18641"
-         id="tspan3405">   - Student assistant for 400V to 48V 
-</tspan><tspan
+         id="tspan954"><tspan
+           style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+           id="tspan952">     DC/DC converter desing and control 
+</tspan></tspan><tspan
          x="457.54883"
          y="509.85304"
-         id="tspan3407">     DC/DC converter desing and control 
+         id="tspan958"><tspan
+   style="font-weight:normal;-inkscape-font-specification:'Arial, Normal'"
+   id="tspan956">     algorithm</tspan>
 </tspan><tspan
          x="457.54883"
          y="531.51966"
-         id="tspan3409">     algorithm
+         id="tspan960">2009 - 2015   |   Mechanical Engineering, 
 </tspan><tspan
          x="457.54883"
          y="553.18629"
-         id="tspan3411">
+         id="tspan962">                          spcialization Automotive 
 </tspan><tspan
          x="457.54883"
          y="574.85291"
-         id="tspan3413">2009 - 2015   |   Mechanical Engineering, 
+         id="tspan964">                          (RWTH Aachen)
 </tspan><tspan
          x="457.54883"
          y="596.51954"
-         id="tspan3415">                          spcialization Automotive 
+         id="tspan966">
 </tspan><tspan
          x="457.54883"
          y="618.18617"
-         id="tspan3417">                          (RWTH Aachen)
+         id="tspan968">
 </tspan><tspan
          x="457.54883"
          y="639.85279"
-         id="tspan3419">
+         id="tspan970">
 </tspan><tspan
          x="457.54883"
          y="661.51942"
-         id="tspan3421">
-</tspan><tspan
-         x="457.54883"
-         y="683.18604"
-         id="tspan3423">
-</tspan><tspan
-         x="457.54883"
-         y="688.94703"
-         id="tspan3425">
+         id="tspan972">
 </tspan></text><text
        xml:space="preserve"
        id="text17"
@@ -608,16 +718,16 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:17.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect411);display:inline;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linejoin:bevel"><tspan
          x="37.097656"
          y="222.46656"
-         id="tspan3427">I am an automation engineer working as research assistant and PhD candidate at the </tspan><tspan
+         id="tspan974">I am an automation engineer working as research assistant and PhD candidate at the </tspan><tspan
          x="37.097656"
          y="244.13319"
-         id="tspan3429">automtive institute of the RWTH Aachen university. Passionate about contributing to fast-</tspan><tspan
+         id="tspan976">automtive institute of the RWTH Aachen university. Passionate about contributing to fast-</tspan><tspan
          x="37.097656"
          y="265.79981"
-         id="tspan3431">paced software and engineering projects, all with a consistent commitment to efficiency </tspan><tspan
+         id="tspan978">paced software and engineering projects, all with a consistent commitment to efficiency </tspan><tspan
          x="37.097656"
          y="287.46644"
-         id="tspan3433">and quality. </tspan></text><text
+         id="tspan980">and quality. </tspan></text><text
        xml:space="preserve"
        style="font-weight:bold;font-size:14.6667px;font-family:Arial;-inkscape-font-specification:'Arial, Bold';fill:#000000;stroke:#000000;stroke-width:0;stroke-linejoin:bevel"
        x="147.27022"
@@ -636,4 +746,7 @@
        y="192.23824"
        id="text1826"><tspan
          sodipodi:role="line"
-         id="tspan1850">Personal Summary:</tspan></text></g></svg>
+         id="tspan1850">Personal Summary:</tspan></text><text
+       xml:space="preserve"
+       id="text507"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect509);display:inline;fill:#ffffff;stroke:#ffffff;stroke-width:0;stroke-linejoin:bevel" /></g></svg>
