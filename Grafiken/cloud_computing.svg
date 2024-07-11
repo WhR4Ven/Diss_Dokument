@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 793.70081 1122.5197"
+   width="180.76871mm"
+   height="129.38486mm"
+   viewBox="0 0 683.22033 489.01364"
    version="1.1"
    id="svg1"
    xml:space="preserve"
@@ -25,11 +25,11 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="1.0343421"
-     inkscape:cx="411.37261"
-     inkscape:cy="365.9331"
+     inkscape:cx="365.44969"
+     inkscape:cy="253.78451"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
-     inkscape:window-x="1912"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" /><defs
@@ -196,7 +196,8 @@
          id="path8-6" /></marker></defs><g
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
-     id="layer1"><image
+     id="layer1"
+     transform="translate(-46.541626,-221.81421)"><image
        width="80.509659"
        height="89.848778"
        preserveAspectRatio="none"
@@ -262,7 +263,7 @@
          x="45.19397"
          y="295.82355"
          style="font-size:24px">Cloud</tspan></text><path
-       style="fill:none;stroke:#000000;stroke-width:1.88976382;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:1.88976;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="M 53.112088,372.306 H 729.76197"
        id="path5"
        sodipodi:nodetypes="cc" /><path
