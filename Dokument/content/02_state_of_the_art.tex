@@ -66,9 +66,32 @@ In der heutigen Zeit sind viele im Alltag verbreitete Applikationen als Cloud Se
 
 Distributed Computing bezeichnet verteilte Systeme, die aus dem Zusammenschluss von mehreren physikalischen Recheneinheiten bestehen. Auf dieser Weise können sie an einem gemeinsamen Problem arbeiten. Hierdurch ist es möglich auch große Datenmengen oder komplexe Rechenaufgaben effizienter zu verarbeiten als mit einzelnen Recheneinheiten. \cite{AWS2023} Die einzelnen Recheneinheiten in einem Verteilten System werden als Nodes genannt. \cite{ord1994scale} Verteilte Systeme sind heutzutage Stand der Technik, da die Rechenleistung von einzelnen Rechenkernen nicht beliebig skalierbar ist. Wenn also hohe Rechenleistung benötigt wird, kann dies  durch die Zusammenschaltung von mehreren Recheneinheiten und die Parallelisierung von Rechenaufgaben erfolgen, die den Ansatz der Distributed Computing verfolgt. Verteiltes Rechnen bildet die Grundlage für Cloud Computing, da die dafür benötigten Ressourcen mit einzelnen physikalischen Rechnern nicht realisierbar sind. Heutzutage verbreitete Cloud Dienste Provider (Google, Facebook) verwenden verteilte Systeme für ihre Infrastruktur. \cite{arpaci2018operating} 
 
+\begin{figure}[htbp] % Placement specifier; adjust as needed
+	\centering
+	\begin{subfigure}{0.45\textwidth} % Each subfigure takes up 45% of the text width
+		\centering
+		\includegraphics[width=\linewidth]{./content/graphics/cloud_computing.pdf} % Include your image here
+		\caption{Cloud Computing}
+		\label{fig:subimg-a}
+	\end{subfigure}
+	\hfill % This creates horizontal space between the subfigures
+	\begin{subfigure}{0.45\textwidth} % Another subfigure taking up 45% of the text width
+		\centering
+		\includegraphics[width=\linewidth]{./content/graphics/edge_computing.pdf} % Include your image here
+		\caption{Edge/Fog Computing}
+		\label{fig:subimg-b}
+	\end{subfigure}
+	\caption{Übersicht Cloud Computing und Edge Computing}
+	\label{fig:combined}
+\end{figure}
+
 \section{Edge Computing}
 
 Edge Computing ist eine Form von Distributed Computing. In diesem Kontext werden die Endgeräte, wo Daten entstehen oder benötigt werden als Edge bezeichnet. Durch die zunehmende Digitalisierung der Stadt Infrastruktur und alltägliche Gegenstände wie Mobiltelefone, Uhren, Hausgegenstände entstehen immer höhere Datenmengen, die verarbeitet werden müssen. Im Cloud Computing Ansatz werden die Daten in geographisch weit entfernten Cloud Servern verarbeitet und wieder an die Endgeräte auf der Edge Ebene zurückgesendet. Hierdurch erhöht sich die Latenz sowie die insgesamt benötigte Netzwerkbandbreite. Edge Computing verlagert die Datenverarbeitung in die Nähe der Geräte, wo die Daten entstehen und die verarbeiteten Daten benötigt werden, also in die Edge Ebene und reduziert damit die Latenz und die benötigte Gesamtbandbreite zu entfernten Cloud Servern. \cite{Wang2019} Motiviert wird diese Entwicklung dadurch, dass Netzwerkbandbreite sich deutlich langsamer entwickelt als die Zunahme an erzeuge Datenmengen.\cite{Shi2016} Latenzreduzierung ist relevant für Echtzeitsysteme wie Datenauswertung für autonome Fahrzeuge, aber auch für Anwendungen, wo Berührungsrückmeldungen an dem Benutzer zurückgemeldet werden sollen. Damit der Mensch keinen Latenz empfindet, muss die Kommunikation und Datenverarbeitung innerhalb von 1 ms erfolgen. \cite{Varsha2017} Edge Computing ist eine Alternative für lokale Berechnungen auf dem jeweiligen Endgerät. Diese Endgeräte haben in vielen Fällen nur begrenzte Rechenleistung, so dass die lokale Datenverarbeitung nicht sinnvoll umsetzbar ist. Rechenoperationen können auch in Cloud Systeme ausgelagert werden, allerdings resultiert dieser Ansatz in höhere Latenzen und Bandbreitenauslastungen. \cite{Lin2020} 
+
+\section{Fog Computing}
+
+
 
 \section{Applikationsmanagement in Cloud Systemen}
 
@@ -270,8 +293,35 @@ Durch die erhöhte Komplexität der Softwarefunktionen und die erhöhte Rechenle
 
 \section{Verteiltes Rechnen in Fahrzeugen}
 
+Die Nutzung von Fahrzeugen in einem verteilten Rechencluster wurde bereits in verschiedenen wissenschaftlichen Veröffentlichungen untersucht. 
+
+Nutzung der Kameradaten:
+ 3D Karten erstellen
+ Parkplatzsuche
+ Straßenbauarbeiten Erkennen
+ Straftaten ermitteln \cite{Zhu2018}
+
+Reduzierung von Latenzen, ermöglichung von taktilen Rückmeldungen durch Reduzierung von Latenzen \cite{Mukherjee2020}
 
 Parkende Fahrzeuge für Datenweiterleitung \cite{Malandrino2014} \cite{Liu2011}
 
+Unausgelastet Fahrzeuge für Datenverarbeitung von Smartphone Daten. Hierdurch wird Energieverbrauch und Rechenzeit im Smartphone verbessert. Fahrzeuge werden von Cloudlet server verwaltet und die Rechenaufgaben entsprechend ausgeteilt. \cite{Zhang2015}
+
 Fahrzeuge streamen gemeinsame inhalten an andere lokale Fahrzeuge weiter \cite{Kharel2019}
+
+Rechenleistung von parkenden fahrzeugen vermieten\cite{Arif2012}
+
+Fahrzeuge lagern Rechenintensive und Zeitkritische Aufgaben an weniger ausgelastete Fahrzeuge aus. \cite{Liao2019} \cite{Wu2020}
+
+
+Fahrzeug Fog management software \enquote{oneVFC} für Ai Modell Training \cite{Phung2021}
+
+QoS:
+
+Sicherheit und Manipulationsprobleme bei Fahrzeug Fog Computing mit Hilfe von Blockchain und Smart Contract lösen. In diesem Beispiel werden Rechenaufgaben von Fahrzeugen auf Fog Server ausgelagert.\cite{Liao2021}
+
+Vehicle to Infrastructure Konzept mit Contract basierter Ressourcenverteilung. Bandbreite kann gegen Belohnung ausgetauscht werden, der Zusammenhang wird mit einer Funktion beschrieben.\cite{Zhao2020}
+
+
+
 
