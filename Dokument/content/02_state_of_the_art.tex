@@ -94,6 +94,7 @@ Edge Computing ist eine Form von Distributed Computing. In diesem Kontext werden
 
 
 \section{Applikationsmanagement in Cloud Systemen}
+\label{Applikationsmanagement}
 
 Applikationen haben in den meisten Fällen Abhängigkeiten zu weiteren Softwarekomponenten, die auf dem ausführenden Betriebssystem installiert werden muss. Das Betriebssystem und die darauf installierte Softwarekomponenten nennt man Laufzeitumgebung. Verschiedene Applikationen können verschiedene Versionen von zusätzlichen Softwarekomponenten nutzen, so dass sie nicht gleichzeitig auf dem selben Betriebssystem und Laufzeitumgebung ausführbar sind. In traditionellen Architekturen wird deswegen eine begrenzte Anzahl an Applikationen mit kompatibler Laufzeitumgebung auf einer physikalischen Maschine ausgeführt, die in eine nicht optimale Auslastung der Hardwareressourcen resultiert. Um die Auslastung zu optimieren, wurde das Konzept der Virtualisierung entwickelt. Die physische Ressourcen werden in mehrere virtuelle Ressourcen aufgeteilt. Hierdurch ist es möglich auf einer physikalischen Maschine mehrere voneinander unabhängige Laufzeitumgebungen einzurichten. Virtualisierung wurde bereits in den 1960-er Jahren entwickelt, allerdings wurde dafür spezielle Hardware benötigt. Für die aktuell verbreitete x86-er Architektur wurde die Virtualisierung von VMWare in 1999 umgesetzt. \cite{Bugnion2012} In der Informationstechnik haben sich zwei Virtualisierungsmethoden durchgesetzt, die in den folgenden Abschnitten vorgestellt werden. Ein Überblick über die Struktur der beiden Methoden im Vergleich zu einem klassischen System ohne Virtualisierung ist in der Abbildung \ref{virtualisierung_optionen} dargestellt. 
 
@@ -129,6 +130,7 @@ Namespaces decken den Bedarf an Prozess und Laufzeitumgebungsisolation für die 
 Die systematische Darstellung eines Systems mit Container als Virtualisierungsmethode ist in der Abbildung \ref{virtualisierung_optionen} in der rechten Spalte dargestellt. 
 
 \section{Orchestrierung von virtuellen Umgebungen}
+\label{Orchestrierung Stand der Technik}
 
 Softwarekomponenten wie Hypervisor und Container Runtime verwalten die virtuellen Umgebungen auf einer physikalischen Maschine. Sie eignen sich also dazu, Rechenressourcen lokal flexibel zu verwalten und bilden damit die Grundlage für Cloud Computing Systeme. Cloud Systeme bestehen allerdings aus viele physikalische Maschinen, die oft auch örtlich verteilt sind. Für diese Systeme wäre es sehr aufwändig, die virtuellen Umgebungen auf den einzelnen physikalischen Maschinen manuell zu verwalten, aus diesem Grund werden Programme für die Orchestrierung verwendet, die die Verwaltung von den virtuellen Umgebungen auf verschiedenen physikalischen Systemen automatisieren. 
 
@@ -293,7 +295,7 @@ Durch die erhöhte Komplexität der Softwarefunktionen und die erhöhte Rechenle
 
 \section{Verteiltes Rechnen in Fahrzeugen}
 
-Die Nutzung von Fahrzeugen in einem verteilten Rechencluster wurde bereits in verschiedenen wissenschaftlichen Veröffentlichungen untersucht. 
+Die Nutzung von Fahrzeugressourcen für Fahrzeugübergreifende oder Fahrzeugexterne Anwendungen wurde bereits in verschiedenen wissenschaftlichen Veröffentlichungen untersucht. 
 
 Nutzung der Kameradaten:
  3D Karten erstellen
