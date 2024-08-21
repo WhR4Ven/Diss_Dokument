@@ -21,11 +21,29 @@ Zusammenfassend lässt sich ableiten, dass die Entwicklung einer Plattform, die 
 
 \section{Anforderungsanalyse}
 
-Die Anforderungsanalyse ist eine verbreitete Methode für die Entwicklung von technischen Systemen. \cite{Grady2010}
+Die Anforderungsanalyse ist eine verbreitete Methode für die Entwicklung von technischen Systemen. Produktentwicklungen werden heutzutage nicht mehr von einem Designingenieur geleitet, sondern von einem Team von Spezialisten. Um sicherzustellen, dass alle Komponenten, die die Spezialisten entwerfen, zusammenspielen und den Kundenwünschen entsprechen, werden Anforderungen definiert. Diese Anforderungen werden in funktionale und nicht-funktionale Anforderungen unterteilt. \cite{Grady2010}
 
 \subsection{Funktionale Anforderungen}
 
+Funktionale Anforderungen sind Anforderungen, die für die Zweckbestimmung des Produkts relevant sind. Bei einem Softwareprodukt werden sowohl die Funktionen die die gesamte Anwendung implementieren soll als auch die Funktionen der einzelnen Komponenten darin definiert. 
+
+\begin{itemize}
+    \item 1: Die Softwareplattform soll es ermöglichen, externe Applikationen in Fahrzeugsteuergeräten zu platzieren, um deren Rechenleistung zu nutzen.
+    \item 2: Die im Netz verfügbaren Fahrzeuge müssen automatisch als mögliche Auslagerungsorte erkannt werden.
+    \item 3: Fahrzeuge müssen deren Verfügbarkeit sowie deren freie Ressourcen mitteilen, um eine sinnvolle Auslagerung der Applikationen zu ermöglichen
+    \item 4: Auf dem Fahrzeugsteuergerät muss eine eigene Laufzeitumgebung für die externe Applikationen errichtet werden
+    \item 5: Die im Fahrzeug ausgelagerte externe Applikationen müssen eine Kommunikationsschnittstelle erhalten
+\end{itemize}
+
 \subsection{Nicht-funktionale Anforderungen}
+
+Nicht-funktionale Anforderungen beschreiben in erster Linie Anforderungen, die sich auf die Qualität auswirken. Produktentwicklungen, die die nicht-funktionalen Anforderungen nicht erfüllen, sind zwar funktional, erfüllen aber nicht die vom Kunden gewünschte Nutzererfahrung. Bei Softwareprodukten fallen beispielweise Leistung, Sicherheit oder Wartbarkeit in diese Gruppe. 
+
+\begin{itemize}
+    \item 1: Applikationen sollen von der Funktionssoftware im Fahrzeug isoliert sein um unberechtigte Zugriffe auf Fahrzeugdaten zu verhindern
+    \item 2: Es soll eine Authentifizierung bei der Netzwerkkommunikation vorgesehen werden um unberechtigte Zugriffe zu verhindern
+    \item 3: Die Kommunikationsschnittstellen sollen modular und austauschbar ausgelegt werden um die Kompatibilität zu erhöhen
+\end{itemize}
 
 \section{Methodik}
 
