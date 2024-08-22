@@ -20,6 +20,7 @@ Die Bereitstellung der Ressourcen von Fahrzeugen für externe Anwendungen stellt
 Zusammenfassend lässt sich ableiten, dass die Entwicklung einer Plattform, die spezifisch auf die Orchestrierung von externen Anwendungen auf Fahrzeugen zugeschnitten ist, als sinnvoller Schritt erachtet werden kann. Aktuelle Forschungsansätze diskutieren mögliche Einsatzgebiete und die theoretische Machbarkeit eines solchen Systems, ausgereifte Umsetzungen existieren aktuell nicht. Bei der konkreten Umsetzung können auch Aspekte wie Portierbarkeit auf andere Architekturen und Kompatibilität mit fahrzeugspezifischen Betriebssystemen berücksichtigt werden. Darüber hinaus können Mindestfunktionalitäten identifiziert werden, die helfen, ein solches System nicht mit unnötigen Funktionen zu überfrachten und damit die Systemanforderungen und die Sicherheit zu beeinträchtigen. Als Grundlage kann auf bestehende Orchestrierungs- und Managementmethoden aus der IT sowie auf bereits erarbeitete Ansätze aus dem Stand der Technik für verteiltes Rechnen im Fahrzeug zurückgegriffen werden.
 
 \section{Anforderungsanalyse}
+\label{Anforderungsanalyse}
 
 Die Anforderungsanalyse ist eine verbreitete Methode für die Entwicklung von technischen Systemen. Produktentwicklungen werden heutzutage nicht mehr von einem Designingenieur geleitet, sondern von einem Team von Spezialisten. Um sicherzustellen, dass alle Komponenten, die die Spezialisten entwerfen, zusammenspielen und den Kundenwünschen entsprechen, werden Anforderungen definiert. Diese Anforderungen werden in funktionale und nicht-funktionale Anforderungen unterteilt. \cite{Grady2010}
 
@@ -35,6 +36,8 @@ Funktionale Anforderungen sind Anforderungen, die für die Zweckbestimmung des P
     \item 5: Die im Fahrzeug ausgelagerte externe Applikationen müssen eine Kommunikationsschnittstelle erhalten
 \end{itemize}
 
+An dieser Stelle wird auf eine genaue Vorgabe für die verwendeten Methoden oder Architektur verzichtet. Die gewählte Lösung soll lediglich den gestellten Anforderungen gerecht werden. 
+
 \subsection{Nicht-funktionale Anforderungen}
 
 Nicht-funktionale Anforderungen beschreiben in erster Linie Anforderungen, die sich auf die Qualität auswirken. Produktentwicklungen, die die nicht-funktionalen Anforderungen nicht erfüllen, sind zwar funktional, erfüllen aber nicht die vom Kunden gewünschte Nutzererfahrung. Bei Softwareprodukten fallen beispielweise Leistung, Sicherheit oder Wartbarkeit in diese Gruppe. 
@@ -45,5 +48,8 @@ Nicht-funktionale Anforderungen beschreiben in erster Linie Anforderungen, die s
     \item 3: Die Kommunikationsschnittstellen sollen modular und austauschbar ausgelegt werden um die Kompatibilität zu erhöhen
 \end{itemize}
 
+Die Sicherheitsbetrachtung steht nicht im Fokus dieser Arbeit, da dies ein komplexes Feld ist wo die Entwicklung bereits sehr fortgeschritten ist, da es für sehr viele Applikationen Relevanz besitzt. 
+
 \section{Methodik}
 
+In der Softwareentwicklung gibt es eine Vielzahl von Mustern, die für die Produktentwicklung genutzt werden können. \cite{Bass2012} In dieser Arbeit wird die Vorgehensweise an das V-Modell angelehnt. 
