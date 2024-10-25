@@ -1,0 +1,6 @@
+Host cpp-training-for-adas-development
+  IdentityFile ~/Documents/Ford_C++/ext-i-bilkei-gorzo
+  ProxyCommand ssh -i ~/Documents/Ford_C++/ext-i-bilkei-gorzo -p 2222 dockeruser@academylab.ika.rwth-aachen.de -W %h:%p
+  HostName ext-i-bilkei-gorzo
+  User dockeruser
+  StrictHostKeyChecking no
