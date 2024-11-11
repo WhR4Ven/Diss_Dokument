@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="115mm"
+   height="55.599998mm"
+   viewBox="0 0 115 55.599998"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="V-model.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showguides="false"
+     inkscape:zoom="1.0480502"
+     inkscape:cx="41.982721"
+     inkscape:cy="27.193353"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="3832"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="Triangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+    <rect
+       x="219.27356"
+       y="264.47766"
+       width="282.01953"
+       height="58.697845"
+       id="rect6" />
+    <marker
+       style="overflow:visible"
+       id="Triangle-9"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-9-3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-4-2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-9-3-5"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-4-2-8" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-10,-10)">
+    <rect
+       style="fill:#aaeeff;fill-opacity:1;stroke:#000000;stroke-width:0.317764;stroke-linecap:square;stroke-miterlimit:8"
+       id="rect1-4-2-9-1-8-0-0"
+       width="24.682236"
+       height="7.2822356"
+       x="10.158882"
+       y="10.158882" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0b2822;stroke-width:0.264583"
+       x="22.521698"
+       y="14.347771"
+       id="text2-4-7-8-5-9-8-0"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         x="22.521698"
+         y="14.347771">Systemanforerungen</tspan></text>
+    <rect
+       style="fill:#aaeeff;fill-opacity:1;stroke:#000000;stroke-width:0.317764;stroke-linecap:square;stroke-miterlimit:8"
+       id="rect1-4-2-9-1-8-0-0-2"
+       width="24.682236"
+       height="7.2822356"
+       x="20.158882"
+       y="22.158882" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0b2822;stroke-width:0.264583"
+       x="32.521698"
+       y="26.347771"
+       id="text2-4-7-8-5-9-8-0-0"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         x="32.521698"
+         y="26.347771">Systementwurf</tspan></text>
+    <rect
+       style="fill:#aaeeff;fill-opacity:1;stroke:#000000;stroke-width:0.317764;stroke-linecap:square;stroke-miterlimit:8"
+       id="rect1-4-2-9-1-8-0-0-2-4"
+       width="24.682236"
+       height="7.2822356"
+       x="30.158882"
+       y="34.158882" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0b2822;stroke-width:0.264583"
+       x="42.521702"
+       y="38.545174"
+       id="text2-4-7-8-5-9-8-0-0-5"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         x="42.521702"
+         y="38.545174">Architektur</tspan></text>
+    <rect
+       style="fill:#aaeeff;fill-opacity:1;stroke:#000000;stroke-width:0.317764;stroke-linecap:square;stroke-miterlimit:8"
+       id="rect1-4-2-9-1-8-0-0-2-4-56"
+       width="24.682236"
+       height="7.2822356"
+       x="80.158882"
+       y="34.158882" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0b2822;stroke-width:0.264583"
+       x="92.521683"
+       y="38.545174"
+       id="text2-4-7-8-5-9-8-0-0-5-9"><tspan
+         sodipodi:role="line"
+         id="tspan11"
+         x="92.521683"
+         y="38.545174">Integrationstest</tspan></text>
+    <rect
+       style="fill:#aaeeff;fill-opacity:1;stroke:#000000;stroke-width:0.317764;stroke-linecap:square;stroke-miterlimit:8"
+       id="rect1-4-2-9-1-8-0-0-2-4-56-1"
+       width="24.682236"
+       height="7.2822356"
+       x="90.158882"
+       y="22.158882" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0b2822;stroke-width:0.264583"
+       x="102.52171"
+       y="26.545174"
+       id="text2-4-7-8-5-9-8-0-0-5-9-9"><tspan
+         sodipodi:role="line"
+         id="tspan12"
+         x="102.52171"
+         y="26.545174">Systemtest</tspan></text>
+    <rect
+       style="fill:#aaeeff;fill-opacity:1;stroke:#000000;stroke-width:0.317764;stroke-linecap:square;stroke-miterlimit:8"
+       id="rect1-4-2-9-1-8-0-0-2-4-56-1-3"
+       width="24.682236"
+       height="7.2822356"
+       x="100.15888"
+       y="10.158882" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0b2822;stroke-width:0.264583"
+       x="112.52171"
+       y="14.545173"
+       id="text2-4-7-8-5-9-8-0-0-5-9-9-6"><tspan
+         sodipodi:role="line"
+         id="tspan13"
+         x="112.52171"
+         y="14.545173">Abnahmetest</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0b2822;stroke-width:0.264583"
+       x="67.234772"
+       y="12.915155"
+       id="text2-4-7-8-5-9-8-0-0-5-9-9-6-8"><tspan
+         sodipodi:role="line"
+         id="tspan14"
+         x="67.234772"
+         y="12.915155">Validierung</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0b2822;stroke-width:0.264583"
+       x="67.234772"
+       y="24.798323"
+       id="text2-4-7-8-5-9-8-0-0-5-9-9-6-8-9"><tspan
+         sodipodi:role="line"
+         id="tspan14-4"
+         x="67.234772"
+         y="24.798323">Validierung</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0b2822;stroke-width:0.264583"
+       x="67.234772"
+       y="36.940491"
+       id="text2-4-7-8-5-9-8-0-0-5-9-9-6-8-9-6"><tspan
+         sodipodi:role="line"
+         id="tspan14-4-0"
+         x="67.234772"
+         y="36.940491">Validierung</tspan></text>
+    <rect
+       style="fill:#aaeeff;fill-opacity:1;stroke:#000000;stroke-width:0.317763;stroke-linecap:square;stroke-miterlimit:8"
+       id="rect1-4-2-9-1-8-0-0-2-4-5"
+       width="34.682236"
+       height="7.2822356"
+       x="50.158882"
+       y="58.158882" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.0884px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0b2822;stroke-width:0.264583"
+       x="69.422829"
+       y="61.502182"
+       id="text2-4-7-8-5-9-8-0-0-5-5"
+       transform="scale(0.98664195,1.0135389)"><tspan
+         sodipodi:role="line"
+         id="tspan8"
+         x="69.422829"
+         y="61.502182"
+         style="stroke-width:0.264583">Implementierung</tspan></text>
+    <rect
+       style="fill:#aaeeff;fill-opacity:1;stroke:#000000;stroke-width:0.317764;stroke-linecap:square;stroke-miterlimit:8"
+       id="rect1-4-2-9-1-8-0-0-2-4-8"
+       width="24.682236"
+       height="7.2822356"
+       x="40.158882"
+       y="46.158882" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0b2822;stroke-width:0.264583"
+       x="52.428688"
+       y="49.010094"
+       id="text2-4-7-8-5-9-8-0-0-5-1"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         x="52.428688"
+         y="49.010094">Komonenten-</tspan><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         x="52.428688"
+         y="51.65593">Spezifikation</tspan></text>
+    <rect
+       style="fill:#aaeeff;fill-opacity:1;stroke:#000000;stroke-width:0.317764;stroke-linecap:square;stroke-miterlimit:8"
+       id="rect1-4-2-9-1-8-0-0-2-4-8-5"
+       width="24.682236"
+       height="7.2822356"
+       x="70.158882"
+       y="46.158882" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0b2822;stroke-width:0.264583"
+       x="82.521683"
+       y="50.333012"
+       id="text2-4-7-8-5-9-8-0-0-5-1-3"><tspan
+         sodipodi:role="line"
+         id="tspan10"
+         x="82.521683"
+         y="50.333012">Komponententests</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text6"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect6);fill:#000000;fill-opacity:1;stroke:none" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="M 70.00311,49.814305 H 65.939554"
+       id="path13" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Triangle-9)"
+       d="M 79.89103,37.814305 H 55.939554"
+       id="path13-3" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Triangle-9-3)"
+       d="M 89.887523,25.814302 H 45.939554"
+       id="path13-3-5" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Triangle-9-3-5)"
+       d="M 99.920185,13.814305 H 35.939554"
+       id="path13-3-5-3" />
+  </g>
+</svg>
