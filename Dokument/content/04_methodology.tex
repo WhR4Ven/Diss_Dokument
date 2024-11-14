@@ -4,4 +4,27 @@ In diesem Kapitel wird anhand der Anforderungen aus dem Forschungsansatz eine Ge
 
 \section{Verteiltes Rechenplattform aus autonomen Fahrzeugsteuergeräten}
 
-Die Rechenleistung von autonomen Fahrzeugen kann in verschiedenen Nutzungskonzepten verwendet werden. Im Kapitel \autoref{Hardwareumgebung in Fahrzeugen} wurde die Hardware vorgestellt, die typischerweise in autonomen Fahrzeugsteuergeräten zu finden ist. Es wird deutlich, dass diese Steuergeräte über Hardwaremodule verfügen, die die Rechenleistung für spezifische Rechenoperationen erhöhen. Grafikprozessoren beinhalten viele Rechenkerne, die parallel auf gro0en Datenmengen opreationen ausführen können. In den meisten Architekturen können die GPU-Cores nur in Gruppen verwendet werden, wobei jede Gruppe die gleiche Rechenoperation ausführen muss. Kerne für Neuronale Netzwerk Berechnungen implementieren Matrix Operationen in Hardware, so dass diese in erheblich weniger Rechenzyklen als bei sequentieller Berechnung durchgeführt werden können. 
+Die Rechenleistung von autonomen Fahrzeugen kann in verschiedenen Nutzungskonzepten verwendet werden. Im Kapitel \autoref{Hardwareumgebung in Fahrzeugen} wurde die Hardware vorgestellt, die typischerweise in autonomen Fahrzeugsteuergeräten zu finden ist. Es wird deutlich, dass diese Steuergeräte über Hardwaremodule verfügen, die die Rechenleistung für spezifische Rechenoperationen erhöhen. Grafikprozessoren beinhalten viele Rechenkerne, die parallel auf gro0en Datenmengen opreationen ausführen können. In den meisten Architekturen können die GPU-Cores nur in Gruppen verwendet werden, wobei jede Gruppe die gleiche Rechenoperation ausführen muss. Kerne für Neuronale Netzwerk Berechnungen implementieren Matrix Operationen in Hardware, so dass diese in erheblich weniger Rechenzyklen als bei sequentieller Berechnung durchgeführt werden können. Folglich können nur solche Rechenaufgaben sinnvoll auf diese Steuergeräte ausgelagert werden, die sich in viele parallele Berechnungen aufteilen lassen. Typische Beispiele für solche Berechnungen sind:
+
+\begin{itemize}
+    \item Mathematik: Vektor und Matrixoperationen
+    \item Bildbearbeitung: FFT oder Faltungsoperationen
+    \item Simulation: Moleküldynamik, Finite-Elemente Analyze, Fluiddynamik
+    \item Finanzsegment: Monte Carlo Simulation, Optionspreisgestaltung, Portfolio Optimierung
+    \item Kryptographie und Sicherheit: Hashing Algorithmen, Passwortknacken, Blockchain und Kryptowährung Mining
+    \item Datenanalyse in Naturwissenschaften: Genomische und bioinformatische Berechnungen, Big Data Verarbeitung
+    \item Optimerung: Genetische Algorithmen Berechnungen
+    \item Quantum Computing: Simulation von Quantumsystemen
+\end{itemize}
+
+Die Neuronale Netzwerk Beschleuniger können zudem für das Trainieren von neuronalen Netzwerken effizient verwendet werden. 
+
+Trotz der Einschränkung in der Art der Rechenaufgaben, die auf der Hardware effizient berechnet werden können, ergibt sich eine Vielzahl möglicher Anwendungsszenarien. Die ungenutzte Rechenleistung kann also von verschiedenen Kunden sinnvoll verwendet werden. Folgende Ansätze für die Bereitstellung der Ressourcen an Kunden wären Denkbar:
+
+\begin{itemize}
+    \item Nutzung ausschließlich durch den Hersteller: Diese Methode ist die transparenteste und sicherste Methode für den Fahrzeughersteller. Nur der Hersteller selber Applikationen auf die Fahrzeuge ausrollen und die ungenutzte Rechenleistung nutzen
+    \item Nutzung durch Hersteller und ausgewählte Kunden: Der Hersteller stellt die Rechenleistung auch an ausgewählte Kunden zur Verfügung, hierbei vertraut der Hersteller den Kunden, dass sie keine illegale Aktivitäten ausüben und nicht aktiv Versuchen Schutzmechanismen des Systems umzugehen.
+    \item Nutzung durch frei verfügbaren Marktplatz: Beliebige Kunden können auf dem Marktplatz Rechenleistung einkaufen. In diesem Konzept muss sichergestellt werden dass Kunden keine illegale Aktivitäten ausüben und dass sie die Sicherheitsmechanismen des Plattforms nicht versuchen zu umgehen.
+\end{itemize}
+
+FÜr die ersten Versionen eines solchen Plattforms würden realistisch nur die ersten Beiden Möglichkeiten in Frage kommen. Wenn 
