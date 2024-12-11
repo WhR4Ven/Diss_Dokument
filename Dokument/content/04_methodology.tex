@@ -43,3 +43,21 @@ Die Rechenaufgabe, inklusive benötigte Ressourcen wird auf den PC vom Rechenlei
 
 Nach der Berechnung der Aufgabe werden die Ergebnisse und Protokolle an den Auftraggeber zurückgeschickt. Die Aufgabenverwaltung validiert die Ergebnisse, indem entweder Teile der Aufgabe von anderen Teilnehmern redundant berechnet werden oder Teile lokal berechnet und überprüft werden. Sind die Ergebnisse erfolgreich validiert, wird der Benutzer, der die Rechenleistung erbracht hat, entsprechend dem Angebot bezahlt. Falls die Ergebnisse nicht korrekt sind, wird die Reputation des Rechenleistung-Bereitstellers verringert. 
 
+Ein Konzept wie es im Golem-Projekt umgesetzt wurde, eignet sich auch für die Bereitstellung von Fahrzeugrechenressourcen im kommerziellen Einsatz. Dieses Konzept kann vereinfacht werden, wenn die Plattform vom Hersteller betrieben wird. Der Hersteller kann eine zentrale Zahlungsinstanz betreiben, so dass keine Kryptowährung als Zahlungsmittel verwendet werden muss. In diesem Fall wird der Hersteller als vertrauenswürdiger Betreiber angesehen, der die Auszahlung pflichtgemäß ausführt. Die Überprüfung der berechneten Daten und damit die Beurteilung der Vertrauenswürdigkeit der einzelnen Teilnehmer kann stark vereinfacht oder ganz weggelassen werden. Die Software für die Steuergeräte kommt vom Hersteller, so dass ein Eingriff durch den Kunden deutlich schwieriger und unwahrscheinlicher ist. Eine Isolierung vom restlichen System ist aber auch dann sinnvoll, wenn nur der Hersteller externe Applikationen auf die Steuergeräte auslagern kann. Auch wenn ein Missbrauch ausgeschlossen werden kann, kann ein unbeabsichtigter Fehler bei unzureichender Isolierung dennoch zu einem Sicherheitsrisiko führen. 
+
+\section{Architektur der Softwareplattform}
+
+Die prototypische Implementierung der Plattform orientiert sich in ihrer Architektur an bestehenden Systemen aus der Informationstechnik. Wie im \autoref{Forschungsansatz} erarbeitet, besteht die Plattform aus zwei Hauptkomponenten. Die \enquote{Runtime Node} Komponente läuft auf den Fahrzeugsteuergeräten und ist im gesamten Netzwerk mehrfach vorhanden. Die Komponente \enquote{Runtime Master} ist einmal im Netzwerk vorhanden und verwaltet die \enquote{Runtime Node} Komponenten. Eine Gesamtarchitektur ist in der \autoref{architektur} dargestellt.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./content/graphics/Architecture.pdf}
+	\caption{Gesamtarchitektur der Softwareplattform}
+	\label{architektur}
+\end{figure}
+
+\subsection{Runtime Node}
+
+Diese Komponente läuft auf den Fahrzeugsteuergeräten und besteht selber aus mehreren Softwarekomponenten. 
+
+\subsection{Runtime Master}
