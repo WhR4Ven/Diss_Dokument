@@ -58,6 +58,31 @@ Die prototypische Implementierung der Plattform orientiert sich in ihrer Archite
 
 \subsection{Runtime Node}
 
-Diese Komponente läuft auf den Fahrzeugsteuergeräten und besteht selber aus mehreren Softwarekomponenten. 
+Diese Komponente wird auf den Fahrzeugsteuergeräten ausgeführt und setzt sich aus mehreren Softwarekomponenten zusammen. Die Kommunikationsschnittstelle wird als eigenständige Softwarekomponente implementiert, die nicht Teil der Softwarekomponente Runtime Node ist. Diese Struktur ermöglicht einen einfachen Austausch der Kommunikationsschnittstelle und damit einen einfachen Wechsel des Kommunikationsprotokolls. Die Kommunikation zwischen der Kommunikationsschnittstelle und dem Runtime Node erfolgt über eine Interprozesskommunikationssockel. Die Informationen werden im \gls{JSON} Format übertragen. Der Runtime Node interpretiert die eingehenden Befehle mit einem JSON-Parser-Modul. Statusrückmeldungen vom Runtime Node werden ebenfalls als JSON an die Kommunikationsschnittstelle gesendet. 
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./content/graphics/Runtime_Node_Arch.pdf}
+	\caption{Runtime Node Struktur}
+	\label{runtime node}
+\end{figure}
 
 \subsection{Runtime Master}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./content/graphics/Runtime_Master_Arch.pdf}
+	\caption{Runtime Master Struktur}
+	\label{runtime master}
+\end{figure}
+
+\subsection{Kommunikation}
+
+Innerhalb des Systems findet Kommunikation sowohl zwischen den Fahrzeugen als auch zwischen den einzelnen Softwarekomponenten statt. Diese unterschiedlichen Kommunikationsarten stellen unterschiedliche Anforderungen an die verwendete Kommunikationsschnittstelle. Diese werden im folgenden Abschnitt dargestellt.
+
+\subsubsection{Kommunikation zwischen Fahrzeugen und Runtime Master}
+
+Die Fahrzeuge bilden ein verteiltes System, das von einer Runtime Master Instanz verwaltet wird. Die Kommunikation zwischen Fahrzeugen und Runtime Node wird voraussichtlich über Internetverbindung umgesetzt. Denkbar wäre auch ein Netzwerk, welches vom Fahrzeughersteller gestellt wird, und ähnlich wie Internetverbindung über Handynetz verfügbar ist. 
+
+
+
