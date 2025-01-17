@@ -82,7 +82,21 @@ Innerhalb des Systems findet Kommunikation sowohl zwischen den Fahrzeugen als au
 
 \subsubsection{Kommunikation zwischen Fahrzeugen und Runtime Master}
 
-Die Fahrzeuge bilden ein verteiltes System, das von einer Runtime Master Instanz verwaltet wird. Die Kommunikation zwischen Fahrzeugen und Runtime Node wird voraussichtlich über Internetverbindung umgesetzt. Denkbar wäre auch ein Netzwerk, welches vom Fahrzeughersteller gestellt wird, und ähnlich wie Internetverbindung über Handynetz verfügbar ist. 
+Die Fahrzeuge bilden ein verteiltes System, das von einer Runtime Master Instanz verwaltet wird. Dies entspricht einer klassischen Client/Server Kommunikationsstruktur. Die Kommunikation zwischen Fahrzeugen und Runtime Node wird voraussichtlich über eine Internetverbindung realisiert. Denkbar wäre auch ein vom Fahrzeughersteller bereitgestelltes Netzwerk, das ähnlich der Internetverbindung über das Mobilfunknetz zur Verfügung gestellt wird. In dieser Arbeit wird generell davon ausgegangen, dass sich Fahrzeuge und Runtime Master im selben Netzwerk befinden. 
 
+Für die Client/Server Kommunikation existieren bereits verschiedene Konzepte. Die folgenden Methoden werden häufig verwendet:
 
+\begin{itemize}
+    \item Request/Response: Client sendet Anfragen an einen Server und wartet auf Antwort
+    \item Publish/Subscribe: Publisher versenden Nachrichten zu einem definierten Thema. Subscriber erhalten die Nachrichten zu den Themen, die sie abonniert haben.
+    \item Websocket: Duplex Kommunikation über eine \gls{TCP} Verbindung. 
+    \item \gls{RPC}: Ermöglicht die Ausführung eines Prozesses auf einem anderen System, als ob es sich um ein lokales System handeln würde.
+\end{itemize}
 
+Hauptsächlich finden zwei verschiedene Kommunikationsarten zwischen Runtime Node und Runtime Master statt. Einerseits werden die Anweisungen an die Runtime Nodes über eine \gls{API} Schnittstelle vom Runtime Master übertragen, andererseits müssen die externe Applikationen an die Runtime Nodes übertragen werden. 
+
+Die Kommunikation mit \gls{API} Schnittstellen wird häufig in Form von Request/Response über das HTTP Protokoll realisiert. Hierfür stehen zahlreiche Tools und Softwarebibliotheken zur Verfügung. Die Kommunikation kann auch verschlüsselt erfolgen. 
+
+Das \gls{SOA} Architekturmuster gewinnt in der Informationstechnologie zunehmend an Popularität, da es die effiziente Koordination verteilter Ressourcen und die Wiederverwendbarkeit einzelner Komponenten verbessert. Dieses Muster ist auch Gegenstand der Forschung für Fahrzeugarchitekturen, da diese ebenfalls als verteilte Systeme betrachtet werden können, in denen einzelne Teilnehmer für unterschiedliche Funktionalitäten wiederverwendbar gestaltet werden müssen. Es ist davon auszugehen, dass zukünftige Fahrzeugarchitekturen diesem oder einem ähnlichen Ansatz folgen werden. Als Kommunikationsprotokoll eignet sich für \gls{SOA} Architekturen ein Protokoll, das eine lose Kopplung der einzelnen Komponenten erlaubt und die Anzahl der Teilnehmer dynamisch variieren kann. In diesen Konzepten wird häufig das Publish/Subscribe Konzept verwendet. Publisher können jederzeit Informationen zu einem bestimmten Thema veröffentlichen. Alle Subscriber, die das Thema abonniert haben, erhalten die Daten. Die Anzahl der Subscriber und Publisher kann sich während des Betriebs dynamisch ändern, Publisher können ihre Daten auch dann publizieren, wenn es von keinem Subscriber abonniert wurde. Im Gegensatz zum Request/Response Verfahren müssen sich Subscriber und Publisher nicht kennen. Dieses Konzept erlaubt somit eine lose Kopplung und einfache Skalierbarkeit der Kommunikationsteilnehmer. Viele Implementierungen von Publish/Subscribe Kommunikationsprotokollen beinhalten \gls{QoS} Regeln in den übertragenen Nachrichten. In verteilten Systemen, wie sie in \gls{SOA} Architekturen vorkommen, haben die Teilnehmer unterschiedliche Zuverlässigkeit und Anforderungen.    Je nach Implementierung kann die Anzahl an definierbaren \gls{QoS} Regeln variieren. 
+
+Für die Implementierung wurde aus diesen Überlegungen heraus ein 
