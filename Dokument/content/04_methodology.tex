@@ -27,7 +27,7 @@ Trotz der Einschränkung in der Art der Rechenaufgaben, die auf der Hardware eff
     \item Nutzung durch frei verfügbaren Marktplatz: Beliebige Kunden können auf dem Marktplatz Rechenleistung einkaufen. In diesem Konzept muss sichergestellt werden dass Kunden keine illegale Aktivitäten ausüben und dass sie die Sicherheitsmechanismen des Plattforms nicht versuchen zu umgehen.
 \end{itemize}
 
-Für die ersten Versionen eines solchen Plattforms würden realistisch nur die ersten Beiden Möglichkeiten in Frage kommen. Eine freie Nutzung erfordert sehr hohe Sicherheitsstandards für die Plattform, die mit erheblichem Entwicklungs- und Erfahrungsaufwand verbunden sind. 
+Für die ersten Versionen einer solchen Plattform kommen realistischerweise nur die ersten beiden Möglichkeiten in Frage. Eine freie Nutzung erfordert sehr hohe Sicherheitsstandards für die Plattform, die mit erheblichem Entwicklungs- und Erfahrungsaufwand verbunden sind. 
 
 Die Nutzung freier Rechenressourcen erhöht den Stromverbrauch des Fahrzeugs. Daher müssen Anreize für die Nutzer geschaffen werden, die Rechenleistung des Fahrzeugs freizugeben. Hier können ähnliche Konzepte wie in der Informatik verwendet werden. Es gibt verschiedene Plattformen, auf denen PC-Nutzer ihre Rechenleistung zur Verfügung stellen können. 
 
@@ -58,7 +58,7 @@ Die prototypische Implementierung der Plattform orientiert sich in ihrer Archite
 
 \subsection{Runtime Node}
 
-Diese Komponente wird auf den Fahrzeugsteuergeräten ausgeführt und setzt sich aus mehreren Softwarekomponenten zusammen. Die Kommunikationsschnittstelle wird als eigenständige Softwarekomponente implementiert, die nicht Teil der Softwarekomponente Runtime Node ist. Diese Struktur ermöglicht einen einfachen Austausch der Kommunikationsschnittstelle und damit einen einfachen Wechsel des Kommunikationsprotokolls. Die Kommunikation zwischen der Kommunikationsschnittstelle und dem Runtime Node erfolgt über eine Interprozesskommunikationssockel. Die Informationen werden im \gls{JSON} Format übertragen. Der Runtime Node interpretiert die eingehenden Befehle mit einem JSON-Parser-Modul. Statusrückmeldungen vom Runtime Node werden ebenfalls als JSON an die Kommunikationsschnittstelle gesendet. 
+Diese Komponente wird auf den Fahrzeugsteuergeräten ausgeführt und setzt sich aus mehreren Softwarekomponenten zusammen. Die Kommunikationsschnittstelle wird als eigenständige Softwarekomponente implementiert, die nicht Teil der Softwarekomponente Runtime Node ist. Diese Struktur ermöglicht einen einfachen Austausch der Kommunikationsschnittstelle und damit einen einfachen Wechsel des Kommunikationsprotokolls. Die Kommunikation zwischen der Kommunikationsschnittstelle und dem Runtime Node erfolgt über eine Interprozesskommunikationssschnittstelle. Die Informationen werden im \gls{JSON} Format übertragen. Der Runtime Node interpretiert die eingehenden Befehle mit einem JSON-Parser-Modul. Statusrückmeldungen vom Runtime Node werden ebenfalls als JSON an die Kommunikationsschnittstelle gesendet. 
 
 \begin{figure}[htbp]
 	\centering
@@ -82,7 +82,7 @@ Innerhalb des Systems findet Kommunikation sowohl zwischen den Fahrzeugen als au
 
 \subsubsection{Kommunikation zwischen Fahrzeugen und Runtime Master}
 
-Die Fahrzeuge bilden ein verteiltes System, das von einer Runtime Master Instanz verwaltet wird. Dies entspricht einer klassischen Client/Server Kommunikationsstruktur. Die Kommunikation zwischen Fahrzeugen und Runtime Node wird voraussichtlich über eine Internetverbindung realisiert. Denkbar wäre auch ein vom Fahrzeughersteller bereitgestelltes Netzwerk, das ähnlich der Internetverbindung über das Mobilfunknetz zur Verfügung gestellt wird. In dieser Arbeit wird generell davon ausgegangen, dass sich Fahrzeuge und Runtime Master im selben Netzwerk befinden. 
+Die Fahrzeuge bilden ein verteiltes System, das von einer Runtime Master Instanz verwaltet wird. Dies entspricht einer klassischen Client/Server Kommunikationsstruktur. Die Kommunikation zwischen Fahrzeugen (Runtime Nodes) und Runtime Master wird voraussichtlich über eine Internetverbindung realisiert. Denkbar wäre auch ein vom Fahrzeughersteller bereitgestelltes Netzwerk, das ähnlich der Internetverbindung über das Mobilfunknetz zur Verfügung gestellt wird. In dieser Arbeit wird generell davon ausgegangen, dass sich Fahrzeuge und Runtime Master im selben Netzwerk befinden. 
 
 Für die Client/Server Kommunikation existieren bereits verschiedene Konzepte. Die folgenden Methoden werden häufig verwendet:
 
@@ -105,7 +105,7 @@ Das \gls{SOA} Architekturmuster gewinnt in der Informationstechnologie zunehmend
     \item \gls{QoS} 2: Nachricht wird genau einmal übertragen. Nachricht wird zunächst im Broker zwischengespeichert und an alle Teilnehmer gesendet. Erst wenn alle Abonnenten den Empfang bestätigt haben, wird die Nachricht gelöscht und die erfolgreiche Übertragung an den Publisher gesendet. 
 \end{itemize}
 
-Bei der Konfiguration von Nachrichten kann der \gls{QoS}-Level festgelegt und damit das Übertragungsverhalten der Nachricht konfiguriert werden. Andere Implementierungen können auch mehrere definierbare \gls{QoS}-Regeln enthalten, um eine noch genauere Abstimmung der Anforderungen zwischen den Kommunikationsteilnehmern zu ermöglichen. Die Publish/Subscribe Implementierung \gls{DDS} bietet 22 konfigurierbare \gls{QoS} Regeln. Die zusätzlichen Regeln erlauben die Festlegung von weiteren Anforderungen wie maximaler Latenz, Lebensdauer oder Zuverlässigkeit der Nachrichten festzulegen. 
+Bei der Konfiguration von Nachrichten kann der \gls{QoS}-Level festgelegt und damit das Übertragungsverhalten der Nachricht konfiguriert werden. Andere Implementierungen können auch mehrere definierbare \gls{QoS}-Regeln enthalten, um eine noch genauere Abstimmung der Anforderungen zwischen den Kommunikationsteilnehmern zu ermöglichen. Die Publish/Subscribe Implementierung \gls{DDS} bietet 22 Kategorien von konfigurierbaren \gls{QoS} Regeln. Die zusätzlichen Regeln erlauben es, weitere Anforderungen wie maximale Latenz, Lebensdauer oder Zuverlässigkeit der Nachrichten zu definieren. 
 
 Publish/Subscribe-Systeme können entweder von einer zentralen Instanz, einem so genannten Broker oder Message Bus, oder ohne zentrale Instanz verwaltet werden. Wird eine zentrale Verwaltungsinstanz verwendet, verbinden sich alle Teilnehmer mit dieser Instanz. Publisher übermitteln ihre Nachrichten an diese Administration, Subscriber abonnieren Themen bei der Administration. Die Nachrichten werden entsprechend an die Abonnenten weitergeleitet. Die gesamte Kommunikation in dieser Topologie läuft über diese zentrale Instanz, diese verwaltet die Kommunikationsteilnehmer und Nachrichtenfluss.
 
@@ -118,4 +118,72 @@ Die Publish/Subscribe Methode eignet sich aufgrund der Nachrichtenstruktur gut f
 
 Für die prototypische Implementierung wurde auf individuelle Topics für die Runtime Nodes verzichtet, da diese Implementierung nicht in großen Netzwerken eingesetzt wird. Eine spätere Modifikation ist jedoch ohne Anpassung der Architektur oder der Grundkonzepte möglich. 
 
-Die zweite Art der Kommunikation ist die Übertragung von Anwendungen. In diesem Konzept ist vorgesehen, dass diese im Binärformat als kompilierte ausführbare Datei vorliegen. Dateiübertragung kann mit verschiedenen Kommunikationsprotokollen stattfinden. Auch hier wird häufig das \gls{HTTP}/\gls{HTTPS} Protokoll verwendet. Alternativ 
+Die zweite Art der Kommunikation ist die Übertragung von Anwendungen. Dieses Konzept sieht vor, dass diese im Binärformat als kompilierte ausführbare Datei vorliegen. Die Übertragung von kompilierten ausführbaren Dateien ist auch ein häufiges Szenario in der \gls{IT}. Für diesen Fall gibt es daher bereits verschiedene Übertragungsprotokolle. Das Kommunikationsprotokoll \gls{HTTP}/\gls{HTTPS}, das hauptsächlich für die Bereitstellung von Web-Inhalten verwendet wird, unterstützt die Übertragung von Dateien. Speziell für den Dateitransfer wurde das Protokoll \gls{FTP} entwickelt. Aufgrund fehlender Sicherheitsmechanismen wird dieses Protokoll nicht mehr bevorzugt eingesetzt. Für die reine Datenübertragung wird als sichere Alternative das auf dem \gls{SSH} Protokoll basierende \gls{SFTP} bevorzugt.
+
+Die Übertragung von Binärdaten ist ebenfalls über Publish/Subscribe Kommunikation realisierbar. Wie für die Übertragung von Befehlen kann auch für die Übertragung von Binärdaten ein Topic definiert werden. Dies kann ebenfalls je nach Systemgröße ein Topic für alle Teilnehmer sein, oder ein individuelles Topic pro Teilnehmer um die Übertragungseffizienz im Netzwerk zu steigern. 
+
+Zusammenfassend kann gesagt werden, dass die Publish/Subscribe-Kommunikationsmethode sowohl die Übertragung von Instruktionen und Statusinformationen als auch die Übertragung von Binärdaten effizient umsetzen kann. Gleichzeitig bietet dieses Konzept eine einfache Erweiterbarkeit für das Netzwerk.
+
+\subsubsection{Kommunikation zwischen Softwaremodulen}
+\label{Kommunikation zwischen Softwaremodulen}
+
+Im Kapitel \autoref{Forschungsansatz} wurde erarbeitet, dass die Software einen modularen Aufbau haben soll. Die Komponenten können auch auf demselben PC ausgeführt werden, so dass eine Kommunikationsmethode verwendet werden muss, die die Kommunikation zwischen Prozessen auf demselben System ermöglicht. Für die Interprozesskommunikation können verschiedene Möglichkeiten genutzt werden. Die folgenden Methoden werden von den meisten Betriebssystemen unterstützt und häufig verwendet:
+
+\begin{itemize}
+    \item Datei: Datei: Informationen werden in eine Datei auf dem Datenträger geschrieben. Mehrere Prozesse können auf diese Datei zugreifen und ihren Inhalt lesen und schreiben.
+    \item Sockel: Daten werden über Netzwerkinterface ausgetauscht. Die Prozesse können sowohl auf dem gleichen System oder Systemübergreifend über Netzwerk kommunizieren. Synchronisierung muss in den Prozessen implementiert werden.
+    \item Message Queue: Prozesse können Nachrichten über Message Queues austauschen. Die Übertragung erfolgt asynchron, Sender und Empfänger müssen nicht gleichzeitig aktiv sein. Nicht empfangene Nachrichten werden zwischengespeichert. 
+    \item Pipe: Pipes können entweder die unidirektionale Standardeingabe und -ausgabe oder ein ähnliches Verhalten wie eine geteilte Datei implementieren. Für eine bidirektionale Datenaustausch können zwei Pipes verwendet werden. Nicht ausgelesene Daten werden auch bei dieser Methode zwischengespeichert. 
+    \item Shared Memory: Mehrere Prozesse können auf denselben Speicherbereich zugreifen, der für den Datenaustausch zwischen den Prozessen genutzt werden kann.
+\end{itemize}
+
+Die verschiedenen Kommunikationsmethoden bieten unterschiedliche Vorteile, so dass je nach Anwendungsfall abgewogen werden muss, welche Methode am besten geeignet ist. Bei der Softwareplattform ergeben sich folgende Anforderungen hinsichtlich der Kommunikation zwischen Softwaremodulen:
+
+\begin{itemize}
+    \item Übertragung von Befehlen und Statusmeldungen, bidirektionale Kommunikation der Komponenten erforderlich
+    \item Softwarekomponenten sind im Betriebszustand alle aktiv, keine asynchrone Kommunikation notwendig
+    \item Keine hohen Latenzanforderungen. Das aktuelle Konzept sieht keine Anwendungen vor, die sehr niedrige Latenzen erfordern.
+    \item Vorteilhaft ist eine möglichst hohe Flexibilität bezüglich der Ausführungsumgebung und des Ausführungsortes.
+\end{itemize}
+
+Aufgrund dieser Anforderungen wurde die Socket-Methode als Kommunikationsschnittstelle gewählt. Diese Methode implementiert eine asynchrone und bidirektionale Kommunikation. Sie kann sowohl auf einem lokalen System als auch systemübergreifend im Netzwerk eingesetzt werden. Somit können Softwarekomponenten, die über Sockets kommunizieren, bei Bedarf auf andere Systeme ausgelagert werden. 
+
+\subsubsection{Kommunikationsformat zwischen Softwarekomponenten}
+
+Die unter \autoref{Kommunikation zwischen Softwaremodulen} aufgeführten Kommunikationsmethoden implementieren nur die Funktionalität, dass Rohdaten ausgetauscht werden können. Das Format, in dem die Daten übertragen werden, muss vom Softwareentwickler implementiert werden. Innerhalb der Software liegen die Daten in den unterstützten Datentypen vor, in vielen Fällen gebündelt als Struct oder Class. Grundsätzlich können Daten auch in ihrem nativen Format in binärer Form zwischen Softwarekomponenten übertragen werden. Dies ist die effizienteste Methode, da keine zusätzlichen Konvertierungsschritte für die Übertragung notwendig sind und keine zusätzliche Datengröße benötigt wird. Nachteilig ist, dass die Daten auf Bit genau von beiden Teilkomponenten gleich interpretiert werden müssen. Dies ist insbesondere dann nicht immer der Fall, wenn die Softwarekomponenten in unterschiedlichen Programmiersprachen entwickelt wurden oder auf unterschiedlichen Systemen laufen. Darüber hinaus erschwert ein solches Konzept die dynamische Erweiterung der übertragenen Daten um zusätzliche Datenfelder bei gleichzeitiger Abwärtskompatibilität zu älteren Softwarekomponenten. Aus diesem Grund werden für die Kommunikation zwischen Softwaremodulen in der Regel keine Rohdaten ausgetauscht, sondern andere Nachrichtenformate verwendet. Diese Formate werden \gls{IDL} oder Schnittstellenbeschreibungssprachen genannt. Folgende Formate finden häufig Anwendung:
+
+\begin{itemize}
+    \item \gls{JSON}: Textbasiertes Format, von Menschen unmittelbar lesbar, hierarchische Struktur
+    \item \gls{XML}: Textbasiertes Format, von Menschen unmittelbar lesbar, Label-basierte Struktur
+    \item Protocol Buffers: Binärformat, kompakt, Nachrichtenstruktur wird durch eine Beschreibungsdatei definiert
+    \item MessagePack: Binärformat, ähnliche Struktir wie \gls{JSON} aber nicht von menschen lesbar, kompakt
+    \item \gls{YAML}: Textbasiertes Format, von Menschen unmittelbar lesbar, kann komplexe Strukturen darstellen
+\end{itemize}
+
+Die aufgeführten Kommunikationsformate bieten je nach Anwendungsfall unterschiedliche Vorteile. Die folgende Tabelle gibt einen Überblick über die Unterschiede zwischen den aufgeführten Methoden:
+\begin{center}
+    \begin{tabular}{|c||c|c|c|c|c|}
+        \hline
+        \textbf{Eigenschaft} & \textbf{YAML} & \textbf{JSON} & \textbf{Protobuf} & \textbf{MessagePack} & \textbf{XML} \\
+        \hline
+        \hline
+        Kompaktheit & Gering & Mittel & Hoch & Hoch & Gering \\
+        \hline
+        unmittelbar lesbar & Ja & Ja & Nein & Nein & Ja \\
+        \hline
+        Parsing Geschwindigkeit & Langsam & Mittel & Schnell & Schnell & Langsam \\
+        \hline
+    \end{tabular}
+\end{center}
+
+In der prototypischen Implementierung werden zwischen Softwarekomponenten hauptsächlich Befehle und Statusmeldungen ausgetauscht. Es ergeben sich hierdurch die Folgenden Anforderungen:
+
+\begin{itemize}
+    \item Einfaches Debugging ohne zusätzliche Tools Vorteilhaft
+    \item Größe der übertragenen Daten gering
+    \item Häufigkeit der Kommunikation gering
+\end{itemize}
+
+Aufgrund der Anforderungen wurde die Schnittstellenbeschreibungssprache \gls{JSON} gewählt. Die zusätzliche Kompaktheit der Binärformate ist bei der gegebenen Häufigkeit der Kommunikation und der Menge der übertragenen Daten nicht so entscheidend. Die unmittelbare Lesbarkeit der Daten erleichtert die Fehlersuche im System.
+
+Bei der Übertragung von externen Applikationen werden höhere binäre Datenmengen übertragen. 
