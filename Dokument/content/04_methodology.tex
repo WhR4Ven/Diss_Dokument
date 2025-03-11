@@ -58,7 +58,7 @@ Die prototypische Implementierung der Plattform orientiert sich in ihrer Archite
 
 \subsection{Runtime Node}
 
-Diese Komponente wird auf den Fahrzeugsteuergeräten ausgeführt und setzt sich aus mehreren Softwarekomponenten zusammen. Die Kommunikationsschnittstelle wird als eigenständige Softwarekomponente implementiert, die nicht Teil der Softwarekomponente Runtime Node ist. Diese Struktur ermöglicht einen einfachen Austausch der Kommunikationsschnittstelle und damit einen einfachen Wechsel des Kommunikationsprotokolls. Die Kommunikation zwischen der Kommunikationsschnittstelle und dem Runtime Node erfolgt über eine Interprozesskommunikationssschnittstelle. Die Informationen werden im \gls{JSON} Format übertragen. Der Runtime Node interpretiert die eingehenden Befehle mit einem JSON-Parser-Modul. Statusrückmeldungen vom Runtime Node werden ebenfalls als JSON an die Kommunikationsschnittstelle gesendet. 
+Diese Komponente wird auf den Fahrzeugsteuergeräten ausgeführt und besteht aus mehreren Softwarekomponenten. Die Gesamtarchitektur der Komponente Runtime Node ist in der \autoref{runtime node} dargestellt. Die Kommunikationsschnittstelle ist als eigenständige Softwarekomponente implementiert, die nicht Teil der Softwarekomponente Runtime Node ist. Diese Struktur ermöglicht einen einfachen Austausch der Kommunikationsschnittstelle und damit einen einfachen Wechsel des Kommunikationsprotokolls. Die Kommunikation zwischen der Kommunikationsschnittstelle und dem Runtime Node erfolgt über eine Interprozesskommunikationsschnittstelle. Diese ist im \autoref{Kommunikation zwischen Softwaremodulen} detailliert beschrieben. 
 
 \begin{figure}[htbp]
 	\centering
@@ -66,6 +66,19 @@ Diese Komponente wird auf den Fahrzeugsteuergeräten ausgeführt und setzt sich 
 	\caption{Runtime Node Struktur}
 	\label{runtime node}
 \end{figure}
+
+\subsubsection{Container Management}
+
+Die elementare Aufgabe der Softwarekomponente Runtime Node ist die Erzeugung und Verwaltung von isolierten Laufzeitumgebungen. Im \autoref{Virtualisierung} wurde festgelegt, dass diese isolierten Laufzeitumgebungen mit der Virtualisierungsmethode der Containerisierung erzeugt werden. Dabei werden betriebssystemspezifische Isolationsmethoden verwendet, die vom Linux-Kernel zur Verfügung gestellt werden. Konkret werden die in \autoref{Software Virtualisierung/Container} vorgestellten Namespaces verwendet. 
+
+Die Isolierung erfolgt zunächst auf Dateisystemebene. Für jeden Container wird ein eigener Ordner angelegt, der als Wurzelverzeichnis konfiguriert wird. Prozesse, die im jeweiligen Container ausgeführt werden, haben nur Zugriff auf die Daten in diesem Verzeichnis. Entsprechend werden auch die benötigten Softwarebibliotheken und Frameworks in diesem Ordner abgelegt, damit sie den Anwendungen innerhalb des Containers zur Verfügung stehen. Dies kann entweder durch die Erstellung eines vorkonfigurierten Ordners geschehen, der lokal auf dem Steuergerät zur Verfügung steht, oder durch die Übertragung von extern auf die gleiche Weise wie externe Applikationen.
+
+Wird ein Container gestartet, erzeugt Runtime Node einen neuen Prozess. Dieser wird durch entsprechende Namespace Zuweisungen vom Rest des Systems isoliert. Die folgenden Namespace Isolierungsmethoden sind Standardmäßig vorgesehen:
+
+\begin{itemize}
+    \item NEWNS: Isoliert das Datensystem des Prozesses. Nur Datenpfade, die dem Prozess explizit durch Mounten hinzugefügt wurden, können vom Prozess gesehen werden.
+    \item NEWPID: 
+\end{itemize}
 
 \subsection{Runtime Master}
 
@@ -161,7 +174,8 @@ Die unter \autoref{Kommunikation zwischen Softwaremodulen} aufgeführten Kommuni
 \end{itemize}
 
 Die aufgeführten Kommunikationsformate bieten je nach Anwendungsfall unterschiedliche Vorteile. Die folgende Tabelle gibt einen Überblick über die Unterschiede zwischen den aufgeführten Methoden:
-\begin{center}
+\begin{table}
+    \centering
     \begin{tabular}{|c||c|c|c|c|c|}
         \hline
         \textbf{Eigenschaft} & \textbf{YAML} & \textbf{JSON} & \textbf{Protobuf} & \textbf{MessagePack} & \textbf{XML} \\
@@ -174,7 +188,8 @@ Die aufgeführten Kommunikationsformate bieten je nach Anwendungsfall unterschie
         Parsing Geschwindigkeit & Langsam & Mittel & Schnell & Schnell & Langsam \\
         \hline
     \end{tabular}
-\end{center}
+    \caption{Vergleich der häufig verwendeten \gls{IDL} Methoden}
+\end{table}
 
 In der prototypischen Implementierung werden zwischen Softwarekomponenten hauptsächlich Befehle und Statusmeldungen ausgetauscht. Es ergeben sich hierdurch die Folgenden Anforderungen:
 
@@ -186,4 +201,6 @@ In der prototypischen Implementierung werden zwischen Softwarekomponenten haupts
 
 Aufgrund der Anforderungen wurde die Schnittstellenbeschreibungssprache \gls{JSON} gewählt. Die zusätzliche Kompaktheit der Binärformate ist bei der gegebenen Häufigkeit der Kommunikation und der Menge der übertragenen Daten nicht so entscheidend. Die unmittelbare Lesbarkeit der Daten erleichtert die Fehlersuche im System.
 
-Bei der Übertragung von externen Applikationen werden höhere binäre Datenmengen übertragen. 
+Eine Ausnahme stellt die Übertragung von Binärdaten dar. Diese werden oft nicht in einer Nachricht übertragen, sondern auf mehrere Nachrichten verteilt. Während der Übertragung werden also Nachrichten mit großen Datenfeldern in kurzen Zeitabständen übertragen. Für diesen Anwendungsfall ist die schnelle Parsing Geschwindigkeit und Kompaktheit ausschlaggebend. Die direkte Lesbarkeit spielt bei dieser Methode keine Rolle, da binäre Daten für Menschen nicht direkt lesbar sind. Geeignete Methoden für diesen Fall sind sowohl Protobuf als auch MessagePack. Beide Methoden zeichnen sich durch eine hohe Parsing-Geschwindigkeit und eine hohe Kompaktheit aus.
+
+In der prototypischen Implementierung werden derzeit auch die Binärdaten über \gls{JSON} übertragen, um die Kommunikation einheitlich zu halten. Bei einer Weiterentwicklung ist hier jedoch ein Wechsel auf eine andere \gls{IDL} sinnvoll, um die Übertragungsgeschwindigkeit zu erhöhen.
