@@ -67,6 +67,10 @@ Diese Komponente wird auf den Fahrzeugsteuergeräten ausgeführt und besteht aus
 	\label{runtime node}
 \end{figure}
 
+\subsubsection{Runtime Node Befehlsverarbeitung}
+
+Diese Komponente interpretiert die Befehle der Kommunikationsschnittstelle und erzeugt Statusrückmeldungen. Abhängig vom empfangenen Befehl ruft sie die entsprechenden Container Management Funktionen auf. Hier werden auch die für den Runtime Master relevanten Informationen und Statusrückmeldungen gesammelt und als Nachricht über die Kommunikationsschnittstelle versendet.
+
 \subsubsection{Container Management}
 
 Die elementare Aufgabe der Softwarekomponente Runtime Node ist die Erzeugung und Verwaltung von isolierten Laufzeitumgebungen. Im \autoref{Virtualisierung} wurde festgelegt, dass diese isolierten Laufzeitumgebungen mit der Virtualisierungsmethode der Containerisierung erzeugt werden. Dabei werden betriebssystemspezifische Isolationsmethoden verwendet, die vom Linux-Kernel zur Verfügung gestellt werden. Konkret werden die in \autoref{Software Virtualisierung/Container} vorgestellten Namespaces verwendet. 
@@ -79,15 +83,18 @@ Wird ein Container gestartet, erzeugt Runtime Node einen neuen Prozess. Dieser P
     \item NEWNS: Isoliert die Mount-Namespaces oder Mounts. Dateipfade, die dem Prozess durch mount hinzugefügt werden, haben keinen Einfluss auf das zugrunde liegende Betriebssystem.
     \item NEWPID: Isoliert die \gls{PID} des Prozesses, so dass der aktuelle Prozess die \gls{PID} 1 erhält. Dadurch wird dieser Prozess zum Initialisierungsprozess in dieser Umgebung. Andere Prozesse, die nicht vom Initialisierungsprozess in diesem Container gestartet wurden, sind innerhalb des Containers nicht sichtbar.
     \item NEWUTS: Isoliert die Prozess-IDs vom Rest des Systems. Dadurch können Prozesse in der isolierten Umgebung beliebig umbenannt werden, ohne dass es zu Konflikten mit gleichnamigen Prozessen im restlichen System kommt.
+    \item NEWNET: Isoliert den Prozess vom Netzwerk-Stack des Host-Systems. Netzwerkadapter, IP-Adressen, Routing-Tabellen, Firewall-Einstellungen und Sockets werden nicht mit dem Host-System geteilt. Prozesse im Container können keine Netzwerkressourcen des Hostsystems verwenden oder dessen Einstellungen einsehen.
 \end{itemize}
 
 Um den Zugriff des Containers auf die explizit vorgesehenen Dateipfade zu beschränken, ist eine zusätzliche Routine Pivot Root erforderlich. Pivot Root legt das Wurzelverzeichnis für den Prozess fest, so dass dieser nicht auf hierarchisch übergeordnete Ordnerstrukturen im Dateisystem zugreifen kann. Wird der für den Container spezifisch angelegte Ordner als Root-Verzeichnis definiert, so können die Prozesse auch nur auf Inhalte in diesem Ordner zugreifen. In Kombination mit dem isolierten Mount-Namespace werden die Zugriffsrechte der Prozesse auf die explizit gesetzten Dateipfade beschränkt.
 
 Um die Rechenressourcen des Containers einzuschränken und die durch den Initialisierungsprozess gestarteten Prozesse zu identifizieren, wird die in \autoref{Software Virtualisierung/Container} vorgestellte Linux Feature Control Group (cgroup) verwendet. Die Container-Management-Komponente des Laufzeitknotens legt für den Initialisierungsprozess eine neue cgroup an. Prozesse, die vom Initialisierungsprozess gestartet werden, sind automatisch Teil der cgroup des Initialisierungsprozesses. Dieser Mechanismus ermöglicht es einerseits, die zur Verfügung stehenden Rechenressourcen des Containers bei Bedarf einzuschränken, und andererseits, die im Container laufenden Prozesse eindeutig zu identifizieren. Im Falle eines externen Stoppbefehls für den Container können so alle Prozesse des Containers beendet werden.
 
-Für den Fall, dass die externe Applikationen eine Netzwerkverbindung benötigen, kann Container Management eine virtuelle Netzwerkschnittstelle bereitstellen. 
+Prozesse, die im Container laufen, sind standardmäßig durch die Verwendung von Namespaces vom Hostsystem Netzwerk isoliert. Sollen Anwendungen im Container auf Netzwerkressourcen des Systems zugreifen, kann dies mit Hilfe von Netzwerkbrücken realisiert werden. Dazu werden zwei virtuelle Netzwerkschnittstellen erzeugt, eine Schnittstelle im Namespace des Containers und die andere im Hostsystem. Die Netzwerkbrücke verbindet die beiden Netzwerkschnittstellen und ermöglicht die Netzwerkkommunikation der Container Prozesse im Hostsystem. 
 
 \subsection{Runtime Master}
+
+Die Runtime Master Komponente verwaltet die Runtime Nodes im Gesamtsystem. Das aktuelle Konzept sieht eine laufende Instanz von Runtime Master im System vor. Im gegensatz zu den Runtime Nodes wird diese Komponente nicht auf einem Fahrzeug ausgeführt, sondern auf einem Server. Runtime Master erkennt und verwaltet alle Runtime Node Instanzen im gleichen Netzwerk. Wie Runtime Node besteht auch Runtime Master aus mehreren Softwarekomponenten. Eine Übersicht ist in \autoref{runtime master} dargestellt. Die Kommunikationsschnittstelle ist bei Runtime Node ebenfalls eine separate Softwarekomponente, die nicht teil von Runtime Node ist. 
 
 \begin{figure}[htbp]
 	\centering
@@ -95,6 +102,10 @@ Für den Fall, dass die externe Applikationen eine Netzwerkverbindung benötigen
 	\caption{Runtime Master Struktur}
 	\label{runtime master}
 \end{figure}
+
+\subsubsection{Runtime Master Nachrichtenverwaltung}
+
+Diese Komponente erzeugt einerseits die Befehle, die über 
 
 \subsection{Kommunikation}
 
