@@ -105,7 +105,11 @@ Die Runtime Master Komponente verwaltet die Runtime Nodes im Gesamtsystem. Das a
 
 \subsubsection{Runtime Master Nachrichtenverwaltung}
 
-Diese Komponente erzeugt einerseits die Befehle, die über 
+Diese Komponente generiert die Befehle, die über die Kommunikationsschnittstelle an die Runtime Nodes übertragen werden und empfängt die Statusmeldungen der Runtime Nodes. Die Befehle können sowohl über eine Benutzeroberfläche manuell oder über eine Scheduler Algorithmus ausgelöst werden. Die Statusmeldungen der Runtime Nodes werden an die Datenbank oder, falls es sich um eine Fehlermeldung handelt, an die Benutzerschnittstelle oder den Scheduler gesendet. 
+
+\subsubsection{Container Datenbank}
+
+ Informationen über die im Netzwerk vorhandene Runtime Nodes werden in einer Datenbank gespeichert. Dieser kann dafür verwendet werden, dass der Scheduler Informationen über die Runtime Nodes sammeln kann, die für die Verteilung der Applikationen relevant sind. 
 
 \subsection{Kommunikation}
 
