@@ -107,6 +107,10 @@ Die Runtime Master Komponente verwaltet die Runtime Nodes im Gesamtsystem. Das a
 
 Diese Komponente generiert die Befehle, die über die Kommunikationsschnittstelle an die Runtime Nodes übertragen werden und empfängt die Statusmeldungen der Runtime Nodes. Die Befehle können sowohl über eine Benutzeroberfläche manuell oder über eine Scheduler Algorithmus ausgelöst werden. Die Statusmeldungen der Runtime Nodes werden an die Datenbank oder, falls es sich um eine Fehlermeldung handelt, an die Benutzerschnittstelle oder den Scheduler gesendet. 
 
+\subsubsection{Scheduler}
+
+Der Scheduler verteilt die Anwendungen auf die Runtime Nodes. Dabei soll die Verteilung so erfolgen, dass die Last sinnvoll auf die Knoten verteilt wird und eine möglichst effiziente Ausführung erreicht wird. 
+
 \subsubsection{Container Datenbank}
 
  Informationen über die im Netzwerk vorhandene Runtime Nodes werden in einer Datenbank gespeichert. Dieser kann dafür verwendet werden, dass der Scheduler Informationen über die Runtime Nodes sammeln kann, die für die Verteilung der Applikationen relevant sind. 
@@ -226,3 +230,14 @@ Aufgrund der Anforderungen wurde die Schnittstellenbeschreibungssprache \gls{JSO
 Eine Ausnahme stellt die Übertragung von Binärdaten dar. Diese werden oft nicht in einer Nachricht übertragen, sondern auf mehrere Nachrichten verteilt. Während der Übertragung werden also Nachrichten mit großen Datenfeldern in kurzen Zeitabständen übertragen. Für diesen Anwendungsfall ist die schnelle Parsing Geschwindigkeit und Kompaktheit ausschlaggebend. Die direkte Lesbarkeit spielt bei dieser Methode keine Rolle, da binäre Daten für Menschen nicht direkt lesbar sind. Geeignete Methoden für diesen Fall sind sowohl Protobuf als auch MessagePack. Beide Methoden zeichnen sich durch eine hohe Parsing-Geschwindigkeit und eine hohe Kompaktheit aus.
 
 In der prototypischen Implementierung werden derzeit auch die Binärdaten über \gls{JSON} übertragen, um die Kommunikation einheitlich zu halten. Bei einer Weiterentwicklung ist hier jedoch ein Wechsel auf eine andere \gls{IDL} sinnvoll, um die Übertragungsgeschwindigkeit zu erhöhen.
+
+\section{Scheduling}
+
+Das Scheduling hat die Aufgabe, die externen Applikationen so im System zu verteilen, dass eine effiziente Auslastung der Fahrzeuge (Runtime Nodes) erreicht wird. Für diese Verteilung benötigt der Scheduler sowohl Informationen über die Anforderungen der auszuführenden Applikationen als auch über die Eigenschaften der Runtime Nodes in den Fahrzeugen. Um eine effiziente Auslastung für externe Applikationen zu ermöglichen, wurden folgende Anforderungen an den Scheduler identifiziert:
+
+\begin{itemize}
+    \item Applikation muss Kompatibel mit der Architektur der Zielhardware sein. Wenn verschiedene Hardwarearchitekturen im Gesamtsystem vorhanden sind, muss die entsprechende Kompatibilität mit der externen Applikation gewährleistet werden. 
+    \item Wenn die Anwendung bestimmte Ressourcenanforderungen hat, wie z.B. Speicherbedarf, müssen die Runtime Nodes diese Anforderungen erfüllen.
+    \item Die Ressourcenverteilung soll so effizient wie möglich erfolgen, Runtime Nodes müssen dem Runtime Master entsprechend relevante Informationen über ihre aktuell verfügbaren Rechenressourcen mitteilen.
+    \item 
+\end{itemize}
