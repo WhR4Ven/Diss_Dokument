@@ -238,7 +238,46 @@ Das Scheduling hat die Aufgabe, die externen Applikationen so im System zu verte
 \begin{itemize}
     \item Applikation muss Kompatibel mit der Architektur der Zielhardware sein. Wenn verschiedene Hardwarearchitekturen im Gesamtsystem vorhanden sind, muss die entsprechende Kompatibilität mit der externen Applikation gewährleistet werden. 
     \item Wenn die Anwendung bestimmte Ressourcenanforderungen hat, wie z.B. Speicherbedarf, müssen die Runtime Nodes diese Anforderungen erfüllen.
-    \item Die Ressourcenverteilung soll so effizient wie möglich erfolgen, Runtime Nodes müssen dem Runtime Master entsprechend relevante Informationen über ihre aktuell verfügbaren Rechenressourcen mitteilen.
+    \item Die Ressourcenverteilung soll so effizient wie möglich erfolgen, Runtime Nodes müssen dem Runtime Master entsprechend relevante Informationen über ihre aktuell verfügbaren Rechenressourcen mitteilen.o
     \item Die Verbindungsqualität im Netzwerk ist entscheidend für die Übertragung von Anwendungen und Ergebnissen. Netzwerkeigenschaften wie Bandbreite und Latenz der einzelnen Runtime Nodes sind daher für das Scheduling relevant.
-    \item 
+    \item Wahrscheinlichkeit von Zustandsänderungen. Parkende Fahrzeuge benötigen sehr geringe Mengen an Rechenressourcen, so dass sie den Großteil ihrer Ressourcen externen Anwendungen zur Verfügung stellen können. Fährt das Fahrzeug los, ändert sich der Zustand so, dass das Fahrzeug nur noch geringe oder gar keine Ressourcen mehr zur Verfügung stellen kann. Für ein effizientes Scheduling ist es sinnvoll, die Wahrscheinlichkeit des Zustandswechsels abzuschätzen.
+    \item Identifizierung und Authentifizierung der Runtime-Knoten. Unberechtigter Zugriff muss verhindert werden und die Runtime Nodes müssen identifizierbar sein.
 \end{itemize}
+
+Ausgehend von diesen Anforderungen wurden die folgenden relevanten Informationen ermittelt, die die Runtime Nodes übertragen:
+
+\begin{itemize}
+    \item Leistung: 
+    \begin{itemize}
+        \item CPU Auslastung
+        \item Verfügbare Arbeitsspeichermenge
+        \item Verfügbare Laufwerkspeichermenge
+    \end{itemize} 
+    \item Netzwerk:
+    \begin{itemize}
+        \item Netzwerktyp
+        \item Latenz
+        \item Position
+    \end{itemize}
+    \item Characteristic:
+    \begin{itemize}
+        \item Betriebssystem
+        \item CPU Typ und Architektur
+        \item Runtime Version
+    \end{itemize}
+    \item Authentifizierung
+    \begin{itemize}
+        \item Token
+    \end{itemize}
+    \item Gesundheitsstatus
+    \item Eigenschaften
+    \item Zusätzliche Angaben
+    \item Vorhandene Container:
+    \begin{itemize}
+        \item Containername
+        \item Containerstatus
+        \item Externe Applikationen im Container
+    \end{itemize}
+\end{itemize}
+
+Mit diesen Informationen können die oben genannten Anforderungen erfüllt werden. Die Authentifizierung ermöglicht eine eindeutige Identifizierung der Knoten. CPU-Typ, Architektur und momentane Auslastung ermöglichen die Bestimmung der verfügbaren Rechenleistung im Fahrzeug sowie der Kompatibilität der externen Applikation mit der Hardware.
