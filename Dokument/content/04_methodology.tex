@@ -284,10 +284,49 @@ Mit diesen Informationen können die oben genannten Anforderungen erfüllt werde
 
 \subsection{Scheduling Algorithmen}
 
-Das Scheduling Problem kann im Prinzip als eine erweiterte Form des Knapsack Problems betrachtet werden. Das Knapsackproblem ist ein Modell für Optimierungsprobleme in der Kombinatorik. Es behandelt das Problem, einen Rucksack mit begrenztem Platz mit Gegenständen von unterschiedlicher Größe und Wert zu füllen. Ziel ist es, die Kombination von Gegenständen zu finden, die in den Rucksack passt und den höchsten Gesamtwert aufweist. Dieses Problem weist eine hohe Ähnlichkeit mit Problemen bei der Ressourcenverteilung auf. In diesem Fall müssen Anwendungen, die eine bestimmte Menge an Ressourcen benötigen, auf Systeme mit begrenzt verfügbaren Ressourcen optimal verteilt werden. Zur Lösung von Knapsackproblemen existieren verschiedene Algorithmen. Grundsätzlich kann zwischen Algorithmen unterschieden werden, die eine exakte Optimallösung als Ergebnis garantieren und solchen, die nur eine lokale Optimallösung garantieren. 
+Das Scheduling Problem kann im Prinzip als eine erweiterte Form des Knapsack Problems betrachtet werden. Das Knapsackproblem ist ein Modell für Optimierungsprobleme in der Kombinatorik. Es behandelt das Problem, einen Rucksack mit begrenztem Platz mit Gegenständen von unterschiedlicher Größe und Wert zu füllen. Ziel ist es, die Kombination von Gegenständen zu finden, die in den Rucksack passt und den höchsten Gesamtwert aufweist. Dieses Problem weist eine hohe Ähnlichkeit mit Problemen bei der Ressourcenverteilung auf. In diesem Fall müssen Anwendungen, die eine bestimmte Menge an Ressourcen benötigen, auf Systeme mit begrenzt verfügbaren Ressourcen optimal verteilt werden. Die meisten Knapsackprobleme sind sogenannte 0/1 Knapsackprobleme. Das bedeutet, dass ein Objekt in der Lösungsmenge entweder ganz oder gar nicht beinhaltet werden kann, Objekte können nicht geteilt werden. Mathematisch lässt sich das Problem durch folgende Formel ausdrücken, für $ i $ Objekte mit jeweils dem Kapazitätsbedarf $ w_i $, der Anzahl in der Lösungsmenge $ x_i $ und der verfügbaren Gesamtkapazität $ W $:
+
+\begin{equation}
+    \sum_{i=0}^n w_i x_i  \leq W, x_i \in {0,1} 
+    \label{Eq:Knapsack}
+\end{equation}
+
+Auch die Verteilung von Anwendungen in einem verteilten Computersystem kann als 0/1 Knapsackproblem aufgefasst werden, da die einzelnen Anwendungen in der Regel nicht aufgeteilt werden können. Zur Lösung von Knapsackproblemen existieren verschiedene Algorithmen. Grundsätzlich kann zwischen Algorithmen unterschieden werden, die eine exakte Optimallösung als Ergebnis garantieren und solchen, die nur eine lokale Optimallösung garantieren. 
 
 \subsubsection{Exakte Algorithmen}
 
-Es existieren verschiedene Methoden, um die exakte optimale Lösung zu finden. Nachfolgend sind einige Beispiele für Algorithmen aufgeführt, die dies ermöglichen.
+Es existieren verschiedene Methoden, um die exakte optimale Lösung zu finden. Nachfolgend sind einige Beispiele für Algorithmen aufgeführt, die dies ermöglichen. 
 
-Dynamische Programmierung ist eine Methode, die für sogenannte 0/1 Knapsackprobleme verwendet werden kann. 0/1 bedeutet, dass ein Objekt entweder ganz oder gar nicht ausgewählt wird, Objekte dürfen also nicht nur teilweise in die Lösung einbezogen werden. Im Algorithmus dynamische Programmierung 
+Die dynamische Programmierung ist eine weit verbreitete Methode zur Bestimmung der optimalen Lösung des Knapsackproblems. Bei dieser Methode wird eine Tabelle aller Möglichkeiten für Gewicht/Ressourcenverbrauch und Anzahl der Objekte erstellt. In dieser Tabelle werden alle zulässigen Kombinationen berechnet und die Kombination mit dem höchsten Wert ermittelt. Nachfolgend ist die Logik der dynamischen Programmierung als Pseudocode dargestellt. Im dargestellten Fall werden Objekte mit unterschiedlichen Gewichten und Werten betrachtet, wobei die Kombination der Objekte gesucht wird, deren Gesamtgewicht die maximale Kapazität nicht überschreitet und deren Gesamtwert maximal ist:
+
+\begin{algorithmic}
+    \State  \textbf{Eingang:} Werte[], gewichte[], Kapazität
+    \State  \textbf{Ausgang:} Maximaler Gesamtwert
+    
+    \State  $n \leftarrow$ length(Werte)
+    \State  Initialisiere $dp$ ein 2D Array der Größe $(n+1) \times (Kapazität+1)$ gefüllt mit 0
+    
+    \For{$i \leftarrow 1$ to $n$}
+        \For{$w \leftarrow 0$ to $Kapazität$}
+            \If{$Gewichte[i-1] \leq w$}
+                \State $dp[i][w] \leftarrow \max(dp[i-1][w], Werte[i-1] + dp[i-1][w - Gewichte[i-1]])$
+            \Else
+                \State  $dp[i][w] \leftarrow dp[i-1][w]$
+            \EndIf
+        \EndFor
+    \EndFor
+    
+    \State  \textbf{return} $dp[n][Kapazität]$
+\end{algorithmic}
+
+In diesem Code wird zunächst die 2D Tabelle der Größe Anhalt Gegenstände + 1 und Kapazität + 1 erstellt. Der eine zusätzliche 
+
+Die Tabelle ermöglicht es, die Ergebnisse bereits berechneter Kombinationen als Zwischenwert für neue Kombinationen zu verwenden, was die Effizienz im Vergleich zur einfachen \enquote{Brute Force} Methode, bei der alle möglichen Kombinationen einzeln berechnet werden steigert. Bei $ n $ Objekten und einer Maximalen Kapazität von $ W $ ergeben sich die Berechnungskomplexitäten wie folgt: 
+
+\begin{align}
+    & O(2^n) (exponentiell) \\
+    & O(nW) (polynomisch)
+\end{align}
+
+
+
