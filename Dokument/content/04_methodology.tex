@@ -300,14 +300,15 @@ Es existieren verschiedene Methoden, um die exakte optimale Lösung zu finden. N
 Die dynamische Programmierung ist eine weit verbreitete Methode zur Bestimmung der optimalen Lösung des Knapsackproblems. Bei dieser Methode wird eine Tabelle aller Möglichkeiten für Gewicht/Ressourcenverbrauch und Anzahl der Objekte erstellt. In dieser Tabelle werden alle zulässigen Kombinationen berechnet und die Kombination mit dem höchsten Wert ermittelt. Nachfolgend ist die Logik der dynamischen Programmierung als Pseudocode dargestellt. Im dargestellten Fall werden Objekte mit unterschiedlichen Gewichten und Werten betrachtet, wobei die Kombination der Objekte gesucht wird, deren Gesamtgewicht die maximale Kapazität nicht überschreitet und deren Gesamtwert maximal ist:
 
 \begin{algorithmic}
-    \State  \textbf{Eingang:} Werte[], gewichte[], Kapazität
+\label{code:DP}
+    \State  \textbf{Eingang:} Werte[], gewichte[], Kapazitaet
     \State  \textbf{Ausgang:} Maximaler Gesamtwert
     
     \State  $n \leftarrow$ length(Werte)
-    \State  Initialisiere $dp$ ein 2D Array der Größe $(n+1) \times (Kapazität+1)$ gefüllt mit 0
+    \State  Initialisiere $dp$ ein 2D Array der Größe $(n+1) \times (Kapazitaet+1)$ gefüllt mit 0
     
     \For{$i \leftarrow 1$ to $n$}
-        \For{$w \leftarrow 0$ to $Kapazität$}
+        \For{$w \leftarrow 0$ to $Kapazitaet$}
             \If{$Gewichte[i-1] \leq w$}
                 \State $dp[i][w] \leftarrow \max(dp[i-1][w], Werte[i-1] + dp[i-1][w - Gewichte[i-1]])$
             \Else
@@ -316,17 +317,20 @@ Die dynamische Programmierung ist eine weit verbreitete Methode zur Bestimmung d
         \EndFor
     \EndFor
     
-    \State  \textbf{return} $dp[n][Kapazität]$
+    \State  \textbf{return} $dp[n][Kapazitaet]$
 \end{algorithmic}
 
-In diesem Code wird zunächst die 2D Tabelle der Größe Anhalt Gegenstände + 1 und Kapazität + 1 erstellt. Der eine zusätzliche 
+In diesem Code wird zuerst die 2D Tabelle der Größe Anzahl Objekte + 1 und Kapazität + 1 erstellt. Die Tabelle ist um einen Index größer als die Anzahl der Objekte und die mögliche Kapazität. Der Grund dafür ist, dass die nachfolgende Logik auf frühere Werte in der Tabelle zurückgreift. Um einen Fehler beim ersten Durchlauf zu vermeiden, beginnt die Schleife bei Index 1, aber Index 0 ist in der Tabelle vorhanden und mit 0 gefüllt. Die Logik besteht aus zwei Schleifen, die erste Schleife iteriert über alle Objekte mit Index $i$, beginnend bei Index 1, um keine Zugriffsverletzung wie oben beschrieben zu erzeugen. Die zweite Schleife iteriert für jeden Objektindex über alle möglichen Gesamtkapazitäten $ w $. 
 
-Die Tabelle ermöglicht es, die Ergebnisse bereits berechneter Kombinationen als Zwischenwert für neue Kombinationen zu verwenden, was die Effizienz im Vergleich zur einfachen \enquote{Brute Force} Methode, bei der alle möglichen Kombinationen einzeln berechnet werden steigert. Bei $ n $ Objekten und einer Maximalen Kapazität von $ W $ ergeben sich die Berechnungskomplexitäten wie folgt: 
+Bei jeder Iteration wird zunächst geprüft, ob das aktuell ausgewählte Objekt am Index $ i $ in das aktuell ausgewählte Maximalgewicht $ w $ passt. Ist dies der Fall, wird geprüft, ob ein höherer Gesamtwert erreicht werden kann, wenn das aktuelle Objekt zur Lösung hinzugefügt wird. Dazu wird der Wert des neuen Objekts genommen und berechnet, wie viel Kapazität übrig bleibt, wenn das Objekt in die Lösung aufgenommen wird. Anschließend wird für die berechnete Restkapazität der höchste Gesamtwert aus der Tabelle genommen. Zuletzt wird verglichen, ob durch das Hinzufügen des neuen Objekts ein höherer Gesamtwert erreicht wird als vorher. Das Maximum wird als Ergebnis in die Tabelle eingetragen. Überschreitet das Gewicht des neuen Objekts das aktuell zulässige Gesamtgewicht $ w $, wird direkt der vorherige Tabellenwert genommen, da keine Verbesserung mit diesem Objekt möglich ist.
+
+Der Vorteil dieser Methode gegenüber der einfachen \enquote{Brute Force}. Methode, bei der alle möglichen Kombinationen berechnet werden, dass durch die Erstellung der Tabelle bereits berechnete Werte als Zwischenwerte für neue Berechnungen verwendet werden können. Dadurch können redundante Rechenoperationen vermieden werden. Bei $ n $ Objekten und einer Maximalen Kapazität von $ W $ ergeben sich die Berechnungskomplexitäten wie folgt: 
 
 \begin{align}
     & O(2^n) (exponentiell) \\
     & O(nW) (polynomisch)
 \end{align}
 
+Aus diesem Zusammenhang ist erkennbar, dass insbesondere bei große Anzahl an Objekten $ n $, erheblich Rechenaufwand durch dynamische Programmierung eingespart werden kann. 
 
-
+Eine weitere weit verbreitete Alternative zur Berechnung der exakten Lösung ist der Meet-in-the-Middle-Algorithmus. In diesem Algorithmus wird die Gesamtmenge der Objekte in zwei Hälften geteilt. Für diese zwei Hälften werden alle möglichen Kombinationen errechnet, anschließend die Ergebnisse sortiert und zusammengeführt. 
