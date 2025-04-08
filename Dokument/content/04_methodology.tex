@@ -300,7 +300,6 @@ Es existieren verschiedene Methoden, um die exakte optimale Lösung zu finden. N
 Die dynamische Programmierung ist eine weit verbreitete Methode zur Bestimmung der optimalen Lösung des Knapsackproblems. Bei dieser Methode wird eine Tabelle aller Möglichkeiten für Gewicht/Ressourcenverbrauch und Anzahl der Objekte erstellt. In dieser Tabelle werden alle zulässigen Kombinationen berechnet und die Kombination mit dem höchsten Wert ermittelt. Nachfolgend ist die Logik der dynamischen Programmierung als Pseudocode dargestellt. Im dargestellten Fall werden Objekte mit unterschiedlichen Gewichten und Werten betrachtet, wobei die Kombination der Objekte gesucht wird, deren Gesamtgewicht die maximale Kapazität nicht überschreitet und deren Gesamtwert maximal ist:
 
 \begin{algorithmic}
-\label{code:DP}
     \State  \textbf{Eingang:} Werte[], gewichte[], Kapazitaet
     \State  \textbf{Ausgang:} Maximaler Gesamtwert
     
@@ -333,4 +332,89 @@ Der Vorteil dieser Methode gegenüber der einfachen \enquote{Brute Force}. Metho
 
 Aus diesem Zusammenhang ist erkennbar, dass insbesondere bei große Anzahl an Objekten $ n $, erheblich Rechenaufwand durch dynamische Programmierung eingespart werden kann. 
 
-Eine weitere weit verbreitete Alternative zur Berechnung der exakten Lösung ist der Meet-in-the-Middle-Algorithmus. In diesem Algorithmus wird die Gesamtmenge der Objekte in zwei Hälften geteilt. Für diese zwei Hälften werden alle möglichen Kombinationen errechnet, anschließend die Ergebnisse sortiert und zusammengeführt. 
+Eine weitere weit verbreitete Alternative zur Berechnung der exakten Lösung ist der Meet-in-the-Middle-Algorithmus. In diesem Algorithmus wird die Gesamtmenge der Objekte in zwei Hälften geteilt. Für diese zwei Hälften werden alle möglichen Kombinationen errechnet, anschließend die Ergebnisse sortiert und zusammengeführt. Der folgende Pseudocode zeigt, wie Meet-in-the-Middle implementiert werden kann:
+
+\begin{algorithmic}
+    \State \textbf{Eingang:} Werte[], Gewichte[], Kapazitaet
+    \State \textbf{Ausgang:} Maximaler Gesamtwert
+
+    \State $n \leftarrow$ length(Werte)
+    \State $Items \leftarrow$ Liste von $(Gewicht, Wert)$ Paaren
+    \State Teile $Items$ in $Links$ und $Rechts$
+
+    \State $LinksMengen \leftarrow$ \textsc{GeneriereMengen}($Links$)
+    \State $RechtsMengen \leftarrow$ \textsc{GeneriereMengen}($Rechts$)
+
+    \State Sortiere $RechtsMengen$ nach Gewicht
+    \State $RechtsMengen \leftarrow$ \textsc{EntferneDominiertePaare}($RechtsMengen$)
+
+    \State $MaxWert \leftarrow 0$
+    \ForAll{($wL$, $vL$) in $LinksMengen$}
+        \If{$wL \leq Kapazitaet$}
+            \State $Rest \leftarrow Kapazitaet - wL$
+            \State $vR \leftarrow$ \textsc{BinaereSucheMaxWert}($RechtsMengen$, $Rest$)
+            \State $MaxWert \leftarrow \max(MaxWert, vL + vR)$
+        \EndIf
+    \EndFor
+
+    \State \textbf{return} $MaxWert$
+
+\end{algorithmic}
+
+Zuerst wird eine Liste erstellt, in der die Objektwerte und Gewichte als Paar gespeichert werden. Diese Liste wird in zwei Hälften geteilt. Die Funktion \enquote{GeneriereMengen} berechnet alle möglichen Kombinationen für jede Hälfte und speichert sie in den Variablen \enquote{LinksMengen} und \enquote{RechtsMengen}. Die \enquote{RechtsMengen} werden nach Gewicht sortiert. Die Funktion \enquote{EntferneDominiertePaare} entfernt aus den \enquote{RechtsMengen} alle Kombinationen, bei denen mindestens eine andere Kombination bei geringerem Gewicht einen höheren Gesamtwert erzielt. Diese können ausgeschlossen werden, da sie nicht Teil der optimalen Lösung sein können. Anschließend wird für jedes \enquote{LinksMengen}-Paar geprüft, ob es die Gesamtkapazität überschreitet und wenn nicht, wird die noch verfügbare Restkapazität berechnet. Die Funktion \enquote{BinaereSucheMaxWert} sucht den höchstmöglichen Wert in \enquote{RechtsMengen} für diese verfügbare Restkapazität. Abschließend wird der Gesamtwert der Kombination berechnet und geprüft, ob ein besseres Ergebnis als der bisherige Maximalwert erzielt werden konnte. Ist dies der Fall, wird das aktuelle Ergebnis als Maximalwert gespeichert, andernfalls wird der vorherige Maximalwert beibehalten. Beispielhafte Implementierungen für die verwendeten Hilfsfunktionen  
+
+\begin{algorithmic}
+    \Function{GeneriereMengen}{$Items$}
+    \State $Mengen \leftarrow$ leere Liste
+    \State $n \leftarrow$ Länge von $Items$
+    \For{$Maske \leftarrow 0$ bis $2^n - 1$}
+        \State $Wert \leftarrow 0$, $Gewicht \leftarrow 0$
+        \For{$i \leftarrow 0$ bis $n - 1$}
+            \If{Bit $i$ in $Maske$ gesetzt}
+                \State $Gewicht \leftarrow Gewicht + Items[i].Gewicht$
+                \State $Wert \leftarrow Wert + Items[i].Wert$
+            \EndIf
+        \EndFor
+        \State Füge $(Gewicht, Wert)$ zu $Mengen$ hinzu
+    \EndFor
+    \State \Return $Mengen$
+    \EndFunction
+
+    \State \vspace{0.5em}
+
+    \Function{EntferneDominiertePaare}{$Mengen$}
+    \State Sortiere $Mengen$ nach aufsteigendem Gewicht
+    \State $Gefiltert \leftarrow$ leere Liste
+    \State $MaxWert \leftarrow -\infty$
+    
+    \ForAll{$(w, v)$ in $Mengen$}
+        \If{$v > MaxWert$}
+            \State Füge $(w, v)$ zu $Gefiltert$ hinzu
+            \State $MaxWert \leftarrow v$
+        \EndIf
+    \EndFor
+
+    \State \Return $Gefiltert$
+    \EndFunction
+
+    \State \vspace{0.5em}
+
+    \Function{BinaereSucheMaxWert}{$Mengen$, $MaxGewicht$}
+    \State $Links \leftarrow 0$
+    \State $Rechts \leftarrow$ Länge($Mengen$) $- 1$
+    \State $BesterWert \leftarrow 0$
+
+    \While{$Links \leq Rechts$}
+        \State $Mitte \leftarrow \lfloor(Links + Rechts) / 2\rfloor$
+        \State $(w, v) \leftarrow Mengen[Mitte]$
+        \If{$w \leq MaxGewicht$}
+            \State $BesterWert \leftarrow v$
+            \State $Links \leftarrow Mitte + 1$
+        \Else
+            \State $Rechts \leftarrow Mitte - 1$
+        \EndIf
+    \EndWhile
+
+    \State \Return $BesterWert$
+    \EndFunction
+\end{algorithmic}
