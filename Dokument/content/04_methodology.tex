@@ -361,7 +361,7 @@ Eine weitere weit verbreitete Alternative zur Berechnung der exakten Lösung ist
 
 \end{algorithmic}
 
-Zuerst wird eine Liste erstellt, in der die Objektwerte und Gewichte als Paar gespeichert werden. Diese Liste wird in zwei Hälften geteilt. Die Funktion \enquote{GeneriereMengen} berechnet alle möglichen Kombinationen für jede Hälfte und speichert sie in den Variablen \enquote{LinksMengen} und \enquote{RechtsMengen}. Die \enquote{RechtsMengen} werden nach Gewicht sortiert. Die Funktion \enquote{EntferneDominiertePaare} entfernt aus den \enquote{RechtsMengen} alle Kombinationen, bei denen mindestens eine andere Kombination bei geringerem Gewicht einen höheren Gesamtwert erzielt. Diese können ausgeschlossen werden, da sie nicht Teil der optimalen Lösung sein können. Anschließend wird für jedes \enquote{LinksMengen}-Paar geprüft, ob es die Gesamtkapazität überschreitet und wenn nicht, wird die noch verfügbare Restkapazität berechnet. Die Funktion \enquote{BinaereSucheMaxWert} sucht den höchstmöglichen Wert in \enquote{RechtsMengen} für diese verfügbare Restkapazität. Abschließend wird der Gesamtwert der Kombination berechnet und geprüft, ob ein besseres Ergebnis als der bisherige Maximalwert erzielt werden konnte. Ist dies der Fall, wird das aktuelle Ergebnis als Maximalwert gespeichert, andernfalls wird der vorherige Maximalwert beibehalten. Beispielhafte Implementierungen für die verwendeten Hilfsfunktionen  
+Zuerst wird eine Liste erstellt, in der die Objektwerte und Gewichte als Paar gespeichert werden. Diese Liste wird in zwei Hälften geteilt. Die Funktion \enquote{GeneriereMengen} berechnet alle möglichen Kombinationen für jede Hälfte und speichert sie in den Variablen \enquote{LinksMengen} und \enquote{RechtsMengen}. Die \enquote{RechtsMengen} werden nach Gewicht sortiert. Die Funktion \enquote{EntferneDominiertePaare} entfernt aus den \enquote{RechtsMengen} alle Kombinationen, bei denen mindestens eine andere Kombination bei geringerem Gewicht einen höheren Gesamtwert erzielt. Diese können ausgeschlossen werden, da sie nicht Teil der optimalen Lösung sein können. Anschließend wird für jedes \enquote{LinksMengen}-Paar geprüft, ob es die Gesamtkapazität überschreitet und wenn nicht, wird die noch verfügbare Restkapazität berechnet. Die Funktion \enquote{BinaereSucheMaxWert} sucht den höchstmöglichen Wert in \enquote{RechtsMengen} für diese verfügbare Restkapazität. Abschließend wird der Gesamtwert der Kombination berechnet und geprüft, ob ein besseres Ergebnis als der bisherige Maximalwert erzielt werden konnte. Ist dies der Fall, wird das aktuelle Ergebnis als Maximalwert gespeichert, andernfalls wird der vorherige Maximalwert beibehalten. Beispielhafte Implementierungen für die verwendeten Hilfsfunktionen sind im folgenden Abschnitt aufgeführt:
 
 \begin{algorithmic}
     \Function{GeneriereMengen}{$Items$}
@@ -380,7 +380,11 @@ Zuerst wird eine Liste erstellt, in der die Objektwerte und Gewichte als Paar ge
     \State \Return $Mengen$
     \EndFunction
 
-    \State \vspace{0.5em}
+\end{algorithmic}
+
+Die Funktion \enquote{GeneriereMengen} berechnet alle möglichen Kombinationen von Objekten. Dazu wird eine Maske in einer Schleife verwendet, die von 0 bis zur Anzahl der Objekte - 1 inkrementiert wird. Für jede Schleife werden der Gesamtwert und das Gesamtgewicht der Objekte addiert, deren Indexposition $ i $ in der Maske eine 1 ist. Diese Methode stellt sicher, dass alle möglichen Kombinationen berechnet werden. Die Ergebnisse werden in einer Liste \enquote{Mengen} gespeichert und zurückgegeben.
+
+\begin{algorithmic}
 
     \Function{EntferneDominiertePaare}{$Mengen$}
     \State Sortiere $Mengen$ nach aufsteigendem Gewicht
@@ -397,8 +401,12 @@ Zuerst wird eine Liste erstellt, in der die Objektwerte und Gewichte als Paar ge
     \State \Return $Gefiltert$
     \EndFunction
 
-    \State \vspace{0.5em}
+\end{algorithmic}
 
+Die Funktion \enquote{EntfernenDominiertePaare} entfernt alle Kombinationen, deren Gesamtgewicht höher ist als das von mindestens einer anderen Kombination. Zuerst werden alle Objekte nach Gewicht von leicht nach schwer sortiert. In der anschließenden For-Schleife wird für alle sortierten Kombinationen in der Variablen \enquote{Mengen} geprüft, ob sie einen höheren Wert als den bisherigen Maximalwert haben. Durch die Betrachtung der Objekte mit aufsteigendem Gewicht können wir Kombinationen ausschließen, die einen niedrigeren Wert als den bisherigen Maximalwert haben, da es eine Kombination mit gleichem oder geringerem Gewicht gibt, die einen höheren Wert hat.
+
+\begin{algorithmic}
+    
     \Function{BinaereSucheMaxWert}{$Mengen$, $MaxGewicht$}
     \State $Links \leftarrow 0$
     \State $Rechts \leftarrow$ Länge($Mengen$) $- 1$
