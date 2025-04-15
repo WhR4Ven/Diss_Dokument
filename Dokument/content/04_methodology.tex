@@ -283,8 +283,9 @@ Ausgehend von diesen Anforderungen wurden die folgenden relevanten Informationen
 Mit diesen Informationen können die oben genannten Anforderungen erfüllt werden. Die Authentifizierung ermöglicht eine eindeutige Identifizierung der Knoten. CPU-Typ, Architektur und aktuelle Auslastung ermöglichen die Bestimmung der verfügbaren Rechenleistung im Fahrzeug sowie der Kompatibilität der externen Anwendung mit der Hardware. Der Gesundheitsstatus zeigt an, ob ein Runtime Node ordnungsgemäß funktioniert. Die zusätzliche Angaben und Eigenschaften können weitere Eigenschaften definieren, die für die Verteilung der externen Anwendungen relevant sein können. Die Information über die Netzwerklatenz kann für die Verbindungsqualität verwendet werden. Die Übertragung des Standortes kann z.B. mit Hilfe von Reinforced Learning für die Schätzung von Zustandsänderungen genutzt werden. Dazu können für jedes Fahrzeug statistische Standortdaten erfasst werden, um ein typisches Nutzungsprofil für das Fahrzeug zu ermitteln. Aus dem Nutzungsprofil kann abgeschätzt werden, wann und wie lange das Fahrzeug voraussichtlich stehen wird. 
 
 \subsection{Scheduling Algorithmen}
+\label{Scheduling Algorithmen}
 
-Das Scheduling Problem kann im Prinzip als eine erweiterte Form des Knapsack Problems betrachtet werden. Das Knapsackproblem ist ein Modell für Optimierungsprobleme in der Kombinatorik. Es behandelt das Problem, einen Rucksack mit begrenztem Platz mit Gegenständen von unterschiedlicher Größe und Wert zu füllen. Ziel ist es, die Kombination von Gegenständen zu finden, die in den Rucksack passt und den höchsten Gesamtwert aufweist. Dieses Problem weist eine hohe Ähnlichkeit mit Problemen bei der Ressourcenverteilung auf. In diesem Fall müssen Anwendungen, die eine bestimmte Menge an Ressourcen benötigen, auf Systeme mit begrenzt verfügbaren Ressourcen optimal verteilt werden. Die meisten Knapsackprobleme sind sogenannte 0/1 Knapsackprobleme. Das bedeutet, dass ein Objekt in der Lösungsmenge entweder ganz oder gar nicht beinhaltet werden kann, Objekte können nicht geteilt werden. Mathematisch lässt sich das Problem durch folgende Formel ausdrücken, für $ i $ Objekte mit jeweils dem Kapazitätsbedarf $ w_i $, der Anzahl in der Lösungsmenge $ x_i $ und der verfügbaren Gesamtkapazität $ W $:
+Das Scheduling Problem kann im Prinzip als eine erweiterte Form des Knapsack Problems betrachtet werden. Das Knapsackproblem ist ein Modell für Optimierungsprobleme in der Kombinatorik. Es behandelt das Problem, einen Rucksack mit begrenztem Platz mit Gegenständen von unterschiedlicher Größe und Wert zu füllen. Ziel ist es, die Kombination von Gegenständen zu finden, die in den Rucksack passt und den höchsten Gesamtwert aufweist. Dieses Problem weist eine hohe Ähnlichkeit mit Problemen bei der Ressourcenverteilung auf. In diesem Fall müssen Anwendungen, die eine bestimmte Menge an Ressourcen benötigen, auf Systeme mit begrenzt verfügbaren Ressourcen optimal verteilt werden. Das komplette Knapsackproblem geht davon aus, dass jeder Gegenstand beliebig oft vorhanden ist und in beliebiger Menge in den Rucksack gepackt werden kann. Die meisten reale Knapsackprobleme sind sogenannte 0/1 Knapsackprobleme. Das bedeutet, dass ein Objekt genau einmal in der Lösungsmenge enthalten sein kann, es kann nicht in kleinere Teilmengen aufgeteilt werden.Mathematisch lässt sich das Problem durch folgende Formel ausdrücken, für $ i $ Objekte mit jeweils dem Kapazitätsbedarf $ w_i $, der Anzahl in der Lösungsmenge $ x_i $ und der verfügbaren Gesamtkapazität $ W $:
 
 \begin{equation}
     \sum_{i=0}^n w_i x_i  \leq W, x_i \in {0,1} 
@@ -364,6 +365,8 @@ Eine weitere weit verbreitete Alternative zur Berechnung der exakten Lösung ist
 Zuerst wird eine Liste erstellt, in der die Objektwerte und Gewichte als Paar gespeichert werden. Diese Liste wird in zwei Hälften geteilt. Die Funktion \enquote{GeneriereMengen} berechnet alle möglichen Kombinationen für jede Hälfte und speichert sie in den Variablen \enquote{LinksMengen} und \enquote{RechtsMengen}. Die \enquote{RechtsMengen} werden nach Gewicht sortiert. Die Funktion \enquote{EntferneDominiertePaare} entfernt aus den \enquote{RechtsMengen} alle Kombinationen, bei denen mindestens eine andere Kombination bei geringerem Gewicht einen höheren Gesamtwert erzielt. Diese können ausgeschlossen werden, da sie nicht Teil der optimalen Lösung sein können. Anschließend wird für jedes \enquote{LinksMengen}-Paar geprüft, ob es die Gesamtkapazität überschreitet und wenn nicht, wird die noch verfügbare Restkapazität berechnet. Die Funktion \enquote{BinaereSucheMaxWert} sucht den höchstmöglichen Wert in \enquote{RechtsMengen} für diese verfügbare Restkapazität. Abschließend wird der Gesamtwert der Kombination berechnet und geprüft, ob ein besseres Ergebnis als der bisherige Maximalwert erzielt werden konnte. Ist dies der Fall, wird das aktuelle Ergebnis als Maximalwert gespeichert, andernfalls wird der vorherige Maximalwert beibehalten. Beispielhafte Implementierungen für die verwendeten Hilfsfunktionen sind im folgenden Abschnitt aufgeführt:
 
 \begin{algorithmic}
+    \State \vspace{0.5em}
+    
     \Function{GeneriereMengen}{$Items$}
     \State $Mengen \leftarrow$ leere Liste
     \State $n \leftarrow$ Länge von $Items$
@@ -385,6 +388,7 @@ Zuerst wird eine Liste erstellt, in der die Objektwerte und Gewichte als Paar ge
 Die Funktion \enquote{GeneriereMengen} berechnet alle möglichen Kombinationen von Objekten. Dazu wird eine Maske in einer Schleife verwendet, die von 0 bis zur Anzahl der Objekte - 1 inkrementiert wird. Für jede Schleife werden der Gesamtwert und das Gesamtgewicht der Objekte addiert, deren Indexposition $ i $ in der Maske eine 1 ist. Diese Methode stellt sicher, dass alle möglichen Kombinationen berechnet werden. Die Ergebnisse werden in einer Liste \enquote{Mengen} gespeichert und zurückgegeben.
 
 \begin{algorithmic}
+    \State \vspace{0.5em}
 
     \Function{EntferneDominiertePaare}{$Mengen$}
     \State Sortiere $Mengen$ nach aufsteigendem Gewicht
@@ -403,9 +407,10 @@ Die Funktion \enquote{GeneriereMengen} berechnet alle möglichen Kombinationen v
 
 \end{algorithmic}
 
-Die Funktion \enquote{EntfernenDominiertePaare} entfernt alle Kombinationen, deren Gesamtgewicht höher ist als das von mindestens einer anderen Kombination. Zuerst werden alle Objekte nach Gewicht von leicht nach schwer sortiert. In der anschließenden For-Schleife wird für alle sortierten Kombinationen in der Variablen \enquote{Mengen} geprüft, ob sie einen höheren Wert als den bisherigen Maximalwert haben. Durch die Betrachtung der Objekte mit aufsteigendem Gewicht können wir Kombinationen ausschließen, die einen niedrigeren Wert als den bisherigen Maximalwert haben, da es eine Kombination mit gleichem oder geringerem Gewicht gibt, die einen höheren Wert hat.
+Die Funktion \enquote{EntfernenDominiertePaare} entfernt alle Kombinationen, deren Gesamtgewicht höher ist als das von mindestens einer anderen Kombination. Zuerst werden alle Objekte nach Gewicht von leicht nach schwer sortiert. In der anschließenden For-Schleife wird für alle sortierten Kombinationen in der Variablen \enquote{Mengen} geprüft, ob sie einen höheren Wert als den bisherigen Maximalwert haben. Durch die Betrachtung der Objekte mit aufsteigendem Gewicht können wir Kombinationen ausschließen, die einen niedrigeren Wert als den bisherigen Maximalwert haben, da es eine Kombination mit gleichem oder geringerem Gewicht existiert, die einen höheren Gesamtwert hat.
 
 \begin{algorithmic}
+    \State \vspace{0.5em}
     
     \Function{BinaereSucheMaxWert}{$Mengen$, $MaxGewicht$}
     \State $Links \leftarrow 0$
@@ -426,3 +431,46 @@ Die Funktion \enquote{EntfernenDominiertePaare} entfernt alle Kombinationen, der
     \State \Return $BesterWert$
     \EndFunction
 \end{algorithmic}
+
+\enquote{BinaereSucheMaxWert} sucht in der Variablen \enquote{Mengen} den Eintrag mit dem höchsten Wert, dessen Gewicht kleiner oder gleich dem in der Variablen \enquote{MaxGewicht} angegebenen Wert ist. Diese Funktion benötigt eine Eingabemenge, die bereits nach Gewicht aufsteigend sortiert und von dominierten Paaren befreit ist. Die binäre Suche nähert sich dem optimalen Ergebnis an, indem sie den Mittelwert aus einem linken und einem rechten Index bildet und diesen Mittelwert als Objektindex verwendet. Zuerst wird geprüft, ob das ausgewählte Objekt schwerer als das maximal erlaubte Gewicht ist. Ist es schwerer als erlaubt, wird der rechte Index auf die Position Mitte - 1 gesetzt. Die Objekte sind aufsteigend nach Gewicht sortiert, so dass wir sofort alle Objekte rechts vom aktuell betrachteten Index ausschließen können, wenn das Objekt am betrachteten Index bereits zu schwer ist. Ist das betrachtete Objekt nicht zu schwer, wird es als aktuell beste Lösung gespeichert und der linke Index auf Links + 1 gesetzt. Da wir die dominierten Paare aus der Menge entfernt haben, enthält sie für jede vorkommende Gesamtgewicht bereits die Kombination mit dem höchsten Wert. Auf diese Weise können wir Objekte, die leichter als das betrachtete Objekt sind, sofort aus der Lösungsmenge ausschließen, da sie nur einen niedrigeren Wert haben können. Diese Logik wird in einer Schleife ausgeführt, bis die Bedingung Linksindex = Rechtsindex erfüllt ist. Durch diese Bedingung wissen wir, dass alle Objekte rechts vom betrachteten Objekt zu schwer und alle Objekte links vom betrachteten Objekt zu leicht sind und daher nicht den höchsten Wert für das zulässige Gesamtgewicht haben.
+
+Beide Algorithmen berechnen die exakte optimale Lösung des Problems. Welcher der beiden Algorithmen effizienter ist, hängt von der Problemstellung ab. In den vorherigen Abschnitten wurden bereits die Berechnungskomplexitäten angegeben:
+
+
+    Dynamsiche Programmierung: \\
+\begin{align}
+    & O(n * W) (pseudo-polynomiell)
+\end{align}
+    Meet-in-the-Middle: \\
+\begin{align}
+    & O(2^{(n/2)} * log(2^{(n/2)})) (exponentiell-halbiert)
+\end{align}
+
+Auffällig ist, dass die Komplexität bei Meet-in-the-Middle nur von der Anzahl der Objekte $ n $ abhängt, während bei der dynamischen Programmierung auch die Gesamtkapazität $ W $ in die Komplexität eingeht. Ist die Anzahl der Objekte $ n $ groß, aber die Gesamtkapazität $ W $ klein, so kann die dynamische Programmierung das Endergebnis mit geringerem Rechenaufwand berechnen. Ist $ n $ klein und $ W $ groß, ist Meet-in-the-Middle effizienter.
+
+\subsubsection{Approximationsalgorithmen}
+
+In größeren Systemen sind oft sowohl $ n $ als auch $ W $ groß, so dass exakte Algorithmen wegen des zu hohen Rechenaufwandes nicht effizient eingesetzt werden können. In diesen Fällen wird zugunsten des Rechenaufwandes und der Rechenzeit auf eine exakte Optimallösung verzichtet. Für die Approximation stehen ebenfalls verschiedene Algorithmen zur Verfügung:
+
+Die Greedy Approximierung wurde für das komplette Knapsack Problem entworfen. Im \autoref{Scheduling Algorithmen} wurde der wesentliche Unterschied zum 0/1 Knapsack erklärt, beim vollständigen Knapsack können einzelne Objekte beliebig oft zur Lösungsmenge hinzugefügt werden. Greedy sortiert die Menge der Objekte nach Wert pro Gewicht $ v_1 / w_1 \geq ... \geq v_n / w_n $. Nach der Sortierung nimmt der Algorithmus das Objekt mit dem besten Verhältnis von Wert zu Gewicht und fügt es so oft zur Lösungsmenge hinzu, bis kein Platz mehr für ein weiteres Exemplar vorhanden ist. Grundsätzlich kann Greedy auch für 0/1 Knapsack Probleme angewendet werden, in diesem Fall werden die reihe nach die Objekte mit dem besten Wert pro Gewicht Verhältnis genommen, bis die Maximalkapazität erreicht ist. Greedy Algorithmus für einen 0/1 Knapsack kann z. B. mit folgender Logik implementiert werden:
+
+\begin{algorithmic}
+    \Function{GreedyKnapsack}{$Werte$, $Gewichte$, $Kapazitaet$}
+    \State $n \leftarrow$ Länge von $Werte$
+    \State Erstelle Liste $Items$ mit Tupeln $(Werte[i], Gewichte[i], i)$
+    \State Sortiere $Items$ absteigend nach $\frac{Werte}{Gewichte}$
+    \State $Gesamtwert \leftarrow 0$
+    \State $VerbleibendeKapazitaet \leftarrow Kapazitaet$
+
+    \For{$(Wert, Gewicht, i)$ in $Items$}
+        \If{$Gewicht \leq VerbleibendeKapazitaet$}
+            \State $Gesamtwert \leftarrow Gesamtwert + Wert$
+            \State $VerbleibendeKapazitaet \leftarrow VerbleibendeKapazitaet - Gewicht$
+        \EndIf
+    \EndFor
+
+    \State \Return $Gesamtwert$
+    \EndFunction
+\end{algorithmic}
+
+In diesem Code wird die Eingangsmenge Werte und Gewichte nach 
