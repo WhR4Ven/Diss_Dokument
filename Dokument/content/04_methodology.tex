@@ -385,7 +385,7 @@ Zuerst wird eine Liste erstellt, in der die Objektwerte und Gewichte als Paar ge
 
 \end{algorithmic}
 
-Die Funktion \enquote{GeneriereMengen} berechnet alle möglichen Kombinationen von Objekten. Dazu wird eine Maske in einer Schleife verwendet, die von 0 bis zur Anzahl der Objekte - 1 inkrementiert wird. Für jede Schleife werden der Gesamtwert und das Gesamtgewicht der Objekte addiert, deren Indexposition $ i $ in der Maske eine 1 ist. Diese Methode stellt sicher, dass alle möglichen Kombinationen berechnet werden. Die Ergebnisse werden in einer Liste \enquote{Mengen} gespeichert und zurückgegeben.
+Die Funktion \enquote{GeneriereMengen} berechnet alle möglichen Kombinationen von Objekten. Dazu wird eine Maske in einer Schleife verwendet, die von 0 bis zur Anzahl der Objekte - 1 inkrementiert wird. Für jede Schleife werden der Gesamtwert und das Gesamtgewicht aller Objekte addiert, deren Indexposition $ i $ in der Maske eine 1 ist. Diese Methode stellt sicher, dass alle möglichen Kombinationen berechnet werden. Die Ergebnisse werden in einer Liste \enquote{Mengen} gespeichert und zurückgegeben.
 
 \begin{algorithmic}
     \State \vspace{0.5em}
@@ -439,11 +439,13 @@ Beide Algorithmen berechnen die exakte optimale Lösung des Problems. Welcher de
 
     Dynamsiche Programmierung: \\
 \begin{align}
-    & O(n * W) (pseudo-polynomiell)
+    & O(n \cdot W) (pseudo-polynomiell)
+    \label{EQ:DP}
 \end{align}
     Meet-in-the-Middle: \\
 \begin{align}
-    & O(2^{(n/2)} * log(2^{(n/2)})) (exponentiell-halbiert)
+    & O(2^{(n/2)} \cdot log(2^{(n/2)})) (exponentiell-halbiert)
+    \label{EQ:MitM}
 \end{align}
 
 Auffällig ist, dass die Komplexität bei Meet-in-the-Middle nur von der Anzahl der Objekte $ n $ abhängt, während bei der dynamischen Programmierung auch die Gesamtkapazität $ W $ in die Komplexität eingeht. Ist die Anzahl der Objekte $ n $ groß, aber die Gesamtkapazität $ W $ klein, so kann die dynamische Programmierung das Endergebnis mit geringerem Rechenaufwand berechnen. Ist $ n $ klein und $ W $ groß, ist Meet-in-the-Middle effizienter.
@@ -473,4 +475,37 @@ Die Greedy Approximierung wurde für das komplette Knapsack Problem entworfen. I
     \EndFunction
 \end{algorithmic}
 
-In diesem Code wird die Eingangsmenge Werte und Gewichte nach 
+Dieser Code fügt die eingegebenen Werte und Gewichte in einer Liste zusammen und sortiert sie absteigend nach dem Wert/Gewicht Verhältnis. In der Schleife werden die Objekte der Reihe nach der Lösungsmenge hinzugefügt, beginnend mit dem Objekt mit dem besten Wert/Gewicht Verhältnis, bis die maximale Kapazität erreicht ist. Der so ermittelte Gesamtwert wird zurückgegeben. Die Berechnungskomplexität bei Greedy beträgt inklusive Sortierung:
+
+\begin{align}
+    & O(n \cdot log(n)) (logarithmisch-linear)
+\end{align}
+
+Die Berechnungskomplexität ist im Vergleich zu den Algorithmen die die exakte optimale Lösung liefern (\autoref{EQ:DP}, \autoref{EQ:MitM}) deutlich geringer mit einer logarithmisch-linear ansteigendem Komplexität über die Anzahl der Objekte $ n $. 
+
+Als Approximationsalgorithmus kann auch die dynamische Programmierung verwendet werden. Aus \autoref{EQ:DP} ist bereits bekannt, dass der Rechenaufwand sowohl von der Anzahl der Objekte $ n $ als auch von der maximalen Kapazität $ W $ abhängt. Die  Problemstellung kann allerdings bei dynamische Programmierung auch umformuliert werden. Es kann auch bei gegebenem Maximalwert das Minimalgewicht gesucht werden. In diesem Fall ändert sich die Berechnungskomplexität mit Maximalwert $ V $:
+
+\begin{align}
+    & O(n \cdot W)  \rightarrow O(n \cdot V) 
+\end{align}
+
+Die Komplexität des Problems kann vereinfacht werden, indem sowohl der Maximalwert als auch die Einzelwerte der Objekte herunterskaliert und gerundet werden.  Die Komplexität der Berechnung kann durch die Einführung eines Fehlerfaktors $ \varepsilon $ reduziert werden. Dieser Faktor bestimmt den maximalen Fehler, der durch die Skalierung auftreten kann, z.B. $ \varepsilon = 0,1 $ führt zu einem maximalen Fehler von $ 10 \% $. Aus dem Fehlerfaktor und dem maximal auftretenden Einzelwert $ V_max $ in den Objekten kann der Skalierungsfaktor $ K $ nach folgender Formel berechnet werden:
+
+\begin{align}
+    & K = \frac{\varepsilon \cdot V_{max}}{n}
+\end{align}
+
+Mit Hilfe des Skalierungsfaktors $ K $ werden alle Einzelwerte der Objekte skaliert und abgerundet. 
+
+\begin{align}
+    & v_i^{\prime} = \lfloor \frac{v_i}{K} \rfloor
+\end{align}
+
+Diese Skalierung reduziert die Komplexitiät des Problems auf Kosten der Genauigkeit des Endergebnisses. Den Zusammenhang zwischen Fehlerfaktor und Komplexität zeigt der folgende Formel:
+
+\begin{align}
+    & O(\frac{n^2}{\varepsilon})
+\end{align}
+
+Aus den obigen Formeln ist ersichtlich, warum das Problem von der ursprünglichen \enquote{Ermittlung des Maximalwertes bei gegebener Maximalkapazität} in \enquote{Ermittlung der Minimalkapazität bei gegebener Gesamtkapazität} umformuliert wurde. Die Skalierung führt zu einem Fehler im berechneten Ergebnis, der tatsächliche Wert nach Auswahl der Kombination kann um den Fehlerfaktor $ \varepsilon $ von der Approximation abweichen. Bei einer Skalierung der Kapazitäten kann es daher vorkommen, dass die berechnete optimale Lösung aufgrund des Skalierungsfehlers die zulässige Maximalkapazität überschreitet. Die umformulierte Tabelle kann dennoch verwendet werden, um den Maximalwert für eine gegebene Kapazität zu bestimmen, indem der höchste Wert, der unter der Maximalkapazität liegt, als Lösung verwendet wird.
+
