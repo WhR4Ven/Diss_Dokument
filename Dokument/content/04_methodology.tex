@@ -295,6 +295,7 @@ Das Scheduling Problem kann im Prinzip als eine erweiterte Form des Knapsack Pro
 Auch die Verteilung von Anwendungen in einem verteilten Computersystem kann als 0/1 Knapsackproblem aufgefasst werden, da die einzelnen Anwendungen in der Regel nicht aufgeteilt werden können. Zur Lösung von Knapsackproblemen existieren verschiedene Algorithmen. Grundsätzlich kann zwischen Algorithmen unterschieden werden, die eine exakte Optimallösung als Ergebnis garantieren und solchen, die nur eine lokale Optimallösung garantieren. 
 
 \subsubsection{Exakte Algorithmen}
+\label{Exakte Algorithmen}
 
 Es existieren verschiedene Methoden, um die exakte optimale Lösung zu finden. Nachfolgend sind einige Beispiele für Algorithmen aufgeführt, die dies ermöglichen. 
 
@@ -513,4 +514,44 @@ Aus den obigen Formeln ist ersichtlich, warum das Problem von der ursprüngliche
 
 Das klassische 0/1-Knapsackproblem beschreibt die Situation, dass ein Rucksack verschiedene Objekte enthalten kann. Dies entspricht dem Fall, dass verschiedene Anwendungen auf einem System mit begrenzter Ressourcenkapazität berechnet werden müssen. Verteilte Systeme bestehen hingegen aus mehreren Rechensystemen, auf denen die Anwendungen nach verschiedenen Kriterien verteilt werden müssen. Dies kann als Multi-Knapsackproblem aufgefasst werden, bei dem es sowohl mehrere Rucksäcke als auch mehrere Optimierungskriterien gibt und nicht nur einen Maximalwert bei gegebener Kapazität. 
 
-Multi-Knapsackprobleme können 
+Multi-Knapsackprobleme beschreiben zunächst den Fall, dass mehrere Knapsäcke vorhanden sind, also nicht nur eine optimale Lösung für eine einzelne maximale Kapazität gefunden werden soll, sondern eine optimale Verteilung auf mehrere Rucksäcke mit gegebenen Kapazitäten. Multi-Knapsackprobleme können mit den in den vorangegangenen Abschnitten vorgestellten Algorithmen nach entsprechender Anpassung gelöst werden.
+
+Bei der \enquote{Brute Force} Methode, bei der alle möglichen Lösungen berechnet werden, steigt die Berechnungskomplexität bei $ n $ Objekten und $ m $ Knapsäcken wie folgt:
+
+\begin{align}
+    & O(2^n) (0/1-Knapsack) \rightarrow O((m+1)^n) (Multi-Knapsack)
+\end{align}
+
+Die Anzahl der Lösungen wächst exponentiell mit der Anzahl der Knapsäcke. Daher werden diese Probleme nur selten und nur für kleine $ n $ und $ m $ auf diese Weise gelöst. Eine effizientere Methode bietet die dynamische Programmierung, die im \autoref{Exakte Algorithmen} für das 0/1 Knapsackproblem vorgestellt wurde. Für Multi-Knapsäcke wird die Tabelle mit jedem zusätzlichen Knapsack um eine Dimension erweitert, so dass für alle Gewichtsverteilungen in den Rucksäcken die besten Werte in die Tabelle eingetragen werden. Der Berechnungsaufwand steigt bei dieser Methode ebenfalls exponentiell mit der Anzahl an Knapsäcken $ m $:
+
+\begin{align}
+    & O(n \cdot W) (0/1-Knapsack) \rightarrow O(n \cdot W_1 \cdot W_2 \cdot ... \cdot W_m) (Multi-Knapsack)
+\end{align}
+
+Durch diese exponentiell steigende Komplexität werden bei Multi-Knapsack häufiger Approximationsalgorithmen verwendet. 
+
+
+
+
+\begin{algorithmic}
+    \Function{GreedyMultiKnapsackWithTwoCriteria}{$Tasks$, $Knapsaecke$, $\alpha$, $\beta$}
+    
+    \ForAll{$Task$ in $Tasks$}
+        \State Berechne $Effizienz[Task] \leftarrow \alpha \cdot Task.Wert - \beta \cdot Task.Zeit$
+    \EndFor
+    
+    \State Sortiere $Tasks$ absteigend nach $Effizienz$
+    
+    \ForAll{$Task$ in $Tasks$}
+        \ForAll{$Knapsack$ in $Knapsaecke$}
+            \If{$Task.Gewicht \leq Knapsack.RestKapazitaet$}
+                \State Weisen $Task$ diesem $Knapsack$ zu
+                \State $Knapsack.RestKapazitaet \leftarrow Knapsack.RestKapazitaet - Task.Gewicht$
+                \State \textbf{break}
+            \EndIf
+        \EndFor
+    \EndFor
+
+    \State \Return Zuordnung der Tasks
+    \EndFunction
+\end{algorithmic}
