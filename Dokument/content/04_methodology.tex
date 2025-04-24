@@ -452,6 +452,7 @@ Beide Algorithmen berechnen die exakte optimale Lösung des Problems. Welcher de
 Auffällig ist, dass die Komplexität bei Meet-in-the-Middle nur von der Anzahl der Objekte $ n $ abhängt, während bei der dynamischen Programmierung auch die Gesamtkapazität $ W $ in die Komplexität eingeht. Ist die Anzahl der Objekte $ n $ groß, aber die Gesamtkapazität $ W $ klein, so kann die dynamische Programmierung das Endergebnis mit geringerem Rechenaufwand berechnen. Ist $ n $ klein und $ W $ groß, ist Meet-in-the-Middle effizienter.
 
 \subsubsection{Approximationsalgorithmen}
+\label{Approximationsalgorithmen}
 
 In größeren Systemen sind oft sowohl $ n $ als auch $ W $ groß, so dass exakte Algorithmen wegen des zu hohen Rechenaufwandes nicht effizient eingesetzt werden können. In diesen Fällen wird zugunsten des Rechenaufwandes und der Rechenzeit auf eine exakte Optimallösung verzichtet. Für die Approximation stehen ebenfalls verschiedene Algorithmen zur Verfügung:
 
@@ -528,10 +529,14 @@ Die Anzahl der Lösungen wächst exponentiell mit der Anzahl der Knapsäcke. Dah
     & O(n \cdot W) (0/1-Knapsack) \rightarrow O(n \cdot W_1 \cdot W_2 \cdot ... \cdot W_m) (Multi-Knapsack)
 \end{align}
 
-Durch diese exponentiell steigende Komplexität werden bei Multi-Knapsack häufiger Approximationsalgorithmen verwendet. 
 
+Aufgrund dieser exponentiell ansteigenden Komplexität werden bei Multi-Knapsack-Problemen häufiger Approximationsalgorithmen eingesetzt. Die in \autoref{Approximationsalgorithmen} vorgestellten Methoden können auch für Multi-Knapsack-Probleme angepasst werden. Der Greedy-Algorithmus kann leicht für Multi-Knapsack-Probleme adaptiert werden. Die Objekte werden weiterhin wie bei der einfachen 0/1-Knapsack-Lösung nach ihrem Wert/Gewicht-Verhältnis sortiert. Diese Objekte werden dann der Reihe nach in mehrere Rucksäcke gepackt, bis die nächsten Objekte nicht mehr hineinpassen. Die Erweiterung des Problems auf mehrere Rucksäcke hat im Vergleich zu den anderen Algorithmen einen relativ geringen Einfluss auf die Rechenkomplexität. Die folgende Formel beschreibt den Rechenaufwand für $ n $ Objekte und $ m $ Rucksäcke:
 
+\begin{align}
+    & O(n \cdot log(n) + n \cdot m)
+\end{align}
 
+Der Rechenaufwand steigt bei Greedy linear mit der Anzahl an Rucksäcke $ m $. Nachteilig in Greedy ist allerdings weiterhin dass es weder eine optimale Lösung garantiert, noch eine Qualitätsgarantie in Form einer maximalen Abweichung.
 
 \begin{algorithmic}
     \Function{GreedyMultiKnapsackWithTwoCriteria}{$Tasks$, $Knapsaecke$, $\alpha$, $\beta$}
