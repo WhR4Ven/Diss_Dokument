@@ -529,14 +529,46 @@ Die Anzahl der Lösungen wächst exponentiell mit der Anzahl der Knapsäcke. Dah
     & O(n \cdot W) (0/1-Knapsack) \rightarrow O(n \cdot W_1 \cdot W_2 \cdot ... \cdot W_m) (Multi-Knapsack)
 \end{align}
 
-
 Aufgrund dieser exponentiell ansteigenden Komplexität werden bei Multi-Knapsack-Problemen häufiger Approximationsalgorithmen eingesetzt. Die in \autoref{Approximationsalgorithmen} vorgestellten Methoden können auch für Multi-Knapsack-Probleme angepasst werden. Der Greedy-Algorithmus kann leicht für Multi-Knapsack-Probleme adaptiert werden. Die Objekte werden weiterhin wie bei der einfachen 0/1-Knapsack-Lösung nach ihrem Wert/Gewicht-Verhältnis sortiert. Diese Objekte werden dann der Reihe nach in mehrere Rucksäcke gepackt, bis die nächsten Objekte nicht mehr hineinpassen. Die Erweiterung des Problems auf mehrere Rucksäcke hat im Vergleich zu den anderen Algorithmen einen relativ geringen Einfluss auf die Rechenkomplexität. Die folgende Formel beschreibt den Rechenaufwand für $ n $ Objekte und $ m $ Rucksäcke:
 
 \begin{align}
     & O(n \cdot log(n) + n \cdot m)
 \end{align}
 
-Der Rechenaufwand steigt bei Greedy linear mit der Anzahl an Rucksäcke $ m $. Nachteilig in Greedy ist allerdings weiterhin dass es weder eine optimale Lösung garantiert, noch eine Qualitätsgarantie in Form einer maximalen Abweichung.
+Der Rechenaufwand steigt bei Greedy linear mit der Anzahl an Rucksäcke $ m $. Nachteilig in Greedy ist allerdings weiterhin dass es weder eine optimale Lösung garantiert, noch eine Qualitätsgarantie in Form einer maximalen Abweichung. 
+
+Branch and Bound ist ein Algorithmus, der sowohl für eine exakte Lösung als auch für eine Approximation verwendet werden kann. Das Problem wird als Entscheidungsbaum dargestellt, wobei die einzelnen Zweige die möglichen Objektzuordnungen darstellen. Es kann als eine Optimierung der Brute-Force-Methode angesehen werden, bei der Kombinationen, die nicht zu einer optimalen Lösung führen, frühzeitig abgebrochen werden. Die Entscheidung, ob ein Zweig weiterverfolgt werden soll, wird durch eine Schätzung getroffen, die sicherstellen muss, dass die Schätzung gleich oder größer als der maximal erreichbare Wert ist. Damit wird sichergestellt, dass nur solche Lösungen verworfen werden, bei denen es mathematisch unmöglich ist, dass der Zweig das beste Ergebnis liefert. Wenn Branch and Bound vollständig ausgeführt wird, liefert es das exakte Optimum. Für eine schnellere, aber näherungsweise Lösung kann Branch and Bound vorzeitig abgebrochen werden, entweder durch eine Zeitbegrenzung oder durch die Vorgabe einer Mindestqualität. Eine weitere Möglichkeit besteht darin, die Auswahl der verfolgten Zweige zu verschärfen, indem nur die nach der Schätzung erfolgversprechendsten Zweige weiter verfolgt werden. Eine beispielhafte Implementierung von Branch and Bound wird im folgenden Abschnitt vorgestellt:
+
+\begin{algorithmic}
+    \Function{MultiKnapsackB\&B}{$Items$, $Knapsacks$}
+        \State $BestValue \gets 0$
+        \State $Queue \gets$ leere Prioritätswarteschlange
+        \State Füge Startknoten (leere Lösung) in $Queue$ ein
+    
+        \While{$Queue$ nicht leer}
+            \State $Knoten \gets$ Nächster Knoten aus $Queue$
+            
+            \If{\Call{UpperBound}{$Knoten$} $< BestValue$}
+                \State \textbf{continue} \Comment{Baum beschneiden}
+            \EndIf
+    
+            \If{\Call{IstVollständig}{$Knoten$} \textbf{and} \Call{Wert}{$Knoten$} $> BestValue$}
+                \State $BestValue \gets$ \Call{Wert}{$Knoten$}
+            \Else
+                \ForAll{Möglichkeiten, das nächste Item auf Knapsäcke zu verteilen}
+                    \State Erzeuge neuen Teilknoten
+                    \If{Kapazitätsbeschränkungen eingehalten}
+                        \State Füge Knoten in $Queue$ ein
+                    \EndIf
+                \EndFor
+            \EndIf
+        \EndWhile
+    
+        \State \Return $BestValue$
+    \EndFunction
+    \end{algorithmic}
+
+Diese Funktion nimmt verschiedene Objekte in der Variable \enquote{Items} und Rucksäcke \enquote{Knapsacks}. Die Variable \enquote{Queue} beinhaltet alle Teillösungen, sortiert nach deren oberen Schranke. 
 
 \begin{algorithmic}
     \Function{GreedyMultiKnapsackWithTwoCriteria}{$Tasks$, $Knapsaecke$, $\alpha$, $\beta$}
