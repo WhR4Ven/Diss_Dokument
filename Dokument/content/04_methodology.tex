@@ -571,7 +571,18 @@ Diese Funktion nimmt verschiedene Objekte in die Variable \enquote{Items} und Ru
 
 \subsubsection{Multi-Objective Knapsackproblem}
 
-Multi-Objective Knapsackprobleme beschreiben den Fall, dass nach mehreren Zielkriterien optimiert werden soll. Ein Beispiel hierfür wäre, das klassische Beispielproblem so umzuformulieren, dass nicht nur nach dem Maximalwert bei gegebenem Maximalgewicht optimiert wird, sondern z.B. nach dem Maximalwert bei gegebenem Minimalvolumen und gegebener Maximalkapazität. Bei Scheduling Problemen in verteilten Rechensystemen ist dies in der Regel auch der Fall. Typische Scheduling Probleme beinhalten mehrere Kapazitätsbeschränkungen wie Rechenzeit, Speicher, Energie, Netzwerkbandbreite, Netzwerklatenz sowie mehrere Ziele wie Laufzeit, Kosten, Energieverbrauch. Bei Multi-Objective Knapsackprobleme stehen die Ziele, auf die hin optimiert wird, oft im Widerspruch zueinander. Aus diesem Grund wird bei diesen Problemen eine Pareto-optimale Lösung gefunden. 
+Multi-Objective Knapsackprobleme beschreiben den Fall, dass nach mehreren Zielkriterien optimiert werden soll. Ein Beispiel hierfür wäre, das klassische Beispielproblem so umzuformulieren, dass nicht nur nach dem Maximalwert bei gegebenem Maximalgewicht optimiert wird, sondern z.B. nach dem Maximalwert bei gegebenem Minimalvolumen und gegebener Maximalkapazität. Bei Scheduling Problemen in verteilten Rechensystemen ist dies in der Regel auch der Fall. Typische Scheduling Probleme beinhalten mehrere Kapazitätsbeschränkungen wie Rechenzeit, Speicher, Energie, Netzwerkbandbreite, Netzwerklatenz sowie mehrere Ziele wie Laufzeit, Kosten, Energieverbrauch. Bei Multi-Objective Knapsackprobleme stehen die Ziele, auf die hin optimiert wird, oft im Widerspruch zueinander. Aus diesem Grund wird für diese Probleme eine Pareto-optimale Lösung gesucht. Pareto-optimal bedeutet, dass keine Lösung die andere dominiert, dass es also keine Lösung gibt, die alle Optimierungskriterien gleichzeitig verbessert, ohne mindestens ein Kriterium zu verschlechtern. Für mehrere Optimierungskriterien gibt es eine Vielzahl von Pareto-optimalen Lösungen, die jeweils die beste Lösung für das jeweilige Verhältnis der Optimierungskriterien sind. Diese Lösungsmenge wird Pareto-Front genannt. Es gibt verschiedene Optionen für die Ermittlung der Lösung von Multi-Objective Knapsackproblemen:
+
+\begin{itemize}
+    \item Gewichtungsmethode: Die Optimierungskriterien werden mit Gewichtungsfaktoren $ \lambda $ versehen, so dass ein ausgewählter Punkt auf der Pareto-Front zurückgegeben wird. Für ein Problem mit $ m $ Zielen, $ n $ Objekten, einer binären Variablen $ x_i \in {0, 1} $, die angibt, ob ein Objekt ausgewählt ist, und Zielwerten $ z_i^{(k)} $ für jedes Objekt $ i $ für k = 1, 2, ..., m kann das Ziel durch folgende Formel angegeben werden:
+        \begin{align}
+            & max \sum_{i=1}^{n} x_i \cdot (\sum_{k=1}^{m} \lambda_k \cdot z_i^{(k)})
+        \end{align}
+    \item $ \varepsilon $-Constraint-Methode: Optimiert ein Ziel, während für die andere Ziele Nebenbedingungen mit Schwellwerten $(\varepsilon)$ gesetzt werden. 
+    \item Evolutionsalgorithmen
+    \item Dynamische Programmierung für Multi-Objective Knapsackprobleme
+    \item 
+\end{itemize}
 
 \begin{algorithmic}
     \Function{GreedyMultiKnapsackWithTwoCriteria}{$Tasks$, $Knapsaecke$, $\alpha$, $\beta$}
