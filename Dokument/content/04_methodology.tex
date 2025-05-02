@@ -578,10 +578,9 @@ Multi-Objective Knapsackprobleme beschreiben den Fall, dass nach mehreren Zielkr
         \begin{align}
             & max \sum_{i=1}^{n} x_i \cdot (\sum_{k=1}^{m} \lambda_k \cdot z_i^{(k)})
         \end{align}
-    \item $ \varepsilon $-Constraint-Methode: Optimiert ein Ziel, während für die andere Ziele Nebenbedingungen mit Schwellwerten $(\varepsilon)$ gesetzt werden. 
-    \item Evolutionsalgorithmen
-    \item Dynamische Programmierung für Multi-Objective Knapsackprobleme
-    \item 
+    \item $ \varepsilon $-Constraint-Methode: Optimiert ein Ziel, während für die andere Ziele Nebenbedingungen mit Schwellwerten $(\varepsilon)$ gesetzt werden. Beispielweise kann Zielwert $ z^{(1)} $ maximiert werden während $ z^{(2)} < \varepsilon $ eingehalten werden soll.
+    \item Evolutionsalgorithmen: optimierungsbasierte Alogrithmen, die an dem Prinzip der biologischen Evolution orientieren. 
+    \item Dynamische Programmierung für Multi-Objective Knapsackprobleme: Die Tabelle kann erweitert werden dass für jede Kapazität nicht nur ein Wert gespeichert wird, sondern alle nicht dominierte Lösungskombinationen.
 \end{itemize}
 
 \begin{algorithmic}
