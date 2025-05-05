@@ -581,7 +581,27 @@ Multi-Objective Knapsackprobleme beschreiben den Fall, dass nach mehreren Zielkr
     \item $ \varepsilon $-Constraint-Methode: Optimiert ein Ziel, während für die andere Ziele Nebenbedingungen mit Schwellwerten $(\varepsilon)$ gesetzt werden. Beispielweise kann Zielwert $ z^{(1)} $ maximiert werden während $ z^{(2)} < \varepsilon $ eingehalten werden soll.
     \item Evolutionsalgorithmen: optimierungsbasierte Alogrithmen, die an dem Prinzip der biologischen Evolution orientieren. 
     \item Dynamische Programmierung für Multi-Objective Knapsackprobleme: Die Tabelle kann erweitert werden dass für jede Kapazität nicht nur ein Wert gespeichert wird, sondern alle nicht dominierte Lösungskombinationen.
+    \item Branch and Bound mit Pareto-Dominanz: Branch and Bound wird dahingehend erweitert, dass anstelle einer besten Lösung eine Menge von Pareto-optimalen Teillösungen verfolgt wird. Ein Zweig wird abgeschnitten, wenn ein Knoten von anderen, bereits bekannten Lösungen dominiert wird.
 \end{itemize}
+
+Die Auswahl des konkret verwendeten Methode hängt auch in diesem Fall von der Problemstellung und den Anforderungen an den Rechenaufwand und die Genauigkeit des Ergebnisses ab. Die folgende Tabelle zeigt einen Vergleich der Methoden unter ausgewählten Gesichtspunkten.
+
+\begin{table}
+    \centering
+    \begin{tabular}{m{5cm} m{2cm} m{2cm} m{2cm} m{2cm}}
+        Methode & Exakt & Näherung & Geeignet für große Instanzen & Mehrere Lösungen \\
+        \hline
+        Gewichtung & \usym{2717} & \usym{2713} & \usym{2713} & \usym{2717} \\
+        \varepsilon-Constraint & \usym{2713} & \usym{2713} & \usym{2717} & \usym{2713} \\
+        Evolutionsalgorithmen & \usym{2717} & \usym{2713} & \usym{2713} & \usym{2713} \\
+        Multiobjektives DP & \usym{2713} & \usym{2717} & \usym{2717} & \usym{2713} \\ 
+        B\&B mit Dominanzprüfung & \usym{2713} & \usym{2717} & \usym{2717} & \usym{2713} \\ 
+    \end{tabular} 
+    \caption{Vergleich der häufig verwendeten Methoden für Multiobjektive Knapsackprobleme}
+\end{table}
+
+\subsubsection{Multiobjektive Multi-Knapsackprobleme}
+
 
 \begin{algorithmic}
     \Function{GreedyMultiKnapsackWithTwoCriteria}{$Tasks$, $Knapsaecke$, $\alpha$, $\beta$}
