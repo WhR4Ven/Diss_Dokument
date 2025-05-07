@@ -600,8 +600,11 @@ Die Auswahl des konkret verwendeten Methode hängt auch in diesem Fall von der P
     \caption{Vergleich der häufig verwendeten Methoden für Multiobjektive Knapsackprobleme}
 \end{table}
 
+Zur Lösung von Scheduling-Problemen in verteilten Rechensystemen werden aufgrund der Rechenkomplexität in der Regel keine vollständigen Lösungsmengen berechnet. Bei größeren Systemen ist die Berechnung der exakten Lösung aufgrund der Anzahl der möglichen Kombinationen nicht praktikabel. In der Praxis wird meist ein Gewichtungsverfahren verwendet, da dieses ein hinreichend gutes Ergebnis liefert und die Rechenkomplexität auf ein ähnliches Niveau wie bei einem klassischen Knapsackproblem reduziert.
+
 \subsubsection{Multiobjektive Multi-Knapsackprobleme}
 
+Typische Scheduling Probleme in verteilten Systemen beinhalten sowohl mehrere Rechensysteme (Kapazitäten) als auch mehrere Ziele, auf die hin optimiert wird. Übliche Scheduling Algorithmen müssen also Multiobjektive Multi-Knapsackprobleme lösen. 
 
 \begin{algorithmic}
     \Function{GreedyMultiKnapsackWithTwoCriteria}{$Tasks$, $Knapsaecke$, $\alpha$, $\beta$}
