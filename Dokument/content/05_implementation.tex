@@ -1,1 +1,9 @@
 \chapter{Implementierung}
+
+Dieses Kapitel beschreibt die Implementierung von Runtime Node und Master und vergleicht die Scheduling-Methoden.
+
+\section{Implementierung Runtime Node}
+
+
+\subsection{Implementierung der Applikationsisolierung}
+Ausgehend von den Anforderungen an die Runtime Node Komponente ist eine möglichst hohe Kompatibilität zu gewährleisten. Für die Erzeugung von isolierten Umgebungen werden die Funktionen des Linux-Kernels verwendet. Um eine hohe Kompatibilität für Software zu gewährleisten, die Betriebssystemfunktionen verwenden wurde das \gls{POSIX} Standard entwickelt. 

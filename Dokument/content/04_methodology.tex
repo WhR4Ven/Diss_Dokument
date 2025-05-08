@@ -604,7 +604,7 @@ Zur Lösung von Scheduling-Problemen in verteilten Rechensystemen werden aufgrun
 
 \subsubsection{Multiobjektive Multi-Knapsackprobleme}
 
-Typische Scheduling Probleme in verteilten Systemen beinhalten sowohl mehrere Rechensysteme (Kapazitäten) als auch mehrere Ziele, auf die hin optimiert wird. Übliche Scheduling Algorithmen müssen also Multiobjektive Multi-Knapsackprobleme lösen. 
+Typische Scheduling Probleme in verteilten Systemen beinhalten sowohl mehrere Rechensysteme (Kapazitäten) als auch mehrere Ziele, auf die hin optimiert wird. Scheduling-Algorithmen müssen daher Multiobjektive Multi-Knapsack-Probleme lösen. Dies kann durch die Erweiterung von Multi-Knapsack Algorithmen mit Methoden für multiobjektive Knapsackprobleme erreicht werden. Im folgenden Abschnitt wird eine beispielhafte Implementierung für einen Greedy-Algorithmus mit zwei Optimierungszielen vorgestellt:
 
 \begin{algorithmic}
     \Function{GreedyMultiKnapsackWithTwoCriteria}{$Tasks$, $Knapsaecke$, $\alpha$, $\beta$}
@@ -628,3 +628,5 @@ Typische Scheduling Probleme in verteilten Systemen beinhalten sowohl mehrere Re
     \State \Return Zuordnung der Tasks
     \EndFunction
 \end{algorithmic}
+
+Diese Funktion sortiert die Objekte \enquote{Tasks} in Knapsäcke. Die Optimierung erfolgt nach zwei Kriterien, die mit den Gewichtungsfaktoren \enquote{alpha} und \enquote{beta} gewichtet werden. Mit Hilfe dieser Faktoren wird die \enquote{Effizienz} berechnet, die den gewichteten Zielwert angibt. Nach diesem Zwischenschritt sortiert Greedy die Objekte nach ihrer Effizienz, beginnend mit der höchsten Effizienz. Anschließend werden die Objekte der Reihe nach in die Knapsäcke sortiert, bis jedes der Knapsäcke so voll ist dass das nächste Objekt nicht mehr hineinpasst. 
