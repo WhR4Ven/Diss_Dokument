@@ -4,7 +4,19 @@ Dieses Kapitel beschreibt die Implementierung von Runtime Node und Master und ve
 
 \section{Implementierung Runtime Node}
 
-Die Runtime Node Komponente wird auf Fahrzeugsteuergeräten ausgeführt, deren Anforderungen bei der Implementierung berücksichtigt werden müssen. Die Wahl der für die Implementierung verwendeten Programmiersprache sollte so erfolgen, dass eine möglichst hohe Kompatibilität mit den benötigten Softwarebibliotheken besteht und eine Kompilierbarkeit auf möglichst vielen Hardwarearchitekturen gegeben ist. In der \autoref{Methode Softwareplattform und Scheduling} wurde festgelegt, dass Runtime Node Linux-Kernel-basierte Betriebssysteme voraussetzt. Der Kernel dieser Systeme ist in der Programmiersprache C implementiert. Aus diesem Grund ist die Programmiersprache C auch für Runtime Node geeignet, da für die Hardwarearchitekturen, für die Linux-Kernel-basierte Betriebssysteme existieren, C-Compiler verfügbar sind. Im Folgenden werden die konkreten Vorgehensweisen zur Implementierung der Softwarekomponenten des Runtime Node beschrieben.
+Die Runtime Node Komponente wird auf Fahrzeugsteuergeräten ausgeführt, deren Anforderungen bei der Implementierung berücksichtigt werden müssen. Die Wahl der für die Implementierung verwendeten Programmiersprache sollte so erfolgen, dass eine möglichst hohe Kompatibilität mit den benötigten Softwarebibliotheken besteht und eine Kompilierbarkeit auf möglichst vielen Hardwarearchitekturen gegeben ist. In der \autoref{Methode Softwareplattform und Scheduling} wurde festgelegt, dass die Runtime Node Linux-Kernel-basierte Betriebssysteme voraussetzt. Der Kernel dieser Systeme ist in der Programmiersprache C implementiert. Im Vergleich zu anderen weit verbreiteten Programmiersprachen wie C++, Java, Python oder Rust ist C näher an der Hardware. Gängige C-Compiler wie GCC, Clang/LLVM oder MSVC unterstützen die meisten Hardwarearchitekturen. Für spezialisierte Plattformen im Embedded-Bereich existiert ebenfalls sehr häufig eine C-Toolchain. Aus diesem Grund eignet sich die Programmiersprache C gut als Sprache für die Implementierung des Runtime Node. Im Folgenden werden die konkreten Vorgehensweisen zur Implementierung der Softwarekomponenten des Runtime Node beschrieben.
 
 \subsection{Implementierung der Applikationsisolierung}
- Die Isolierung der Applikatinen erfolgt über Linux-Kerne spezifische Funktionen. Für Unix-basierte Betriebssysteme wie Linux wurde der \gls{POSIX}-Standard entwickelt, um die Kompatibilität von Software zu erhöhen, die auf Betriebssystemfunktionen zugreift. Er definiert eine einheitliche \gls{API} für Kommandozeilen- und Shell-Funktionalität. Um die Kompatibilitätsanforderungen zu erfüllen, verwendet die Runtime Node Komponente die \gls{POSIX} \gls{API} Funktionen zur Isolierung von Anwendungen. Unix-basierte Betriebssystemkernel wie der von Linux sind in der Programmiersprache C implementiert, weshalb die \gls{POSIX} \gls{API} auch aus standardisierten C-Funktionen besteht. Für eine einfache Integration der \gls{API} und eine hohe Anzahl an verfügbaren Compiler für verschiedene Architekturen wurde die 
+
+Die Applikationsisolierung erstellt und verwaltet isolierte Umgebungen für externe Anwendungen. Als Isolierungsmethode kommt die Containerisierung zum Einsatz. Die Applikationsisolierung implementiert vier Hauptfunktionen:
+
+\begin{itemize}
+    \item Container erstellen
+    \item Container starten
+    \item Container stoppen
+    \item Container löschen
+\end{itemize}
+
+Die Erstellung eines Containers wird durch ein entsprechendes Befehl ausgelöst. In diesem Befehl muss ein Containername definiert werden, der 
+
+ Die Isolierung der Applikatinen erfolgt über Linux-Kerne spezifische Funktionen. Für Unix-basierte Betriebssysteme wie Linux wurde der \gls{POSIX}-Standard entwickelt, um die Kompatibilität von Software zu erhöhen, die auf Betriebssystemfunktionen zugreift. Er definiert eine einheitliche \gls{API} für Kommandozeilen- und Shell-Funktionalität. Um die Kompatibilitätsanforderungen zu erfüllen, verwendet die Runtime Node Komponente die \gls{POSIX} \gls{API} Funktionen zur Isolierung von Anwendungen. Die \gls{API} besteht aus C Funktionen, die in der implementierten Software über die die entsprechenden header Dateien verwendet werden können. 
