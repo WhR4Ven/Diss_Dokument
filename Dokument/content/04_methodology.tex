@@ -73,6 +73,7 @@ Diese Komponente wird auf den Fahrzeugsteuergeräten ausgeführt und besteht aus
 Diese Komponente interpretiert die Befehle der Kommunikationsschnittstelle und erzeugt Statusrückmeldungen. Abhängig vom empfangenen Befehl ruft sie die entsprechenden Container Management Funktionen auf. Hier werden auch die für den Runtime Master relevanten Informationen und Statusrückmeldungen gesammelt und als Nachricht über die Kommunikationsschnittstelle versendet.
 
 \subsubsection{Container Management}
+\label{Container Management}
 
 Die elementare Aufgabe der Softwarekomponente Runtime Node ist die Erzeugung und Verwaltung von isolierten Laufzeitumgebungen. Im \autoref{Virtualisierung} wurde festgelegt, dass diese isolierten Laufzeitumgebungen mit der Virtualisierungsmethode der Containerisierung erzeugt werden. Dabei werden betriebssystemspezifische Isolationsmethoden verwendet, die vom Linux-Kernel zur Verfügung gestellt werden. Konkret werden die in \autoref{Software Virtualisierung/Container} vorgestellten Namespaces verwendet. 
 
