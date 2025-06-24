@@ -123,6 +123,7 @@ Der Scheduler verteilt die Anwendungen auf die Runtime Nodes. Dabei soll die Ver
 Innerhalb des Systems findet Kommunikation sowohl zwischen den Fahrzeugen als auch zwischen den einzelnen Softwarekomponenten statt. Diese unterschiedlichen Kommunikationsarten stellen unterschiedliche Anforderungen an die verwendete Kommunikationsschnittstelle. Diese werden im folgenden Abschnitt dargestellt.
 
 \subsubsection{Kommunikation zwischen Fahrzeugen und Runtime Master}
+\label{Kommunikation zwischen Fahrzeugen und Runtime Master}
 
 Die Fahrzeuge bilden ein verteiltes System, das von einer Runtime Master Instanz verwaltet wird. Dies entspricht einer klassischen Client/Server Kommunikationsstruktur. Die Kommunikation zwischen Fahrzeugen (Runtime Nodes) und Runtime Master wird voraussichtlich über eine Internetverbindung realisiert. Denkbar wäre auch ein vom Fahrzeughersteller bereitgestelltes Netzwerk, das ähnlich der Internetverbindung über das Mobilfunknetz zur Verfügung gestellt wird. In dieser Arbeit wird generell davon ausgegangen, dass sich Fahrzeuge und Runtime Master im selben Netzwerk befinden. 
 
@@ -164,7 +165,7 @@ Die zweite Art der Kommunikation ist die Übertragung von Anwendungen. Dieses Ko
 
 Die Übertragung von Binärdaten ist ebenfalls über Publish/Subscribe Kommunikation realisierbar. Wie für die Übertragung von Befehlen kann auch für die Übertragung von Binärdaten ein Topic definiert werden. Dies kann ebenfalls je nach Systemgröße ein Topic für alle Teilnehmer sein, oder ein individuelles Topic pro Teilnehmer um die Übertragungseffizienz im Netzwerk zu steigern. 
 
-Zusammenfassend kann gesagt werden, dass die Publish/Subscribe-Kommunikationsmethode sowohl die Übertragung von Instruktionen und Statusinformationen als auch die Übertragung von Binärdaten effizient umsetzen kann. Gleichzeitig bietet dieses Konzept eine einfache Erweiterbarkeit für das Netzwerk.
+Zusammenfassend lässt sich festhalten, dass die Publish/Subscribe-Kommunikationsmethode die effiziente Übertragung von Instruktionen, Statusinformationen und Binärdaten ermöglicht. Gleichzeitig ermöglicht dieses Konzept eine einfache Erweiterbarkeit des Netzwerks.
 
 \subsubsection{Kommunikation zwischen Softwaremodulen}
 \label{Kommunikation zwischen Softwaremodulen}
