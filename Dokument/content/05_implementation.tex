@@ -6,9 +6,9 @@ Dieses Kapitel beschreibt die Implementierung von Runtime Node und Master und ve
 
 Die Runtime Node Komponente wird auf Fahrzeugsteuergeräten ausgeführt, deren Anforderungen bei der Implementierung berücksichtigt werden müssen. Die Wahl der für die Implementierung verwendeten Programmiersprache sollte so erfolgen, dass eine möglichst hohe Kompatibilität mit den benötigten Softwarebibliotheken besteht und eine Kompilierbarkeit auf möglichst vielen Hardwarearchitekturen gegeben ist. In der \autoref{Methode Softwareplattform und Scheduling} wurde festgelegt, dass die Runtime Node Linux-Kernel-basierte Betriebssysteme voraussetzt. Der Kernel dieser Systeme ist in der Programmiersprache C implementiert. Im Vergleich zu anderen weit verbreiteten Programmiersprachen wie C++, Java, Python oder Rust ist C näher an der Hardware. Gängige C-Compiler wie GCC, Clang/LLVM oder MSVC unterstützen die meisten Hardwarearchitekturen. Für spezialisierte Plattformen im Embedded-Bereich existiert ebenfalls sehr häufig eine C-Toolchain. Aus diesem Grund eignet sich die Programmiersprache C gut als Sprache für die Implementierung des Runtime Node. Im Folgenden werden die konkreten Vorgehensweisen zur Implementierung der Softwarekomponenten des Runtime Node beschrieben.
 
-\subsection{Implementierung der Applikationsisolierung}
+\subsection{Implementierung der Container Management}
 
-Mithilfe der Applikationsisolierung werden isolierte Umgebungen für externe Anwendungen erstellt und verwaltet. Dabei kommt die Containerisierung als Isolierungsmethode zum Einsatz. Bei dieser Methode werden Linux-Kernel-Funktionen genutzt, um eine isolierte Laufzeitumgebung zu erstellen, die als Container bezeichnet wird. Die Applikationsisolierung implementiert vier Hauptfunktionen:
+Mit dem Container Management werden isolierte Umgebungen für externe Anwendungen erstellt und verwaltet. Dabei kommt die Containerisierung als Isolierungsmethode zum Einsatz. Bei dieser Methode werden Linux-Kernel-Funktionen genutzt, um eine isolierte Laufzeitumgebung zu erstellen, die als Container bezeichnet wird. Das Container Management implementiert vier Hauptfunktionen:
 
 \begin{itemize}
     \item Container erstellen
@@ -36,6 +36,19 @@ Ein Container kann durch einen externen Befehl mit dem Namen des zu stoppenden C
 
 Container können durch den Befehl Container löschen entfernt werden. Im Befehl muss der Name des Containers angegeben werden. Existiert ein Container mit dem angegebenen Namen im Runtime-Node und führt dieser aktuell eine Anwendung aus, so wird er gestoppt und anschließend der Containerordner inklusive aller extern geladenen Dateien gelöscht.
 
+\subsection{Implementierung Befehlsverarbeitung}
+
+Die Befehlsverarbeitung empfängt \gls{JSON} Nachrichten von der Kommunikationsschnittstelle, wertet sie aus und führt die entsprechenden Funktionen im Container Management Modul aus. Die \gls{JSON} Nachrichten werden über den Kommunikationssockel zwischen Node und Kommunikationsschnittstelle ausgetauscht. Zum Parsen und Erstellen von \gls{JSON} wird die Softwarebibliothek cJSON verwendet.  cJSON bietet Hilfsfunktionen für die Erzeugung und das Auslesen von \gls{JSON} Daten. Der Benutzer kann mit Hilfe dieser Funktionen \gls{JSON} Strukturen selber erstellen, sowie Parsing Funktionen für definierte Strukturen implementieren. Mit Hilfe von cJSON werden Inhalte der \gls{JSON} Nachrichten in eine interne Struktur hineinkopiert und ausgewertet. Die Befehlsnachrichten sind nach dem im \autoref{JSON command} gezeigten Format definiert.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.9\textwidth]{./content/graphics/commandJSON.pdf}
+	\caption{JSON Struktur der Befehlsübertragung}
+	\label{JSON command}
+\end{figure}
+
+Bei der Auswertung eines Befehls wird zuerst überprüft ob das Feld \enquote{Target\_Node\_ID} mit dem ID des jeweiligen Runtime Nodes identisch ist. Befehle mit abweichendem ID werden ignoriert. 
+
 \subsection{Implementierung des Ladens externer Applikationen}
 
 Damit extern bereitgestellte Applikationen auf den Steuergeräten des Runtime Node ausgeführt werden können, müssen die entsprechenden Dateien auf das jeweilige Steuergerät geladen werden. Für die prototypische Implementierung wurde dasselbe Kommunikationskonzept für die Übertragung von Dateien verwendet wie für die Übertragung von Befehlen und Statusmeldungen. Die Dateien werden in vorkompilierte Form im Binärformat übertragen. Die Kommunikationsschnittstelle nutzt \gls{JSON}. Nachrichten für den Informationsaustausch. Für die Übertragung wird die folgende JSON-Struktur verwendet:
@@ -55,9 +68,9 @@ Die Übertragungslogik ist als State Machine implementiert. Eine Dateiübertragu
 
 Die Kommunikationsschnittstelle ist ein eigenes Softwaremodul, das ein Publish/Subscribe-Protokoll über das Netzwerk verwendet und eine sockelbasierte Schnittstelle mit JSON zu den Softwarekomponenten hin nutzt. Im \autoref{Kommunikation zwischen Fahrzeugen und Runtime Master} wurde das Kommunikationsprotokoll Publish/Subscribe und die konkrete Implementierung \gls{DDS} ausgewählt. Die Hauptaufgabe der Kommunikationsschnittstelle ist die Konvertierung zwischen \gls{DDS} und \gls{JSON} Nachrichten. Sowohl für \gls{JSON} als auch für \gls{DDS} werden Softwarebibliotheken für die Erstellung und das Versenden sowie das Auslesen von empfangenen Nachrichten verwendet. Das Kommunikationsmodul muss folglich die Nachrichtenstrukturen und die nötigen Parsing Funktionen mit den verwendeten Bibliotheken implementieren und die Daten zwischen den Strukturen konvertieren. 
 
-In der prototypischen Umsetzung wird die \gls{DDS} Bibliothek von der Firma eProsima verwendet.  C++ kann als eine Erweiterung von C betrachtet werden. C-Code ist in der Regel auch in einer C++-Umgebung lauffähig, sodass C- und C++-Code einfach in einem Projekt kombiniert werden können. eProsima Fast DDS ist eine weit verbreitete Implementierung, die auch in \gls{ROS} 2 verwendet wird. Das Kommunikationsmodul selbst wurde ebenfalls hauptsächlich in C++ implementiert, um eine einfachere Integration mit der \gls{DDS} Bibliothek zu ermöglichen. 
+In der prototypischen Umsetzung wird die \gls{DDS} Bibliothek von der Firma eProsima verwendet. C++ kann als eine Erweiterung von C betrachtet werden. C-Code ist in der Regel auch in einer C++-Umgebung lauffähig, sodass C- und C++-Code einfach in einem Projekt kombiniert werden können. eProsima Fast DDS ist eine weit verbreitete Implementierung, die auch in \gls{ROS} 2 verwendet wird. Das Kommunikationsmodul selbst wurde ebenfalls hauptsächlich in C++ implementiert, um eine einfachere Integration mit der \gls{DDS} Bibliothek zu ermöglichen. 
 
-Die Erstellung und Auslesen von \gls{JSON} Daten wurde mit Hilfe der Softwarebibliothek cJSON implementiert. cJSON bietet Hilfsfunktionen für die Erzeugung und das Auslesen von \gls{JSON} Daten. Der Benutzer kann mit Hilfe dieser Funktionen \gls{JSON} Strukturen selber erstellen, sowie Parsing Funktionen für definierte Strukturen implementieren. cJSON wurde in der Programmiersprache C implementiert, so dass es auch in C++ Projekte leicht integrierbar ist. 
+Die Erstellung und Auslesen von \gls{JSON} Daten wurde mit Hilfe der Softwarebibliothek cJSON implementiert. cJSON wurde in der Programmiersprache C implementiert, so dass es auch in C++ Projekte leicht integrierbar ist. 
 
 Beim Start verbindet sich die Kommunikationsschnittstelle mit dem Kommunikationssockel von Runtime Node oder Runtime Master und startet die konfigurierten \gls{DDS} Publisher und -Subscriber. Wird eine Nachricht über einen \gls{DDS} Subscriber empfangen, werden die Daten der Nachricht in eine interne Datenstruktur kopiert. Aus dieser Struktur wird mithilfe von cJSON die entsprechende \gls{JSON} Nachricht für den Runtime Master oder den Runtime Node erstellt und über den Kommunikationssockel versendet. Umgekehrt werden aus empfangenen \gls{JSON} Nachrichten die Daten ebenfalls in die interne Datenstruktur kopiert und aus den Daten die entsprechende \gls{DDS} Nachricht mit dem dazugehörigen \gls{DDS} Publisher versendet. Das Modul ist so implementiert, dass es sowohl für den Runtime Node als auch für den Runtime Master einsetzbar ist. Dadurch müssen nicht mehrere Varianten gepflegt werden.
 
