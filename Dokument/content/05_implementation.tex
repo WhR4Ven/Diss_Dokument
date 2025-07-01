@@ -38,7 +38,7 @@ Container können durch den Befehl Container löschen entfernt werden. Im Befehl
 
 \subsection{Implementierung Befehlsverarbeitung}
 
-Die Befehlsverarbeitung empfängt \gls{JSON} Nachrichten von der Kommunikationsschnittstelle, wertet sie aus und führt die entsprechenden Funktionen im Container Management Modul aus. Die \gls{JSON} Nachrichten werden über den Kommunikationssockel zwischen Node und Kommunikationsschnittstelle ausgetauscht. Zum Parsen und Erstellen von \gls{JSON} wird die Softwarebibliothek cJSON verwendet.  cJSON bietet Hilfsfunktionen für die Erzeugung und das Auslesen von \gls{JSON} Daten. Der Benutzer kann mit Hilfe dieser Funktionen \gls{JSON} Strukturen selber erstellen, sowie Parsing Funktionen für definierte Strukturen implementieren. Mit Hilfe von cJSON werden Inhalte der \gls{JSON} Nachrichten in eine interne Struktur hineinkopiert und ausgewertet. Die Befehlsnachrichten sind nach dem im \autoref{JSON command} gezeigten Format definiert.
+Die Befehlsverarbeitung empfängt \gls{JSON} Nachrichten von der Kommunikationsschnittstelle, wertet sie aus und führt die entsprechenden Funktionen im Container Management Modul aus. Die \gls{JSON} Nachrichten werden über den Kommunikationssockel zwischen Node und Kommunikationsschnittstelle ausgetauscht. Zum Parsen und Erstellen von \gls{JSON} wird die Softwarebibliothek cJSON verwendet.  cJSON bietet Hilfsfunktionen für die Erzeugung und das Auslesen von \gls{JSON} Daten. Der Benutzer kann mit Hilfe dieser Funktionen \gls{JSON} Strukturen selber erstellen, sowie Parsing Funktionen für definierte Strukturen implementieren. Mit Hilfe von cJSON werden Inhalte der \gls{JSON} Nachrichten in eine interne Struktur hineinkopiert und ausgewertet. Die Befehlsnachrichten sind nach dem im \autoref{JSON command} gezeigten Format definiert. Der Inhalt des \enquote{Action} Feldes wird mit den bekannten Aktionen verglichen. 
 
 \begin{figure}[htbp]
 	\centering
@@ -47,7 +47,16 @@ Die Befehlsverarbeitung empfängt \gls{JSON} Nachrichten von der Kommunikationss
 	\label{JSON command}
 \end{figure}
 
-Bei der Auswertung eines Befehls wird zuerst überprüft ob das Feld \enquote{Target\_Node\_ID} mit dem ID des jeweiligen Runtime Nodes identisch ist. Befehle mit abweichendem ID werden ignoriert. 
+Bei der Auswertung eines Befehls wird zuerst überprüft ob das Feld \enquote{Target\_Node\_ID} mit dem ID des jeweiligen Runtime Nodes identisch ist. Befehle mit abweichendem ID werden ignoriert. Im nächsten Schritt wird das Feld \enquote{Action} mit den verfügbaren, implementierten Aktionen verglichen. Bei Übereinstimmung wird die entsprechende Funktion im \enquote{Container Management} mit den Parametern aus dem empfangenen Befehl aufgerufen. Unbekannte Befehle werden ignoriert.
+
+Die Befehlsverarbeitung überträgt auch periodisch eine Node Status Meldung namens \enquote{Node\_Info}. Diese Meldung wird von jedem Runtime Node an den Runtime Master übertragen und enthält Informationen über die Rechenkapazitäten des Nodes sowie über die aktuell laufenden Applikationen. 
+
+\begin{sidewaysfigure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./content/graphics/infoJSON.pdf}
+	\caption{JSON Struktur der Runtime Node Infonachricht}
+	\label{JSON info}
+\end{sidewaysfigure}
 
 \subsection{Implementierung des Ladens externer Applikationen}
 
