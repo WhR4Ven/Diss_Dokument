@@ -1,0 +1,45 @@
+@startjson
+{
+    "Message_Type": "node_info",
+    "Node_ID": "Runtime Node ID",
+    "Capacity": 
+                {
+                    "CPU": "CPU Rechenleistung",
+                    "Memory_GB": "Verfügbare Arbeitsspeichermenge in Gb",
+                    "Storage_GB": "Verfügbare Speicherkapazität in Gb"
+                },
+    "Characteristics": 
+                        {
+                            "Os": "Betriebssystemtyp",
+                            "Architecture": "Hardwarearchitektur",
+                            "Runtime_Version": "Version der Runtime Node Softwarekomponente"
+                        },
+    "Network": 
+                {
+                    "Network_Type": "Netzwerkprotokoll",
+                    "Latency_ms": "Latenz zum Runtime Master in ms",
+                    "Position": "GPS Positionsdaten"
+                },
+    "Authentication": 
+                {
+                    "Token": "Token für die Authentifizierung"
+                },
+    "Health_Status": "S",
+    "Features": "Liste an Features des Runtime Nodes",
+    "Tags": "Liste an relevanten Anmerkungen",
+    "Containers": 
+    [{
+        "Container_Name": "Containername",
+        "Status": "stopped, running",
+        "Binaries": "Liste an Applikationen im Container"
+    },{
+        "Container_Name": "Containername",
+        "Status": "stopped, running",
+        "Binaries": "Liste an Applikationen im Container"
+    },{
+        "Container_Name": "...",
+        "Status": "...",
+        "Binaries": "..."
+    }]
+}
+@endjson

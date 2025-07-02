@@ -1,0 +1,11 @@
+@startjson
+{
+    "Message_Type": "container_command, container_command_response",
+    "Node_ID": "Runtime Master ID",
+    "Target_Node_ID": "Ziel Runtime Node ID",
+    "Container_Name": "Ziel Container Name",
+    "Binary_Name": "Binärdatei Name",
+    "Action": "create_container, delete_container, start_container, stop_container",
+    "Response": "nur bei Runtime Node Antwortnachrichten, Statusrückmeldung zur geforderten Aktion"
+}
+@endjson

@@ -49,7 +49,7 @@ Die Befehlsverarbeitung empfängt \gls{JSON} Nachrichten von der Kommunikationss
 
 Bei der Auswertung eines Befehls wird zuerst überprüft ob das Feld \enquote{Target\_Node\_ID} mit dem ID des jeweiligen Runtime Nodes identisch ist. Befehle mit abweichendem ID werden ignoriert. Im nächsten Schritt wird das Feld \enquote{Action} mit den verfügbaren, implementierten Aktionen verglichen. Bei Übereinstimmung wird die entsprechende Funktion im \enquote{Container Management} mit den Parametern aus dem empfangenen Befehl aufgerufen. Unbekannte Befehle werden ignoriert.
 
-Die Befehlsverarbeitung überträgt auch periodisch eine Node Status Meldung namens \enquote{Node\_Info}. Diese Meldung wird von jedem Runtime Node an den Runtime Master übertragen und enthält Informationen über die Rechenkapazitäten des Nodes sowie über die aktuell laufenden Applikationen. 
+Die Befehlsverarbeitung überträgt auch periodisch eine Node Status Meldung namens \enquote{Node\_Info}. Diese Meldung wird von jedem Runtime Node an den Runtime Master übertragen und enthält Informationen über die Rechenkapazitäten des Nodes sowie über die aktuell laufenden Applikationen. Die Struktur der Nachricht ist in der \autoref{JSON info} dargestellt.
 
 \begin{sidewaysfigure}[htbp]
 	\centering

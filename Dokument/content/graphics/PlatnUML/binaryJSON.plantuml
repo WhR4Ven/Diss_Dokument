@@ -1,0 +1,11 @@
+@startjson
+{
+    "Message_Type": "binary_transfer, binary_transfer_response",
+    "Node_ID": "Runtime Master ID",
+    "Target_Node_ID": "Ziel Runtime Node ID",
+    "Container_Name": "Ziel Container Name",
+    "Binary_Name": "Binärdatei Name",
+    "Action": "start_exchange, transfer_binary, end_exchange",
+    "Binary_Data": "(Binärdaten in Base64 kodiert)" 
+}
+@endjson
