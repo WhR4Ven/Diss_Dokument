@@ -37,6 +37,7 @@ Ein Container kann durch einen externen Befehl mit dem Namen des zu stoppenden C
 Container können durch den Befehl Container löschen entfernt werden. Im Befehl muss der Name des Containers angegeben werden. Existiert ein Container mit dem angegebenen Namen im Runtime-Node und führt dieser aktuell eine Anwendung aus, so wird er gestoppt und anschließend der Containerordner inklusive aller extern geladenen Dateien gelöscht.
 
 \subsection{Implementierung Befehlsverarbeitung}
+\label{Implementierung Befehlsverarbeitung}
 
 Die Befehlsverarbeitung empfängt \gls{JSON} Nachrichten von der Kommunikationsschnittstelle, wertet sie aus und führt die entsprechenden Funktionen im Container Management Modul aus. Die \gls{JSON} Nachrichten werden über den Kommunikationssockel zwischen Node und Kommunikationsschnittstelle ausgetauscht. Zum Parsen und Erstellen von \gls{JSON} wird die Softwarebibliothek cJSON verwendet.  cJSON bietet Hilfsfunktionen für die Erzeugung und das Auslesen von \gls{JSON} Daten. Der Benutzer kann mit Hilfe dieser Funktionen \gls{JSON} Strukturen selber erstellen, sowie Parsing Funktionen für definierte Strukturen implementieren. Mit Hilfe von cJSON werden Inhalte der \gls{JSON} Nachrichten in eine interne Struktur hineinkopiert und ausgewertet. Die Befehlsnachrichten sind nach dem im \autoref{JSON command} gezeigten Format definiert. Der Inhalt des \enquote{Action} Feldes wird mit den bekannten Aktionen verglichen. 
 
@@ -57,6 +58,8 @@ Die Befehlsverarbeitung überträgt auch periodisch eine Node Status Meldung nam
 	\caption{JSON Struktur der Runtime Node Infonachricht}
 	\label{JSON info}
 \end{sidewaysfigure}
+
+Mithilfe dieser Informationen kann der Runtime Master Scheduling Entscheidungen treffen und die Verfügbarkeit der Runtime Nodes überwachen.
 
 \subsection{Implementierung des Ladens externer Applikationen}
 
@@ -89,3 +92,8 @@ Die Komponente Runtime Master ist für die Verwaltung der Runtime Nodes zuständ
 
 \subsection{Implementierung Node Datenbank}
 
+Die Node Datenbank speichert die Informationen über die Runtime Nodes, die sich aktuell im selben Netzwerk befinden. Diese Informationen werden über die im \autoref{Implementierung Befehlsverarbeitung} vorgestellten \enquote{Node Info} Nachrichten der Runtime Nodes übertragen. Die Datenbank beinhaltet alle Informationen aus den \enquote{Node Info} Nachrichten, zusätzlich wird festgehalten wann die letzte \enquote{Node Info} Nachricht empfangen wurde und ob dies im konfigurierten Zeitraum war. In der prototypischen Implementierung ist die Datenbank als interne Datenstruktur umgesetzt. Diese Methode speichert alle Einträge im Arbeitsspeicher des Systems, auf dem Runtime Master ausgeführt wird. Je nach Objektgröße können 100.000 Einträge problemlos im Arbeitsspeicher gehalten werden. Diese sind jedoch nicht persistent, da die Datenstruktur nach Beenden der Applikation gelöscht wird. Für größere Netzwerke mit vielen Teilnehmern und persistenten Daten ist es sinnvoll auf eine Datenbankimplementierung zurückzugreifen. Datenbanken sind eigenständige Softwarekomponenten mit einer standardisierten\gls{API}, über die andere Applikationen Daten schreiben und abfragen können. Die Daten werden persistent gespeichert, indem sie auf die Festplatte des Systems geschrieben werden. Bei einem Neustart können sie wiederhergestellt werden. Für diese Anwendung können relationale Datenbanken sinnvoll verwendet werden. In einer solchen Struktur werden die Daten in tabellarischer Form gespeichert. Zeilen entsprechen die Datensätze, während die Spalten die im Datensatz vorkommenden Datentypen definieren. In dieser Anwendung kann jede Runtime Node einen eigenen Tabelleneintrag erhalten. Die Container des Nodes werden ebenfalls in einer eigenen Tabelle gespeichert, die jedoch relationell mit der Node Tabelle verknüpft wird. Diese Struktur erlaubt eine effiziente Speicherausnutzung, auch wenn verschiedene Nodes verschiedene Anzahl an Container beinhalten. 
+
+\subsection{Implementierung Benutzeroberfläche}
+
+Die Benutzeroberfläche wurde als 2D Bedienoberfläche implementiert. Sie ermöglicht es dem Nutzer, die Runtime Nodes manuell zu kontrollieren und deren Statusmeldungen anzuzeigen. Für die Implementierung wurde die Softwarebibliothek Imgui verwendet. Imgui ist eine C++ Bibliothek, für die es auch Wrapper Implementierungen für andere Programmiersprachen gibt. 
