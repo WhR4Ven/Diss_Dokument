@@ -96,4 +96,11 @@ Die Node Datenbank speichert die Informationen über die Runtime Nodes, die sich
 
 \subsection{Implementierung Benutzeroberfläche}
 
-Die Benutzeroberfläche wurde als 2D Bedienoberfläche implementiert. Sie ermöglicht es dem Nutzer, die Runtime Nodes manuell zu kontrollieren und deren Statusmeldungen anzuzeigen. Für die Implementierung wurde die Softwarebibliothek Imgui verwendet. Imgui ist eine C++ Bibliothek, für die es auch Wrapper Implementierungen für andere Programmiersprachen gibt. 
+Die Benutzeroberfläche wurde als 2D Bedienoberfläche implementiert. Sie ermöglicht es Nutzern, die Runtime Nodes manuell zu kontrollieren und deren Statusmeldungen anzuzeigen. Für die Implementierung wurde die Softwarebibliothek Imgui verwendet. Imgui ist eine C++ Bibliothek, für die es auch Wrapper Implementierungen für andere Programmiersprachen, wie auch für Go, gibt. Go kann mithilfe der CGo Mechanik C funktionen aufrufen. Der Wrapper implementiert ein C++ zu C Interface für imgui, sowie Go Bindings, die diese C Funktionen über Go funktionen aufrufen. Mit Hilfe diesen Funktionen wurden vier Hauptfenster implementiert: 
+
+\begin{itemize}
+	\item Container Befehlfenster: Erlaubt das manuelle Senden von Befehlen an die Runtime Nodes. Container können durch den Benutzer manuell verwaltet werden.
+	\item Runtime Node Statusfenster: Zeigt die verfügbaren Runtime Nodes im Netzwerk an, deren Verfügbarkeitsstatus, Container sowie Applikationen die sie beinhalten.
+	\item Statusrückmeldungsfenster: Zeigt die letzte Statusrückmeldung des Runtime Nodes an, welches das letzte Befehl erhalten hat.
+	\item Fenster für Datenübertragung: In diesem Fenster ist es möglich Daten in ausgewählten Container eines Runtime Nodes zu übertragen.
+\end{itemize}
