@@ -62,6 +62,7 @@ Die Befehlsverarbeitung überträgt auch periodisch eine Node Status Meldung nam
 Mithilfe dieser Informationen kann der Runtime Master Scheduling Entscheidungen treffen und die Verfügbarkeit der Runtime Nodes überwachen.
 
 \subsection{Implementierung des Ladens externer Applikationen}
+\label{Laden extene Applikationen Node}
 
 Damit extern bereitgestellte Applikationen auf den Steuergeräten des Runtime Node ausgeführt werden können, müssen die entsprechenden Dateien auf das jeweilige Steuergerät geladen werden. Für die prototypische Implementierung wurde dasselbe Kommunikationskonzept für die Übertragung von Dateien verwendet wie für die Übertragung von Befehlen und Statusmeldungen. Die Dateien werden in vorkompilierte Form im Binärformat übertragen. Die Kommunikationsschnittstelle nutzt \gls{JSON}. Nachrichten für den Informationsaustausch. Für die Übertragung wird die folgende JSON-Struktur verwendet:
 
@@ -104,3 +105,21 @@ Die Benutzeroberfläche wurde als 2D Bedienoberfläche implementiert. Sie ermög
 	\item Statusrückmeldungsfenster: Zeigt die letzte Statusrückmeldung des Runtime Nodes an, welches das letzte Befehl erhalten hat.
 	\item Fenster für Datenübertragung: In diesem Fenster ist es möglich Daten in ausgewählten Container eines Runtime Nodes zu übertragen.
 \end{itemize}
+
+In der prototypischen Implementierung sind die einzelnen Softwarekomponenten nicht vollständig als eigenständige Prozesse voneinander getrennt, sondern als einzelne Threads. Durch diese geringere Isolierung kann die Benutzeroberfläche die Funktionen der andren Softwarekomponenten direkt aufrufen. 
+
+\subsection{Implementierung Nachrichtenverwaltung}
+
+Die Runtime Master Komponente erhält verschiedene Nachrichten von den Runtime Node Komponenten. In diesem Modul werden diese Nachrichten ausgewertet und die Informationen an die passenden Softwarekomponenten weitergeleitet. Grundsätzlich werden drei verschiedene Nachrichtenarten unterschieden:
+
+\begin{itemize}
+	\item Info Nachrichten: Diese Nachrichten beinhalten entweder eine \enquote{Node Info} Nachricht oder \enquote{Interface Info} Nachricht. 
+	\item Befehlsnachricht Rückmeldung: Diese enthalten die Statusrückmeldungen der Runtime Nodes auf empfangenen Runtime Master Befehle.
+	\item Datenübertragung Nachrichten: Diese Nachrichten sind Statusrückmeldungen von den Runtime Nodes, wenn eine Datenübertragung stattfindet.
+\end{itemize}
+
+Kann die empfangene Nachricht zu keiner der Kategorien zugeordnet werden, wird diese ignoriert. Wird eine Nachricht erfolgreich zugeordnet, so werden die empfangenen Daten aus dem \gls{JSON} Format in eine interne Datenstruktur konvertiert. Die Nachrichtenverwaltung ruft in Anschluss die passenden Funktionen der anderen Softwarekomponenten auf und übergibt die Empfangene Daten als Parameter der Funktion. Im Runtime Master wird anstelle von cJSON die in der Standard Golang Bibliothek enthaltene \gls{JSON} encoding Bibliothek für die Verarbeitung von den \gls{JSON} Nachrichten verwendet, da diese eine einfachere Integration ermöglicht.
+
+\subsection{Implementierung des Ladens externer Applikationen}
+
+Die Implementierung der Übertragung externer Applikationen wurde für den Runtime Node im \autoref{Laden extene Applikationen Node} vorgestellt. Im Runtime Master muss ebenfalls eine kompatible Implementierung vorliegen. Diese ist ebenfalls als State Machine implementiert mit den Zuständen \enquote{Idle}, \enquote{Running} und \enquote{Done}.
