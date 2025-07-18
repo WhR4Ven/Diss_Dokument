@@ -126,3 +126,10 @@ Die Implementierung der Übertragung externer Applikationen wurde für den Runti
 
 \subsection{Implementierung Scheduler}
 
+Der Scheduler kann die externen Applikationen automatisch nach bestimmten Optimierungskriterien an den Runtime Nodes verteilen. Eine Auswahl an Methoden wurde im \autoref{Scheduling Algorithmen} vorgestellt. Da die Softwareplattform aktuell nur prototypisch vorliegt und keine Flotte an Fahrzeugen vorhanden ist, die die Runtime Nodes ausführen können, werden ausgewählte Scheduling Methoden simulativ implementiert und ausgewertet.
+
+Im \autoref{Scheduling Algorithmen} wurde bereits ermittelt, dass sich das Scheduling Problem als multiobjektives Multi-Knapsackproblem auffassen lässt. Für die Simulation werden Methoden untersucht, die auf dieses Problem anwendbar sind.
+
+\subsubsection{Gewichtung von Optimierungskriterien}
+
+Die Informationen in der \enquote{Node Info} Nachricht enthalten mehrere Einträge, die für die Optimierung berücksichtigt werden können. 
