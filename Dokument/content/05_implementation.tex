@@ -132,4 +132,12 @@ Im \autoref{Scheduling Algorithmen} wurde bereits ermittelt, dass sich das Sched
 
 \subsubsection{Gewichtung von Optimierungskriterien}
 
-Die Informationen in der \enquote{Node Info} Nachricht enthalten mehrere Einträge, die für die Optimierung berücksichtigt werden können. 
+Die Informationen in der \enquote{Node Info} Nachricht enthalten mehrere Einträge, die für die Optimierung berücksichtigt werden können. Es muss mindestens eine Optimierung der Ressourcenauslastung erfolgen, sodass die verfügbare Rechenleistung der Runtime Nodes möglichst effizient genutzt wird. Hierzu können die drei Einträge zur Rechenkapazität aus \enquote{Node Info} verwendet werden.
+
+\begin{itemize}
+	\item CPU
+	\item Memory\_Gb
+	\item Storage\_Gb
+\end{itemize}
+
+Für diesen Anwendungsfall eignet sich die Gewichtung 
