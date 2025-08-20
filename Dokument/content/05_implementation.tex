@@ -140,4 +140,20 @@ Die Informationen in der \enquote{Node Info} Nachricht enthalten mehrere Einträ
 	\item Storage\_Gb
 \end{itemize}
 
-Für diesen Anwendungsfall eignet sich die Gewichtung 
+Für diesen Anwendungsfall ist keine exakte optimale Lösung erforderlich. Vielmehr muss eine Lösung für eine große Menge an Runtime Nodes und Rechenaufgaben mit möglichst geringem Rechenaufwand ermittelt werden können. Hierfür eignet sich die Gewichtungsmethode, bei der alle Optimierungskriterien mit einem jeweiligen Gewichtungsfaktor multipliziert und die Ergebnisse anschließend aufsummiert werden. Der errechnete Wert wird anschließend für die Bestimmung der Optimallösung verwendet. Für den konkreten Fall wird die Gewichtung für einen Node mit der folgenden Formel berechnet:
+
+\begin{align}
+	& E_i = w_{\text{cpu}} \cdot \frac{\text{CPU}_i^{\text{used}}}{\text{CPU}_i^{\text{total}}}
+    + w_{\text{mem}} \cdot \frac{\text{Memory\_Gb}_i^{\text{used}}}{\text{Memory\_Gb}_i^{\text{total}}}
+    + w_{\text{stor}} \cdot \frac{\text{Storage\_Gb}_i^{\text{used}}}{\text{Storage\_Gb}_i^{\text{total}}}
+\end{align}
+
+Die Gewichtungsfaktoren \enquote{$w_i$} werden so gewählt, dass ihre Summe 1 ergibt.
+
+\begin{align}
+	& \sum_{}^{} w_i = 1
+\end{align}
+
+Das Verhältnis der Gewichtungsfaktoren bestimmt die Wichtigkeit der einzelnen Kriterien. Höher gewichtete Kriterien werden stärker berücksichtigt.
+
+\subsubsection{Scheduling }
