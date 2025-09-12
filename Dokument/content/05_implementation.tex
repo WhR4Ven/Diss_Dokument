@@ -160,4 +160,18 @@ Das Verhältnis der Gewichtungsfaktoren bestimmt die Wichtigkeit der einzelnen K
 
 Im \autoref{Scheduling Algorithmen} wurde eine Auswahl gängiger Algorithmen vorgestellt, die sich für das Scheduling von Applikationen eignen. In diesem Abschnitt werden diese simulativ ausgewertet.
 
-Als Referenz kann die vollständige Berechnung der idealen Lösung herangezogen werden. Sie liefert ein optimales Schedulingergebnis, ist jedoch am rechenintensivsten. Der Rechenaufwand kann effektiv dargestellt werden, indem für verschiedene Mengen an Fahrzeugen und Tasks eine optimale Verteilung errechnet wird. Zum Vergleich mit einer effizienten Scheduling Methode wird die Greedy Methode verwendet. 
+Als Referenz kann die vollständige Berechnung der idealen Lösung herangezogen werden. Sie liefert ein optimales Schedulingergebnis, ist jedoch am rechenintensivsten. Eine Simulation mit vier Nodes und 10 verschiedenen Aufgaben, die scheduled werden müssen zeigt, dass diese Methode für diese verhältnismäßig kleine Aufgabenstellung erhebliche Rechenressourcen für die Lösungsberechnung braucht. Im Vergleich zum effizienten Greedy Algorithmus fallen die benötigten Berechnungszeiten folgendermaßen aus:
+
+\begin{itemize}
+	\item Greedy: $1.6 \cdot 10^{-5} s$
+	\item Brute Force: $88.2 s$
+\end{itemize}
+
+In diesem Beispiel fallen die konkreten Auslastungen der einzelnen Nodes folgendermaßen aus:
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1\textwidth]{./content/graphics/Greedy_vs_Optimal.pdf}
+	\caption{Auslastungsvergleich Brute Force und Geedy Scheduling}
+	\label{Auslastungsvergleich}
+\end{figure}
