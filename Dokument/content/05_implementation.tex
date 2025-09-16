@@ -167,11 +167,59 @@ Als Referenz kann die vollständige Berechnung der idealen Lösung herangezogen 
 	\item Brute Force: $88.2 s$
 \end{itemize}
 
-In diesem Beispiel fallen die konkreten Auslastungen der einzelnen Nodes folgendermaßen aus:
+In diesem Beispiel wurden die folgenden konkreten Auslastungen von den Scheduling Alogrithmen erreicht:
 
-\begin{figure}[htbp]
+\begin{figure}[ht]
 	\centering
-	\includegraphics[width=1\textwidth]{./content/graphics/Greedy_vs_Optimal.pdf}
-	\caption{Auslastungsvergleich Brute Force und Geedy Scheduling}
-	\label{Auslastungsvergleich}
+	\begin{tikzpicture}
+		% Erstes Diagramm
+		\begin{axis}[
+			name=plot1,
+			ylabel=Auslastung (0-1) Greedy,
+			width=\textwidth,
+			height=0.4\textwidth,
+			enlargelimits=0.15,
+			ybar=3pt,
+			nodes near coords,        % Werte anzeigen
+			nodes near coords align={vertical}, % Ausrichtung (senkrecht über den Balken)
+			ymin=0.2, ymax=1.3,
+			bar width=15pt,
+			symbolic x coords={Node A,Node B,Node C,Node D,Gesamt},
+			xtick={Node A,Node B,Node C,Node D,Gesamt},
+			legend columns=4,
+		]
+			\addplot coordinates {(Node A,1)   (Node B,1)   (Node C,0.6) (Node D,0.8)};
+			\addplot coordinates {(Node A,1)   (Node B,1)   (Node C,0.7) (Node D,0.8)};
+			\addplot coordinates {(Node A,0.55)(Node B,0.55)(Node C,0.35)(Node D,0.35)};
+			\addplot+[bar shift=0pt] coordinates {(Gesamt,0.72)};
+			\legend{CPU, Arbeitsspeicher, Massenspeicher, Gesamt}
+		\end{axis}
+	
+		% Zweites Diagramm, unterhalb des ersten
+		\begin{axis}[
+			at={(plot1.south west)}, % Ausrichtung am ersten Diagramm
+			anchor=north west,
+			yshift=-1cm,             % Abstand nach unten
+			ylabel=Auslastung (0-1) Brute Force,
+			width=\textwidth,
+			height=0.4\textwidth,
+			enlargelimits=0.15,
+			ybar=3pt,
+			nodes near coords,        % Werte anzeigen
+			nodes near coords align={vertical}, % Ausrichtung (senkrecht über den Balken)
+			ymin=0.2, ymax=1.3,
+			bar width=15pt,
+			symbolic x coords={Node A,Node B,Node C,Node D,Gesamt},
+			xtick={Node A,Node B,Node C,Node D,Gesamt},
+			legend columns=4,
+		]
+			\addplot coordinates {(Node A,0.8) (Node B,1) (Node C,0.8) (Node D,0.8)};
+			\addplot coordinates {(Node A,0.9) (Node B,1) (Node C,0.8) (Node D,0.8)};
+			\addplot coordinates {(Node A,0.62) (Node B,0.57) (Node C,0.25) (Node D,0.35)};
+			\addplot+[bar shift=0pt] coordinates {(Gesamt,0.72)};
+			\legend{CPU, Arbeitsspeicher, Massenspeicher, Gesamt}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Vergleich von Brute force und Greedy Scheduling}
+\label{fig:vergleich_scheduling}
 \end{figure}
