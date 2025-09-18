@@ -160,7 +160,7 @@ Das Verhältnis der Gewichtungsfaktoren bestimmt die Wichtigkeit der einzelnen K
 
 Im \autoref{Scheduling Algorithmen} wurde eine Auswahl gängiger Algorithmen vorgestellt, die sich für das Scheduling von Applikationen eignen. In diesem Abschnitt werden diese simulativ ausgewertet.
 
-Als Referenz kann die vollständige Berechnung der idealen Lösung herangezogen werden. Sie liefert ein optimales Schedulingergebnis, ist jedoch am rechenintensivsten. Eine Simulation mit vier Nodes und 10 verschiedenen Aufgaben, die scheduled werden müssen zeigt, dass diese Methode für diese verhältnismäßig kleine Aufgabenstellung erhebliche Rechenressourcen für die Lösungsberechnung braucht. Im Vergleich zum effizienten Greedy Algorithmus fallen die benötigten Berechnungszeiten folgendermaßen aus:
+Als Ausgangsbasis kann die vollständige Berechnung der idealen Lösung herangezogen werden. Sie liefert ein optimales Schedulingergebnis, ist jedoch am rechenintensivsten. Die Simulation wird mit zehn verschiedenen Aufgaben durchgeführt, die jeweils CPU, Arbeitsspeicher und Massenspeicher als Ressource verbrauchen. Diese werden für das Scheduling mit gleicher Gewichtung berücksichtigt. Die Aufgaben werden auf insgesamt vier Nodes verteilt. Die Simulation zeigt, dass diese Methode für diese vergleichsweise kleine Aufgabenstellung erhebliche Rechenressourcen für die Lösungsberechnung benötigt werden. Zum Vergleich mit einem effizienten Schedulingsalgorithmus wird Greedy herangezogen. Die Berechnungszeiten in der Simulation fallen folgendermaßen aus:
 
 \begin{itemize}
 	\item Greedy: $1.6 \cdot 10^{-5} s$
@@ -223,3 +223,7 @@ In diesem Beispiel wurden die folgenden konkreten Auslastungen von den Schedulin
 	\caption{Vergleich von Brute force und Greedy Scheduling}
 \label{fig:vergleich_scheduling}
 \end{figure}
+
+Die verschiedenen Scheduling Algorithmen haben unterschiedliche Aufgabenverteilungen geliefert, die Gesamtauslastung blieb jedoch unverändert. In diesem Beispiel haben beide Algorithmen eine ideale Lösung auf der Pareto Front ermittelt. Dies ist bei Greedy allerdings nicht garantiert. Insgesamt lässt sich festhalten dass die Brute Force Methode aufgrund des hohen Rechenaufwandes nicht effizient eingesetzt werden kann, effizientere Strategien können ebenfalls gute Lösungen liefern mit deutlich weniger Berechnungsaufwand. 
+
+Im vorliegenden Fall ändert sich das Scheduling Problem dynamisch. Eine global optimale Lösung existiert nur für kurze Zeit, da sich die Menge der Aufgaben und die verfügbare Rechenleistung der Fahrzeuge konstant ändern. Aus diesem Grund ist es für diese Anwendung sinnvoller, auf eine global optimale Lösung zu verzichten und stattdessen ein schnelles und effizientes Scheduling zu verwenden. Im \autoref{dynamisches Scheduling} wurde Greedy und Reinforced Learning als geeignete Möglichkeit für dynamisches Scheduling vorgestellt. 
