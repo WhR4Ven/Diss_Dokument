@@ -226,6 +226,17 @@ In diesem Beispiel wurden die folgenden konkreten Auslastungen von den Schedulin
 
 Die verschiedenen Scheduling Algorithmen haben unterschiedliche Aufgabenverteilungen geliefert, die Gesamtauslastung blieb jedoch unverändert. In diesem Beispiel haben beide Algorithmen eine ideale Lösung auf der Pareto Front ermittelt. Dies ist bei Greedy allerdings nicht garantiert. Insgesamt lässt sich festhalten dass die Brute Force Methode aufgrund des hohen Rechenaufwandes nicht effizient eingesetzt werden kann, effizientere Strategien können ebenfalls gute Lösungen liefern mit deutlich weniger Berechnungsaufwand. 
 
-Im vorliegenden Fall ändert sich das Scheduling Problem dynamisch. Eine global optimale Lösung existiert nur für kurze Zeit, da sich die Menge der Aufgaben und die verfügbare Rechenleistung der Fahrzeuge konstant ändern. Aus diesem Grund ist es für diese Anwendung sinnvoller, auf eine global optimale Lösung zu verzichten und stattdessen ein schnelles und effizientes Scheduling zu verwenden. Im \autoref{dynamisches Scheduling} wurde Greedy und Reinforced Learning als geeignete Möglichkeit für dynamisches Scheduling vorgestellt. Greedy benötigt keine Trainingsdaten und kann nur mit lokalen Informationen ausgeführt werden. Dadurch ist es besonders effizient für dynamische Systeme.
+Im vorliegenden Fall ändert sich das Scheduling Problem dynamisch. Eine global optimale Lösung existiert nur für kurze Zeit, da sich die Menge der Aufgaben und die verfügbare Rechenleistung der Fahrzeuge konstant ändern. Aus diesem Grund ist es für diese Anwendung sinnvoller, auf eine global optimale Lösung zu verzichten und stattdessen ein schnelles und effizientes Scheduling zu verwenden. Im \autoref{dynamisches Scheduling} wurde Greedy und Reinforced Learning als geeignete Möglichkeit für dynamisches Scheduling vorgestellt. Greedy benötigt keine Trainingsdaten und kann  mit nur lokalen Informationen ausgeführt werden. Dadurch ist es besonders effizient für dynamische Systeme.
 
-Zur simulative Untersuchung eines geeigneten Scheduling Algorithmus wird die Greedy Methode verwendet. 
+Zur simulative Untersuchung eines geeigneten Scheduling Algorithmus wird ein dynamisches Szenario erstellt. 
+
+\begin{tikzpicture}
+	\begin{axis}[
+		xbar,
+		y=0.6cm,
+		ytick={0,1,2},
+		yticklabels={Node 0, Node 1, Node 2},
+	]
+	  \addplot table[x=start, y=node_id, col sep=comma] {content/graphics/schedule.csv};
+	\end{axis}
+\end{tikzpicture}
