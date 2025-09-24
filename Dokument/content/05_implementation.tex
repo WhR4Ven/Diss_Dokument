@@ -228,7 +228,17 @@ Die verschiedenen Scheduling Algorithmen haben unterschiedliche Aufgabenverteilu
 
 Im vorliegenden Fall ändert sich das Scheduling Problem dynamisch. Eine global optimale Lösung existiert nur für kurze Zeit, da sich die Menge der Aufgaben und die verfügbare Rechenleistung der Fahrzeuge konstant ändern. Aus diesem Grund ist es für diese Anwendung sinnvoller, auf eine global optimale Lösung zu verzichten und stattdessen ein schnelles und effizientes Scheduling zu verwenden. Im \autoref{dynamisches Scheduling} wurde Greedy und Reinforced Learning als geeignete Möglichkeit für dynamisches Scheduling vorgestellt. Greedy benötigt keine Trainingsdaten und kann  mit nur lokalen Informationen ausgeführt werden. Dadurch ist es besonders effizient für dynamische Systeme.
 
-Zur simulative Untersuchung eines geeigneten Scheduling Algorithmus wird ein dynamisches Szenario erstellt. 
+Zur simulative Untersuchung eines geeigneten Scheduling Algorithmus wird ein dynamisches Szenario erstellt. Die folgenden Annahmen werden getroffen:
+
+\begin{itemize}
+	\item Es sind initial 200 Fahrzeuge vorhanden
+	\item Die Anzahl an Aufgaben beträgt initial 2000
+	\item Der Scheduler wird periodisch ausgeführt
+	\item Es können zufällig pro Simulationsperiode bis zu 500 neue Aufgaben hinzukommen oder verschwinden
+	\item Pro Simulationsperiode können 10 Fahrzeuge dazukommen oder verschwinden
+\end{itemize}
+
+Dies stellt ein 
 
 \begin{tikzpicture}
 	\begin{axis}[
