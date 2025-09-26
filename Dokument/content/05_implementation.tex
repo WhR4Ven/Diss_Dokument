@@ -232,7 +232,7 @@ Zur simulative Untersuchung eines geeigneten Scheduling Algorithmus wird ein dyn
 
 \begin{itemize}
 	\item Der Scheduler wird periodisch ausgeführt
-	\item Es sind initial 200 Fahrzeuge vorhanden
+	\item Es sind initial 200 Nodes (Fahrzeuge) vorhanden
 	\item Pro Simulationsperiode können bis zu 10 Nodes (Fahrzeuge) dazukommen oder verschwinden
 	\item Jede Node hat die gleiche Menge an verfügbaren Ressourcen:
 	\begin{itemize}
@@ -249,11 +249,9 @@ Zur simulative Untersuchung eines geeigneten Scheduling Algorithmus wird ein dyn
 		\item Speicher: 2-16
 		\item Massenspeicher: 2-20
 	\end{itemize}
-
-	
 \end{itemize}
 
-Diese Simulation bildet die erwartete Dynamik des Systems ab: Während der Laufzeit kommen Aufgaben dynamisch hinzu und werden fertiggestellt. Auch Fahrzeuge können dynamisch hinzukommen oder verschwinden. Der Scheduler wird periodisch aufgerufen und verteilt Aufgaben an Nodes mit frei verfügbaren Ressourcen. Der Verlauf der verfügbaren Nodes ist in der \autoref{fig:Simulation_Nodes} abgebildet.
+Diese Simulation bildet die erwartete Dynamik des Systems ab: Während der Laufzeit kommen Aufgaben dynamisch hinzu und werden fertiggestellt. Auch Nodes können dynamisch hinzukommen oder verschwinden. Der Scheduler wird periodisch aufgerufen und verteilt Aufgaben an Nodes mit frei verfügbaren Ressourcen. Der Verlauf der verfügbaren Nodes ist in der \autoref{fig:Simulation_Nodes} abgebildet.
 \begin{figure}
 	\begin{tikzpicture}
 		\begin{axis}[
