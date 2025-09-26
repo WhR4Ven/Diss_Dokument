@@ -304,3 +304,19 @@ Der Verlauf der Aufgaben ist in der \autoref{fig:Simulation_Tasks} dargestellt. 
   	\caption{Verlauf der Gesamtauslastung der Nodes während der Simulation}
 	\label{fig:Simulation_Auslastung}
 \end{figure}
+
+\begin{figure}
+	\begin{tikzpicture}
+		\begin{axis}[
+		width=\textwidth,
+		height=0.5\textwidth,
+		xlabel={Simulationsschritte},
+		ylabel={Schedulingzeit in Sekunden},
+		grid=both,
+		]
+		\addplot table [x=tick, y=scheduling_time_s, col sep=comma] {content/graphics/system_metrics.csv};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Schedulingzeit der einzelnen Simulationsschritte}
+	\label{fig:Simulation_Nodes}
+\end{figure}
