@@ -239,21 +239,22 @@ Zur simulative Untersuchung eines geeigneten Scheduling Algorithmus wird ein dyn
 	\item Pro Simulationsperiode können bis zu 10 Nodes (Fahrzeuge) dazukommen oder verschwinden
 \end{itemize}
 
-Diese Simulation bildet die erwartete Dynamik des Systems ab: Während der Laufzeit kommen Aufgaben dynamisch hinzu und werden fertiggestellt. Auch Fahrzeuge können dynamisch hinzukommen oder verschwinden. Der Scheduler wird periodisch aufgerufen und verteilt Aufgaben an Nodes mit frei verfügbaren Ressourcen. Der Verlauf der verfügbaren Nodes ist in der \autoref{Simulation_Nodes} abgebildet.
-
-\begin{tikzpicture}
-	\begin{axis}[
-	  width=\textwidth,
-	  height=0.5\textwidth,
-	  xlabel={Simulationsschritte},
-	  ylabel={Anzahl Nodes},
-	  grid=both,
-	]
-	  \addplot table [x=tick, y=num_nodes, col sep=comma] {content/graphics/system_metrics.csv};
-	\end{axis}
+Diese Simulation bildet die erwartete Dynamik des Systems ab: Während der Laufzeit kommen Aufgaben dynamisch hinzu und werden fertiggestellt. Auch Fahrzeuge können dynamisch hinzukommen oder verschwinden. Der Scheduler wird periodisch aufgerufen und verteilt Aufgaben an Nodes mit frei verfügbaren Ressourcen. Der Verlauf der verfügbaren Nodes ist in der \autoref{fig:Simulation_Nodes} abgebildet.
+\begin{figure}
+	\begin{tikzpicture}
+		\begin{axis}[
+		width=\textwidth,
+		height=0.5\textwidth,
+		xlabel={Simulationsschritte},
+		ylabel={Anzahl Nodes},
+		grid=both,
+		]
+		\addplot table [x=tick, y=num_nodes, col sep=comma] {content/graphics/system_metrics.csv};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Verlauf der verfügbaren Nodes während der Simulation}
 	\label{fig:Simulation_Nodes}
-  \end{tikzpicture}
-  \caption{Verlauf der verfügbaren Nodes während der Simulation}
+\end{figure}
 
 \begin{tikzpicture}
 	\begin{axis}[
