@@ -231,12 +231,26 @@ Im vorliegenden Fall ändert sich das Scheduling Problem dynamisch. Eine global 
 Zur simulative Untersuchung eines geeigneten Scheduling Algorithmus wird ein dynamisches Szenario erstellt. Die folgenden Annahmen werden getroffen:
 
 \begin{itemize}
-	\item Es sind initial 200 Fahrzeuge vorhanden
-	\item Die Anzahl an Aufgaben beträgt initial 2000
 	\item Der Scheduler wird periodisch ausgeführt
-	\item Es können zufällig pro Simulationsperiode bis zu 2000 neue Aufgaben hinzukommen oder verschwinden
-	\item Der Ressourcenverbrauch der Anwendungen ist bekannt
+	\item Es sind initial 200 Fahrzeuge vorhanden
 	\item Pro Simulationsperiode können bis zu 10 Nodes (Fahrzeuge) dazukommen oder verschwinden
+	\item Jede Node hat die gleiche Menge an verfügbaren Ressourcen:
+	\begin{itemize}
+		\item CPU: 16
+		\item Speicher: 64
+		\item Massenspeicher: 500
+	\end{itemize}
+	\item Die Anzahl an Aufgaben beträgt initial 2000
+	\item Es können zufällig pro Simulationsperiode bis zu 2000 neue Aufgaben hinzukommen oder verschwinden
+	\item Der Ressourcenverbrauch der Aufgaben ist bekannt
+	\item Der Ressourcenverbrauch pro Aufgabe wird zufällig generiert, es kann Werte im folgenden Bereich annehmen:
+	\begin{itemize}
+		\item CPU: 1-8
+		\item Speicher: 2-16
+		\item Massenspeicher: 2-20
+	\end{itemize}
+
+	
 \end{itemize}
 
 Diese Simulation bildet die erwartete Dynamik des Systems ab: Während der Laufzeit kommen Aufgaben dynamisch hinzu und werden fertiggestellt. Auch Fahrzeuge können dynamisch hinzukommen oder verschwinden. Der Scheduler wird periodisch aufgerufen und verteilt Aufgaben an Nodes mit frei verfügbaren Ressourcen. Der Verlauf der verfügbaren Nodes ist in der \autoref{fig:Simulation_Nodes} abgebildet.
