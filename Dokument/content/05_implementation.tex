@@ -234,19 +234,71 @@ Zur simulative Untersuchung eines geeigneten Scheduling Algorithmus wird ein dyn
 	\item Es sind initial 200 Fahrzeuge vorhanden
 	\item Die Anzahl an Aufgaben beträgt initial 2000
 	\item Der Scheduler wird periodisch ausgeführt
-	\item Es können zufällig pro Simulationsperiode bis zu 500 neue Aufgaben hinzukommen oder verschwinden
-	\item Pro Simulationsperiode können 10 Fahrzeuge dazukommen oder verschwinden
+	\item Es können zufällig pro Simulationsperiode bis zu 2000 neue Aufgaben hinzukommen oder verschwinden
+	\item Der Ressourcenverbrauch der Anwendungen ist bekannt
+	\item Pro Simulationsperiode können bis zu 10 Nodes (Fahrzeuge) dazukommen oder verschwinden
 \end{itemize}
-
-Dies stellt ein 
+Diese Simulation bildet die erwartete Dynamik des Systems ab, Aufgaben kommen während der Laufzeit dynamisch dazu und werden fertiggestellt. Fahrzeuge können dynamisch hinzukommen oder verschwinden.
 
 \begin{tikzpicture}
 	\begin{axis}[
-		xbar,
-		y=0.6cm,
-		ytick={0,1,2},
-		yticklabels={Node 0, Node 1, Node 2},
+	  width=\textwidth,
+	  height=0.5\textwidth,
+	  xlabel={Tick},
+	  ylabel={Anzahl Nodes},
+	  grid=both,
 	]
-	  \addplot table[x=start, y=node_id, col sep=comma] {content/graphics/schedule.csv};
+	  \addplot table [x=tick, y=num_nodes, col sep=comma] {content/graphics/system_metrics.csv};
 	\end{axis}
-\end{tikzpicture}
+  \end{tikzpicture}
+
+\begin{tikzpicture}
+	\begin{axis}[
+	  width=\textwidth,
+	  height=0.5\textwidth,
+	  xlabel={Tick},
+	  ylabel={Anzahl Tasks},
+	  ymin=0, ymax=6500,
+	  grid=both,
+	  legend columns=3
+	]
+	  \addplot table [x=tick, y=total_tasks, col sep=comma] {content/graphics/system_metrics.csv};
+	  \addlegendentry{Gesamt}
+	  \addplot table [x=tick, y=running_tasks, col sep=comma] {content/graphics/system_metrics.csv};
+	  \addlegendentry{Laufend}
+	  \addplot table [x=tick, y=waiting_tasks, col sep=comma] {content/graphics/system_metrics.csv};
+	  \addlegendentry{Wartend}
+	\end{axis}
+  \end{tikzpicture}
+  
+
+\begin{tikzpicture}
+	\begin{axis}[
+		width=\textwidth,
+		height=0.5\textwidth,
+		xlabel={Tick},
+		ylabel={Gesamtauslastung},
+		ymin=0, ymax=1.2,
+		% legend style={at={(0.5,-0.2)},anchor=north}, % Position der Legende
+		legend columns=3, % Anzahl Spalten in der Legende
+		grid=both
+	]
+	\addplot table [x=tick, y=total_cpu_util, col sep=comma] {content/graphics/system_metrics.csv};
+	\addlegendentry{CPU}
+	\addplot table [x=tick, y=total_ram_util, col sep=comma] {content/graphics/system_metrics.csv};
+	\addlegendentry{RAM}
+	\addplot table [x=tick, y=total_storage_util, col sep=comma] {content/graphics/system_metrics.csv};
+	\addlegendentry{Storage}
+	\end{axis}
+	\end{tikzpicture}
+
+% \begin{tikzpicture}
+% 	\begin{axis}[
+% 		xbar,
+% 		y=0.6cm,
+% 		ytick={0,1,2},
+% 		yticklabels={Node 0, Node 1, Node 2},
+% 	]
+% 	  \addplot table[x=start, y=node_id, col sep=comma] {content/graphics/schedule.csv};
+% 	\end{axis}
+% \end{tikzpicture}
