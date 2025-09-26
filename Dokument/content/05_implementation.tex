@@ -268,7 +268,7 @@ Diese Simulation bildet die erwartete Dynamik des Systems ab: Während der Laufz
 	\label{fig:Simulation_Nodes}
 \end{figure}
 
-Der Verlauf der Aufgaben ist in der \autoref{fig:Simulation_Tasks} dargestellt. Zusätzlich wird angezeigt, wie viele Aufgaben im aktuellen Simulationsschritt ausgeführt werden und wie viele warten. Die daraus resultierende Gesamtauslastung der Nodes kann in \autoref{fig:Simulation_Auslastung} eingesehen werden. 
+Der Verlauf der Aufgaben ist in der \autoref{fig:Simulation_Tasks} dargestellt. Zusätzlich wird angezeigt, wie viele Aufgaben im aktuellen Simulationsschritt ausgeführt werden und wie viele warten. Die daraus resultierende Gesamtauslastung der Nodes kann in \autoref{fig:Simulation_Auslastung} eingesehen werden. Die benötigte Berechnungszeit für das Scheduling wird in \autoref{fig:Simulation_Nodes} dargestellt. 
 
 \begin{figure}
 	\begin{tikzpicture}
@@ -332,3 +332,5 @@ Der Verlauf der Aufgaben ist in der \autoref{fig:Simulation_Tasks} dargestellt. 
 	\caption{Schedulingzeit der einzelnen Simulationsschritte}
 	\label{fig:Simulation_Nodes}
 \end{figure}
+
+Aus den Simulationsergebnissen lässt sich ableiten, dass bei den gewählten Parametern hauptsächlich die CPU-Leistung limitierend ist. Das gewählte Schedulingverfahren kann die Gesamtauslastung der Nodes bei etwa 90\% halten. 
