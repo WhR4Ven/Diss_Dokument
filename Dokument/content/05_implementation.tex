@@ -256,53 +256,51 @@ Diese Simulation bildet die erwartete Dynamik des Systems ab: Während der Laufz
 	\label{fig:Simulation_Nodes}
 \end{figure}
 
-\begin{tikzpicture}
-	\begin{axis}[
-	  width=\textwidth,
-	  height=0.5\textwidth,
-	  xlabel={Simulationsschritte},
-	  ylabel={Anzahl Tasks},
-	  ymin=0, ymax=6500,
-	  grid=both,
-	  legend columns=3
-	]
-	  \addplot table [x=tick, y=total_tasks, col sep=comma] {content/graphics/system_metrics.csv};
-	  \addlegendentry{Gesamt}
-	  \addplot table [x=tick, y=running_tasks, col sep=comma] {content/graphics/system_metrics.csv};
-	  \addlegendentry{Laufend}
-	  \addplot table [x=tick, y=waiting_tasks, col sep=comma] {content/graphics/system_metrics.csv};
-	  \addlegendentry{Wartend}
-	\end{axis}
-  \end{tikzpicture}
-  
+Der Verlauf der Aufgaben ist in der \autoref{fig:Simulation_Tasks} dargestellt. Zusätzlich wird angezeigt, wie viele Aufgaben im aktuellen Simulationsschritt ausgeführt werden und wie viele warten. Die daraus resultierende Gesamtauslastung der Nodes kann in \autoref{fig:Simulation_Auslastung} eingesehen werden.
 
-\begin{tikzpicture}
-	\begin{axis}[
+\begin{figure}
+	\begin{tikzpicture}
+		\begin{axis}[
 		width=\textwidth,
 		height=0.5\textwidth,
 		xlabel={Simulationsschritte},
-		ylabel={Gesamtauslastung},
-		ymin=0, ymax=1.2,
-		% legend style={at={(0.5,-0.2)},anchor=north}, % Position der Legende
-		legend columns=3, % Anzahl Spalten in der Legende
-		grid=both
-	]
-	\addplot table [x=tick, y=total_cpu_util, col sep=comma] {content/graphics/system_metrics.csv};
-	\addlegendentry{CPU}
-	\addplot table [x=tick, y=total_ram_util, col sep=comma] {content/graphics/system_metrics.csv};
-	\addlegendentry{RAM}
-	\addplot table [x=tick, y=total_storage_util, col sep=comma] {content/graphics/system_metrics.csv};
-	\addlegendentry{Storage}
-	\end{axis}
+		ylabel={Anzahl Tasks},
+		ymin=0, ymax=6500,
+		grid=both,
+		legend columns=3
+		]
+		\addplot table [x=tick, y=total_tasks, col sep=comma] {content/graphics/system_metrics.csv};
+		\addlegendentry{Gesamt}
+		\addplot table [x=tick, y=running_tasks, col sep=comma] {content/graphics/system_metrics.csv};
+		\addlegendentry{Laufend}
+		\addplot table [x=tick, y=waiting_tasks, col sep=comma] {content/graphics/system_metrics.csv};
+		\addlegendentry{Wartend}
+		\end{axis}
 	\end{tikzpicture}
-
-% \begin{tikzpicture}
-% 	\begin{axis}[
-% 		xbar,
-% 		y=0.6cm,
-% 		ytick={0,1,2},
-% 		yticklabels={Node 0, Node 1, Node 2},
-% 	]
-% 	  \addplot table[x=start, y=node_id, col sep=comma] {content/graphics/schedule.csv};
-% 	\end{axis}
-% \end{tikzpicture}
+  	\caption{Verlauf der Aufgaben während der Simulation}
+	\label{fig:Simulation_Tasks}
+\end{figure}
+  
+\begin{figure}
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=\textwidth,
+			height=0.5\textwidth,
+			xlabel={Simulationsschritte},
+			ylabel={Gesamtauslastung},
+			ymin=0, ymax=1.2,
+			% legend style={at={(0.5,-0.2)},anchor=north}, % Position der Legende
+			legend columns=3, % Anzahl Spalten in der Legende
+			grid=both
+		]
+		\addplot table [x=tick, y=total_cpu_util, col sep=comma] {content/graphics/system_metrics.csv};
+		\addlegendentry{CPU}
+		\addplot table [x=tick, y=total_ram_util, col sep=comma] {content/graphics/system_metrics.csv};
+		\addlegendentry{RAM}
+		\addplot table [x=tick, y=total_storage_util, col sep=comma] {content/graphics/system_metrics.csv};
+		\addlegendentry{Storage}
+		\end{axis}
+	\end{tikzpicture}
+  	\caption{Verlauf der Gesamtauslastung der Nodes während der Simulation}
+	\label{fig:Simulation_Auslastung}
+\end{figure}
