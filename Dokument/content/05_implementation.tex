@@ -140,27 +140,13 @@ Die Informationen in der \enquote{Node Info} Nachricht enthalten mehrere Einträ
 	\item Storage\_Gb
 \end{itemize}
 
-Für diesen Anwendungsfall ist keine exakte optimale Lösung erforderlich. Vielmehr muss eine Lösung für eine große Menge an Runtime Nodes und Rechenaufgaben mit möglichst geringem Rechenaufwand ermittelt werden können. Hierfür eignet sich die Gewichtungsmethode, bei der alle Optimierungskriterien mit einem jeweiligen Gewichtungsfaktor multipliziert und die Ergebnisse anschließend aufsummiert werden. Der errechnete Wert wird anschließend für die Bestimmung der Optimallösung verwendet. Für den konkreten Fall wird die Gewichtung für einen Node mit der folgenden Formel berechnet:
-
-\begin{align}
-	& E_i = w_{\text{cpu}} \cdot \frac{\text{CPU}_i^{\text{used}}}{\text{CPU}_i^{\text{total}}}
-    + w_{\text{mem}} \cdot \frac{\text{Memory\_Gb}_i^{\text{used}}}{\text{Memory\_Gb}_i^{\text{total}}}
-    + w_{\text{stor}} \cdot \frac{\text{Storage\_Gb}_i^{\text{used}}}{\text{Storage\_Gb}_i^{\text{total}}}
-\end{align}
-
-Die Gewichtungsfaktoren \enquote{$w_i$} werden so gewählt, dass ihre Summe 1 ergibt.
-
-\begin{align}
-	& \sum_{}^{} w_i = 1
-\end{align}
-
-Das Verhältnis der Gewichtungsfaktoren bestimmt die Wichtigkeit der einzelnen Kriterien. Höher gewichtete Kriterien werden stärker berücksichtigt.
+Für diesen Anwendungsfall ist keine exakt optimale Lösung erforderlich. Vielmehr muss eine Lösung für eine große Menge an Runtime-Nodes und Rechenaufgaben mit möglichst geringem Rechenaufwand ermittelt werden können. Das Hauptoptimierungskriterium ist die CPU Auslastung. Arbeitsspeicher und Massenspeicher können als Grenzwerte angesehen werden, die nicht überschritten werden dürfen. Eine möglichst hohe Auslastung ist hier allerdings nicht erforderlich. Die Optimierung erfolgt aus diesem Grund nur nach CPU Auslastung mit RAM und Speicher als Grenzwerte. 
 
 \subsubsection{Implementierung der Scheduling Alogrithmen}
 
 Im \autoref{Scheduling Algorithmen} wurde eine Auswahl gängiger Algorithmen vorgestellt, die sich für das Scheduling von Applikationen eignen. In diesem Abschnitt werden diese simulativ ausgewertet.
 
-Als Ausgangsbasis kann die vollständige Berechnung der idealen Lösung herangezogen werden. Sie liefert ein optimales Schedulingergebnis, ist jedoch am rechenintensivsten. Die Simulation wird mit zehn verschiedenen Aufgaben durchgeführt, die jeweils CPU, Arbeitsspeicher und Massenspeicher als Ressource verbrauchen. Diese werden für das Scheduling mit gleicher Gewichtung berücksichtigt. Die Aufgaben werden auf insgesamt vier Nodes verteilt. Die Simulation zeigt, dass diese Methode für diese vergleichsweise kleine Aufgabenstellung erhebliche Rechenressourcen für die Lösungsberechnung benötigt werden. Zum Vergleich mit einem effizienten Schedulingsalgorithmus wird Greedy herangezogen. Die Berechnungszeiten in der Simulation fallen folgendermaßen aus:
+Als Ausgangsbasis kann die vollständige Berechnung der idealen Lösung herangezogen werden. Sie liefert ein optimales Schedulingergebnis, ist jedoch am rechenintensivsten. Die Simulation wird mit zehn verschiedenen Aufgaben durchgeführt, die jeweils CPU, Arbeitsspeicher und Massenspeicher als Ressource verbrauchen. Optimiert wird die CPU Auslastung mit Arbeitsspeicher und Massenspeicher als Grenzwerte. Die Aufgaben werden auf insgesamt vier Nodes verteilt. Die Simulation zeigt, dass diese Methode für diese vergleichsweise kleine Aufgabenstellung erhebliche Rechenressourcen für die Lösungsberechnung benötigt werden. Zum Vergleich mit einem effizienten Schedulingsalgorithmus wird Greedy herangezogen. Die Berechnungszeiten in der Simulation fallen folgendermaßen aus:
 
 \begin{itemize}
 	\item Greedy: $1.6 \cdot 10^{-5} s$
