@@ -189,6 +189,31 @@ In diesem Beispiel wurden die folgenden konkreten Auslastungen von den Schedulin
     \label{fig:Simulation_Utilization}
 \end{figure}
 
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.9\textwidth, % Slightly narrower
+            height=0.4\textwidth,
+            ybar,
+            ymode=log, % Use a logarithmic y-axis!
+            ylabel={Schedulingzeit in Sekunden (log)},
+            symbolic x coords={FCFS, Greedy, Brute Force},
+            xtick=data,
+            enlarge x limits=0.4, % More space for single bars
+            bar width=40pt,
+            ymajorgrids=true,
+            nodes near coords, % Show the value
+            nodes near coords style={font=\tiny, /pgf/number format/sci, /pgf/number format/precision=2},
+            nodes near coords align={above},
+        ]
+        \addplot table [x=Algorithm, y=Scheduling Time (s), col sep=comma] {scheduling_comparison.csv};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Vergleich der Schedulingzeit der Basis-Algorithmen (logarithmische Skala).}
+    \label{fig:Simulation_Time}
+\end{figure}
+
 Die verschiedenen Scheduling Algorithmen haben unterschiedliche Aufgabenverteilungen geliefert, die Gesamtauslastung blieb jedoch unverändert. In diesem Beispiel haben beide Algorithmen eine ideale Lösung auf der Pareto Front ermittelt. Dies ist bei Greedy allerdings nicht garantiert. Insgesamt lässt sich festhalten dass die Brute Force Methode aufgrund des hohen Rechenaufwandes nicht effizient eingesetzt werden kann, effizientere Strategien können ebenfalls gute Lösungen liefern mit deutlich weniger Berechnungsaufwand. 
 
 Im vorliegenden Fall ändert sich das Scheduling Problem dynamisch. Eine global optimale Lösung existiert nur für kurze Zeit, da sich die Menge der Aufgaben und die verfügbare Rechenleistung der Fahrzeuge konstant ändern. Aus diesem Grund ist es für diese Anwendung sinnvoller, auf eine global optimale Lösung zu verzichten und stattdessen ein schnelles und effizientes Scheduling zu verwenden. Im \autoref{dynamisches Scheduling} wurde Greedy und Reinforced Learning als geeignete Möglichkeit für dynamisches Scheduling vorgestellt. Greedy benötigt keine Trainingsdaten und kann  mit nur lokalen Informationen ausgeführt werden. Dadurch ist es besonders effizient für dynamische Systeme.
