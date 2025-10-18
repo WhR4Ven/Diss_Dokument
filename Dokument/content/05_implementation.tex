@@ -156,7 +156,7 @@ Die Simulation vergleicht drei fundamentale Algorithmen, die für die Ressourcen
 	\item Greedy: Sortiert Aufgaben nach Auslastung und nimmt die Größte passende Aufgabe.
 \end{itemize}
 
-In diesem Beispiel wurden die folgenden konkreten Auslastungen von den Scheduling Alogrithmen erreicht:
+In der Simulation wurden 10 Aufgaben auf 3 Nodes verteilt. Das Problem wurde für diesen Vergleich :
 
 \begin{figure}[h!]
     \centering
@@ -197,7 +197,7 @@ Die Schedulingzeiten in der Simulation fielen folgendermaßen aus:
 	\item Brute Force: 4,73 s
 \end{itemize}
 
-Die verschiedenen Scheduling Algorithmen haben unterschiedliche Aufgabenverteilungen geliefert, die Gesamtauslastung blieb jedoch unverändert. In diesem Beispiel haben beide Algorithmen eine ideale Lösung auf der Pareto Front ermittelt. Dies ist bei Greedy allerdings nicht garantiert. Insgesamt lässt sich festhalten dass die Brute Force Methode aufgrund des hohen Rechenaufwandes nicht effizient eingesetzt werden kann, effizientere Strategien können ebenfalls gute Lösungen liefern mit deutlich weniger Berechnungsaufwand. 
+Die Abbildung \autoref{fig:Simulation_Utilization} zeigt die resultierenden CPU, Speicher und Massenspeicherauslastungen sowie die Standardabweichung der Node Auslastungen.
 
 Im vorliegenden Fall ändert sich das Scheduling Problem dynamisch. Eine global optimale Lösung existiert nur für kurze Zeit, da sich die Menge der Aufgaben und die verfügbare Rechenleistung der Fahrzeuge konstant ändern. Aus diesem Grund ist es für diese Anwendung sinnvoller, auf eine global optimale Lösung zu verzichten und stattdessen ein schnelles und effizientes Scheduling zu verwenden. Im \autoref{dynamisches Scheduling} wurde Greedy und Reinforced Learning als geeignete Möglichkeit für dynamisches Scheduling vorgestellt. Greedy benötigt keine Trainingsdaten und kann  mit nur lokalen Informationen ausgeführt werden. Dadurch ist es besonders effizient für dynamische Systeme.
 
