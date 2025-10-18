@@ -146,68 +146,47 @@ Für diesen Anwendungsfall ist keine exakt optimale Lösung erforderlich. Vielme
 
 Im \autoref{Scheduling Algorithmen} wurde eine Auswahl gängiger Algorithmen vorgestellt, die sich für das Scheduling von Applikationen eignen. In diesem Abschnitt werden diese simulativ ausgewertet.
 
-Als Ausgangsbasis kann die vollständige Berechnung der idealen Lösung herangezogen werden. Sie liefert ein optimales Schedulingergebnis, ist jedoch am rechenintensivsten. Die Simulation wird mit zehn verschiedenen Aufgaben durchgeführt, die jeweils CPU, Arbeitsspeicher und Massenspeicher als Ressource verbrauchen. Optimiert wird die CPU Auslastung mit Arbeitsspeicher und Massenspeicher als Grenzwerte. Die Aufgaben werden auf insgesamt vier Nodes verteilt. Die Simulation zeigt, dass diese Methode für diese vergleichsweise kleine Aufgabenstellung erhebliche Rechenressourcen für die Lösungsberechnung benötigt werden. Zum Vergleich mit einem effizienten Schedulingsalgorithmus wird Greedy herangezogen. Die Berechnungszeiten in der Simulation fallen folgendermaßen aus:
+Um die Qualität des gewählten Scheduling Algorithmus bewerten zu können, wird zunächst eine Simulation mit verschiedenen Methoden durchgeführt. Das Problem kann als 0/1- napsackproblem aufgefasst werden, dessen primäre Aufgabe darin besteht, die CPU-Auslastung auf allen Runtime Nodes möglichst hoch zu halten. Die sekundären Ressourcen Arbeitsspeicher und Massenspeicher dürfen die jeweilige maximal verfügbaren Mengen der Nodes nicht überschreiten.
+
+Die Simulation vergleicht drei fundamentale Algorithmen, die für die Ressourcenverteilung verwendet werden können. Es wird sowohl die Lösungsgüte als auch die benötigte Schedulingzeit ausgewertet. Die folgenden Algorithmen wurden für die Simulation ausgewählt:
 
 \begin{itemize}
-	\item Greedy: $1.6 \cdot 10^{-5} s$
-	\item Brute Force: $88.2 s$
+	\item Brute Force: Berechnet alle möglichen Lösungen und wählt die beste Lösung aus. Liefert garantiert die global optimale Lösung
+	\item First-Come-First-Serve: Eine simpele nicht optimierende Methode. Die Aufgaben werden der Reihe nach in den Nodes ebenfalls der Reihe nach einsortiert, ohne dass eine Optimierung der Verteilung durchgeführt wird.
+	\item Greedy: Sortiert Aufgaben nach Auslastung und nimmt die Größte passende Aufgabe.
 \end{itemize}
 
 In diesem Beispiel wurden die folgenden konkreten Auslastungen von den Scheduling Alogrithmen erreicht:
 
-\begin{figure}[ht]
-	\centering
-	\begin{tikzpicture}
-		% Erstes Diagramm
-		\begin{axis}[
-			name=plot1,
-			ylabel=Auslastung (0-1) Greedy,
-			width=\textwidth,
-			height=0.4\textwidth,
-			enlargelimits=0.15,
-			ybar=3pt,
-			nodes near coords,        % Werte anzeigen
-			nodes near coords align={vertical}, % Ausrichtung (senkrecht über den Balken)
-			ymin=0.2, ymax=1.3,
-			bar width=15pt,
-			symbolic x coords={Node A,Node B,Node C,Node D,Gesamt},
-			xtick={Node A,Node B,Node C,Node D,Gesamt},
-			legend columns=4,
-		]
-			\addplot coordinates {(Node A,1)   (Node B,1)   (Node C,0.6) (Node D,0.8)};
-			\addplot coordinates {(Node A,1)   (Node B,1)   (Node C,0.7) (Node D,0.8)};
-			\addplot coordinates {(Node A,0.55)(Node B,0.55)(Node C,0.35)(Node D,0.35)};
-			\addplot+[bar shift=0pt] coordinates {(Gesamt,0.72)};
-			\legend{CPU, Arbeitsspeicher, Massenspeicher, Gesamt}
-		\end{axis}
-	
-		% Zweites Diagramm, unterhalb des ersten
-		\begin{axis}[
-			at={(plot1.south west)}, % Ausrichtung am ersten Diagramm
-			anchor=north west,
-			yshift=-1cm,             % Abstand nach unten
-			ylabel=Auslastung (0-1) Brute Force,
-			width=\textwidth,
-			height=0.4\textwidth,
-			enlargelimits=0.15,
-			ybar=3pt,
-			nodes near coords,        % Werte anzeigen
-			nodes near coords align={vertical}, % Ausrichtung (senkrecht über den Balken)
-			ymin=0.2, ymax=1.3,
-			bar width=15pt,
-			symbolic x coords={Node A,Node B,Node C,Node D,Gesamt},
-			xtick={Node A,Node B,Node C,Node D,Gesamt},
-			legend columns=4,
-		]
-			\addplot coordinates {(Node A,0.8) (Node B,1) (Node C,0.8) (Node D,0.8)};
-			\addplot coordinates {(Node A,0.9) (Node B,1) (Node C,0.8) (Node D,0.8)};
-			\addplot coordinates {(Node A,0.62) (Node B,0.57) (Node C,0.25) (Node D,0.35)};
-			\addplot+[bar shift=0pt] coordinates {(Gesamt,0.72)};
-			\legend{CPU, Arbeitsspeicher, Massenspeicher, Gesamt}
-		\end{axis}
-	\end{tikzpicture}
-	\caption{Vergleich von Brute force und Greedy Scheduling}
-\label{fig:vergleich_scheduling}
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth,
+            height=0.5\textwidth,
+            ybar, % Creates a bar chart
+            enlarge x limits=0.25, % Adds space between groups
+            ylabel={Auslastung (0-1)},
+            symbolic x coords={FCFS, Greedy, Brute Force},
+            xtick=data,
+            ymin=0,
+            ymajorgrids=true,
+            legend style={at={(0.5,-0.20)}, anchor=north, legend columns=-1}, % Legend below plot
+            nodes near coords, % Display value on top of bar
+            nodes near coords style={font=\tiny, /pgf/number format/fixed, /pgf/number format/precision=2},
+            every node near coord/.append style={rotate=90, anchor=west} % Rotate values for readability
+        ]
+        % Plot each metric. They will be automatically grouped by the x-coordinate.
+        \addplot table [x=Algorithm, y=TOPS Utilization, col sep=comma] {content/graphics/scheduling_comparison.csv};
+        \addplot table [x=Algorithm, y=Memory Utilization, col sep=comma] {content/graphics/scheduling_comparison.csv};
+        \addplot table [x=Algorithm, y=Storage Utilization, col sep=comma] {content/graphics/scheduling_comparison.csv};
+        
+        % Add legend entries in the same order as the plots
+        \legend{TOPS Auslastung, Memory Auslastung, Storage Auslastung}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Vergleich der Ressourcenauslastung der Basis-Algorithmen. TOPS ist das primäre Optimierungsziel.}
+    \label{fig:Simulation_Utilization}
 \end{figure}
 
 Die verschiedenen Scheduling Algorithmen haben unterschiedliche Aufgabenverteilungen geliefert, die Gesamtauslastung blieb jedoch unverändert. In diesem Beispiel haben beide Algorithmen eine ideale Lösung auf der Pareto Front ermittelt. Dies ist bei Greedy allerdings nicht garantiert. Insgesamt lässt sich festhalten dass die Brute Force Methode aufgrund des hohen Rechenaufwandes nicht effizient eingesetzt werden kann, effizientere Strategien können ebenfalls gute Lösungen liefern mit deutlich weniger Berechnungsaufwand. 
