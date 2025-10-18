@@ -189,30 +189,13 @@ In diesem Beispiel wurden die folgenden konkreten Auslastungen von den Schedulin
     \label{fig:Simulation_Utilization}
 \end{figure}
 
-\begin{figure}[h!]
-    \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-            width=0.9\textwidth, % Slightly narrower
-            height=0.4\textwidth,
-            ybar,
-            ymode=log, % Use a logarithmic y-axis!
-            ylabel={Schedulingzeit in Sekunden (log)},
-            symbolic x coords={FCFS, Greedy, Brute Force},
-            xtick=data,
-            enlarge x limits=0.4, % More space for single bars
-            bar width=40pt,
-            ymajorgrids=true,
-            nodes near coords, % Show the value
-            nodes near coords style={font=\tiny, /pgf/number format/sci, /pgf/number format/precision=2},
-            nodes near coords align={above},
-        ]
-        \addplot table [x=Algorithm, y=Scheduling Time (s), col sep=comma] {scheduling_comparison.csv};
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Vergleich der Schedulingzeit der Basis-Algorithmen (logarithmische Skala).}
-    \label{fig:Simulation_Time}
-\end{figure}
+Die Schedulingzeiten in der Simulation fielen folgendermaßen aus:
+
+\begin{itemize}
+	\item First-Come-First-Serve: 0,012 ms
+	\item Greedy: 0,013 ms
+	\item Brute Force: 4,73 s
+\end{itemize}
 
 Die verschiedenen Scheduling Algorithmen haben unterschiedliche Aufgabenverteilungen geliefert, die Gesamtauslastung blieb jedoch unverändert. In diesem Beispiel haben beide Algorithmen eine ideale Lösung auf der Pareto Front ermittelt. Dies ist bei Greedy allerdings nicht garantiert. Insgesamt lässt sich festhalten dass die Brute Force Methode aufgrund des hohen Rechenaufwandes nicht effizient eingesetzt werden kann, effizientere Strategien können ebenfalls gute Lösungen liefern mit deutlich weniger Berechnungsaufwand. 
 
