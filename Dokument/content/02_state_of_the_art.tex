@@ -267,9 +267,25 @@ Zonensteuergeräte, die im Zonenarchitektur zur Verwendung kommen, haben drei ha
 
 Zonensteuergeräte müssen die Konnektivität zu Busverbindungen zur Verfügung stellen, präzise Zeitsynchronisation ermöglichen und Nachrichten mit niedrige Latenzen umleiten können (innerhalb von wenigen Mikrosekunden). Für die Aktuator und Leistungsverteileinheit Funktionen muss das Steuergerät die entsprechenden Schnittstellen zur Verfügung stellen wie \glsxtrshort{PWM}, \glsxtrshort{SPI}, \glsxtrshort{UART}, \glsxtrshort{GPIO} und \glsxtrshort{ADC}-s. Ein Ansatz besteht darin hierfür generische Steuergeräte zu entwickeln, die flexibel für verschiedene Fahrzeuge eingesetzt werden können.\cite{Maier2023}
 
-Zentralsteuergeräte sind sowohl in der Domänenarchitektur als auch in der Zentralen Architektur vorhanden. Sie übernehmen rechenintensive, Zonenübergreifende Funktionen wie zum Beispiel autonome Fahrfunktionen. Aus diesem Grund benötigen diese Steuergeräte eine deutlich höhere Rechenleistung als es in dezentralisierten Ansätzen üblich war. Für diese höhere Anforderungen werden \glsxtrshort{SoC}-s verwendet. Als Beispiel kann das FSD Steuergerät von Tesla betrachtet werden. 
+Zentralsteuergeräte sind sowohl in der Domänenarchitektur als auch in der Zentralen Architektur vorhanden. Sie übernehmen rechenintensive, Zonenübergreifende Funktionen wie zum Beispiel autonome Fahrfunktionen. Aus diesem Grund benötigen diese Steuergeräte eine deutlich höhere Rechenleistung als es in dezentralisierten Ansätzen üblich war. Für diese höhere Anforderungen werden \glsxtrshort{SoC}-s verwendet. Die verfügbare Rechenleistung hängt vom jeweiligen Automatisierungsgrad der Fahrfunktionen ab. Der Automatisierungsgrad wird durch BASt, VDA und SAE J3016 Standard bei Fahrzeugen in fünf Stufen kategorisiert:
 
-Das Steuergerät nutzt zwei separate FSD Chips, die unabhängig voneinander jeweils ihr eigenes Betriebssystem ausführen. Die beiden Chips sind redundant ausgelegt für maximale Sicherheit, besitzen eigene Spannungsversorgungen und eigene Sensoren. Der FSD Chip ist ein \glsxtrshort{SoC} und beinhaltet folgende Hauptkomponenten:
+\begin{itemize}
+	\item Level 1: Assistiertes Fahren. Der Fahrer wird von Systemen in bestimmten Fahraufgaben unterstützt. Er muss weiterhin das Fahrzeug selber beherrschen und den Verkehr beobachten.
+	\item Level 2: Teilautomatisiertes Fahren. Unter bestimmten Bedingungen hält das Fahrzug selbständig die Spur und kann selber bremsen und beschleunigen. Der Fahrer muss weiterhin das Fahrzeug beherrschen und den Verkehr beobachten. 
+	\item Level 3: Hochautomatisiertes Fahren. Der Fahrer kann die Fahrzeugführung in vorab vom Hersteller festgelegten Fällen vollständig abgeben. Er muss jedoch auf Anforderung die Fahrzeugführung wieder übernehmen.
+	\item Level 4: Vollautomatisiertes Fahren. In vorab vom Hersteller festgelegten Fällen kann der Fahrer die Fahrzeugführung vollständig abgeben. Das System muss seine Grenzen kennen und bei Bedarf regelkonform einen sicheren Zustand erreichen.
+	\item Level 5: Autonomes Fahren. Das Fahrzeug kann nicht mehr manuell geführt werden, es bewältigt alle Fahraufgaben selbständig.
+\end{itemize} \cite{SAEinternational}
+
+Mit zunehmendem Automatisierungsgrad steigt die benötigte Rechenleistung. Aktuell (2025) gibt es bereits Serienfahrzeuge mit Level 3 Automatisierung und Forschungsfahrzeuge mit Level 4 Automatisierung. Ab Level 2 kommen leistungsfähige Steuergeräte zum Einsatz, die sich für das in dieser Arbeit untersuchte verteilte Rechnen eignen. Die nutzbare Rechenleistung hängt stark von der Art der durchzuführenden Berechnungen ab. Diese Steuergeräte sind hauptsächlich auf Berechnungen im Bereich der Bildbearbeitung und neuronale Netze optimiert. Die angegebene Rechenleistung der Steuergeräte bezieht sich auf die Rechenleistung von Matrixoperationen. Diese impelementieren die folgende Berechnung in der Hardware, wobei $ A, B, C, D $ jeweils Matrizen sind:
+
+\begin{align}
+    & D = A  \cdot  B + C
+\end{align}
+
+Die Dimension der Matrizen hängt von der Länge der verwendeten Daten ab. Werden beispielsweise Daten mit einer Länge von 4 Bit verwendet, können doppelt so viele Einträge in den jeweiligen Matrizen gespeichert werden wie bei 8 Bit Daten. Hierdurch verdoppelt sich die Anzahl der Operationen per Taktzyklus, da doppelt so viele Werte gleichzeitig berechnet werden. Die Leistungsangaben werden in Operationen pro Sekunde (OPS) unter Angabe des verwendeten Datentyps angegeben.
+
+Als Beispiel kann das FSD Steuergerät von Tesla betrachtet werden. Das Steuergerät nutzt zwei separate FSD Chips, die unabhängig voneinander jeweils ihr eigenes Betriebssystem ausführen. Die beiden Chips sind redundant ausgelegt für maximale Sicherheit, besitzen eigene Spannungsversorgungen und eigene Sensoren. Der FSD Chip ist ein \glsxtrshort{SoC} und beinhaltet folgende Hauptkomponenten:
 
 \begin{itemize}
 	\item 12 CPUs der Typ A72
