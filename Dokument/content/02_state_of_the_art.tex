@@ -283,9 +283,16 @@ Mit zunehmendem Automatisierungsgrad steigt die benötigte Rechenleistung. Aktue
     & D = A  \cdot  B + C
 \end{align}
 
-Die Dimension der Matrizen hängt von der Länge der verwendeten Daten ab. Werden beispielsweise Daten mit einer Länge von 4 Bit verwendet, können doppelt so viele Einträge in den jeweiligen Matrizen gespeichert werden wie bei 8 Bit Daten. Hierdurch verdoppelt sich die Anzahl der Operationen per Taktzyklus, da doppelt so viele Werte gleichzeitig berechnet werden. Die Leistungsangaben werden in Operationen pro Sekunde (OPS) unter Angabe des verwendeten Datentyps angegeben.
+Die Dimension der Matrizen hängt von der Länge der verwendeten Daten ab. Werden beispielsweise Daten mit einer Länge von 4 Bit verwendet, können doppelt so viele Einträge in den jeweiligen Matrizen gespeichert werden wie bei 8 Bit Daten. Hierdurch verdoppelt sich die Anzahl der Operationen per Taktzyklus, da doppelt so viele Werte gleichzeitig berechnet werden. Die Leistungsangaben werden in Operationen pro Sekunde (OPS) unter Angabe des verwendeten Datentyps angegeben. Aktuell erhältliche Hochleistungssteuergeräte weisen folgende Rechenleistungen auf:
 
-Als Beispiel kann das FSD Steuergerät von Tesla betrachtet werden. Das Steuergerät nutzt zwei separate FSD Chips, die unabhängig voneinander jeweils ihr eigenes Betriebssystem ausführen. Die beiden Chips sind redundant ausgelegt für maximale Sicherheit, besitzen eigene Spannungsversorgungen und eigene Sensoren. Der FSD Chip ist ein \glsxtrshort{SoC} und beinhaltet folgende Hauptkomponenten:
+\begin{itemize}
+	\item NVIDIA Dive AGX Thor: 1000 TOPS (8 Bit)/2000 TOPS (4 Bit) \cite{NVIDIA2025}
+	\item NVIDIA Dive AGX Orin: 254 Tops (8 Bit) \cite{NVIDIA2025}
+	\item Tesla Hardware 3.0: 144 Tops (8 Bit) \cite{Bos2019}
+	\item Intel Mobileye EyeQ Ultra: 176 TOPS (8 Bit) \cite{Intel2022}
+\end{itemize}
+
+Aktuelle Seriensteuergeräte liefern demnach Rechenleistungen im Bereich von 100 bis 250 TOPS. Künftig werden diese auf mehrere 1.000 TOPS steigen. Das FSD-Steuergerät von Tesla ist ein anschauliches Beispiel für den Aufbau eines zeitgenössischen Steuergeräts. Dieses Steuergerät nutzt zwei separate FSD Chips, die unabhängig voneinander jeweils ihr eigenes Betriebssystem ausführen. Die beiden Chips sind redundant ausgelegt für maximale Sicherheit, besitzen eigene Spannungsversorgungen und eigene Sensoren. Der FSD Chip ist ein \glsxtrshort{SoC} und beinhaltet folgende Hauptkomponenten:
 
 \begin{itemize}
 	\item 12 CPUs der Typ A72

@@ -156,7 +156,23 @@ Die Simulation vergleicht drei fundamentale Algorithmen, die für die Ressourcen
 	\item Greedy: Sortiert Aufgaben nach Auslastung und nimmt die Größte passende Aufgabe.
 \end{itemize}
 
-In der Simulation wurden 10 Aufgaben auf 3 Nodes verteilt. Das Problem wurde für diesen Vergleich :
+Für die Simulation werden Nodes mit folgenden Eigenschaften genommen:
+
+\begin{itemize}
+    \item Rechenleistung: 1000 - 2000 TOPS
+    \item RAM: 64 GB
+    \item Speicher: 500 GB
+\end{itemize}
+
+Diese Annahmen entsprechen die Hardwareeigenschaften, die sich aktuell aus \autoref{Hardwareumgebung in Fahrzeugen} für Level 4 Steuergeräte abzeichnen. Die zu verteilenden Aufgaben werden mit folgenden Ressourcenanforderungen angenommnen:
+
+\begin{itemize}
+    \item benötigte Rechenleistung: 500-1000 TOPS
+    \item RAM: 20-50 GB
+    \item Speicher: 100-300 GB
+\end{itemize}
+
+In der Simulation wurden 11 Aufgaben auf 3 Nodes verteilt. Das Problem wurde für diesen Vergleich :
 
 \begin{figure}[h!]
     \centering
