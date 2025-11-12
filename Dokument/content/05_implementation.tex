@@ -208,15 +208,93 @@ In der Simulation wurden 11 Aufgaben auf 3 Nodes verteilt.
 Die Schedulingzeiten in der Simulation fielen folgendermaßen aus:
 
 \begin{itemize}
-	\item First-Come-First-Serve: 0,012 ms
+	\item First-Come-First-Serve: 0,006 ms
 	\item Greedy: 0,013 ms
-	\item Brute Force: 4,73 s
+	\item Brute Force: 5,31 s
 \end{itemize}
 
 Die Abbildung \autoref{fig:Simulation_Utilization} zeigt die resultierenden Auslastungen von CPU, Speicher und Massenspeicher der Runtime Node Auslastungen. 
 
-Die Brute Force Methode zeigt die beste erreichbare CPU Auslastung. Greedy erreicht 80\% dieser optimalen Lösung, während First-Come-Forst-Serve nur 67\% erreichen konnte. Die Scheduling Zeiten fielen für Greedy und First-Come-First-Serve ähnlich aus, während Brute Force mit einem Faktor von 360.000 deutlich mehr Zeit benötigte. Zusammenfassend zeigt das Ergebnis, dass Greedy eine erheblich bessere Auslastung als die einfachste First-Come-First-Serve-Methode erreichen konnte, ohne dass ein erheblich höherer Rechenaufwand erforderlich war.
+Die Brute Force Methode zeigt die beste erreichbare CPU Auslastung. Greedy erreicht 91\% dieser optimalen Lösung, während First-Come-Forst-Serve nur 76\% erreichen konnte. Die Scheduling Zeiten fielen für Greedy im vergleich zum First-Come-Forst Serve etwa doppelt so hoch aus, während Brute Force mit einem Faktor von 400.000 deutlich mehr Zeit benötigte. Zusammenfassend zeigt das Ergebnis, dass Greedy eine erheblich bessere Auslastung als die einfachste First-Come-First-Serve-Methode erreichen konnte, während die Schedulingzeit weiterhin in einem niedrigen Bereich geblieben ist.
 
 Bei der Scheduling von Anwendungen auf Fahrzeugsteuergeräten ändert sich das Scheduling Problem dynamisch. Eine global optimale Lösung existiert nur für kurze Zeit, da sich die Menge der Aufgaben und die verfügbare Rechenleistung der Fahrzeuge konstant ändern. Aus diesem Grund ist es für diese Anwendung sinnvoller, auf eine global optimale Lösung zu verzichten und stattdessen ein schnelles und effizientes Scheduling zu verwenden. Aufgrund der Scheduling Zeit ist die Brute Force-Methode für diese Problemstellung nicht geeignet. Im \autoref{dynamisches Scheduling} wurde Greedy und Reinforced Learning als geeignete Möglichkeit für dynamisches Scheduling vorgestellt. Greedy benötigt keine Trainingsdaten und kann  mit nur lokalen Informationen ausgeführt werden. Dadurch ist es besonders effizient für dynamische Systeme. 
 
-Um eine bessere Auswahl des konkreten Scheduling Algorithmus treffen zu können, wird die Schedulingaufgabe vergrößert. Die Menge der Aufgaben wird auf 2000 erhöht, die Menge der Runtime Nodes, die die Fahrzeuge repräsentieren wird auf 200 erhöht. 
+Um eine bessere Auswahl des konkreten Scheduling Algorithmus treffen zu können, wird die Scheduling Aufgabe vergrößert, sodass sie ein realistischeres Scheduling Problem abbildet. Die Anzahl der Aufgaben wird auf 2.000 erhöht und die Anzahl der Runtime Nodes, die die Fahrzeuge repräsentieren, auf 200. Zusätzlich wird untersucht, ob ein anderes Optimierungskriterium als die maximale Auslastung sinnvoller ist. 
+
+\begin{figure}[h!]
+    \centering
+    % We use groupplot to show the three key metrics,
+    % as they have different scales (0-1, hundreds, 0-1).
+    \begin{tikzpicture}
+    \begin{groupplot}[
+        group style={
+            group size=1 by 3, % 1 column, 3 rows
+            vertical sep=1.4cm  % Space between plots
+        },
+        width=\textwidth,
+        height=0.35\textwidth, % Height for each individual plot
+        ybar, % All plots are bar charts
+        ymajorgrids=true,
+        bar width=25pt,
+        % Define the x-axis labels based on your CSV's sort order
+        symbolic x coords={
+            Greedy (TOPS Prio), 
+            Greedy (Best-Fit), 
+            Greedy (Node-Balance), 
+            FCFS
+        },
+        xtick=data, % Use all symbolic coords
+        x tick label style={
+            rotate=25, % Rotate labels to prevent overlap
+            anchor=east,
+            font=\small
+        },
+        enlarge x limits=0.15,
+    ]
+
+    % --- Plot 1: TOPS Utilization (The Primary Goal) ---
+    \nextgroupplot[
+        title={Primärziel: TOPS Auslastung (Qualität)},
+        ylabel={Auslastung (0-1)},
+        ymin=0, ymax=1.0, % Fixed 0-1 scale
+        nodes near coords,
+        nodes near coords style={font=\tiny, /pgf/number format/precision=3},
+    ]
+    \addplot table [
+        x=Algorithm, y=TOPS Utilization, col sep=comma
+    ] {content/graphics/heuristic_comparison_avg.csv}; % <-- Change filename if needed
+
+    % --- Plot 2: Tasks Scheduled (The "Quantity" Trade-off) ---
+    \nextgroupplot[
+        title={Sekundärziel: Eingeplante Tasks (Quantität)},
+        ylabel={Anzahl Tasks (Durchschnitt)},
+        ymin=0, % Start y-axis at 0
+        nodes near coords,
+        nodes near coords style={
+            font=\tiny, 
+            /pgf/number format/fixed, % No scientific notation
+            /pgf/number format/precision=1 % 1 decimal place
+        },
+    ]
+    \addplot table [
+        x=Algorithm, y=Tasks Scheduled, col sep=comma
+    ] {content/graphics/heuristic_comparison_avg.csv}; % <-- Change filename if needed
+
+    % --- Plot 3: Load Std Dev (The "Balance" Metric) ---
+    \nextgroupplot[
+        title={Systembalance: Last-Standardabweichung},
+        ylabel={Std. Abweichung},
+        ymin=0, % Start y-axis at 0
+        nodes near coords,
+        nodes near coords style={font=\tiny, /pgf/number format/precision=3},
+    ]
+    \addplot table [
+        x=Algorithm, y=Load Std Dev, col sep=comma
+    ] {content/graphics/heuristic_comparison_avg.csv}; % <-- Change filename if needed
+
+    \end{groupplot}
+    \end{tikzpicture}
+    
+    \caption{Vergleich der Heuristik-Leistung (Durchschnitt von 20 Läufen). Die Ergebnisse zeigen einen klaren Kompromiss zwischen der Maximierung der Rechenqualität (TOPS Prio) und der Maximierung der Task-Quantität (Node-Balance).}
+    \label{fig:Simulation_Heuristic_Comparison}
+\end{figure}
