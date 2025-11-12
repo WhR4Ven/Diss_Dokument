@@ -223,29 +223,25 @@ Um eine bessere Auswahl des konkreten Scheduling Algorithmus treffen zu können,
 
 \begin{figure}[h!]
     \centering
-    % We use groupplot to show the three key metrics,
-    % as they have different scales (0-1, hundreds, 0-1).
     \begin{tikzpicture}
     \begin{groupplot}[
         group style={
             group size=1 by 3, % 1 column, 3 rows
-            vertical sep=1.4cm  % Space between plots
+            vertical sep=4cm  % Increased space between plots
         },
         width=\textwidth,
-        height=0.35\textwidth, % Height for each individual plot
-        ybar, % All plots are bar charts
+        height=0.35\textwidth,
+        ybar,
         ymajorgrids=true,
-        bar width=25pt,
-        % Define the x-axis labels based on your CSV's sort order
         symbolic x coords={
             Greedy (TOPS Prio), 
             Greedy (Best-Fit), 
             Greedy (Node-Balance), 
             FCFS
         },
-        xtick=data, % Use all symbolic coords
+        xtick=data,
         x tick label style={
-            rotate=25, % Rotate labels to prevent overlap
+            rotate=25,
             anchor=east,
             font=\small
         },
@@ -255,46 +251,54 @@ Um eine bessere Auswahl des konkreten Scheduling Algorithmus treffen zu können,
     % --- Plot 1: TOPS Utilization (The Primary Goal) ---
     \nextgroupplot[
         title={Primärziel: TOPS Auslastung (Qualität)},
+        title style={at={(0.5,1.05)},anchor=south}, 
         ylabel={Auslastung (0-1)},
-        ymin=0, ymax=1.0, % Fixed 0-1 scale
+        ymin=0, ymax=1.0,
         nodes near coords,
+        nodes near coords align={above}, 
         nodes near coords style={font=\tiny, /pgf/number format/precision=3},
     ]
     \addplot table [
         x=Algorithm, y=TOPS Utilization, col sep=comma
-    ] {content/graphics/heuristic_comparison_avg.csv}; % <-- Change filename if needed
+    ] {content/graphics/heuristic_comparison_avg.csv}; % <-- MODIFIED: Full path
 
     % --- Plot 2: Tasks Scheduled (The "Quantity" Trade-off) ---
     \nextgroupplot[
         title={Sekundärziel: Eingeplante Tasks (Quantität)},
+        title style={at={(0.5,1.05)},anchor=south}, 
         ylabel={Anzahl Tasks (Durchschnitt)},
-        ymin=0, % Start y-axis at 0
+        ymin=0, 
+        ymax=1400, % Added ymax for headroom
         nodes near coords,
+        nodes near coords align={above}, 
         nodes near coords style={
             font=\tiny, 
-            /pgf/number format/fixed, % No scientific notation
-            /pgf/number format/precision=1 % 1 decimal place
+            /pgf/number format/fixed,
+            /pgf/number format/precision=1
         },
     ]
     \addplot table [
         x=Algorithm, y=Tasks Scheduled, col sep=comma
-    ] {content/graphics/heuristic_comparison_avg.csv}; % <-- Change filename if needed
+    ] {content/graphics/heuristic_comparison_avg.csv}; % <-- MODIFIED: Full path
 
     % --- Plot 3: Load Std Dev (The "Balance" Metric) ---
     \nextgroupplot[
         title={Systembalance: Last-Standardabweichung},
+        title style={at={(0.5,1.05)},anchor=south}, 
         ylabel={Std. Abweichung},
-        ymin=0, % Start y-axis at 0
+        ymin=0, 
+        ymax=0.2, % Added ymax for headroom
         nodes near coords,
+        nodes near coords align={above}, 
         nodes near coords style={font=\tiny, /pgf/number format/precision=3},
     ]
     \addplot table [
         x=Algorithm, y=Load Std Dev, col sep=comma
-    ] {content/graphics/heuristic_comparison_avg.csv}; % <-- Change filename if needed
+    ] {content/graphics/heuristic_comparison_avg.csv}; % <-- MODIFIED: Full path
 
     \end{groupplot}
     \end{tikzpicture}
     
-    \caption{Vergleich der Heuristik-Leistung (Durchschnitt von 20 Läufen). Die Ergebnisse zeigen einen klaren Kompromiss zwischen der Maximierung der Rechenqualität (TOPS Prio) und der Maximierung der Task-Quantität (Node-Balance).}
+    \caption{Vergleich der Heuristik-Leistung (Durchschnitt von 20 Läufen)}
     \label{fig:Simulation_Heuristic_Comparison}
 \end{figure}
