@@ -146,7 +146,7 @@ Für diesen Anwendungsfall ist keine exakt optimale Lösung erforderlich. Vielme
 
 Im \autoref{Scheduling Algorithmen} wurde eine Auswahl gängiger Algorithmen vorgestellt, die sich für das Scheduling von Applikationen eignen. In diesem Abschnitt werden diese simulativ ausgewertet.
 
-Um die Qualität des gewählten Scheduling Algorithmus bewerten zu können, wird zunächst eine Simulation mit verschiedenen Methoden durchgeführt. Das Problem kann als 0/1- napsackproblem aufgefasst werden, dessen primäre Aufgabe darin besteht, die CPU-Auslastung auf allen Runtime Nodes möglichst hoch zu halten. Die sekundären Ressourcen Arbeitsspeicher und Massenspeicher dürfen die jeweilige maximal verfügbaren Mengen der Nodes nicht überschreiten.
+Um die Qualität des gewählten Scheduling Algorithmus bewerten zu können, wird zunächst eine Simulation mit verschiedenen Methoden durchgeführt. Das Problem kann als 0/1- Knapsackproblem aufgefasst werden, dessen primäre Aufgabe darin besteht, die CPU-Auslastung auf allen Runtime Nodes möglichst hoch zu halten. Die sekundären Ressourcen Arbeitsspeicher und Massenspeicher dürfen die jeweilige maximal verfügbaren Mengen der Nodes nicht überschreiten.
 
 Die Simulation vergleicht drei fundamentale Algorithmen, die für die Ressourcenverteilung verwendet werden können. Es wird sowohl die Lösungsgüte als auch die benötigte Schedulingzeit ausgewertet. Die folgenden Algorithmen wurden für die Simulation ausgewählt:
 
@@ -172,7 +172,7 @@ Diese Annahmen entsprechen die Hardwareeigenschaften, die sich aktuell aus \auto
     \item Speicher: 100-300 GB
 \end{itemize}
 
-In der Simulation wurden 11 Aufgaben auf 3 Nodes verteilt. 
+In der Simulation wurden 11 Aufgaben auf 3 Nodes verteilt. Das Problem wurde für diese erste Auswertung klein gehalten, da die Berchnungszeit für \enquote{Brute Force} mit der Größe des Problems exponentiell ansteigt und damit für größere Probleme einen zu hohen Rechenaufwand mit sich bringt.
 
 \begin{figure}[h!]
     \centering
@@ -219,7 +219,16 @@ Die Brute Force Methode zeigt die beste erreichbare CPU Auslastung. Greedy errei
 
 Bei der Scheduling von Anwendungen auf Fahrzeugsteuergeräten ändert sich das Scheduling Problem dynamisch. Eine global optimale Lösung existiert nur für kurze Zeit, da sich die Menge der Aufgaben und die verfügbare Rechenleistung der Fahrzeuge konstant ändern. Aus diesem Grund ist es für diese Anwendung sinnvoller, auf eine global optimale Lösung zu verzichten und stattdessen ein schnelles und effizientes Scheduling zu verwenden. Aufgrund der Scheduling Zeit ist die Brute Force-Methode für diese Problemstellung nicht geeignet. Im \autoref{dynamisches Scheduling} wurde Greedy und Reinforced Learning als geeignete Möglichkeit für dynamisches Scheduling vorgestellt. Greedy benötigt keine Trainingsdaten und kann  mit nur lokalen Informationen ausgeführt werden. Dadurch ist es besonders effizient für dynamische Systeme. 
 
-Um eine bessere Auswahl des konkreten Scheduling Algorithmus treffen zu können, wird die Scheduling Aufgabe vergrößert, sodass sie ein realistischeres Scheduling Problem abbildet. Die Anzahl der Aufgaben wird auf 2.000 erhöht und die Anzahl der Runtime Nodes, die die Fahrzeuge repräsentieren, auf 200. Es wird untersucht, ob ein anderes Optimierungskriterium als die maximale Auslastung sinnvoller ist. Hierfür werden zwei weitere Greedy Algorithmen herangezogen, die für die maximale Menge an Tasks und für eine möglichst gleichmäßige Gesamtauslastung optimieren. First-Come-First-Serve wird weiterhin ebenfalls in den Vergleich aufgenommen um beurteilen zu können wie viel effizienter die Scheduler sind. Die Annahmen für die Node Leistung und den Ressourcenverbrauch der Anwendungen bleiben dieselben wie in der vorherigen Simulation. 
+Um eine bessere Auswahl des konkreten Scheduling Algorithmus treffen zu können, wird die Scheduling Aufgabe vergrößert, sodass sie ein realistischeres Scheduling Problem abbildet. Die Anzahl der Aufgaben wird auf 2.000 erhöht und die Anzahl der Runtime Nodes, die die Fahrzeuge repräsentieren, auf 200. Es wird untersucht, ob ein anderes Optimierungskriterium als die maximale Auslastung sinnvoller ist. Hierfür werden zwei weitere Greedy Algorithmen herangezogen, die für die maximale Menge an Tasks und für eine möglichst gleichmäßige Gesamtauslastung optimieren. First-Come-First-Serve wird weiterhin ebenfalls in den Vergleich aufgenommen um beurteilen zu können wie viel effizienter die Scheduler sind. Zusammenfassend werden die Aufgaben nach folgenden Kriterien verteilt:
+
+\begin{itemize}
+    \item Greedy (TOPS Priorisierung): Sortiert alle Aufgaben nach benötigte TOPS Leistung. Die größten Aufgaben werden zuerst an den am wenigsten ausgelasteten Nodes verteilt.
+    \item Greedy (Best-Fit): Sortiert alle Aufgaben nach benötigte TOPS Leistung. Verteilt Aufgaben an den Node mit den geringsten verbleibenden Rechenkapazitäten. Optimiert darauf, die verbleibende Nodes möglichst unausgelastet zu halten um sie für zukünfige Aufgaben verfügbar zu halten.
+    \item Greedy (Node-Balance): Keine Sortierung der Aufgaben. Jede Aufgabe wird auf den Node gelegt, der die geringste Gesamtauslastung als Resultat vorweist. Optimiert auf eine gleichmäßige Nodeauslastung.
+    \item First-Come-First-Serve: Einfache Austeilung der Aufgaben ohne Sortierung auf den ersten Node, der genug Kapazität für die jeweilige Aufgabe besitzt.
+\end{itemize}
+
+ Die Annahmen für die Node Leistung und den Ressourcenverbrauch der Anwendungen bleiben dieselben wie in der vorherigen Simulation. Um statistische Steuungen zu minimieren, werden die Ergebnisse aus 20 Simulationsläufen gemittelt. 
 
 \begin{figure}[h!]
     \centering
@@ -302,4 +311,39 @@ Um eine bessere Auswahl des konkreten Scheduling Algorithmus treffen zu können,
     \caption{Vergleich der Heuristik-Leistung (Durchschnitt von 20 Läufen)}
     \label{fig:Simulation_Heuristic_Comparison}
 \end{figure}
+
+Die Ergebnisse aus \autoref{fig:Simulation_Heuristic_Comparison} bestätigen, dass Greedy Scheduling deutlich bessere Ressourcenauslastung der Nodes mit sich bringt als die einfache First-Come-First-Serve Methode. First-Come-First-Serve hat sowohl die geringste Gesamtauslastung als auch die geringste Menge an Aufgaben verteilt. Greedy (TOPS Priorisierung) erreichte die beste CPU Ressourcenauslastung der Nodes. Greedy (Node-Balance) konnte nicht die gleichmäßigste Gesamtauslastung (geringste Standardabweichung) erreichen, dafür wurde die höchste Anzahl an Aufgaben verteilt. Greedy (Best-Fit) bildet einen Kompromiss aus CPU Auslastung und Anzahl verteilter Aufgaben. Die konkrete Auswahl hängt demnach davon ab, welche Kriterien priorisiert werden. Das primäre Ziel dieser Arbeit ist es, ungenutzte Rechenressourcen möglichst effizient zu nutzen. Aus diesem Grund wird Greedy (TOPS Priorisierung) ausgewählt um das Scheduling in einem dynamischen Szenario zu untersuchen. 
+
+In diesem dynamischen Szenario wird überprüft, ob das gewählte Scheduling Verfahren auch in einem realitätsnahen Szenario zu einer hinreichend guten Auslastung der Fahrzeuge bzw. Runtime Nodes führt. Die Simulation wird über mehrere Zeitschritte hinweg ausgeführt und bildet dabei eine dynamische Änderung der verfügbaren Fahrzeuge und Aufgaben ab. Die Parameter für die verfügbaren Leistungen der Nodes sowie der Leistungsverbrauch der Aufgaben entsprechen den Annahmen aus den vorherigen Simulationen. Für eine bessere Übersicht werden die Parameter in der folgenden Tabelle zusammengefasst. 
+
+\begin{table}[h!]
+    \centering
+    % Adjusted column widths to fit the content (Total width approx 16cm)
+    \begin{tabular}{m{2.5cm} m{3.5cm} m{3cm} m{6cm}}
+        \hline
+        \textbf{Kategorie} & \textbf{Parameter} & \textbf{Wert} & \textbf{Beschreibung} \\
+        \hline
+        \hline
+        % --- Environment ---
+        Umgebung & Simulation Steps & 100 & Gesamtdauer der Simulation (z.B. in Zeitschritten). \\
+         & Initial Nodes & 500 & Anzahl der Fahrzeuge zu Beginn der Simulation. \\
+         & Max Nodes & 1000 & Obergrenze für die Clustergröße. \\
+        \hline
+        % --- Volatility ---
+        Volatilität & Node Churn Prob & 5\% ($0.05$) & Wahrscheinlichkeit, dass ein Fahrzeug pro Zeitschritt beitritt oder das Netzwerk verlässt. \\
+        \hline
+        % --- Workload ---
+        Arbeitslast & Task Arrival Rate & 200 Tasks/Step & Durchschnittliche Anzahl neuer Aufgaben pro Schritt (Poisson-Verteilung). \\
+         & Initial Tasks & 2000 & Initiale Warteschlange, um sofortige Systemsättigung zu garantieren. \\
+         & Task Duration & 3 - 10 Steps & Zufällige Dauer pro Aufgabe zur Simulation variabler Lasten. \\
+        \hline
+        % --- Hardware ---
+        Hardware & Node Compute & 100 - 200 TOPS & Realistischer Bereich für aktuelle autonome Fahrchips (SoCs). \\
+         & Node Memory & 64 GB & Standard RAM-Kapazität für Hochleistungssteuergeräte. \\
+         & Node Storage & 500 GB & Verfügbarer Speicher für Container-Images und Daten. \\
+        \hline
+    \end{tabular} 
+    \caption{Konfiguration und Parameter der dynamischen Simulation zur Validierung des Scheduling-Algorithmus.}
+    \label{tab:simulation_parameters}
+\end{table}
 
