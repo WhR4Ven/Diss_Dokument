@@ -347,3 +347,66 @@ In diesem dynamischen Szenario wird überprüft, ob das gewählte Scheduling Ver
     \label{tab:simulation_parameters}
 \end{table}
 
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth,
+            height=0.4\textwidth,
+            xlabel={Simulation Step},
+            xmin=0, xmax=100,
+            grid=major,
+            % --- Left Axis: Queue Length ---
+            ylabel={Queue Length},
+            axis y line*=left, % Axis on left
+            y label style={at={(axis description cs:-0.08,0.5)},anchor=south, text=blue},
+            yticklabel style={text=blue},
+        ]
+        \addplot[thick, blue] table [x=Step, y=Queue Length, col sep=comma] {content/graphics/dynamic_simulation_results.csv};
+        \label{plot:queue}
+        \end{axis}
+
+        \begin{axis}[
+            width=\textwidth,
+            height=0.4\textwidth,
+            xmin=0, xmax=100,
+            % --- Right Axis: Active Nodes ---
+            ylabel={Active Nodes},
+            axis y line*=right, % Axis on right
+            axis x line=none,   % Hide x axis (shared)
+            y label style={at={(axis description cs:1.15,0.5)},anchor=south, text=orange},
+            yticklabel style={text=orange},
+            legend style={at={(0.5,1.15)}, anchor=south, legend columns=2},
+        ]
+        \addlegendimage{/pgfplots/refstyle=plot:queue}\addlegendentry{Queue Length}
+        \addplot[thick, orange, dashed] table [x=Step, y=Active Nodes, col sep=comma] {content/graphics/dynamic_simulation_results.csv};
+        \addlegendentry{Active Nodes}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Auswirkung der Knotenvolatilität auf die Warteschlange. Trotz schwankender Knotenanzahl (orange) bleibt die Warteschlange (blau) stabil und wird kontinuierlich abgearbeitet.}
+    \label{fig:Dynamic_Stability}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth,
+            height=0.35\textwidth,
+            xlabel={Simulation Step},
+            ylabel={System Utilization (0-1)},
+            ymin=0, ymax=1.1,
+            xmin=0, xmax=100,
+            grid=major,
+            legend pos=south east,
+        ]
+        \addplot[thick, green!60!black, fill=green!10, fill opacity=0.5] table [x=Step, y=System Utilization, col sep=comma] {content/graphics/dynamic_simulation_results.csv};
+        \addlegendentry{TOPS Utilization}
+        
+        % Optional: Add a line for the "Target" or "Saturation" level if desired
+        \draw[red, dashed] (axis cs:0,1.0) -- (axis cs:100,1.0);
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Systemauslastung über die Zeit. Das System hält eine hohe Auslastung aufrecht, was auf eine effiziente Neuverteilung der Aufgaben durch den Scheduler hinweist.}
+    \label{fig:Dynamic_Utilization}
+\end{figure}
