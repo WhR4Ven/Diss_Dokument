@@ -314,7 +314,7 @@ Um eine bessere Auswahl des konkreten Scheduling Algorithmus treffen zu können,
 
 Die Ergebnisse aus \autoref{fig:Simulation_Heuristic_Comparison} bestätigen, dass Greedy Scheduling deutlich bessere Ressourcenauslastung der Nodes mit sich bringt als die einfache First-Come-First-Serve Methode. First-Come-First-Serve hat sowohl die geringste Gesamtauslastung als auch die geringste Menge an Aufgaben verteilt. Greedy (TOPS Priorisierung) erreichte die beste CPU Ressourcenauslastung der Nodes. Greedy (Node-Balance) konnte nicht die gleichmäßigste Gesamtauslastung (geringste Standardabweichung) erreichen, dafür wurde die höchste Anzahl an Aufgaben verteilt. Greedy (Best-Fit) bildet einen Kompromiss aus CPU Auslastung und Anzahl verteilter Aufgaben. Die konkrete Auswahl hängt demnach davon ab, welche Kriterien priorisiert werden. Das primäre Ziel dieser Arbeit ist es, ungenutzte Rechenressourcen möglichst effizient zu nutzen. Aus diesem Grund wird Greedy (TOPS Priorisierung) ausgewählt um das Scheduling in einem dynamischen Szenario zu untersuchen. 
 
-In diesem dynamischen Szenario wird überprüft, ob das gewählte Scheduling Verfahren auch in einem realitätsnahen Szenario zu einer hinreichend guten Auslastung der Fahrzeuge bzw. Runtime Nodes führt. Die Simulation wird über mehrere Zeitschritte hinweg ausgeführt und bildet dabei eine dynamische Änderung der verfügbaren Fahrzeuge und Aufgaben ab. Die Parameter für die verfügbaren Leistungen der Nodes sowie der Leistungsverbrauch der Aufgaben entsprechen den Annahmen aus den vorherigen Simulationen. Für eine bessere Übersicht werden die Parameter in der folgenden Tabelle zusammengefasst. 
+In diesem dynamischen Szenario wird überprüft, ob das gewählte Scheduling Verfahren auch in einem realitätsnahen Szenario zu einer hinreichend guten Auslastung der Fahrzeuge bzw. Runtime Nodes führt. Die Simulation wird über mehrere Zeitschritte hinweg ausgeführt und bildet dabei eine dynamische Änderung der verfügbaren Fahrzeuge und Aufgaben ab. Die Parameter für die verfügbaren Leistungen der Nodes sowie der Leistungsverbrauch der Aufgaben entsprechen den Annahmen aus den vorherigen Simulationen. Für eine bessere Übersicht werden die Parameter in der \autoref{tab:simulation_parameters} zusammengefasst. 
 
 \begin{table}[h!]
     \centering
@@ -325,22 +325,22 @@ In diesem dynamischen Szenario wird überprüft, ob das gewählte Scheduling Ver
         \hline
         \hline
         % --- Environment ---
-        Umgebung & Simulation Steps & 100 & Gesamtdauer der Simulation (z.B. in Zeitschritten). \\
-         & Initial Nodes & 500 & Anzahl der Fahrzeuge zu Beginn der Simulation. \\
-         & Max Nodes & 1000 & Obergrenze für die Clustergröße. \\
+        Umgebung & Simulationsschritte & 100 & Gesamtdauer der Simulation (in Zeitschritten). \\
+         & Initiale Fahrzeuge & 500 & Anzahl der Fahrzeuge zu Beginn der Simulation. \\
+         & Maximale Fahrzeuge & 1000 & Obergrenze für die Clustergröße. \\
         \hline
         % --- Volatility ---
-        Volatilität & Node Churn Prob & 5\% ($0.05$) & Wahrscheinlichkeit, dass ein Fahrzeug pro Zeitschritt beitritt oder das Netzwerk verlässt. \\
+        Volatilität & Node Abwanderungsrate & 5\% ($0.05$) & Wahrscheinlichkeit, dass ein Fahrzeug pro Zeitschritt beitritt oder das Netzwerk verlässt. \\
         \hline
         % --- Workload ---
-        Arbeitslast & Task Arrival Rate & 200 Tasks/Step & Durchschnittliche Anzahl neuer Aufgaben pro Schritt (Poisson-Verteilung). \\
-         & Initial Tasks & 2000 & Initiale Warteschlange, um sofortige Systemsättigung zu garantieren. \\
-         & Task Duration & 3 - 10 Steps & Zufällige Dauer pro Aufgabe zur Simulation variabler Lasten. \\
+        Arbeitslast & Aufgabenrate & 200 Tasks/Step & Durchschnittliche Anzahl neuer Aufgaben pro Schritt (Poisson-Verteilung). \\
+         & Initiale Tasks & 2000 & Initiale Warteschlange, um sofortige Systemsättigung zu garantieren. \\
+         & Taskdauer & 3 - 10 Steps & Zufällige Dauer pro Aufgabe zur Simulation variabler Lasten. \\
         \hline
         % --- Hardware ---
-        Hardware & Node Compute & 100 - 200 TOPS & Realistischer Bereich für aktuelle autonome Fahrchips (SoCs). \\
-         & Node Memory & 64 GB & Standard RAM-Kapazität für Hochleistungssteuergeräte. \\
-         & Node Storage & 500 GB & Verfügbarer Speicher für Container-Images und Daten. \\
+        Hardware & CPU Leistung & 100 - 200 TOPS & Realistischer Bereich für aktuelle autonome Fahrchips (SoCs). \\
+         & Arberitsspeicher & 64 GB & Standard RAM-Kapazität für Hochleistungssteuergeräte. \\
+         & Speicher & 500 GB & Verfügbarer Speicher für Container-Images und Daten. \\
         \hline
     \end{tabular} 
     \caption{Konfiguration und Parameter der dynamischen Simulation zur Validierung des Scheduling-Algorithmus.}
