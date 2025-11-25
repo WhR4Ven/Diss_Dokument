@@ -331,6 +331,7 @@ In diesem dynamischen Szenario wird überprüft, ob das gewählte Scheduling Ver
         \hline
         % --- Volatility ---
         Volatilität & Node Abwanderungsrate & 5\% ($0.05$) & Wahrscheinlichkeit, dass ein Fahrzeug pro Zeitschritt beitritt oder das Netzwerk verlässt. \\
+        & Aufgabenpool Wachstumsrate & 104 & Anzahl an Aufgaben die pro Simulationsschritt hinzukommen
         \hline
         % --- Workload ---
         Arbeitslast & Aufgabenrate & 200 Tasks/Step & Durchschnittliche Anzahl neuer Aufgaben pro Schritt (Poisson-Verteilung). \\
@@ -346,6 +347,8 @@ In diesem dynamischen Szenario wird überprüft, ob das gewählte Scheduling Ver
     \caption{Konfiguration und Parameter der dynamischen Simulation zur Validierung des Scheduling-Algorithmus.}
     \label{tab:simulation_parameters}
 \end{table}
+
+Wenn ein Fahrzeug bzw. ein Runtime Node nicht mehr verfügbar ist, werden die Aufgaben, die der Node aktuell bearbeitet hat, wieder dem Aufgabenpool hinzugefügt. Der Fokus bei dieser Simulation liegt auf der Robustheit gegenüber Node Ausfälle und der Effizienz der Ressourcennutzung unter volatilen Bedingungen. Die Simulationsergebnisse sind in der \autoref{fig:Dynamic_Stability} abgebildet. 
 
 \begin{figure}[h!]
     \centering
@@ -410,3 +413,9 @@ In diesem dynamischen Szenario wird überprüft, ob das gewählte Scheduling Ver
     \caption{Systemauslastung über die Zeit. Das System hält eine hohe Auslastung aufrecht, was auf eine effiziente Neuverteilung der Aufgaben durch den Scheduler hinweist.}
     \label{fig:Dynamic_Utilization}
 \end{figure}
+
+Die Auswirkungen der Fahrzeug bzw. Node Ausfälle sind in der \autoref{fig:Dynamic_Stability} dargestellt. Die orangene Kurve zeigt die Anzahl verfügbarer Nodes für jeden Simulationsschritt. Trotz der stetigen Schwankungen der verfügbaren Ressourcen werden die Aufgaben abgearbeitet. Die blaue Kurve zeigt die Anzahl der Aufgaben im Aufgabenpool. Trotz einer Zunahme von 104 Aufgaben pro Simulationsschritt bleibt sie stabil. Zusätzlich werden auch die nicht fertig bearbeiteten Aufgaben von Nodes, die nicht mehr zur Verfügung stehen, in den Aufgabenpool zurückgelegt, um von verfügbaren Nodes weiterbearbeitet zu werden. Die Simulation zeigt, dass der Scheduler in der Lage ist, diese Aufgaben umzuverteilen. 
+
+Im \autoref{fig:Dynamic_Utilization} wird die Systemauslastung über die Simulationszeit dargestellt. Die Auslastung ist definiert als die theoretisch maximal verfügbare TOPS-Leistung aller aktiven Knoten zum jeweiligen Zeitpunkt. Der Verlauf der durch Scheduling tatsächlich erreichten Auslastung zeigt, dass auch in diesem dynamischen Szenario eine  durchschnittliche Auslastung von etwa 80\% der theoretisch möglichen Auslastung erreicht werden konnte. Damit erweist sich der gewählte Greedy Algorithmus auch in diesem dynamischen Szenario als effizient genug, um eine ausreichend gute Auslastung zu erreichen. 
+
+Zusammenfassend konnte mithilfe der Simulation ein geeigneter Scheduling Algorithmus ausgewählt und unter Nachbildung eines realitätsnahen Szenarios verifiziert werden. Dabei wurden zunächst keine Echtzeitanforderungen berücksichtigt. Werden jedoch Aufgaben mit Echtzeitanforderungen an den Knoten verteilt, muss der Scheduler auch die Latenz berücksichtigen. Das Konzept mit den Fahrzeugen als Nodes, die als unzuverlässig betrachtet werden, da sie jederzeit nicht mehr verfügbar sein können, eignet sich eher für zeitunkritische Applikationen.
