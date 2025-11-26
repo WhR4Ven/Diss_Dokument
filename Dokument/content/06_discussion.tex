@@ -6,4 +6,9 @@ In diesem Kapitel werden die Ergebnisse der Implementierung und der Simulation d
 
 Im \autoref{Anforderungsanalyse} wurden die funktionalen Anforderungen aufgeführt, die von der Softwareplattform erfüllt werden sollen. In diesem Abschnitt wird die Umsetzung dieser Anforderungen evaluiert. Ziel der Arbeit war die Erarbeitung eines Konzepts und dessen prototypische Umsetzung, um Rechenressourcen von autonomen Fahrzeugsteuergeräten für externe Applikationen nutzbar zu machen.
 
-Anforderung 1 
+\subsubsection{Anforderung 1: Platzierung und Ausführung externer Applikationen}
+
+Anforderung 1 fordert die Platzierbarkeit von Ausführbarkeit von externen Applikationen auf Fahrzeugsteuergeräten. Diese Anforderung wurde durch die Implementierung von den Komponenten \enquote{RUntime Master} und \enquote{Runtime Node} vollständig erfüllt. Der Runtime Master stellt eine Benutzeroberfläche bereit, die ausgewählte Dateien per binäre Datenübertragung an ausgewählte Nodes senden kann. Dies wurde durch den implementierten State Machine für Dateitransfer realisiert, der Dateien blockweise und Base64 kodiert überträgt. Es ermöglicht die Übertragung von Laufzeitumgebungen sowie von kompilierten Anwendungen. Der Runtime Node nimmt diese Dateien entgegen und speichert sie im lokalen Dateisystem des Containers. Die Runtime Node Softwarekomponente \enquote{Container Management} nutzt anschließend die POSIX Funktion \enquote{execve}, um die übertragene Applikation als Prozess innerhalb der isolierten Umgebung zu starten. Hierdurch ist die Funktionalität der Plattform, die Nutzung der Rechenleistung von Steuergeräten verifiziert. 
+
+\subsubsection{Anforderung 2 und 3: Automatische Erkennung und Ressourcenmitteilung}
+
