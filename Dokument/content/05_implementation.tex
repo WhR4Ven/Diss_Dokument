@@ -1,14 +1,21 @@
 \chapter{Implementierung}
+\label{ch:Implementierung}
 
-Dieses Kapitel beschreibt die Implementierung von Runtime Node und Master und vergleicht die Scheduling-Methoden.
+Dieses Kapitel beschreibt die technische Umsetzung der Komponenten Runtime Node und Runtime Master sowie die simulative Evaluierung der Scheduling-Methoden.
 
 \section{Implementierung Runtime Node}
+\label{sec:ImplementierungRuntimeNode}
 
-Die Runtime Node Komponente wird auf Fahrzeugsteuergeräten ausgeführt, deren Anforderungen bei der Implementierung berücksichtigt werden müssen. Die Wahl der für die Implementierung verwendeten Programmiersprache sollte so erfolgen, dass eine möglichst hohe Kompatibilität mit den benötigten Softwarebibliotheken besteht und eine Kompilierbarkeit auf möglichst vielen Hardwarearchitekturen gegeben ist. In der \autoref{Methode Softwareplattform und Scheduling} wurde festgelegt, dass die Runtime Node Linux-Kernel-basierte Betriebssysteme voraussetzt. Der Kernel dieser Systeme ist in der Programmiersprache C implementiert. Im Vergleich zu anderen weit verbreiteten Programmiersprachen wie C++, Java, Python oder Rust ist C näher an der Hardware. Gängige C-Compiler wie GCC, Clang/LLVM oder MSVC unterstützen die meisten Hardwarearchitekturen. Für spezialisierte Plattformen im Embedded-Bereich existiert ebenfalls sehr häufig eine C-Toolchain. Aus diesem Grund eignet sich die Programmiersprache C gut als Sprache für die Implementierung des Runtime Node. Die Software wurde in einer Linux Entwicklungsumgebung auf einem Desktop PC entwickelt. Diese Umgebung ist ausreichend, da Linux als Betriebssystem für die Fahrzeugsteuergeräte vorausgesetzt wird, damit die Software kompatibel ist. Im Folgenden werden die konkreten Vorgehensweisen zur Implementierung der Softwarekomponenten des Runtime Node beschrieben.
+Die Komponente Runtime Node wird auf Fahrzeugsteuergeräten ausgeführt, weshalb deren spezifische Anforderungen bei der Implementierung berücksichtigt werden müssen. Die Wahl der Programmiersprache erfolgte unter den Gesichtspunkten einer möglichst hohen Kompatibilität mit benötigten Softwarebibliotheken sowie der Kompilierbarkeit auf diversen Hardwarearchitekturen. 
 
-\subsection{Implementierung der Container Management}
+In \autoref{ch:Methode} wurde festgelegt, dass der Runtime Node ein Linux-Kernel-basiertes Betriebssystem voraussetzt. Da der Kernel dieser Systeme in der Programmiersprache C implementiert ist, bietet diese Sprache im Vergleich zu anderen weit verbreiteten Sprachen wie C++, Java, Python oder Rust eine deutlich höhere Hardwarenähe. Gängige C-Compiler wie GCC, Clang/LLVM oder MSVC unterstützen nahezu alle relevanten Hardwarearchitekturen. Auch für spezialisierte Plattformen im Embedded-Bereich existiert sehr häufig eine proprietäre C-Toolchain. Aus diesem Grund eignet sich die Programmiersprache C hervorragend für die Implementierung des Runtime Node. 
 
-Mit dem Container Management werden isolierte Umgebungen für externe Anwendungen erstellt und verwaltet. Dabei kommt die Containerisierung als Isolierungsmethode zum Einsatz. Bei dieser Methode werden Linux-Kernel-Funktionen genutzt, um eine isolierte Laufzeitumgebung zu erstellen, die als Container bezeichnet wird. Das Container Management implementiert vier Hauptfunktionen:
+Die Softwareentwicklung erfolgte in einer Linux-Entwicklungsumgebung auf einem Desktop-PC. Diese Umgebung ist ausreichend, da Linux als Betriebssystem für die Fahrzeugsteuergeräte vorausgesetzt wird und somit die Kompatibilität der Software gewährleistet ist. Im Folgenden werden die konkreten Vorgehensweisen zur Implementierung der einzelnen Softwaremodule des Runtime Node beschrieben.
+
+\subsection{Implementierung des Container Management}
+\label{sec:ContainerManagement}
+
+Das Container Management ist für die Erstellung und Verwaltung isolierter Laufzeitumgebungen für externe Anwendungen zuständig. Dabei kommt die Containerisierung als Isolierungsmethode zum Einsatz. Bei dieser Methode werden native Linux-Kernel-Funktionen genutzt, um eine isolierte Laufzeitumgebung zu erstellen, die als Container bezeichnet wird. Das Container Management implementiert vier Hauptfunktionen:
 
 \begin{itemize}
     \item Container erstellen
@@ -17,165 +24,174 @@ Mit dem Container Management werden isolierte Umgebungen für externe Anwendunge
     \item Container löschen
 \end{itemize}
 
-Die Erstellung eines Containers wird durch einen entsprechenden Befehl ausgelöst. In diesem muss ein Containername definiert werden, der anschließend intern zur Identifikation des Containers verwendet wird. Zunächst wird überprüft ob ein Container mit dem gleichen Namen bereits angelegt wurde. Wird der Name bereits verwendet, wird kein neuer Container erstellt und eine entsprechende Fehlermeldung an den Runtime Master kommuniziert. Existiert kein Container mit dem gleichen Namen, wird ein Ordner für den neu erstellten Container angelegt. Dieser dient als Wurzelverzeichnis für die Applikation im Container. Der Runtime Node kann eine Standardvorlage für ein Wurzelverzeichnis bereitstellen und dessen Inhalt in jeden Containerordner kopieren. Dies kann beispielweise das Wurzelverzeichnis einer Linux-Distribution beinhalten, damit die Applikationen die Standardbibliotheken und Werkzeuge eines Betriebssystems direkt nutzen können. Runtime Master kann nach Erstellung des Containers sowohl Applikationen als auch Softwarebibliotheken in den Containerordner über das Kommunikationsinterface übertragen. 
+Die Erstellung eines Containers wird durch einen entsprechenden Befehl ausgelöst. In diesem Befehl muss ein Containername definiert werden, der anschließend intern zur Identifikation des Containers verwendet wird. Zunächst wird validiert, ob ein Container mit demselben Namen bereits angelegt wurde. Ist dies der Fall, wird kein neuer Container erstellt und eine entsprechende Fehlermeldung an den Runtime Master kommuniziert. Existiert kein Container mit dem gleichen Namen, wird ein neuer Ordner angelegt. Dieser dient als Wurzelverzeichnis (\textit{Root Directory}) für die Applikation im Container. Der Runtime Node kann eine Standardvorlage für ein solches Wurzelverzeichnis bereitstellen und dessen Inhalt in jeden neuen Containerordner kopieren. Dies kann beispielsweise das Dateisystem einer minimalen Linux-Distribution beinhalten, damit die Applikationen die Standardbibliotheken und Werkzeuge eines Betriebssystems direkt nutzen können. Nach der Erstellung des Containers kann der Runtime Master sowohl Applikationen als auch weitere Softwarebibliotheken über das Kommunikationsinterface in den Containerordner übertragen.
 
-Die Isolierung der Applikationen erfolgt über Linux-Kerne spezifische Funktionen. Für Unix-basierte Betriebssysteme wie Linux wurde der \gls{POSIX}-Standard entwickelt, um die Kompatibilität von Software zu erhöhen, die auf Betriebssystemfunktionen zugreift. Er definiert eine einheitliche \gls{API} für Kommandozeilen- und Shell-Funktionalität. Die \gls{API} besteht aus C Funktionen, die in der implementierten Software über die die entsprechenden header Dateien verwendet werden können.  Um die Kompatibilitätsanforderungen zu erfüllen, verwendet die Runtime Node Komponente, sofern möglich, die \gls{POSIX} \gls{API} Funktionen zur Isolierung von Anwendungen. 
+Die technische Isolierung der Applikationen erfolgt über Linux-Kernel-spezifische Funktionen. Für Unix-basierte Betriebssysteme wie Linux wurde der \gls{POSIX}-Standard entwickelt, um die Kompatibilität von Software zu erhöhen, die auf Betriebssystemfunktionen zugreift. Er definiert eine einheitliche \gls{API} für Kommandozeilen- und Shell-Funktionalität. Die \gls{API} besteht aus C-Funktionen, die in der implementierten Software über die entsprechenden Header-Dateien verwendet werden können. Um die Kompatibilitätsanforderungen zu erfüllen, verwendet die Runtime Node Komponente, sofern möglich, die standardisierten \gls{POSIX}-\gls{API}-Funktionen zur Isolierung von Anwendungen.
 
-Ein Container wird gestartet, indem eine der darin vorhandenen Applikationen ausgeführt wird. Ein Container kann mehrere Applikationen beinhalten, allerdings kann der Runtime-Master aktuell nur eine Applikation pro Container starten. Ein Startbefehl für einen Container definiert dessen Namen sowie den Namen der zu startenden Applikation. Zunächst wird im Runtime-Node überprüft, ob ein Container mit dem im Startbefehl angegebenen Namen existiert. Wenn diese Voraussetzung erfüllt ist, wird überprüft, ob eine Applikationsdatei mit dem angegebenen Namen im Container vorhanden ist. Sind beide Voraussetzungen erfüllt, werden die Isolierung und das Starten der Applikationsfunktion vorbereitet. Mit der \gls{POSIX} Funktion \enquote{clone} wird eine als Parameter vorgegebene Funktion als neuer Prozess erstellt, der in den nächsten Schritten vom Betriebssystem isoliert wird. Diese \enquote{clone} Funktion unterstützt die Isolierung mittels Namespaces, indem die entsprechenden Unshare Flags, die im \autoref{Software Virtualisierung/Container} näher beschrieben wurden, als Parameter mitgegeben werden können. Die als Funktionsparameter übergeben Funktion wird also durch \enquote{clone} als neuer Prozess mit den vorgegebenen Isolierungsmaßnahmen ausgeführt. Die folgenden Unshare Flags werden verwendet:
+Ein Container wird gestartet, indem eine der darin vorhandenen Applikationen ausgeführt wird. Ein Container kann prinzipiell mehrere Applikationen beinhalten, allerdings sieht die aktuelle Implementierung vor, dass der Runtime Master nur eine Applikation pro Container starten kann. Ein Startbefehl definiert den Namen des Containers sowie den Namen der zu startenden Applikation. Zunächst wird im Runtime Node überprüft, ob ein Container mit dem im Startbefehl angegebenen Namen existiert. Wenn diese Voraussetzung erfüllt ist, wird geprüft, ob eine Applikationsdatei mit dem angegebenen Namen im Container vorhanden ist. Sind beide Voraussetzungen erfüllt, werden die Isolierung und das Starten der Applikationsfunktion vorbereitet. 
 
-\begin{itemize}
-    \item CLONE\_NEWNS: Mount Namespace Unshare Flag
-    \item CLONE\_NEWPID: PID Namespace Unshare Flag
-    \item CLONE\_NEWUTS: IPC Namespace Unsahre Flag
-    \item CLONE\_NEWNET: Network Namespace Unshare Flag
-\end{itemize}
+Mit der \gls{POSIX}-Funktion \texttt{clone} wird eine als Parameter vorgegebene Funktion als neuer Prozess erstellt, der in den nächsten Schritten vom Betriebssystem isoliert wird. Diese \texttt{clone}-Funktion unterstützt die Isolierung mittels Namespaces, indem die entsprechenden \textit{Unshare Flags}, die in \autoref{ch:StandDerTechnik} näher beschrieben wurden, als Parameter übergeben werden. Die als Funktionsparameter übergebene Funktion wird also durch \texttt{clone} als neuer Prozess mit den vorgegebenen Isolierungsmaßnahmen ausgeführt. Folgende Unshare Flags werden verwendet:
 
-Der von der Funktion \enquote{clone} gestartete Prozess führt die Pivot-Root-Routine aus, um die Zugriffsrechte des Prozesses auf den Ordnerinhalt des Containers einzuschränken. Hierzu muss der Ordner des Containers ein Mount-Punkt des Prozesses werden. Die Systemfunktion \enquote{mount} fügt den als Parameter übergebenen Pfad als Mount-Punkt dem aktuellen Prozess hinzu. Da Pivot Root über keine \gls{POSIX}-standardisierte Wrapper-Funktion verfügt, muss es über die \enquote{syscall}-Funktion implementiert werden. Diese wird über die C-Softwarebibliothek glibc bereitgestellt, die in den meisten Linux-Distributionen enthalten ist. Abschließend wird der Prozess mit der \gls{POSIX}-Funktion \enquote{execve} durch den extern geladenen Applikation ersetzt.  Diese Applikationen werden mit allen zuvor angewendeten Isolierungsmaßnahmen im Container ausgeführt. Runtime Node erzeugt eine neue cgroup für den Prozess, sodass sowohl Systemressourcen nach Bedarf eingeschränkt werden können als auch die weiteren Prozesse, die von diesem Host-Prozess erzeugt werden, eindeutig zugeordnet werden können. Das erfolgreiche Starten der Applikation wird an den Runtime Master zurückgemeldet. 
+\begin{description}
+    \item[\texttt{CLONE\_NEWNS}:] Mount Namespace Unshare Flag (Isolierung der Einhängepunkte).
+    \item[\texttt{CLONE\_NEWPID}:] PID Namespace Unshare Flag (Isolierung der Prozess-IDs).
+    \item[\texttt{CLONE\_NEWUTS}:] UTS Namespace Unshare Flag (Isolierung von Hostname/Domain).
+    \item[\texttt{CLONE\_NEWNET}:] Network Namespace Unshare Flag (Isolierung der Netzwerkressourcen).
+\end{description}
 
-Ein Container kann durch einen externen Befehl mit dem Namen des zu stoppenden Containers gestoppt werden. Existiert der Container mit dem Namen und wird aktuell eine Applikation ausgeführt, werden alle Prozesse im Container beendet. Hierzu genügt es, den ursprünglichen Host-Prozess zu beenden, da dieser durch die Isolierung die PID 1 erhalten hat. PID 1 wird unter Unix-Systemen als Initialisierungsprozess behandelt. Wird dieser Prozess beendet, werden alle von diesem Prozess gestarteten Prozesse ebenfalls beendet.
+Der durch die Funktion \texttt{clone} gestartete Prozess führt anschließend die Routine \textit{Pivot Root} aus, um die Zugriffsrechte des Prozesses auf den Ordnerinhalt des Containers einzuschränken. Hierzu muss der Ordner des Containers ein Mount-Punkt des Prozesses werden. Die Systemfunktion \texttt{mount} fügt den als Parameter übergebenen Pfad als Mount-Punkt dem aktuellen Prozess hinzu. Da für \textit{Pivot Root} keine \gls{POSIX}-standardisierte Wrapper-Funktion existiert, muss sie über die \texttt{syscall}-Funktion implementiert werden. Diese wird über die C-Softwarebibliothek \texttt{glibc} bereitgestellt, die in den meisten Linux-Distributionen enthalten ist. 
 
-Container können durch den Befehl Container löschen entfernt werden. Im Befehl muss der Name des Containers angegeben werden. Existiert ein Container mit dem angegebenen Namen im Runtime-Node und führt dieser aktuell eine Anwendung aus, so wird er gestoppt und anschließend der Containerordner inklusive aller extern geladenen Dateien gelöscht.
+Abschließend wird der Prozess mit der \gls{POSIX}-Funktion \texttt{execve} durch die extern geladene Applikation ersetzt. Diese Applikationen werden nun mit allen zuvor angewendeten Isolierungsmaßnahmen im Container ausgeführt. Parallel dazu erzeugt der Runtime Node eine neue \textit{Control Group} (\texttt{cgroup}) für den Prozess. Dies ermöglicht es, Systemressourcen nach Bedarf einzuschränken und alle weiteren Prozesse, die von diesem Host-Prozess erzeugt werden, eindeutig zuzuordnen. Das erfolgreiche Starten der Applikation wird an den Runtime Master zurückgemeldet.
+
+Ein Container kann durch einen externen Befehl gestoppt werden. Existiert der Container mit dem angegebenen Namen und wird aktuell eine Applikation ausgeführt, werden alle Prozesse im Container beendet. Hierzu genügt es, den ursprünglichen Host-Prozess zu beenden, da dieser durch die Isolierung die PID 1 innerhalb des Namespaces erhalten hat. PID 1 wird unter Unix-Systemen als Initialisierungsprozess behandelt. Wird dieser Prozess beendet, werden vom Kernel automatisch alle Kindprozesse ebenfalls beendet.
+
+Das Löschen von Containern erfolgt durch den Befehl \enquote{Container löschen}. Im Befehl muss der Name des Containers angegeben werden. Existiert ein Container mit dem angegebenen Namen im Runtime Node und führt dieser aktuell eine Anwendung aus, so wird er zunächst gestoppt. Anschließend wird der Containerordner inklusive aller extern geladenen Dateien vom Dateisystem gelöscht.
 
 \subsection{Implementierung Befehlsverarbeitung}
-\label{Implementierung Befehlsverarbeitung}
+\label{sec:ImplementierungBefehlsverarbeitung}
 
-Die Befehlsverarbeitung empfängt \gls{JSON} Nachrichten von der Kommunikationsschnittstelle, wertet sie aus und führt die entsprechenden Funktionen im Container Management Modul aus. Die \gls{JSON} Nachrichten werden über den Kommunikationssockel zwischen Node und Kommunikationsschnittstelle ausgetauscht. Zum Parsen und Erstellen von \gls{JSON} wird die Softwarebibliothek cJSON verwendet.  cJSON bietet Hilfsfunktionen für die Erzeugung und das Auslesen von \gls{JSON} Daten. Der Benutzer kann mit Hilfe dieser Funktionen \gls{JSON} Strukturen selber erstellen, sowie Parsing Funktionen für definierte Strukturen implementieren. Mit Hilfe von cJSON werden Inhalte der \gls{JSON} Nachrichten in eine interne Struktur hineinkopiert und ausgewertet. Die Befehlsnachrichten sind nach dem im \autoref{JSON command} gezeigten Format definiert. Der Inhalt des \enquote{Action} Feldes wird mit den bekannten Aktionen verglichen. 
+Die Befehlsverarbeitung empfängt \gls{JSON}-Nachrichten von der Kommunikationsschnittstelle, wertet diese aus und führt die entsprechenden Funktionen im Container Management Modul aus. Die \gls{JSON}-Nachrichten werden über den lokalen Kommunikationssockel zwischen dem Node und der Kommunikationsschnittstelle ausgetauscht. 
+
+Zum Parsen und Erstellen von \gls{JSON} wird die Softwarebibliothek \texttt{cJSON} verwendet. \texttt{cJSON} bietet Hilfsfunktionen für die Erzeugung und das Auslesen von \gls{JSON}-Daten. Der Benutzer kann mit Hilfe dieser Funktionen \gls{JSON}-Strukturen selber erstellen sowie Parsing-Funktionen für definierte Strukturen implementieren. Mit Hilfe von \texttt{cJSON} werden Inhalte der Nachrichten in eine interne C-Struktur kopiert und ausgewertet. Die Befehlsnachrichten sind nach dem in \autoref{fig:JSON_command} gezeigten Format definiert. Der Inhalt des Feldes \texttt{Action} bestimmt dabei die auszuführende Operation.
 
 \begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.9\textwidth]{./content/graphics/commandJSON.pdf}
-	\caption{JSON Struktur der Befehlsübertragung}
-	\label{JSON command}
+    \centering
+    \includegraphics[width=0.9\textwidth]{./content/graphics/commandJSON.pdf}
+    \caption{JSON Struktur der Befehlsübertragung}
+    \label{fig:JSON_command}
 \end{figure}
 
-Bei der Auswertung eines Befehls wird zuerst überprüft ob das Feld \enquote{Target\_Node\_ID} mit dem ID des jeweiligen Runtime Nodes identisch ist. Befehle mit abweichendem ID werden ignoriert. Im nächsten Schritt wird das Feld \enquote{Action} mit den verfügbaren, implementierten Aktionen verglichen. Bei Übereinstimmung wird die entsprechende Funktion im \enquote{Container Management} mit den Parametern aus dem empfangenen Befehl aufgerufen. Unbekannte Befehle werden ignoriert.
+Bei der Auswertung eines Befehls wird zuerst überprüft, ob das Feld \texttt{Target\_Node\_ID} mit der ID des jeweiligen Runtime Nodes übereinstimmt. Befehle mit abweichender ID werden ignoriert. Im nächsten Schritt wird das Feld \texttt{Action} mit den verfügbaren, implementierten Aktionen verglichen. Bei Übereinstimmung wird die entsprechende Funktion im \enquote{Container Management} mit den Parametern aus dem empfangenen Befehl aufgerufen. Unbekannte Befehle werden ignoriert.
 
-Die Befehlsverarbeitung überträgt auch periodisch eine Node Status Meldung namens \enquote{Node\_Info}. Diese Meldung wird von jedem Runtime Node an den Runtime Master übertragen und enthält Informationen über die Rechenkapazitäten des Nodes sowie über die aktuell laufenden Applikationen. Die Struktur der Nachricht ist in der \autoref{JSON info} dargestellt.
+Zusätzlich überträgt die Befehlsverarbeitung periodisch eine Statusmeldung namens \texttt{Node\_Info}. Diese Meldung wird von jedem Runtime Node an den Runtime Master gesendet und enthält Informationen über die verfügbaren Rechenkapazitäten sowie über die aktuell laufenden Applikationen. Die Struktur der Nachricht ist in \autoref{fig:JSON_info} dargestellt.
 
 \begin{sidewaysfigure}[htbp]
-	\centering
-	\includegraphics[width=\textwidth]{./content/graphics/infoJSON.pdf}
-	\caption{JSON Struktur der Runtime Node Info Nachricht}
-	\label{JSON info}
+    \centering
+    \includegraphics[width=\textwidth]{./content/graphics/infoJSON.pdf}
+    \caption{JSON Struktur der Runtime Node Info Nachricht}
+    \label{fig:JSON_info}
 \end{sidewaysfigure}
 
-Mithilfe dieser Informationen kann der Runtime Master Scheduling Entscheidungen treffen und die Verfügbarkeit der Runtime Nodes überwachen.
+Mithilfe dieser Informationen kann der Runtime Master fundierte Scheduling-Entscheidungen treffen und die Verfügbarkeit der Runtime Nodes im Netzwerk überwachen.
 
 \subsection{Implementierung des Ladens externer Applikationen}
-\label{Laden extene Applikationen Node}
+\label{sec:LadenExterneApplikationenNode}
 
-Damit extern bereitgestellte Applikationen auf den Steuergeräten des Runtime Node ausgeführt werden können, müssen die entsprechenden Dateien auf das jeweilige Steuergerät geladen werden. Für die prototypische Implementierung wurde dasselbe Kommunikationskonzept für die Übertragung von Dateien verwendet wie für die Übertragung von Befehlen und Statusmeldungen. Die Dateien werden in vorkompilierte Form im Binärformat übertragen. Die Kommunikationsschnittstelle nutzt \gls{JSON}. Nachrichten für den Informationsaustausch. Für die Übertragung wird die folgende JSON-Struktur verwendet:
+Damit extern bereitgestellte Applikationen auf den Steuergeräten des Runtime Node ausgeführt werden können, müssen die entsprechenden Binärdateien auf das jeweilige Steuergerät geladen werden. Für die prototypische Implementierung wurde dasselbe Kommunikationskonzept für die Übertragung von Dateien verwendet wie für die Übertragung von Befehlen und Statusmeldungen. Die Dateien werden in vorkompilierter Form im Binärformat übertragen. Die Kommunikationsschnittstelle nutzt hierfür \gls{JSON}-Nachrichten. Für die Übertragung wird die in \autoref{fig:JSON_binary} dargestellte Struktur verwendet.
 
 \begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.6\textwidth]{./content/graphics/binaryJSON.pdf}
-	\caption{JSON Struktur der Binärübertrungsnachricht}
-	\label{JSON binary}
+    \centering
+    \includegraphics[width=0.6\textwidth]{./content/graphics/binaryJSON.pdf}
+    \caption{JSON Struktur der Binärübertragungsnachricht}
+    \label{fig:JSON_binary}
 \end{figure}
 
-\gls{JSON} Nachrichten sind charakterbasiert (in der Regel UTF-8). Die Übertragung von Binärdaten im Rohformat ist nicht möglich. Binärwerte können in \gls{JSON} nur als Zeichen dargestellt werden. Eine binäre 1 würde in diesem Fall beispielsweise mit dem Zeichen 1 dargestellt werden. Diese Methode ist sehr ineffizient, da die Darstellung von einem Bit Information acht Bits benötigt. Für Anwendungen, in denen Binärdaten in textbasierten Formaten übertragen werden müssen, wurden Binär-zu-Text-Konvertierungsschemen entwickelt. In der Implementierung wurde das Base64-Schema verwendet, das im World Wide Web weit verbreitet ist, beispielsweise für die Dateiübertragung in HTML, CSS und E-Mail-Anhängen. Base64 nimmt sechs Binärwerte und repräsentiert sie mit einem von 64 Characterzeichen. Um die Kompatibilität zu erhöhen, nutzt Base64 nur ein Basisset von \gls{ASCII} Zeichen, die von den meisten Anwendungen unterstützt werden. Dadurch wird eine möglichst hohe Portierbarkeit erreicht. Insgesamt werden mit dieser Methode sechs Binärzeichen mit einem 8-Bit-Zeichen kodiert. Die übertragene Datenmenge ist somit um 33\% höher als bei der Übertragung von binären Rohdaten. 
+Da \gls{JSON}-Nachrichten charakterbasiert sind (in der Regel UTF-8), ist die direkte Übertragung von Binärdaten im Rohformat nicht möglich. Binärwerte müssten als Zeichen dargestellt werden (z.\,B. eine binäre 1 als Zeichen '1'), was extrem ineffizient wäre, da ein Bit Information acht Bits Speicherplatz benötigen würde. Für Anwendungen, in denen Binärdaten in textbasierten Formaten übertragen werden müssen, wurden Binär-zu-Text-Konvertierungsschemen entwickelt. In der Implementierung wurde das Base64-Schema verwendet, das auch im World Wide Web (z.\,B. für E-Mail-Anhänge) weit verbreitet ist. Base64 nimmt sechs Binärwerte und repräsentiert sie mit einem von 64 \gls{ASCII}-Zeichen. Um die Kompatibilität zu erhöhen, nutzt Base64 nur ein Basisset von Zeichen, die von den meisten Anwendungen unterstützt werden. Dadurch wird eine möglichst hohe Portierbarkeit erreicht. Insgesamt werden mit dieser Methode sechs Binärzeichen mit einem 8-Bit-Zeichen kodiert. Die übertragene Datenmenge ist somit um ca. 33\,\% höher als bei der Übertragung von binären Rohdaten.
 
-Die Übertragungslogik ist als State Machine implementiert. Eine Dateiübertragung kann mit der in JSON dargestellten Nachricht gestartet werden, wenn das Feld \enquote{Action} den Inhalt \enquote{start\_exchange} enthält. Wenn im Feld \enquote{Binary\_Name} kein Name einer bereits existierenden Datei angegeben ist, wird eine neue Datei mit dem definierten Namen angelegt. Eine Bestätigung über das erfolgreiche Anlegen der Datei bzw. eine Fehlermeldung wird an den Runtime Master zurückgesendet. Nach einer erfolgreichen Bestätigung beginnt Runtime Master damit, die Binärdaten der Datei zu übertragen. Die Binärdaten werden Base64 kodiert im Feld \enquote{Binary\_Data} übertragen. Dieses Feld hat eine Größe von 3.076 Bytes. Durch die Base64-Kodierung sind davon allerdings nur 2.307 Bytes Nutzdaten. In der Praxis muss eine Datei in der Regel auf mehrere Pakete aufgeteilt werden. Während der Übertragung werden die empfangenen Daten dekodiert und in die erstellte Datei geschrieben. Wurden alle empfangenen Bytes erfolgreich in die Datei geschrieben, wird eine Statusmeldung an den Runtime-Master gesendet. Wurde die Datei vollständig übertragen, wird im \enquote{Action}-Feld der Inhalt \enquote{end\_exchange} gesendet. Dies signalisiert dem Runtime-Node, dass die aktuelle Datei vollständig übertragen wurde. 
+Die Übertragungslogik ist als Zustandsautomat (\textit{State Machine}) implementiert. Eine Dateiübertragung kann gestartet werden, wenn das Feld \texttt{Action} den Inhalt \texttt{start\_exchange} enthält. Wenn im Feld \texttt{Binary\_Name} kein Name einer bereits existierenden Datei angegeben ist, wird eine neue Datei mit dem definierten Namen angelegt. Eine Bestätigung über das erfolgreiche Anlegen der Datei bzw. eine Fehlermeldung wird an den Runtime Master zurückgesendet. 
+
+Nach einer erfolgreichen Bestätigung beginnt der Runtime Master damit, die Binärdaten der Datei zu übertragen. Die Binärdaten werden Base64-kodiert im Feld \texttt{Binary\_Data} übertragen. Dieses Feld hat eine Größe von 3.076 Bytes. Durch die Base64-Kodierung sind davon allerdings nur 2.307 Bytes Nutzdaten. In der Praxis muss eine Datei daher in der Regel auf mehrere Pakete aufgeteilt werden. Während der Übertragung werden die empfangenen Daten dekodiert und in die erstellte Datei geschrieben. Wurden alle empfangenen Bytes erfolgreich geschrieben, wird eine Statusmeldung an den Runtime Master gesendet. Wurde die Datei vollständig übertragen, wird im \texttt{Action}-Feld der Inhalt \texttt{end\_exchange} gesendet. Dies signalisiert dem Runtime Node, dass die aktuelle Datei vollständig übertragen wurde und geschlossen werden kann.
 
 \section{Implementierung der Kommunikationsschnittstelle}
+\label{sec:ImplementierungKommunikation}
 
-Die Kommunikationsschnittstelle ist ein eigenes Softwaremodul, das ein Publish/Subscribe-Protokoll über das Netzwerk verwendet und eine sockelbasierte Schnittstelle mit JSON zu den Softwarekomponenten hin nutzt. Im \autoref{Kommunikation zwischen Fahrzeugen und Runtime Master} wurde das Kommunikationsprotokoll Publish/Subscribe und die konkrete Implementierung \gls{DDS} ausgewählt. Die Hauptaufgabe der Kommunikationsschnittstelle ist die Konvertierung zwischen \gls{DDS} und \gls{JSON} Nachrichten. Sowohl für \gls{JSON} als auch für \gls{DDS} werden Softwarebibliotheken für die Erstellung und das Versenden sowie das Auslesen von empfangenen Nachrichten verwendet. Das Kommunikationsmodul muss folglich die Nachrichtenstrukturen und die nötigen Parsing Funktionen mit den verwendeten Bibliotheken implementieren und die Daten zwischen den Strukturen konvertieren. 
+Die Kommunikationsschnittstelle ist ein eigenständiges Softwaremodul, das ein Publish/Subscribe-Protokoll über das Netzwerk verwendet und eine socketbasierte Schnittstelle mit \gls{JSON} zu den internen Softwarekomponenten nutzt. In \autoref{ch:Methode} wurde das Kommunikationsprotokoll Publish/Subscribe und die konkrete Implementierung \gls{DDS} (\textit{Data Distribution Service}) ausgewählt. Die Hauptaufgabe der Kommunikationsschnittstelle ist die bidirektionale Konvertierung zwischen \gls{DDS}- und \gls{JSON}-Nachrichten. Sowohl für \gls{JSON} als auch für \gls{DDS} werden spezialisierte Softwarebibliotheken verwendet. Das Modul implementiert die Nachrichtenstrukturen und die nötigen Parsing-Funktionen, um die Daten zwischen den Formaten zu übersetzen.
 
-In der prototypischen Umsetzung wird die \gls{DDS} Bibliothek von der Firma eProsima verwendet. C++ kann als eine Erweiterung von C betrachtet werden. C-Code ist in der Regel auch in einer C++-Umgebung lauffähig, sodass C- und C++-Code einfach in einem Projekt kombiniert werden können. eProsima Fast DDS ist eine weit verbreitete Implementierung, die auch in \gls{ROS} 2 verwendet wird. Das Kommunikationsmodul selbst wurde ebenfalls hauptsächlich in C++ implementiert, um eine einfachere Integration mit der \gls{DDS} Bibliothek zu ermöglichen. 
+In der prototypischen Umsetzung wird die \gls{DDS}-Bibliothek \textit{Fast DDS} der Firma eProsima verwendet. C++ kann als eine Erweiterung von C betrachtet werden, und C-Code ist in der Regel auch in einer C++-Umgebung lauffähig. \textit{eProsima Fast DDS} ist eine weit verbreitete Implementierung, die auch im \gls{ROS} 2 Ökosystem verwendet wird. Das Kommunikationsmodul selbst wurde ebenfalls hauptsächlich in C++ implementiert, um eine einfachere Integration mit der C++-basierten \gls{DDS}-Bibliothek zu ermöglichen.
 
-Die Erstellung und Auslesen von \gls{JSON} Daten wurde mit Hilfe der Softwarebibliothek cJSON implementiert. cJSON wurde in der Programmiersprache C implementiert, so dass es auch in C++ Projekte leicht integrierbar ist. 
+Die Erstellung und das Auslesen von \gls{JSON}-Daten wurde hingegen mit Hilfe der Softwarebibliothek \texttt{cJSON} implementiert. Da \texttt{cJSON} in C geschrieben ist, lässt es sich problemlos auch in C++-Projekte integrieren.
 
-Beim Start verbindet sich die Kommunikationsschnittstelle mit dem Kommunikationssockel von Runtime Node oder Runtime Master und startet die konfigurierten \gls{DDS} Publisher und -Subscriber. Wird eine Nachricht über einen \gls{DDS} Subscriber empfangen, werden die Daten der Nachricht in eine interne Datenstruktur kopiert. Aus dieser Struktur wird mithilfe von cJSON die entsprechende \gls{JSON} Nachricht für den Runtime Master oder den Runtime Node erstellt und über den Kommunikationssockel versendet. Umgekehrt werden aus empfangenen \gls{JSON} Nachrichten die Daten ebenfalls in die interne Datenstruktur kopiert und aus den Daten die entsprechende \gls{DDS} Nachricht mit dem dazugehörigen \gls{DDS} Publisher versendet. Das Modul ist so implementiert, dass es sowohl für den Runtime Node als auch für den Runtime Master einsetzbar ist. Dadurch müssen nicht mehrere Varianten gepflegt werden.
+Beim Start verbindet sich die Kommunikationsschnittstelle mit dem Kommunikationssockel von Runtime Node oder Runtime Master und startet die konfigurierten DDS Publisher und Subscriber. Wird eine Nachricht über einen DDS Subscriber empfangen, werden die Daten in eine interne Datenstruktur kopiert. Aus dieser Struktur wird mithilfe von \texttt{cJSON} die entsprechende \gls{JSON}-Nachricht erstellt und über den lokalen Socket versendet. Umgekehrt werden aus empfangenen \gls{JSON}-Nachrichten die Daten in die interne Datenstruktur kopiert und anschließend als \gls{DDS}-Nachricht versendet. Das Modul ist so generisch implementiert, dass es identisch sowohl für den Runtime Node als auch für den Runtime Master einsetzbar ist. Dadurch müssen nicht mehrere Varianten gepflegt werden.
 
 \section{Implementierung Runtime Master}
+\label{sec:ImplementierungRuntimeMaster}
 
-Die Komponente Runtime Master ist für die Verwaltung der Runtime Nodes zuständig. Sie wird nicht auf Fahrzeugsteuergeräten, sondern einmalig pro Netzwerk auf einem zentralen Server ausgeführt. Da in der Informationstechnik hauptsächlich die x86-Architektur verwendet wird, ist die Portierbarkeit auf verschiedene Hardwarearchitekturen bei dieser Komponente nicht relevant. Bei der Auswahl der Programmiersprache bestehen daher weniger Einschränkungen. Für diese Komponente wurde eine Programmiersprache ausgewählt, die eine möglichst einfache und effiziente Implementierung ermöglicht. Die Programmiersprache Go (auch Golang genannt) wurde von Google entwickelt, um die Produktivität bei der Softwareentwicklung für Maschinen mit mehreren CPU-Kernen sowie für vernetzte Maschinen zu steigern. Die Syntax von Go ähnelt der von C, bietet jedoch erweiterte Funktionalitäten wie Goroutines, die die Erzeugung und das Scheduling von Threads vereinfachen, sowie Standardbibliotheken, die beispielsweise gängige Netzwerkprotokolle implementieren. Aus diesen Gründen wurde diese Sprache für die Implementierung der Runtime Node Komponente verwendet. 
+Die Komponente Runtime Master ist für die Verwaltung der Runtime Nodes zuständig. Sie wird nicht auf Fahrzeugsteuergeräten, sondern einmalig pro Netzwerk auf einem zentralen Server ausgeführt. Da in der Informationstechnik hauptsächlich die x86-Architektur verwendet wird, ist die Portierbarkeit auf verschiedene Hardwarearchitekturen bei dieser Komponente weniger kritisch als beim Node. Bei der Auswahl der Programmiersprache bestanden daher weniger Einschränkungen. 
+
+Für diese Komponente wurde eine Programmiersprache ausgewählt, die eine möglichst einfache und effiziente Implementierung von Netzwerkanwendungen ermöglicht. Die Programmiersprache Go (auch Golang genannt) wurde von Google entwickelt, um die Produktivität bei der Softwareentwicklung für Maschinen mit mehreren CPU-Kernen sowie für vernetzte Systeme zu steigern. Die Syntax von Go ähnelt der von C, bietet jedoch erweiterte Funktionalitäten wie \textit{Goroutines}, die die Erzeugung und das Scheduling von Threads vereinfachen, sowie mächtige Standardbibliotheken für Netzwerkprotokolle. Aus diesen Gründen wurde Go für die Implementierung des Runtime Master verwendet.
 
 \subsection{Implementierung Node Datenbank}
+Die Node Datenbank speichert die Informationen über alle Runtime Nodes, die sich aktuell im selben Netzwerk befinden. Diese Informationen werden über die in \autoref{sec:ImplementierungBefehlsverarbeitung} vorgestellten \texttt{Node Info} Nachrichten übertragen. Die Datenbank beinhaltet alle Informationen aus den Nachrichten; zusätzlich wird festgehalten, wann die letzte Nachricht empfangen wurde, um Timeouts zu erkennen. 
 
-Die Node Datenbank speichert die Informationen über die Runtime Nodes, die sich aktuell im selben Netzwerk befinden. Diese Informationen werden über die im \autoref{Implementierung Befehlsverarbeitung} vorgestellten \enquote{Node Info} Nachrichten der Runtime Nodes übertragen. Die Datenbank beinhaltet alle Informationen aus den \enquote{Node Info} Nachrichten, zusätzlich wird festgehalten wann die letzte \enquote{Node Info} Nachricht empfangen wurde und ob dies im konfigurierten Zeitraum war. In der prototypischen Implementierung ist die Datenbank als interne Datenstruktur umgesetzt. Diese Methode speichert alle Einträge im Arbeitsspeicher des Systems, auf dem Runtime Master ausgeführt wird. Je nach Objektgröße können 100.000 Einträge problemlos im Arbeitsspeicher gehalten werden. Diese sind jedoch nicht persistent, da die Datenstruktur nach Beenden der Applikation gelöscht wird. Für größere Netzwerke mit vielen Teilnehmern und persistenten Daten ist es sinnvoll auf eine Datenbankimplementierung zurückzugreifen. Datenbanken sind eigenständige Softwarekomponenten mit einer standardisierten\gls{API}, über die andere Applikationen Daten schreiben und abfragen können. Die Daten werden persistent gespeichert, indem sie auf die Festplatte des Systems geschrieben werden. Bei einem Neustart können sie wiederhergestellt werden. Für diese Anwendung können relationale Datenbanken sinnvoll verwendet werden. In einer solchen Struktur werden die Daten in tabellarischer Form gespeichert. Zeilen entsprechen die Datensätze, während die Spalten die im Datensatz vorkommenden Datentypen definieren. In dieser Anwendung kann jede Runtime Node einen eigenen Tabelleneintrag erhalten. Die Container des Nodes werden ebenfalls in einer eigenen Tabelle gespeichert, die jedoch relationell mit der Node Tabelle verknüpft wird. Diese Struktur erlaubt eine effiziente Speicherausnutzung, auch wenn verschiedene Nodes verschiedene Anzahl an Container beinhalten. 
+In der prototypischen Implementierung ist die Datenbank als interne In-Memory-Datenstruktur umgesetzt. Diese Methode speichert alle Einträge im Arbeitsspeicher des Systems. Je nach Objektgröße können so problemlos 100.000 Einträge verwaltet werden. Diese sind jedoch nicht persistent, da die Datenstruktur nach Beenden der Applikation gelöscht wird. Für größere Netzwerke mit vielen Teilnehmern und der Anforderung an Persistenz ist es sinnvoll, auf eine externe Datenbanklösung zurückzugreifen. Datenbanken sind eigenständige Softwarekomponenten, die Daten persistent auf die Festplatte schreiben und eine standardisierte API bieten. Für diese Anwendung können relationale Datenbanken (z.\,B. SQL) sinnvoll verwendet werden. In einer solchen Struktur werden die Daten in tabellarischer Form gespeichert. Jede Runtime Node erhielte einen eigenen Tabelleneintrag. Die Container der Nodes würden ebenfalls in einer eigenen Tabelle gespeichert, die relational mit der Node-Tabelle verknüpft ist. Dies erlaubt eine effiziente Speicherausnutzung.
 
 \subsection{Implementierung Benutzeroberfläche}
+Die Benutzeroberfläche wurde als grafische 2D-Bedienoberfläche implementiert. Sie ermöglicht es Nutzern, die Runtime Nodes manuell zu kontrollieren und deren Statusmeldungen zu visualisieren. Für die Implementierung wurde die Softwarebibliothek \textit{Dear ImGui} verwendet. ImGui ist eine C++-Bibliothek, für die jedoch Wrapper für andere Programmiersprachen existieren. Go kann mithilfe der \texttt{cgo}-Mechanik C-Funktionen aufrufen. Der verwendete Wrapper implementiert ein Interface für ImGui sowie Go-Bindings, die diese Funktionen aufrufen. 
 
-Die Benutzeroberfläche wurde als 2D Bedienoberfläche implementiert. Sie ermöglicht es Nutzern, die Runtime Nodes manuell zu kontrollieren und deren Statusmeldungen anzuzeigen. Für die Implementierung wurde die Softwarebibliothek Imgui verwendet. Imgui ist eine C++ Bibliothek, für die es auch Wrapper Implementierungen für andere Programmiersprachen, wie auch für Go, gibt. Go kann mithilfe der CGo Mechanik C funktionen aufrufen. Der Wrapper implementiert ein C++ zu C Interface für imgui, sowie Go Bindings, die diese C Funktionen über Go funktionen aufrufen. Mit Hilfe diesen Funktionen wurden vier Hauptfenster implementiert: 
-
+Es wurden vier Hauptfenster implementiert:
 \begin{itemize}
-	\item Container Befehlfenster: Erlaubt das manuelle Senden von Befehlen an die Runtime Nodes. Container können durch den Benutzer manuell verwaltet werden.
-	\item Runtime Node Statusfenster: Zeigt die verfügbaren Runtime Nodes im Netzwerk an, deren Verfügbarkeitsstatus, Container sowie Applikationen die sie beinhalten.
-	\item Statusrückmeldungsfenster: Zeigt die letzte Statusrückmeldung des Runtime Nodes an, welches das letzte Befehl erhalten hat.
-	\item Fenster für Datenübertragung: In diesem Fenster ist es möglich Daten in ausgewählten Container eines Runtime Nodes zu übertragen.
+    \item \textbf{Befehlsfenster:} Erlaubt das manuelle Senden von Befehlen an die Runtime Nodes. Container können hier durch den Benutzer manuell verwaltet werden.
+    \item \textbf{Statusfenster:} Zeigt die verfügbaren Runtime Nodes im Netzwerk an, deren Verfügbarkeitsstatus, Ressourcen sowie enthaltene Applikationen.
+    \item \textbf{Log-Fenster:} Zeigt die letzte Statusrückmeldung des Runtime Nodes an, welcher den letzten Befehl erhalten hat.
+    \item \textbf{Transfer-Fenster:} Ermöglicht das Übertragen von Daten in ausgewählte Container.
 \end{itemize}
 
-In der prototypischen Implementierung sind die einzelnen Softwarekomponenten nicht vollständig als eigenständige Prozesse voneinander getrennt, sondern als einzelne Threads. Durch diese geringere Isolierung kann die Benutzeroberfläche die Funktionen der andren Softwarekomponenten direkt aufrufen. 
+In der prototypischen Implementierung sind die einzelnen Softwarekomponenten nicht als eigenständige Prozesse, sondern als \textit{Goroutines} (Threads) realisiert. Durch diese Architektur kann die Benutzeroberfläche direkt auf die Funktionen und Datenstrukturen der anderen Komponenten zugreifen.
 
 \subsection{Implementierung Nachrichtenverwaltung}
-
-Die Runtime Master Komponente erhält verschiedene Nachrichten von den Runtime Node Komponenten. In diesem Modul werden diese Nachrichten ausgewertet und die Informationen an die passenden Softwarekomponenten weitergeleitet. Grundsätzlich werden drei verschiedene Nachrichtenarten unterschieden:
+Die Runtime Master Komponente empfängt diverse Nachrichten von den Runtime Node Komponenten. In diesem Modul werden diese Nachrichten ausgewertet und an die passenden Subkomponenten weitergeleitet. Grundsätzlich werden drei verschiedene Nachrichtenkategorien unterschieden:
 
 \begin{itemize}
-	\item Info Nachrichten: Diese Nachrichten beinhalten entweder eine \enquote{Node Info} Nachricht oder \enquote{Interface Info} Nachricht. 
-	\item Befehlsnachricht Rückmeldung: Diese enthalten die Statusrückmeldungen der Runtime Nodes auf empfangenen Runtime Master Befehle.
-	\item Datenübertragung Nachrichten: Diese Nachrichten sind Statusrückmeldungen von den Runtime Nodes, wenn eine Datenübertragung stattfindet.
+    \item \textbf{Info-Nachrichten:} Diese beinhalten entweder eine \texttt{Node Info} oder \texttt{Interface Info} Nachricht.
+    \item \textbf{Befehls-Rückmeldungen:} Diese enthalten die Statusrückmeldungen der Runtime Nodes auf empfangene Befehle.
+    \item \textbf{Datentransfer-Nachrichten:} Diese sind Statusrückmeldungen während einer Dateiübertragung.
 \end{itemize}
 
-Kann die empfangene Nachricht zu keiner der Kategorien zugeordnet werden, wird diese ignoriert. Wird eine Nachricht erfolgreich zugeordnet, so werden die empfangenen Daten aus dem \gls{JSON} Format in eine interne Datenstruktur konvertiert. Die Nachrichtenverwaltung ruft in Anschluss die passenden Funktionen der anderen Softwarekomponenten auf und übergibt die Empfangene Daten als Parameter der Funktion. Im Runtime Master wird anstelle von cJSON die in der Standard Golang Bibliothek enthaltene \gls{JSON} encoding Bibliothek für die Verarbeitung von den \gls{JSON} Nachrichten verwendet, da diese eine einfachere Integration ermöglicht.
+Kann eine empfangene Nachricht keiner der Kategorien zugeordnet werden, wird diese ignoriert. Wird eine Nachricht erfolgreich zugeordnet, so werden die empfangenen Daten aus dem \gls{JSON}-Format in eine interne Go-Datenstruktur konvertiert. Die Nachrichtenverwaltung ruft im Anschluss die passenden Funktionen der anderen Softwarekomponenten auf. Im Runtime Master wird anstelle von \texttt{cJSON} die in der Go-Standardbibliothek enthaltene \texttt{encoding/json} Bibliothek verwendet, da diese eine nahtlose Integration in die Sprache bietet.
 
 \subsection{Implementierung des Ladens externer Applikationen}
+Das Gegenstück zum Dateiempfang im Runtime Node (\autoref{sec:LadenExterneApplikationenNode}) ist die Sende-Implementierung im Master. Diese ist ebenfalls als State Machine mit den Zuständen \texttt{Idle}, \texttt{Running} und \texttt{Done} realisiert. 
 
-Die Implementierung der Übertragung externer Applikationen wurde für den Runtime Node im \autoref{Laden extene Applikationen Node} vorgestellt. Im Runtime Master muss ebenfalls eine kompatible Implementierung vorliegen. Diese ist ebenfalls als State Machine implementiert mit den Zuständen \enquote{Idle}, \enquote{Running} und \enquote{Done}. Um die Datenübertragung zu starten, muss zunächst ein Ziel Node und  Container ausgewählt werden. Anschließend muss der Dateipfad der zu übertragenden Datei sowie der Dateiname am Zielort im Container spezifiziert werden. Der Datentransfer wird durch eine Startnachricht ausgelöst. Damit wird beim Runtime Node abgefragt, ob er bereit ist, Daten zu empfangen. Ist der Runtime Node bereit für den Datentransfer, wird der State Machine in den \enquote{Running}-State gewechselt und die zu übertragende Datei blockweise binär ausgelesen. Für die Übertragung in \gls{JSON} Nachrichten wird, analog zur Implementierung auf der Runtime Node Seite, die Base64 Kodierung angewendet. Die Aufbau der Nachricht ist identisch wie es im \autoref{Laden extene Applikationen Node} in der \autoref{JSON binary} abgebildet ist. In diesem State wird die Datei stückweise übertragen. Die \gls{JSON} Binary Nachricht kann maximal 3072 Bytes pro Nachricht übertragen. Aufgrund der Base64-Kodierung können 2.307 Bytes effektiv für die Dateiübertragung verwendet werden. Sobald der Runtime Node den erfolgreichen Empfang des letzten Dateistücks bestätigt hat, wird das nächste Stück übertragen. Sobald alle Teilstücke übertragen wurde, wird dies dem Runtime Node signalisiert und die Software State Machine wechselt in den State \enquote{Done}. In diesem State werden interne Variablen wie die aktuelle Byteposition der gelesene Datei zurückgesetzt und die State Machine auf \enquote{Idle} zurückgesetzt. Diese Implementierung erlaubt aktuell eine gleichzeitige Dateiübertragung pro Container.
+Um die Datenübertragung zu starten, muss zunächst ein Ziel-Node und ein Container ausgewählt werden. Anschließend werden der lokale Dateipfad sowie der Zielname im Container spezifiziert. Der Datentransfer wird durch eine Startnachricht ausgelöst, die beim Runtime Node anfragt, ob dieser empfangsbereit ist. Nach positiver Rückmeldung wechselt die State Machine in den \texttt{Running}-Zustand. Die Datei wird blockweise binär ausgelesen, mittels Base64 kodiert und in \gls{JSON}-Nachrichten verpackt. Die Struktur ist identisch zur Darstellung in \autoref{fig:JSON_binary}. 
 
-\subsection{Implementierung Scheduler}
+Da die \gls{JSON}-Nachricht maximal 3.072 Bytes groß ist (davon ca. 2.307 Bytes Nutzdaten), wird die Datei in Pakete aufgeteilt. Der Prozess erfolgt synchron: Das nächste Paket wird erst gesendet, wenn der Runtime Node den Empfang des vorherigen bestätigt hat. Sobald alle Teilstücke übertragen wurden, sendet der Master den Befehl \texttt{end\_exchange} und wechselt in den \texttt{Done}-Zustand. Interne Variablen werden zurückgesetzt, und das System ist bereit für den nächsten Transfer.
 
-Der Scheduler kann die externen Applikationen automatisch nach bestimmten Optimierungskriterien an den Runtime Nodes verteilen. Eine Auswahl an Methoden wurde im \autoref{Scheduling Algorithmen} vorgestellt. Da die Softwareplattform aktuell nur prototypisch vorliegt und keine Flotte an Fahrzeugen vorhanden ist, die die Runtime Nodes ausführen können, werden ausgewählte Scheduling Methoden simulativ implementiert und ausgewertet.
+\section{Implementierung und Evaluation des Schedulers}
+\label{sec:ImplementierungScheduler}
 
-Im \autoref{Scheduling Algorithmen} wurde bereits ermittelt, dass sich das Scheduling Problem als multiobjektives Multi-Knapsackproblem auffassen lässt. Für die Simulation werden Methoden untersucht, die auf dieses Problem anwendbar sind.
+Der Scheduler hat die Aufgabe, externe Applikationen automatisch nach bestimmten Optimierungskriterien auf die verfügbaren Runtime Nodes zu verteilen. Eine Auswahl theoretischer Methoden wurde in \autoref{ch:Methode} vorgestellt. Da die Softwareplattform aktuell prototypisch vorliegt und keine physische Flotte von Hunderten Fahrzeugen zur Verfügung steht, wurden die Scheduling-Methoden simulativ implementiert und ausgewertet.
 
-\subsubsection{Gewichtung von Optimierungskriterien}
+Das Problem wurde als multiobjektives Multi-Knapsack-Problem modelliert. Für die Simulation werden Methoden untersucht, die auf dieses Problem anwendbar sind.
 
-Die Informationen in der \enquote{Node Info} Nachricht enthalten mehrere Einträge, die für die Optimierung berücksichtigt werden können. Es muss mindestens eine Optimierung der Ressourcenauslastung erfolgen, sodass die verfügbare Rechenleistung der Runtime Nodes möglichst effizient genutzt wird. Hierzu können die drei Einträge zur Rechenkapazität aus \enquote{Node Info} verwendet werden.
-
+\subsection{Gewichtung von Optimierungskriterien}
+Die \texttt{Node Info} Nachricht liefert mehrere Metriken, die für die Optimierung herangezogen werden können. Um die verfügbare Rechenleistung der Flotte möglichst effizient zu nutzen, muss primär eine Optimierung der Ressourcenauslastung erfolgen. Hierzu werden die drei Hauptressourcen verwendet:
 \begin{itemize}
-	\item CPU
-	\item Memory\_Gb
-	\item Storage\_Gb
+    \item CPU-Leistung (TOPS)
+    \item Arbeitsspeicher (RAM)
+    \item Massenspeicher (Storage)
 \end{itemize}
 
-Für diesen Anwendungsfall ist keine exakt optimale Lösung erforderlich. Vielmehr muss eine Lösung für eine große Menge an Runtime-Nodes und Rechenaufgaben mit möglichst geringem Rechenaufwand ermittelt werden können. Das Hauptoptimierungskriterium ist die CPU Auslastung. Arbeitsspeicher und Massenspeicher können als Grenzwerte angesehen werden, die nicht überschritten werden dürfen. Eine möglichst hohe Auslastung ist hier allerdings nicht erforderlich. Die Optimierung erfolgt aus diesem Grund nur nach CPU Auslastung mit RAM und Speicher als Grenzwerte. 
+Für den Anwendungsfall \enquote{Verteiltes Rechnen im Fahrzeug} ist das Finden der exakten mathematischen Optimallösung weniger wichtig als eine schnelle Entscheidungsfindung für eine große Menge an Nodes. Das Hauptoptimierungskriterium ist die CPU-Auslastung. RAM und Speicher werden als harte Grenzwerte (\textit{Constraints}) betrachtet, die nicht überschritten werden dürfen, aber nicht zwingend maximiert werden müssen. Die Optimierung erfolgt daher primär nach CPU-Auslastung unter Einhaltung der Speicherlimits.
 
-\subsubsection{Implementierung der Scheduling Alogrithmen}
-\label{Implementierung der Scheduling Alogrithmen}
+\subsection{Implementierung der Scheduling-Algorithmen}
+\label{sec:ImplementierungAlgorithmen}
 
-Im \autoref{Scheduling Algorithmen} wurde eine Auswahl gängiger Algorithmen vorgestellt, die sich für das Scheduling von Applikationen eignen. In diesem Abschnitt werden diese simulativ ausgewertet.
+In \autoref{ch:Methode} wurde eine Auswahl gängiger Algorithmen vorgestellt. Um die Qualität des zu wählenden Algorithmus bewerten zu können, wurde eine Vergleichssimulation durchgeführt. Das Ziel ist es, die CPU-Auslastung auf allen Runtime Nodes möglichst hoch zu halten.
 
-Um die Qualität des gewählten Scheduling Algorithmus bewerten zu können, wird zunächst eine Simulation mit verschiedenen Methoden durchgeführt. Das Problem kann als 0/1- Knapsackproblem aufgefasst werden, dessen primäre Aufgabe darin besteht, die CPU-Auslastung auf allen Runtime Nodes möglichst hoch zu halten. Die sekundären Ressourcen Arbeitsspeicher und Massenspeicher dürfen die jeweilige maximal verfügbaren Mengen der Nodes nicht überschreiten.
-
-Die Simulation vergleicht drei fundamentale Algorithmen, die für die Ressourcenverteilung verwendet werden können. Es wird sowohl die Lösungsgüte als auch die benötigte Schedulingzeit ausgewertet. Die folgenden Algorithmen wurden für die Simulation ausgewählt:
-
+Es wurden drei fundamentale Algorithmen verglichen, wobei sowohl die Lösungsgüte als auch die benötigte Rechenzeit ausgewertet wurden:
 \begin{itemize}
-	\item Brute Force: Berechnet alle möglichen Lösungen und wählt die beste Lösung aus. Liefert garantiert die global optimale Lösung
-	\item First-Come-First-Serve: Eine simpele nicht optimierende Methode. Die Aufgaben werden der Reihe nach in den Nodes ebenfalls der Reihe nach einsortiert, ohne dass eine Optimierung der Verteilung durchgeführt wird.
-	\item Greedy: Sortiert Aufgaben nach Auslastung und nimmt die Größte passende Aufgabe.
+    \item \textbf{Brute Force:} Berechnet alle möglichen Permutationen und wählt die beste Lösung. Garantiert das globale Optimum, ist aber extrem rechenintensiv.
+    \item \textbf{First-Come-First-Serve (FCFS):} Eine simple Methode ohne Optimierung. Aufgaben werden in der Reihenfolge ihres Eintreffens dem erstbesten passenden Node zugewiesen.
+    \item \textbf{Greedy:} Sortiert Aufgaben nach ihrer Größe (Auslastung) und weist die größte Aufgabe dem bestmöglichen Node zu.
 \end{itemize}
 
-Für die Simulation werden Nodes mit folgenden Eigenschaften genommen:
-
+Für die Simulation wurden Nodes mit Eigenschaften angenommen, die aktuellen Level-4-Steuergeräten entsprechen (siehe \autoref{ch:StandDerTechnik}):
 \begin{itemize}
-    \item Rechenleistung: 1000 - 2000 TOPS
-    \item RAM: 64 GB
-    \item Speicher: 500 GB
+    \item Rechenleistung: $1000 - 2000$ TOPS
+    \item RAM: $64$ GB
+    \item Speicher: $500$ GB
 \end{itemize}
 
-Diese Annahmen entsprechen die Hardwareeigenschaften, die sich aktuell aus \autoref{Hardwareumgebung in Fahrzeugen} für Level 4 Steuergeräte abzeichnen. Die zu verteilenden Aufgaben werden mit folgenden Ressourcenanforderungen angenommnen:
-
+Die zu verteilenden Aufgaben wurden mit folgenden Anforderungen modelliert:
 \begin{itemize}
-    \item benötigte Rechenleistung: 500-1000 TOPS
-    \item RAM: 20-50 GB
-    \item Speicher: 100-300 GB
+    \item Benötigte Rechenleistung: $500 - 1000$ TOPS
+    \item RAM: $20 - 50$ GB
+    \item Speicher: $100 - 300$ GB
 \end{itemize}
 
-In der Simulation wurden 11 Aufgaben auf 3 Nodes verteilt. Das Problem wurde für diese erste Auswertung klein gehalten, da die Berchnungszeit für \enquote{Brute Force} mit der Größe des Problems exponentiell ansteigt und damit für größere Probleme einen zu hohen Rechenaufwand mit sich bringt.
+In einer ersten, kleinen Simulation wurden 11 Aufgaben auf 3 Nodes verteilt. Die Problemgröße wurde bewusst klein gehalten, da die Berechnungszeit für \enquote{Brute Force} exponentiell ansteigt.
 
-\begin{figure}[h!]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
@@ -206,32 +222,25 @@ In der Simulation wurden 11 Aufgaben auf 3 Nodes verteilt. Das Problem wurde fü
     \label{fig:Simulation_Utilization}
 \end{figure}
 
-Die Schedulingzeiten in der Simulation fielen folgendermaßen aus:
-
+Die gemessenen Scheduling-Zeiten fielen wie folgt aus:
 \begin{itemize}
-	\item First-Come-First-Serve: 0,006 ms
-	\item Greedy: 0,013 ms
-	\item Brute Force: 5,31 s
+    \item First-Come-First-Serve: $0,006$\,ms
+    \item Greedy: $0,013$\,ms
+    \item Brute Force: $5,31$\,s
 \end{itemize}
 
-Die Abbildung \autoref{fig:Simulation_Utilization} zeigt die resultierenden Auslastungen von CPU, Speicher und Massenspeicher der Runtime Node Auslastungen. 
+\autoref{fig:Simulation_Utilization} zeigt die resultierenden Auslastungen. Die Brute-Force-Methode liefert erwartungsgemäß das beste Ergebnis. Der Greedy-Algorithmus erreicht jedoch beachtliche 91\,\% dieser optimalen Lösung, während FCFS nur 76\,\% erreichen konnte. Gleichzeitig ist Greedy nur unwesentlich langsamer als FCFS, während Brute Force um den Faktor $400.000$ langsamer war.
 
-Die Brute Force Methode zeigt die beste erreichbare CPU Auslastung. Greedy erreicht 91\% dieser optimalen Lösung, während First-Come-Forst-Serve nur 76\% erreichen konnte. Die Scheduling Zeiten fielen für Greedy im vergleich zum First-Come-Forst Serve etwa doppelt so hoch aus, während Brute Force mit einem Faktor von 400.000 deutlich mehr Zeit benötigte. Zusammenfassend zeigt das Ergebnis, dass Greedy eine erheblich bessere Auslastung als die einfachste First-Come-First-Serve-Methode erreichen konnte, während die Schedulingzeit weiterhin in einem niedrigen Bereich geblieben ist.
+Da sich in einem realen Fahrzeugnetzwerk die Topologie dynamisch ändert (Fahrzeuge parken ein und aus), existiert eine globale optimale Lösung nur für kurze Zeit. Daher ist ein Algorithmus, der extrem schnell eine \enquote{gute} Lösung findet (Greedy), einem Algorithmus vorzuziehen, der lange für die \enquote{perfekte} Lösung rechnet (Brute Force).
 
-Bei der Scheduling von Anwendungen auf Fahrzeugsteuergeräten ändert sich das Scheduling Problem dynamisch. Eine global optimale Lösung existiert nur für kurze Zeit, da sich die Menge der Aufgaben und die verfügbare Rechenleistung der Fahrzeuge konstant ändern. Aus diesem Grund ist es für diese Anwendung sinnvoller, auf eine global optimale Lösung zu verzichten und stattdessen ein schnelles und effizientes Scheduling zu verwenden. Aufgrund der Scheduling Zeit ist die Brute Force-Methode für diese Problemstellung nicht geeignet. Im \autoref{dynamisches Scheduling} wurde Greedy und Reinforced Learning als geeignete Möglichkeit für dynamisches Scheduling vorgestellt. Greedy benötigt keine Trainingsdaten und kann  mit nur lokalen Informationen ausgeführt werden. Dadurch ist es besonders effizient für dynamische Systeme. 
-
-Um eine bessere Auswahl des konkreten Scheduling Algorithmus treffen zu können, wird die Scheduling Aufgabe vergrößert, sodass sie ein realistischeres Scheduling Problem abbildet. Die Anzahl der Aufgaben wird auf 2.000 erhöht und die Anzahl der Runtime Nodes, die die Fahrzeuge repräsentieren, auf 200. Es wird untersucht, ob ein anderes Optimierungskriterium als die maximale Auslastung sinnvoller ist. Hierfür werden zwei weitere Greedy Algorithmen herangezogen, die für die maximale Menge an Tasks und für eine möglichst gleichmäßige Gesamtauslastung optimieren. First-Come-First-Serve wird weiterhin ebenfalls in den Vergleich aufgenommen um beurteilen zu können wie viel effizienter die Scheduler sind. Zusammenfassend werden die Aufgaben nach folgenden Kriterien verteilt:
-
+Um die Auswahl zu verfeinern, wurde das Szenario auf 2.000 Aufgaben und 200 Nodes skaliert. Dabei wurden verschiedene Greedy-Varianten verglichen:
 \begin{itemize}
-    \item Greedy (TOPS Priorisierung): Sortiert alle Aufgaben nach benötigte TOPS Leistung. Die größten Aufgaben werden zuerst an den am wenigsten ausgelasteten Nodes verteilt.
-    \item Greedy (Best-Fit): Sortiert alle Aufgaben nach benötigte TOPS Leistung. Verteilt Aufgaben an den Node mit den geringsten verbleibenden Rechenkapazitäten. Optimiert darauf, die verbleibende Nodes möglichst unausgelastet zu halten um sie für zukünfige Aufgaben verfügbar zu halten.
-    \item Greedy (Node-Balance): Keine Sortierung der Aufgaben. Jede Aufgabe wird auf den Node gelegt, der die geringste Gesamtauslastung als Resultat vorweist. Optimiert auf eine gleichmäßige Nodeauslastung.
-    \item First-Come-First-Serve: Einfache Austeilung der Aufgaben ohne Sortierung auf den ersten Node, der genug Kapazität für die jeweilige Aufgabe besitzt.
+    \item \textbf{Greedy (TOPS Prio):} Sortiert Aufgaben nach TOPS-Bedarf. Große Aufgaben werden zuerst auf die am wenigsten ausgelasteten Nodes verteilt.
+    \item \textbf{Greedy (Best-Fit):} Verteilt Aufgaben an Nodes mit den geringsten verbleibenden Kapazitäten, um \enquote{Lücken} zu füllen und andere Nodes komplett frei zu halten.
+    \item \textbf{Greedy (Node-Balance):} Optimiert auf eine gleichmäßige Auslastung aller Nodes (minimale Standardabweichung).
 \end{itemize}
 
- Die Annahmen für die Node Leistung und den Ressourcenverbrauch der Anwendungen bleiben dieselben wie in der vorherigen Simulation. Um statistische Steuungen zu minimieren, werden die Ergebnisse aus 20 Simulationsläufen gemittelt. 
-
-\begin{figure}[h!]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
     \begin{groupplot}[
@@ -270,7 +279,7 @@ Um eine bessere Auswahl des konkreten Scheduling Algorithmus treffen zu können,
     ]
     \addplot table [
         x=Algorithm, y=TOPS Utilization, col sep=comma
-    ] {content/graphics/heuristic_comparison_avg.csv}; % <-- MODIFIED: Full path
+    ] {content/graphics/heuristic_comparison_avg.csv}; 
 
     % --- Plot 2: Tasks Scheduled (The "Quantity" Trade-off) ---
     \nextgroupplot[
@@ -278,7 +287,7 @@ Um eine bessere Auswahl des konkreten Scheduling Algorithmus treffen zu können,
         title style={at={(0.5,1.05)},anchor=south}, 
         ylabel={Anzahl Tasks (Durchschnitt)},
         ymin=0, 
-        ymax=1400, % Added ymax for headroom
+        ymax=1400, 
         nodes near coords,
         nodes near coords align={above}, 
         nodes near coords style={
@@ -289,7 +298,7 @@ Um eine bessere Auswahl des konkreten Scheduling Algorithmus treffen zu können,
     ]
     \addplot table [
         x=Algorithm, y=Tasks Scheduled, col sep=comma
-    ] {content/graphics/heuristic_comparison_avg.csv}; % <-- MODIFIED: Full path
+    ] {content/graphics/heuristic_comparison_avg.csv}; 
 
     % --- Plot 3: Load Std Dev (The "Balance" Metric) ---
     \nextgroupplot[
@@ -297,61 +306,53 @@ Um eine bessere Auswahl des konkreten Scheduling Algorithmus treffen zu können,
         title style={at={(0.5,1.05)},anchor=south}, 
         ylabel={Std. Abweichung},
         ymin=0, 
-        ymax=0.2, % Added ymax for headroom
+        ymax=0.2, 
         nodes near coords,
         nodes near coords align={above}, 
         nodes near coords style={font=\tiny, /pgf/number format/precision=3},
     ]
     \addplot table [
         x=Algorithm, y=Load Std Dev, col sep=comma
-    ] {content/graphics/heuristic_comparison_avg.csv}; % <-- MODIFIED: Full path
+    ] {content/graphics/heuristic_comparison_avg.csv}; 
 
     \end{groupplot}
     \end{tikzpicture}
-    
     \caption{Vergleich der Heuristik-Leistung (Durchschnitt von 20 Läufen)}
     \label{fig:Simulation_Heuristic_Comparison}
 \end{figure}
 
-Die Ergebnisse aus \autoref{fig:Simulation_Heuristic_Comparison} bestätigen, dass Greedy Scheduling deutlich bessere Ressourcenauslastung der Nodes mit sich bringt als die einfache First-Come-First-Serve Methode. First-Come-First-Serve hat sowohl die geringste Gesamtauslastung als auch die geringste Menge an Aufgaben verteilt. Greedy (TOPS Priorisierung) erreichte die beste CPU Ressourcenauslastung der Nodes. Greedy (Node-Balance) konnte nicht die gleichmäßigste Gesamtauslastung (geringste Standardabweichung) erreichen, dafür wurde die höchste Anzahl an Aufgaben verteilt. Greedy (Best-Fit) bildet einen Kompromiss aus CPU Auslastung und Anzahl verteilter Aufgaben. Die konkrete Auswahl hängt demnach davon ab, welche Kriterien priorisiert werden. Das primäre Ziel dieser Arbeit ist es, ungenutzte Rechenressourcen möglichst effizient zu nutzen. Aus diesem Grund wird Greedy (TOPS Priorisierung) ausgewählt um das Scheduling in einem dynamischen Szenario zu untersuchen. 
+Die Ergebnisse in \autoref{fig:Simulation_Heuristic_Comparison} zeigen, dass \textit{Greedy (TOPS Prio)} die höchste CPU-Auslastung erzielt. Da das primäre Forschungsziel die effiziente Nutzung brachliegender Rechenleistung ist, wurde dieser Algorithmus für die finale dynamische Validierung ausgewählt.
 
-In diesem dynamischen Szenario wird überprüft, ob das gewählte Scheduling Verfahren auch in einem realitätsnahen Szenario zu einer hinreichend guten Auslastung der Fahrzeuge bzw. Runtime Nodes führt. Die Simulation wird über mehrere Zeitschritte hinweg ausgeführt und bildet dabei eine dynamische Änderung der verfügbaren Fahrzeuge und Aufgaben ab. Die Parameter für die verfügbaren Leistungen der Nodes sowie der Leistungsverbrauch der Aufgaben entsprechen den Annahmen aus den vorherigen Simulationen. Für eine bessere Übersicht werden die Parameter in der \autoref{tab:simulation_parameters} zusammengefasst. 
+\paragraph{Dynamische Validierung:}
+In einem dynamischen Szenario über 100 Zeitschritte wurde untersucht, wie sich der Algorithmus bei schwankender Node-Verfügbarkeit verhält. Nodes treten dem Netzwerk bei und verlassen es mit einer Wahrscheinlichkeit (\textit{Churn Rate}) von 5\,\%. Wenn ein Node das Netzwerk verlässt, werden dessen laufende Aufgaben zurück in den Pool gelegt (\textit{Retry}-Mechanismus). Die Parameter sind in \autoref{tab:simulation_parameters} zusammengefasst.
 
-\begin{table}[h!]
+\begin{table}[htbp]
     \centering
-    % Adjusted column widths to fit the content (Total width approx 16cm)
-    \begin{tabular}{m{2.5cm} m{3.5cm} m{3cm} m{6cm}}
-        \hline
+    \begin{tabular}{m{2.5cm} m{3.5cm} m{3cm} m{5cm}}
+        \toprule
         \textbf{Kategorie} & \textbf{Parameter} & \textbf{Wert} & \textbf{Beschreibung} \\
-        \hline
-        \hline
-        % --- Environment ---
-        Umgebung & Simulationsschritte & 100 & Gesamtdauer der Simulation (in Zeitschritten). \\
-         & Initiale Fahrzeuge & 500 & Anzahl der Fahrzeuge zu Beginn der Simulation. \\
-         & Maximale Fahrzeuge & 1000 & Obergrenze für die Clustergröße. \\
-        \hline
-        % --- Volatility ---
-        Volatilität & Node Abwanderungsrate & 5\% ($0.05$) & Wahrscheinlichkeit, dass ein Fahrzeug pro Zeitschritt beitritt oder das Netzwerk verlässt. \\
-        & Aufgabenpool Wachstumsrate & 104 & Anzahl an Aufgaben die pro Simulationsschritt hinzukommen \\
-        \hline
-        % --- Workload ---
-        Arbeitslast & Aufgabenrate & 200 Tasks/Step & Durchschnittliche Anzahl neuer Aufgaben pro Schritt (Poisson-Verteilung). \\
-         & Initiale Tasks & 2000 & Initiale Warteschlange, um sofortige Systemsättigung zu garantieren. \\
-         & Taskdauer & 3 - 10 Steps & Zufällige Dauer pro Aufgabe zur Simulation variabler Lasten. \\
-        \hline
-        % --- Hardware ---
-        Hardware & CPU Leistung & 100 - 200 TOPS & Realistischer Bereich für aktuelle autonome Fahrchips (SoCs). \\
-         & RAM & 64 GB & Standard RAM-Kapazität für Hochleistungssteuergeräte. \\
-         & Speicher & 500 GB & Verfügbarer Speicher für Container-Images und Daten. \\
-        \hline
+        \midrule
+        Umgebung & Simulationsschritte & 100 & Gesamtdauer der Simulation. \\
+         & Initiale Fahrzeuge & 500 & Startanzahl der Fahrzeuge. \\
+         & Maximale Fahrzeuge & 1000 & Obergrenze für Clustergröße. \\
+        \midrule
+        Volatilität & Node Churn Rate & 5\% ($0.05$) & Wahrscheinlichkeit für Beitritt/Austritt pro Schritt. \\
+        & Aufgabenpool Wachstumsrate & 104 & Neue Aufgaben pro Schritt. \\
+        \midrule
+        Arbeitslast & Aufgabenrate & 200 Tasks/Step & Poisson-Verteilung. \\
+         & Initiale Tasks & 2000 & Sättigung zu Beginn. \\
+         & Taskdauer & 3 - 10 Steps & Zufällige Dauer. \\
+        \midrule
+        Hardware & CPU Leistung & 100 - 200 TOPS & NVIDIA Orin / Mobileye Klasse. \\
+         & RAM & 64 GB & Standard High-Perf. ECU. \\
+         & Speicher & 500 GB & Für Container-Images. \\
+        \bottomrule
     \end{tabular} 
-    \caption{Konfiguration und Parameter der dynamischen Simulation zur Validierung des Scheduling-Algorithmus.}
+    \caption{Konfiguration der dynamischen Simulation zur Validierung des Scheduling-Algorithmus.}
     \label{tab:simulation_parameters}
 \end{table}
 
-Wenn ein Fahrzeug bzw. ein Runtime Node nicht mehr verfügbar ist, werden die Aufgaben, die der Node aktuell bearbeitet hat, wieder dem Aufgabenpool hinzugefügt. Der Fokus bei dieser Simulation liegt auf der Robustheit gegenüber Node Ausfälle und der Effizienz der Ressourcennutzung unter volatilen Bedingungen. Die Simulationsergebnisse sind in der \autoref{fig:Dynamic_Stability} abgebildet. 
-
-\begin{figure}[h!]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
@@ -387,11 +388,11 @@ Wenn ein Fahrzeug bzw. ein Runtime Node nicht mehr verfügbar ist, werden die Au
         \addlegendentry{Aktive Nodes}
         \end{axis}
     \end{tikzpicture}
-    \caption{Auswirkung der Knotenvolatilität auf die Warteschlange. Trotz schwankender Knotenanzahl (orange) bleibt die Warteschlange (blau) stabil und wird kontinuierlich abgearbeitet.}
+    \caption{Auswirkung der Knotenvolatilität auf die Warteschlange. Trotz schwankender Knotenanzahl (orange) bleibt die Warteschlange (blau) stabil.}
     \label{fig:Dynamic_Stability}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
@@ -411,16 +412,18 @@ Wenn ein Fahrzeug bzw. ein Runtime Node nicht mehr verfügbar ist, werden die Au
         \draw[red, dashed] (axis cs:0,1.0) -- (axis cs:100,1.0);
         \end{axis}
     \end{tikzpicture}
-    \caption{Systemauslastung über die Zeit. Das System hält eine hohe Auslastung aufrecht, was auf eine effiziente Neuverteilung der Aufgaben durch den Scheduler hinweist.}
+    \caption{Systemauslastung über die Zeit. Das System hält eine hohe Auslastung aufrecht, was auf eine effiziente Neuverteilung hinweist.}
     \label{fig:Dynamic_Utilization}
 \end{figure}
 
-Die Auswirkungen der Fahrzeug bzw. Node Ausfälle sind in der \autoref{fig:Dynamic_Stability} dargestellt. Die orangene Kurve zeigt die Anzahl verfügbarer Nodes für jeden Simulationsschritt. Trotz der stetigen Schwankungen der verfügbaren Ressourcen werden die Aufgaben abgearbeitet. Die blaue Kurve zeigt die Anzahl der Aufgaben im Aufgabenpool. Trotz einer Zunahme von 104 Aufgaben pro Simulationsschritt bleibt sie stabil. Zusätzlich werden auch die nicht fertig bearbeiteten Aufgaben von Nodes, die nicht mehr zur Verfügung stehen, in den Aufgabenpool zurückgelegt, um von verfügbaren Nodes weiterbearbeitet zu werden. Die Simulation zeigt, dass der Scheduler in der Lage ist, diese Aufgaben umzuverteilen. 
+Zur Verifizierung des in Abschnitt 5.3.5.2 ausgewählten \enquote{Greedy (TOPS Prio)} Algorithmus wurde dieser in der in \autoref{tab:simulation_parameters} definierten dynamischen Umgebung untersucht. Der Fokus lag hierbei auf der Robustheit gegenüber Knotenausfällen (Churn) und der Effizienz der Ressourcennutzung unter Volatilität.
 
-Im \autoref{fig:Dynamic_Utilization} wird die Systemauslastung über die Simulationszeit dargestellt. Die Auslastung ist definiert als die theoretisch maximal verfügbare TOPS-Leistung aller aktiven Knoten zum jeweiligen Zeitpunkt. Der Verlauf der durch Scheduling tatsächlich erreichten Auslastung zeigt, dass auch in diesem dynamischen Szenario eine  durchschnittliche Auslastung von etwa 80\% der theoretisch möglichen Auslastung erreicht werden konnte. Damit erweist sich der gewählte Greedy Algorithmus auch in diesem dynamischen Szenario als effizient genug, um eine ausreichend gute Auslastung zu erreichen. 
+Die Auswirkungen der Knotenfluktuation auf die Abarbeitung der Warteschlange sind in (\autoref{fig:Dynamic_Stability}) dargestellt.  Die orangefarbene Kurve verdeutlicht die Volatilität der verfügbaren Fahrzeuge (Active Nodes), die durch das simulierte Ein- und Ausparken (Churn-Rate 5\%) entsteht. Es ist zu erkennen, dass trotz der stetigen Schwankungen der verfügbaren Rechenknoten und eine Wachstumsrate von 104 Tasks pro Simulationsschritt die Warteschlange (blaue Kurve) konstant bleibt. Das implementierte \enquote{Robust/Retry} Konzept greift hier effektiv: Aufgaben, die auf einem ausfallenden Knoten (z. B. ein Fahrzeug verlässt das Netzwerk) bearbeitet wurden, gehen nicht verloren, sondern werden in den Aufgabenpool zurückgeführt. Die Simulation zeigt, dass der Scheduler in der Lage ist, diese Rückläufer sowie neu ankommende Aufgaben ohne Systemstillstand auf die verbleibenden oder neu hinzukommenden Knoten umzuverteilen.
 
-Zusammenfassend konnte mithilfe der Simulation ein geeigneter Scheduling Algorithmus ausgewählt und unter Nachbildung eines realitätsnahen Szenarios verifiziert werden. Dabei wurden zunächst keine Echtzeitanforderungen berücksichtigt. Werden jedoch Aufgaben mit Echtzeitanforderungen an den Knoten verteilt, muss der Scheduler auch die Latenz berücksichtigen. Das Konzept mit den Fahrzeugen als Nodes, die als unzuverlässig betrachtet werden, da sie jederzeit nicht mehr verfügbar sein können, eignet sich eher für zeitunkritische Applikationen.
+Die \autoref{fig:Dynamic_Utilization} visualisiert die Systemauslastung über den Verlauf der Simulation. Die Auslastung ist definiert als das Verhältnis der genutzten TOPS-Leistung zur theoretisch maximal verfügbaren Leistung aller aktiven Knoten zum jeweiligen Zeitpunkt. Die Grafik zeigt, dass das System eine konstant hohe Auslastung aufrechterhält. Die durchschnittliche Auslastung liegt bei ca. 80\% der theoretisch möglichen Kapazität. Dies belegt, dass der gewählte Greedy Algorithmus performant genug ist, um freiwerdende Ressourcen, sei es durch fertiggestellte Aufgaben oder durch neu beitretende Fahrzeuge, unmittelbar wieder zu belegen. Es entstehen keine signifikanten Leerlaufzeiten durch den Scheduling-Prozess selbst.
 
-\subsection{Zusammenfassung}
+Die Simulation bestätigt die Eignung der Architektur für den Einsatz in Fahrzeugnetzwerken. Durch die \enquote{Retry} Logik wird eine Zuverlässigkeit von 100\% (kein Aufgabenverlust) erreicht. Allerdings ist dies mit erhöhtem Latenz verbunden: Aufgaben, die auf einem Knoten unterbrochen werden, müssen neu gestartet werden. Die hohe Systemauslastung beweist jedoch, dass die gewählte Strategie (Greedy TOPS Prio) die teure Hardware Ressource auch unter dynamischen Bedingungen effizient nutzt.
 
-In diesem Kapitel wurde die erfolgreiche Implementierung der Softwareplattform beschrieben. Der Runtime Node wurde in C realisiert, um eine hohe Hardwarenähe zu gewährleisten, während der Runtime Master in Go implementiert wurde, um eine effiziente Verwaltung der Knoten zu ermöglichen. Die modulare Kommunikationsschnittstelle auf Basis von DDS ermöglichte eine stabile Vernetzung. Abschließend zeigte die Simulation des Schedulings, dass der gewählte 'Greedy (TOPS Prio)'-Algorithmus auch unter dynamischen Bedingungen mit Knotenausfällen eine Systemauslastung von ca. 80\% erreicht und somit die Anforderungen an Robustheit und Effizienz erfüllt.
+\section{Zusammenfassung}
+
+In diesem Kapitel wurde die erfolgreiche Implementierung der Softwareplattform detailliert beschrieben. Der Runtime Node wurde in C realisiert, um eine hohe Hardwarenähe und direkten Zugriff auf Linux-Kernel-Features zu gewährleisten. Der Runtime Master wurde in Go implementiert, um von dessen Nebenläufigkeitsmodell bei der Verwaltung vieler Knoten zu profitieren. Die Kommunikation erfolgt über eine modulare \gls{DDS}-Schnittstelle. Die abschließenden Simulationen verifizierten, dass der gewählte \enquote{Greedy (TOPS Prio)}-Algorithmus auch unter dynamischen Bedingungen eine hohe Ressourceneffizienz und Systemstabilität sicherstellt.
