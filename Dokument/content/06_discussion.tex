@@ -40,4 +40,50 @@ In der erweiterten Simulation wurden verschiedene Greedy-Varianten untersucht. D
 
 \subsection{Robustheit in dynamischen Umgebungen}
 
-Die kritischste Bewertung betrifft das Verhalten der Strategie unter Volatilität (Fahrzeuge parken aus). Die dynamische Simulation (\autoref{fig:Dynamic_Stability} und \autoref{fig:Dynamic_Utilization}) lieferte hierzu wichtige Erkenntnisse. 
+Die kritischste Bewertung betrifft das Verhalten der Strategie unter Volatilität (Fahrzeuge parken aus). Die dynamische Simulation (\autoref{fig:Dynamic_Stability} und \autoref{fig:Dynamic_Utilization}) lieferte hierzu wichtige Erkenntnisse. Torz eine Abwanderungsrate von 5\% bei den Fahrzeugen oder Runtime Nodes blieb die Warteschlange stabil. Der Scheduler konnte die Aufgaben von ausgefallenen Nodes schnell genug neu zuweisen. Die durchschnittliche Systemauslastung betrug etwa 80\%. Dies zeigt, dass der Greedy Ansatz schnell genug reagiert, um durch die Fluktuation entstehenden Lücken schnell zu füllen. 
+
+\subsection{Grenzen der Strategie}
+
+Die Bewertung zeigt jedoch auch klare Grenzen des gewählten Ansatzes auf. Das implementierte Konzept der Neuverteilung der Aufgaben von ausgefallenen Nodes garantiert zwar, dass keine Aufgaben verloren gehen, dies geschieht jedoch auf Kosten der Latenz. Aufgaben, die auf einem Knoten abgebrochen wurden, müssen neu verteult werden. Dies führt zu unvorsehbaren Erhöhung der Bearbeitungszeit für die betroffenen Aufgaben. Daraus lässt sich ableiten, dass die gewählte Strategie sich hervorragend für durchsatzorientierte Aufgaben eignet (z. B. Batch Processing, KI Training, Rendering), jedoch weniger für latenzkritische Echtzeitanwendungen, bei denen eine garantierte Antwortzeit erforderlich ist.
+
+\subsection{Zusammenfassung}
+
+Die Strategie Greedy (TOPS Prio) stellt den optimalen Kompromiss für das untersuchte Szenario dar. Sie ist effizient genug, um auf dem Runtime Master in Echtzeit ausgeführt zu werden, und leistungsfähig genug, um eine hohe Auslastung der Fahrzeugressourcen zu gewährleisten. Die Nachteile bezüglich der Latenzvarianz sind systemimmanent bei der Nutzung unzuverlässiger Knoten (Fahrzeuge) und werden durch die hohe Gesamteffizienz kompensiert.
+
+\section{Einordnung in den Stand der Technik}
+
+Die entwickelte Plattform positioniert sich im Schnittfeld zwischen Edge Computing, Cloud Computing und eingebetteten Fahrzeugsystemen. Im Folgenden wird der entwickelte Lösungsansatz mit den in Kapitel 2 vorgestellten Technologien verglichen und eingeordnet.
+
+\subsection{Vergleich mit etablierten Orchestrierungslösungen}
+
+In der IT-Welt stellt Kubernetes den De-facto-Standard für die Container-Orchestrierung dar. Kubernetes geht jedoch in seiner Standardkonfiguration von einer relativ stabilen Infrastruktur aus, bei der Knotenausfälle die Ausnahme und nicht die Regel sind. Kubernetes besteht aus einer umfangreichen „Control Plane“ (API Server, etcd, Scheduler, Controller-Manager) , die für den Betrieb auf dedizierten Servern ausgelegt ist. Die in dieser Arbeit entwickelte Komponente „Runtime Master“ implementiert eine stark vereinfachte Version dieser Logik. Sie verzichtet auf komplexe Features wie „Self-Healing“ durch Replika-Sets oder komplexe Ingress-Controller, um stattdessen die für Fahrzeuge spezifische Volatilität (hohe Churn-Rate durch Parkvorgänge) effizienter zu handhaben. Auf den Knoten benötigt Kubernetes ein „Kubelet“ und einen „Kube-Proxy“ . Die implementierte „Runtime Node“-Software ist hingegen eine schlanke C-Anwendung, die direkt mit den Linux-Kernel-Features interagiert, ohne den Overhead eines vollständigen Kubernetes-Stacks mitzuführen. Dies entspricht der Anforderung, die begrenzten Ressourcen der Steuergeräte primär für die Berechnung und nicht für die Verwaltung bereitzustellen. 
+
+\subsection{Virtualisierung}
+
+Der Stand der Technik unterscheidet zwischen Hardware-Virtualisierung (VMs) und Virtualisierung auf Betriebssystemebene (Container). Die Arbeit folgt dem aktuellen Trend im Edge Computing, Container statt VMs zu nutzen. Die Implementierung bestätigt, dass die Nutzung von Linux Namespaces und cgroups eine ausreichende Isolierung bietet, ohne den erheblich höheren Overhead eines Hypervisors und zusätzlicher Gast-Betriebssysteme zu erzeugen. Im Gegensatz zu Docker, das einen Daemon voraussetzt, nutzt der \enquote{Runtime Node} native Systemaufrufe (clone, unshare, pivot_root), um Container zu erzeugen . Dies ermöglicht eine einfachere Integration in das Fahrzeug-Betriebssystem und reduziert die Abhängigkeit von Drittanbieter-Tools, die für IT-Server, aber nicht zwingend für Automotive-ECUs zertifiziert sind.
+
+\subsection{Kommunikationsarchitektur}
+
+Die Automobilindustrie bewegt sich hin zu Service-orientierten Architekturen (SOA). Die Wahl von DDS (Data Distribution Service) als Kommunikationsmiddleware ordnet das System nahtlos in moderne E/E-Architekturen ein. Anders als klassische Web-Server-Architekturen (REST/HTTP) , ermöglicht der gewählte Publish/Subscribe-Ansatz eine dynamische Entdeckung von Teilnehmern (Discovery) ohne statische Konfigurationsdateien . Dies stellt sicher, dass das System skalierbar bleibt und sich Fahrzeuge ad-hoc dem Cluster anschließen können, was den aktuellen Forschungsstand im Bereich „Vehicular Fog Computing“ widerspiegelt.
+
+\subsection{Zusammenfassung}
+
+Die entwickelte Lösung kombiniert die Leichtgewichtigkeit von Edge Computing Ansätzen mit der zentralen Steuerbarkeit von Cloud-Computing. Sie hebt sich vom Stand der Technik dadurch ab, dass sie Standardtechnologien aus der IT (Container, Pub/Sub) so adaptiert und reduziert, dass sie auf die spezifischen Restriktionen und die Volatilität von Fahrzeugsteuergeräten passen.
+
+\section{Limitationen der vorgestellten Lösung}
+
+Die in dieser Arbeit entwickelte Plattform und die dazugehörige Scheduling-Simulation haben die grundsätzliche Machbarkeit von verteiltem Rechnen auf Fahrzeugsteuergeräten demonstriert. Dennoch unterliegt der gewählte Lösungsansatz Limitationen technischer und konzeptioneller Natur, die bei einer Überführung in den produktiven Einsatz berücksichtigt werden müssen.
+
+\subsection{Netzwerkkommunikation und Datentransfer}
+
+Ein wesentlicher Kritikpunkt betrifft die Effizienz der Datenübertragung. Die Entscheidung, Binärdateien mittels Base64-Kodierung in JSON-Nachrichten zu verpacken, wurde zugunsten der Kompatibilität und einfacheren Implementierung getroffen. Dies führt jedoch zu einem Datenoverhead von ca. 33\%. In einem realen Fahrzeugnetzwerk, das über Mobilfunk (4G/5G) angebunden ist, würde dies Bandbreite verschwenden und die Latenz erhöhen. Für den produktiven Einsatz wäre ein Wechsel auf binäre Protokolle wie Protobuf oder MessagePack, wie in \autoref{Methode Softwareplattform und Scheduling} diskutiert , zwingend erforderlich.
+
+Das verwendete DDS-Protokoll basiert standardmäßig auf Multicast/Broadcast zur Teilnehmererkennung. Dies funktioniert im lokalen Netzwerk des Prototyps zuverlässig, ist jedoch über das öffentliche Internet aufgrund der Netzwerktopologie und Broadcast-Einschränkungen problematisch. Eine Skalierung auf tausende Fahrzeuge würde einen dedizierten Discovery-Server (Broker) oder spezifische Cloud-Gateways erfordern, die im aktuellen Prototyp nicht implementiert sind.
+
+\subsection{Hardware Heterogenität}
+
+Die Simulation ging von einer homogenen Hardware-Landschaft aus, bei der die Knoten lediglich durch ihre Rechenleistung (TOPS) unterschieden wurden. In der Realität weisen Fahrzeugsteuergeräte unterschiedliche Prozessorarchitekturen (z. B. ARM64 vs. x86_64) und spezifische Hardwarebeschleuniger (NVIDIA CUDA, proprietäre NPU-Treiber) auf. Der aktuelle „Runtime Master“ prüft zwar die Kapazität, aber nicht die binäre Kompatibilität der Anwendung mit der Zielarchitektur. Ein Container, der für x86 kompiliert wurde, würde auf einem ARM-basierten Fahrzeugsteuergerät fehlschlagen. Ein produktiver Scheduler müsste um eine Architektur Prüfung erweitert werden.
+
+\subsection{Sicherheitsbetrachtung}
+
+Wie in der Anforderungsanalyse in \autoref{Anforderungsanalyse} festgelegt, wurde eine tiefgehende Sicherheitsanalyse aus dem Fokus dieser Arbeit ausgeklammert.
