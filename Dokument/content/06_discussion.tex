@@ -25,3 +25,19 @@ Diese Anforderung fordert eine Kommunikationsschnittstelle für die von extern g
 \subsection{Zusammenfassung}
 
 Der implementierte Prototyp erfüllt alle in \autoref{Anforderungsanalyse} definierten funktionalen Anforderungen. Die Aufteilung in Runtime Node (Fahrzeugseite) und Runtime Master (Verwaltungsseite) hat sich als tragfähige Architektur erwiesen, um die komplexe Aufgabe der Orchestrierung in einem volatilen Fahrzeugnetzwerk zu lösen.
+
+\section{Bewertung der Scheduling-Strategie}
+
+Die Evaluierung der Scheduling-Strategie basiert auf den in \autoref{Implementierung der Scheduling Alogrithmen} durchführten statischen und dynamischen Simulationen. Dabei stand die Abwägung zwischen der Qualität der Ressourcenverteilung (Optimierungsgrad) und der Rechenzeit des Algorithmus (Skalierbarkeit) im Vordergrund.
+
+\subsection{Untersuchung der Effizienz und Rechenaufwand}
+
+Ein Vergleich der Basis-Algorithmen in der statischen Simulation hat deutlich gezeigt, dass exakte Verfahren wie \enquote{Brute Force} für den Anwendungsfall eines Fahrzeugnetzwerks ungeeignet sind. Während Greedy eine Verteilung in 0.013 ms berechnen konnte, benötigte der Brute Force Algorithmus bereits für diese sehr kleine Instanz mit 11 Aufgaben und 3 Fahrzeugen bereits 5,31 Sekunden. Da die Komplexität exakter Verfahren exponentiell mit der Menge an Aufgaben und Fahrzeugen ansteigt, ist ihr Einsatz in einem realen Szenario mit Tausenden von Fahrzeugen und Aufgaben nicht praktikabel. Der Greedy Algorithmus erreichte in der Simulation eine Rechenauslastung von 91\% im Vergleich zur optimalen Lösung. Der Leistungsabfall von 9\% ist angesichts des enormen Geschwindigkeitsvorteils (Faktor 400.000) akzeptabel. Der einfache First-Come-First-Serve-Ansatz erreichte nur 76\% der optimalen Auslastung. Dies belegt, dass eine Sortierung der Aufgaben, wie sie bei Greedy implementiert ist, notwendig ist, um die Hardware-Ressourcen optimal zu nutzen.
+
+\subsection{Auswahl der Heuristik}
+
+In der erweiterten Simulation wurden verschiedene Greedy-Varianten untersucht. Die Entscheidung für \enquote{Greedy (TOPS Prio)} erwies sich als zielführend für das primäre Forschungsziel: die Maximierung der Rechenleistung. Während \enquote{Greedy (Node Balance)} eine höhere Anzahl an Aufgaben verteilte, führte \enquote{Greedy (TOPS Prio)} zur höchsten Auslastung der CPU Ressourcen. Die maximierung der TOPS Nutzung wurde als wirtschaftlich relevanter bewertet als eine rein mengenmäßige Verteilung von kleineren Aufgaben.
+
+\subsection{Robustheit in dynamischen Umgebungen}
+
+Die kritischste Bewertung betrifft das Verhalten der Strategie unter Volatilität (Fahrzeuge parken aus). Die dynamische Simulation (\autoref{fig:Dynamic_Stability} und \autoref{fig:Dynamic_Utilization}) lieferte hierzu wichtige Erkenntnisse. 
