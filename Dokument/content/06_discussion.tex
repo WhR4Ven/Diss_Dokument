@@ -12,3 +12,16 @@ Anforderung 1 fordert die Platzierbarkeit von Ausführbarkeit von externen Appli
 
 \subsubsection{Anforderung 2 und 3: Automatische Erkennung und Ressourcenmitteilung}
 
+Die Anforderungen 2 und 3 fordern, dass die verfügbaren Fahrzeuge automatisch erkannt werden und ihre Verfügbarkeit, sowie freie Ressourcen mitteilen. Umgesetzt wurde die Anorderung durch die Nutzung des Data Distribution Service (DDS) Protokolls, die eine dezentrale Erkennung der Teilnehmer ermöglicht, ohne manuelle Konfiguration. Dies kann sowohl fahrzeugintern als auch auf einem separaten Netzwerk mit Broadcast oder über eine Internetverbindung mit einem vorkonfigurierten Discovery Server umgesetzt werden. Die verfügbaren Ressourcen werden periodisch über eine \enquote{Node Info} Nachricht (definiert in \autoref{Implementierung Befehlsverarbeitung}), welche technische Daten wie CPU Leistung, vrüfgabren Arbeitsspeicher (RAM) und Speicherplatz beinhaltet. Der Runtime Master empfängt diese Nachrichten und baut dynamisch eine interne Datenbank (Node Datenbank) auf, die den aktuellen Status des Netzwerks abbildet. Somit ist das System in der Lage, auf die hohe Dynamik von Fahrzeugnetzwerken (Ein- und Ausparken) zu reagieren, wie es in der Anforderungsanalyse gefordert wurde.
+
+\subsubsection{Anforderung 4: Isolierte Laufzeitumgebung}
+
+Anforderung 4 beschreibt, dass auf dem Steuergerät des Fahrzeugs eine eigenständige, isolierte Laufzeitumgebung eingerichtet werden muss, um die externen Applikationen von der Fahrzeugsoftware zu isolieren. In der Umsetzung wurden hierfür Software-Container für die externen Applikationen eingesetzt, die auf Basis von Linux Kernel Features umgesetzt wurden. In der Komponente \enquote{Runtime Node} nutzt die Softwarekomponente \enquote{Container Management} Linux Namespaces (Mount, PID, UTS, Network), um sicherzustellen, dass externe Prozesse keinen Zugriff auf das Host-Dateisystem oder andere Prozesse des Steuergeräts haben. Zusätzlich wurden Pivot Root zur Beschränkung des Dateisystems auf den Container-Ordner sowie cgroups zur Ressourcenlimitierung implementiert. Dadurch wird gewährleistet, dass die Ausführung externer Berechnungen die funktionale Sicherheit des Fahrzeugs nicht unmittelbar gefährdet, da eine strikte Trennung auf Betriebssystemebene erfolgt.
+
+\subsubsection{Anforderung 5: Kommunikationsschnittstelle für Applikationen}
+
+Diese Anforderung fordert eine Kommunikationsschnittstelle für die von extern geladene Applikationen. Dies wurde mit Hilfe von virtuellen Netzwerkschnittstellen (Network Bridge) umgesetzt, die eine Kommunikation nach Außen ermöglichen. Obwohl der Fokus des Prototyps auf der Verwaltung der Container lag, stellt die zugrundeliegende Container-Technologie sicher, dass Applikationen über Standard-Sockets kommunizieren können, sofern dies durch die Netzwerkkonfiguration des Runtime Nodes zugelassen wird.
+
+\subsubsection{Zusammenfassung}
+
+Der implementierte Prototyp erfüllt alle in \autoref{Anforderungsanalyse} definierten funktionalen Anforderungen. Die Aufteilung in Runtime Node (Fahrzeugseite) und Runtime Master (Verwaltungsseite) hat sich als tragfähige Architektur erwiesen, um die komplexe Aufgabe der Orchestrierung in einem volatilen Fahrzeugnetzwerk zu lösen.
