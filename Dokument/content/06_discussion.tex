@@ -86,4 +86,26 @@ Die Simulation ging von einer homogenen Hardware-Landschaft aus, bei der die Kno
 
 \subsection{Sicherheitsbetrachtung}
 
-Wie in der Anforderungsanalyse in \autoref{Anforderungsanalyse} festgelegt, wurde eine tiefgehende Sicherheitsanalyse aus dem Fokus dieser Arbeit ausgeklammert.
+Wie in der Anforderungsanalyse im \autoref{Anforderungsanalyse} festgelegt, wurde eine tiefgehende Sicherheitsanalyse aus dem Fokus dieser Arbeit ausgeklammert. Zwar nutzen die implementierten Container Linux Namespaces und Pivot Root zur Isolation, doch gilt diese Form der Virtualisierung als weniger sicher im Vergleich zu Hypervisoren. Ein \enquote{Container Breakout} könnte theoretisch Zugriff auf fahrzeuginterne Busse oder sicherheitskritische Fahrzeugfunktionen ermöglichen. Der Prototyp implementiert zwar Token-Felder in der \enquote{Node Info} Nachricht, jedoch fehlt eine robuste Public Key Infrastruktur (PKI) zur gegenseitigen Authentifizierung von Master und Node. Ohne diese Maßnahmen besteht die Gefahr, dass böswillige Akteure Schadcode auf die Fahrzeuge einschleusen.
+
+\subsection{Energieeffizienz und Ressourcenausnutzung}
+
+Der gewählte Scheduling-Algorithmus \enquote{Greedy (TOPS Prio)} optimiert strikt auf die Maximierung der CPU-Auslastung. Diese Betrachtung vernachlässigt den Energieverbrauch. Das Ausführen rechenintensiver externer Aufgaben auf einem parkenden Elektrofahrzeug belastet die Hochvoltbatterie. Es muss geprüft werden, ob der wirtschaftliche Nutzen der bereitgestellten Rechenleistung die Kosten für den Energieverbrauch und die potentielle Reduktion der Fahrzeugreichweite rechtfertigt. Ein zukünftiger Scheduler müsste den Ladezustand (SoC) der Batterie als limitierenden Faktor in die Entscheidungslogik aufnehmen.
+
+\subsection{Latenzvarianz und Echtzeitfähigkeit}
+
+Die Simulationsergebnisse zeigten, dass die Neuverteilung der Aufgaben von ausgefallenen Nodes zwar die Abarbeitung aller Aufgaben garantiert, dies jedoch auf Kosten der zeitlichen Vorhersehbarkeit geschieht. Aufgaben, die aufgrund von Knotenausfällen neu eingeplant werden müssen, weisen eine stark erhöhte Latenz auf. Das System ist daher ungeeignet für Anwendungen mit harten Echtzeitanforderungen oder direkter Nutzerinteraktion. Die Plattform beschränkt sich effektiv auf latenzunempfindliche Batch-Processing-Aufgaben (z. B. Training von KI Modellen, Simulationen), bei denen der Gesamtdurchsatz wichtiger ist als die Antwortzeit der Einzelaufgabe.
+
+\subsection{Zusammenfassung der Limitationen}
+
+Zusammenfassend lässt sich sagen, dass der entwickelte Prototyp eine solide Basis für experimentelles verteiltes Rechnen darstellt (\enquote{Proof of Concept}). Für einen kommerziellen Serieneinsatz müssten jedoch insbesondere die Datenübertragungseffizienz gesteigert, Sicherheitsmechanismen gehärtet und die Energiebilanz der Fahrzeuge in die Scheduling-Entscheidungen einbezogen werden.
+
+\section{Zusammenfassung der Diskussion}
+
+Es konnte gezeigt werden, dass die entwickelte Softwarearchitektur aus Runtime Node und Runtime Master die funktionalen Anforderungen an Erkennung, Isolierung und Ausführung externer Applikationen erfüllt. Die Entscheidung für eine leichtgewichtige Container-Lösung in Kombination mit dem DDS-Kommunikationsprotokoll erwies sich im Vergleich zu etablierten, aber komplexeren Lösungen wie Kubernetes als vorteilhaft für die volatilen Bedingungen eines Fahrzeugnetzwerks.
+
+Die simulative Evaluierung der Scheduling-Algorithmen lieferte den Nachweis, dass komplexe Optimierungsverfahren (wie Brute Force) aufgrund der dynamischen Natur des Netzwerks keinen praktischen Mehrwert bieten. Stattdessen konnte mit der \enquote{Greedy (TOPS Prio)} Strategie ein Algorithmus identifiziert werden, der bei minimalem Rechenaufwand eine Systemauslastung von etwa 80\% erreicht und robust auf das unvorhersehbare Ausscheiden von Fahrzeugen reagiert.
+
+Gleichzeitig verdeutlichte die kritische Betrachtung, dass der aktuelle Prototyp primär als „Proof-of-Concept“ zu verstehen ist. Die identifizierten Limitationen, insbesondere der Overhead bei der Datenübertragung (Base64), die fehlende Ende zu Ende Verschlüsselung und die Vernachlässigung des Energieverbrauchs stellen signifikante Hürden für einen kommerziellen Einsatz dar.
+
+Abschließend lässt sich festhalten: Die Transformation von Fahrzeugen zu temporären Edge-Servern ist technisch realisierbar und ressourceneffizient möglich. Die Arbeit liefert damit einen validierten architektonischen Blueprint. Die identifizierten Defizite definieren gleichzeitig die konkreten Handlungsfelder für weiterführende Forschungsarbeiten, die im folgenden Ausblick (Kapitel 7) adressiert werden.
