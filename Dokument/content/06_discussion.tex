@@ -60,7 +60,7 @@ In der IT-Welt stellt Kubernetes den De-facto-Standard für die Container-Orches
 
 \subsection{Virtualisierung}
 
-Der Stand der Technik unterscheidet zwischen Hardware-Virtualisierung (VMs) und Virtualisierung auf Betriebssystemebene (Container). Die Arbeit folgt dem aktuellen Trend im Edge Computing, Container statt VMs zu nutzen. Die Implementierung bestätigt, dass die Nutzung von Linux Namespaces und cgroups eine ausreichende Isolierung bietet, ohne den erheblich höheren Overhead eines Hypervisors und zusätzlicher Gast-Betriebssysteme zu erzeugen. Im Gegensatz zu Docker, das einen Daemon voraussetzt, nutzt der \enquote{Runtime Node} native Systemaufrufe (clone, unshare, pivot_root), um Container zu erzeugen . Dies ermöglicht eine einfachere Integration in das Fahrzeug-Betriebssystem und reduziert die Abhängigkeit von Drittanbieter-Tools, die für IT-Server, aber nicht zwingend für Automotive-ECUs zertifiziert sind.
+Der Stand der Technik unterscheidet zwischen Hardware-Virtualisierung (VMs) und Virtualisierung auf Betriebssystemebene (Container). Die Arbeit folgt dem aktuellen Trend im Edge Computing, Container statt VMs zu nutzen. Die Implementierung bestätigt, dass die Nutzung von Linux Namespaces und cgroups eine ausreichende Isolierung bietet, ohne den erheblich höheren Overhead eines Hypervisors und zusätzlicher Gast-Betriebssysteme zu erzeugen. Im Gegensatz zu Docker, das einen Daemon voraussetzt, nutzt der \enquote{Runtime Node} native Systemaufrufe (clone, unshare, pivot\_root), um Container zu erzeugen . Dies ermöglicht eine einfachere Integration in das Fahrzeug-Betriebssystem und reduziert die Abhängigkeit von Drittanbieter-Tools, die für IT-Server, aber nicht zwingend für Automotive-ECUs zertifiziert sind.
 
 \subsection{Kommunikationsarchitektur}
 
@@ -82,7 +82,7 @@ Das verwendete DDS-Protokoll basiert standardmäßig auf Multicast/Broadcast zur
 
 \subsection{Hardware Heterogenität}
 
-Die Simulation ging von einer homogenen Hardware-Landschaft aus, bei der die Knoten lediglich durch ihre Rechenleistung (TOPS) unterschieden wurden. In der Realität weisen Fahrzeugsteuergeräte unterschiedliche Prozessorarchitekturen (z. B. ARM64 vs. x86_64) und spezifische Hardwarebeschleuniger (NVIDIA CUDA, proprietäre NPU-Treiber) auf. Der aktuelle „Runtime Master“ prüft zwar die Kapazität, aber nicht die binäre Kompatibilität der Anwendung mit der Zielarchitektur. Ein Container, der für x86 kompiliert wurde, würde auf einem ARM-basierten Fahrzeugsteuergerät fehlschlagen. Ein produktiver Scheduler müsste um eine Architektur Prüfung erweitert werden.
+Die Simulation ging von einer homogenen Hardware-Landschaft aus, bei der die Knoten lediglich durch ihre Rechenleistung (TOPS) unterschieden wurden. In der Realität weisen Fahrzeugsteuergeräte unterschiedliche Prozessorarchitekturen (z. B. ARM64 vs. x86\_64) und spezifische Hardwarebeschleuniger (NVIDIA CUDA, proprietäre NPU-Treiber) auf. Der aktuelle „Runtime Master“ prüft zwar die Kapazität, aber nicht die binäre Kompatibilität der Anwendung mit der Zielarchitektur. Ein Container, der für x86 kompiliert wurde, würde auf einem ARM-basierten Fahrzeugsteuergerät fehlschlagen. Ein produktiver Scheduler müsste um eine Architektur Prüfung erweitert werden.
 
 \subsection{Sicherheitsbetrachtung}
 
