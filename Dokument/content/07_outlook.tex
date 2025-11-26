@@ -6,9 +6,9 @@ Die in dieser Arbeit vorgestellte Plattform liefert einen funktionalen Nachweis 
 
 Effiziente Kommunikation: Der Overhead der Base64-Kodierung (33\%) ist für mobile Netzwerke ineffizient. Zukünftige Arbeiten sollten die Kommunikation auf binäre Serialisierungsformate wie Protocol Buffers oder MessagePack umstellen. Diese bieten nicht nur eine kompaktere Datenübertragung, sondern auch schnellere Parsing-Geschwindigkeiten.
 
-Sicherheitsarchitektur: Die Implementierung einer robusten Sicherheitsarchitektur ist für den Serieneinsatz unabdingbar. Dies umfasst die Einführung einer Public-Key-Infrastruktur (PKI) zur Authentifizierung mittels TLS-Zertifikaten. Zudem sollte die Container-Isolation durch Technologien wie „Secure Containers“ (z. B. Kata Containers) gehärtet werden, um die Sicherheit des Fahrzeugbordnetzes zu garantieren.
+Sicherheitsarchitektur: Die Implementierung einer robusten Sicherheitsarchitektur ist für den Serieneinsatz unabdingbar. Dies umfasst die Einführung einer Public-Key-Infrastruktur (PKI) zur Authentifizierung mittels TLS-Zertifikaten. Zudem sollte die Container Isolation durch Technologien wie \enquote{Secure Containers} (z. B. Kata Containers) gehärtet werden, um die Sicherheit des Fahrzeugbordnetzes zu garantieren.
 
-OCI-Kompatibilität: Um die Akzeptanz bei Entwicklern zu erhöhen, sollte die „Container Management“-Komponente konform zur Open Container Initiative (OCI) erweitert werden. Dies würde ermöglichen, Standard-Docker-Images direkt auf den Fahrzeugen auszuführen.
+OCI-Kompatibilität: Um die Akzeptanz bei Entwicklern zu erhöhen, sollte die \enquote{Container Management} Komponente konform zur Open Container Initiative (OCI) erweitert werden. Dies würde ermöglichen, Standard Docker Images direkt auf den Fahrzeugen auszuführen.
 
  \section{Erweiterung der Scheduling Intelligenz}
 
@@ -16,7 +16,7 @@ OCI-Kompatibilität: Um die Akzeptanz bei Entwicklern zu erhöhen, sollte die �
 
 Prädiktive Verfügbarkeit: Ein großes Hindernis ist die Unvorhersehbarkeit der Parkdauer. Durch den Einsatz von Machine Learning könnte auf Basis historischer Bewegungsdaten vorhergesagt werden, wie lange ein Fahrzeug verfügbar bleibt. Dies würde die Anzahl abgebrochener Tasks reduzieren.
 
-Constraint-based Scheduling: Der Scheduler muss erweitert werden, um Hardware-Restriktionen (z. B. „Benötigt ARM64 Architektur“ oder „Benötigt NPU“) zu berücksichtigen und so die Heterogenität der Fahrzeugflotte abzubilden.
+Constraint-based Scheduling: Der Scheduler muss erweitert werden, um Hardware-Restriktionen (z. B. B\enquote{enötigt ARM64 Architektur} oder \enquote{Benötigt NPU}) zu berücksichtigen und so die Heterogenität der Fahrzeugflotte abzubilden.
 
 \section{Wirtschaftliche Einbettung}
 
