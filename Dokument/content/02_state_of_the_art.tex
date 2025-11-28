@@ -185,58 +185,57 @@ Amazon Web Services
 
 OpenStack
 
-
-
 \subsection{Container Orchestrierung}
+\label{sec:container_orchestrierung}
 
-Container Orchestrierung übernimmt die automatische Platzierung, Skalierung und Management von containerisierte Applikationen. Das Konzept ist dabei ähnlich wie bei der Orchestrierung von virtuellen Maschinen. Eine zentrale Orchestrierungsinstazn verwaltet mehrere Container Runtimes die oft auf verschiedenen physikalischen Maschinen laufen.
+Container Orchestrierung übernimmt die automatische Platzierung, Skalierung und das Management von containerisierten Applikationen. Das Konzept ähnelt der Orchestrierung virtueller Maschinen: Eine zentrale Orchestrierungsinstanz verwaltet dabei mehrere Container Runtimes, die auf verschiedenen, oft physisch verteilten Maschinen laufen.
 
-Eine der meistverbreiteten Implementierungen von Container Orchestrierungstools ist Kubernetes. Es kann entweder direkt auf dem Host Betriebssystem verwendet werden als Virtualisierungsmethode, oder auch in Kombination mit Cloud System Management verwendet werden um Applikationen auf den virtuellen Maschinen zu verwalten. Anhand der Funktionsweise und Architektur von Kubernetes wird im folgenden Abschnitt beispielhaft gezeigt, wie Tools für Container Orchestrierung umgesetzt werden können. Dieser ist in der Abbildung \ref{kubernetes_arch} dargestellt.
+\subsubsection{Kubernetes Architektur}
+Eine der meistverbreiteten Implementierungen für Container Orchestrierung ist Kubernetes. Es kann entweder direkt auf dem Host-Betriebssystem oder in Kombination mit Cloud-Management-Systemen auf virtuellen Maschinen betrieben werden. Die Architektur von Kubernetes (siehe Abbildung \ref{kubernetes_arch}) unterteilt sich grundlegend in die \enquote{Control Plane} (Verwaltungsebene) und die \enquote{Worker Nodes} (Ausführungsebene).
 
 \begin{figure}[htbp]
-	\centering
-	\includegraphics[width=\textwidth]{./content/graphics/kubernetes_arch.pdf}
-	\caption{Schematische Darstellung der Kubernetes Cluster Architektur}
-	\label{kubernetes_arch}
+    \centering
+    \includegraphics[width=\textwidth]{./content/graphics/kubernetes_arch.pdf}
+    \caption{Schematische Darstellung der Kubernetes Cluster Architektur}
+    \label{kubernetes_arch}
 \end{figure}
 
-Die containerisierte Applikationen werden bei Kubernetes in Pods gelegt, die auf den sogenannten \enquote{Worker Nodes} ausgeführt werden. Diese Nodes können sowohl auf virtuellen Maschinen als auch auf physikalischen Maschinen ausgeführt werden. Ein Node besteht aus mehreren Komponenten:
+\paragraph{Worker Nodes}
+Die containerisierten Applikationen werden in sogenannten \enquote{Pods} zusammengefasst und auf den Worker Nodes ausgeführt. Ein Node besteht aus folgenden Kernkomponenten:
+
+\begin{description}
+    \item[kubelet:] Der primäre Agent, der auf jedem Node läuft. Er stellt sicher, dass die Container in einem Pod gemäß den \enquote{PodSpecs} (Konfigurationsdateien für Sollzustände) korrekt ausgeführt werden.
+    \item[kube-proxy:] Verwaltet die Netzwerkregeln auf den Nodes. Diese Komponente ermöglicht die Netzwerkkommunikation zu den Pods und zwischen den Services innerhalb und außerhalb des Clusters.
+    \item[Container Runtime:] Die Software, die für das Ausführen der Container zuständig ist. Kubernetes unterstützt verschiedene Runtimes, wobei \enquote{containerd} oder \enquote{CRI-O} (ehemals oft Docker) am häufigsten verwendet werden.
+\end{description}
+
+\paragraph{Control Plane}
+Die Control Plane trifft globale Entscheidungen über das Cluster (z.\,B. Scheduling) und detektiert sowie reagiert auf Cluster-Ereignisse. In Produktionsumgebungen werden diese Komponenten meist auf dedizierten Maschinen ausgeführt. Die Control Plane besteht aus:
+
+\begin{description}
+    \item[API Server:] Das zentrale Frontend der Kubernetes Control Plane. Er stellt die API-Schnittstelle (REST) bereit, über die Benutzer, interne Komponenten und Worker Nodes kommunizieren.
+    \item[etcd Datenbank:] Ein konsistenter und hochverfügbarer Key-Value-Speicher, der als Backing-Store für alle Cluster-Daten dient. Jede Zustandsänderung des Clusters wird hier versioniert gespeichert.
+    \item[kube-scheduler:] Überwacht neu erstellte Pods, die noch keinem Node zugewiesen sind, und wählt einen geeigneten Node für deren Ausführung aus. Entscheidungskriterien sind unter anderem Ressourcenanforderungen, Hardware-/Software-Einschränkungen sowie Affinitäts-Spezifikationen.
+    \item[kube-controller-manager:] Führt Controller-Prozesse aus, die den aktuellen Zustand des Clusters überwachen und versuchen, diesen an den gewünschten Soll-Zustand anzupassen. Dazu gehören beispielsweise der \textit{Node Controller} (Reaktion auf Ausfälle) oder der \textit{Job Controller} (für einmalige Aufgaben).
+\end{description}
+
+\subsubsection{Node Management und Lebenszyklus}
+Bevor Worker Nodes Workloads übernehmen können, müssen sie im Cluster registriert werden. Dies erfolgt über den API Server, meist durch eine automatische Selbstregistrierung beim Start des \texttt{kubelet}. Die Identifikation erfolgt über einen im Cluster eindeutigen Hostnamen.
+
+Die Verfügbarkeit der Nodes wird durch \enquote{Heartbeat}-Nachrichten sichergestellt. Diese werden periodisch an die Control Plane gesendet. Bleiben diese aus, markiert der Node Controller den Knoten als \enquote{nicht verfügbar} und initiiert gegebenenfalls das „Rescheduling“ (die Neuverteilung) der betroffenen Pods auf gesunde Nodes. Zusätzlich werden bei der Registrierung die verfügbaren Hardware-Ressourcen (CPU, RAM) an den Scheduler übermittelt, um eine Überlastung bei der Pod-Platzierung zu vermeiden.
+
+\subsubsection{Lightweight Orchestrierung für Edge Computing (K3s)}
+Standard-Kubernetes ist primär für Cloud-Rechenzentren konzipiert und stellt hohe Anforderungen an Arbeitsspeicher und CPU, was den Einsatz auf ressourcenbeschränkten Fahrzeugsteuergeräten (Edge Devices) erschwert. 
+
+Als Alternative hat sich \textbf{K3s} etabliert, eine CNCF-zertifizierte, leichtgewichtige Kubernetes-Distribution. K3s wurde spezifisch für den Einsatz in IoT- und Edge-Umgebungen entwickelt. Die wesentlichen Unterschiede und Vorteile für den Einsatz im Fahrzeugkontext sind:
 
 \begin{itemize}
-	\item kubelet: Diese Komponente verwaltet die Container die in den Pods laufen. Hierfür werden PodSpecs Konfigurationen verwendet, die die Sollzustände der Container beschreiben in dem jeweiligen Pod beschreiben.
-	\item kube-proxy: verwaltet die Netzwerkregeln auf den Nodes. Diese Regeln gelten für die Netzwerkkommunikation zu den Pods aus dem Netzwerk. 
-	\item container runtime: Container Runtimes implementieren die Erstellung und Verwaltung von Container auf dem Betriebssystem. Kubernetes unterstützt verschiedene container Runtimes, am häufigsten wird Docker/Containerd verwendet. 
-\end{itemize}
+    \item \textbf{Single Binary:} K3s bündelt alle Komponenten der Control Plane und des Worker Nodes (API, Scheduler, Kubelet etc.) in einer einzigen Binärdatei (< 100 MB), was den Speicherbedarf drastisch reduziert.
+    \item \textbf{Ressourceneffizienz:} Durch das Entfernen von Legacy-Code, Alpha-Features und nicht benötigten Cloud-Provider-Plugins wird der Overhead minimiert. K3s läuft bereits auf Systemen mit 512 MB RAM.
+    \item \textbf{Speicher-Backend:} Anstelle des ressourcenintensiven \texttt{etcd} kann K3s auf SQL-basierten Datenbanken wie SQLite (für Einzel-Knoten) oder MySQL/PostgreSQL arbeiten, was die Komplexität im Betrieb auf Embedded-Hardware verringert.
+\end{itemize} \cite{k3s2025}
 
-Die \enquote{Worker Nodes} werden von der \enquote{Control Plane} verwaltet. Diese besteht ebenfalls aus mehreren Komponenten, die die globale Entscheidungen über das Cluster treffen. Hierzu gehört die Verteilung der Container aber auch die Überwachung und das reagieren auf Ereignisse. Die einzelnen Komponenten können auch verteilt auf verschiedene Maschinen ausgeführt werden, in kleineren CLustern werden typischerweise alle Control Plane Komponenten auf derselben Maschine ausgeführt, die keine Worker Nodes ausführt. In größeren Produktionsumgebungen werden die Komponenten über mehrere Systeme verteilt ausgeführt. Die Control Plane besteht aus den folgenden Komponenten:
-
-\begin{itemize}
-	\item API Server: Der API Server stellt die API Schnittstelle für Kubernetes zur Verfügung. Es ist sowohl für die Kommunikation zwischen Benutzer und Kubernetes Cluster als auch für die Kubernetes Komponenten untereinander innerhalb des Clusters zuständig. 
-	\item etcd Datenbank: Datenbank für alle Cluster Daten. Es ist nach dem Key-Value Storage 
-	%\glsadd{Key-Value Storage}% 
-	Prinzip implementiert. Änderungen erzeugen immer eine neue Version, 
-	\item kube-scheduler: Diese Komponente erkennt neue Pods im System, die auf keinem Worker Node ausgeführt werden und wählt geeignete Nodes für sie aus, wo sie ausgeführt werden können. Die Auswahl an geeignete Worker Nodes wird an verschiedenen Kriterien festgelegt: individuelle und kollektive Ressourcenanforderungen, Hardware-/Software-/Richtlinienbeschränkungen, Affinitäts- und Anti-Affinitäts-Spezifikationen, Datenlokalität, Beeinträchtigung zwischen Workloads und Fristen.
-	\item kube-controller-manager: Komponente der Control Plane, die Controller-Prozesse ausführt.
-	
-	Jede Art von Controller ist logisch ein separater Prozess, jedoch sind sie alle in einem Binärdatei Kompiliert und laufen in einem einzigen Prozess.
-	
-	Es gibt viele verschiedene Arten von Controllern. Einige Beispiele sind:
-
-    Node Controller: Verantwortlich für das Erkennen und Reagieren, wenn Knoten ausfallen.
-    Job Controller: Überwacht Job-Objekte, die einmalige Aufgaben darstellen, und erstellt Pods, um diese Aufgaben zu erfüllen.
-    EndpointSlice Controller: Füllt EndpointSlice-Objekte aus (um eine Verbindung zwischen Services und Pods herzustellen).
-    ServiceAccount Controller: Erstellt Standard-ServiceAccounts für neue Namespaces.
-
-	Die obige Liste ist nicht vollständig.
-\end{itemize}
-
-Neue Worker Nodes im Kubernetes Cluster müssen im Control Plane registriert werden bevor sie Pods ausführen können. Dies erfolgt über den API Server. In der Standardkonfiguration registrieren sich Nodes selbständig, eine manuelle Registrierung ist ebenfalls möglich. Wenn alle nötigen Softwarekomponenten des Nodes laufen, wird es als Gesund deklariert und kann Pods ausführen. Identifikation der Nodes erfolgt über den Namen. Der Name darf aus diesem Grund nur einmalig im Cluster vorhanden sein. 
-
-Die Verfügbarkeit von Nodes wird durch \enquote{Heartbeat} Nachrichten sichergestellt. Diese Nachrichten werden periodisch an die Control Plane gesendet, damit der aktuelle Node Status aktualisiert werden kann und ein nicht mehr verfügbarer Node erkannt werden kann. 
-
-Innerhalb der Control Plane verwaltet die Node Controller Komponente des Controller Managers die verschiedenen Aspekte der Knoten. Sie erstellt eine Liste der im Cluster verfügbaren Knoten und deren Status. Sie weist den Knoten, falls diese Einstellung aktiviert ist, einen \gls{CIDR} Block zu und übernimmt somit die Verwaltung der Netzwerkkonfiguration im Cluster. Wenn Kubernetes im Cloud Management System verwendet wird, wird die Liste der Nodes mit der Liste der verfügbaren virtuellen Maschinen des Cloud Systems synchron gehalten. Ist ein Node nicht verfügbar, kommuniziert der Node Controller mit dem Cloud Management System und prüft, ob die virtuelle Maschine für den Node noch verfügbar ist. Ist dies nicht der Fall, wird der Node gelöscht. Die Nodes werden ebenfalls auf ihre korrekte Funktionalität überwacht, wenn ein Node nicht unerreichbar ist, werden Pods, die auf dem Node laufen sollten auf andere Nodes umgelagert. 
-
-Die verfügbaren Rechenressourcen der jeweiligen Nodes wird bei der Registrierung übertragen. Dies beinhaltet beispielweise die verfügbare menge an Arbeitsspeicher und die Anzahl an CPU Kerne. Bei der automatischen Registrierung der Nodes passiert dies automatisch, wenn ein Node manuell hinzugefügt wird, müssen diese Informationen dabei angegeben werden. 
+Diese Eigenschaften machen K3s zu einer geeigneten Referenzarchitektur für die Orchestrierung von Containern auf Fahrzeugsteuergeräten, wo Hardware-Ressourcen primär für Fahrfunktionen und nicht für den Verwaltungs-Overhead reserviert sind.
 
 \section{Hardware und Softwareumgebung in Fahrzeugen}
 
