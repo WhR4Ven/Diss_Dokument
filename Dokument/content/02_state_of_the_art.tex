@@ -335,7 +335,7 @@ Darüber hinaus spielt die \gls{VFC}-Technologie eine Schlüsselrolle für das T
 
 \subsection{Offloading-Strategien und Architekturen}
 
-Ein zentraler Aspekt der Forschung betrifft die Strategien, mit denen Rechenaufgaben effizient von einem Erzeuger auf die Fahrzeugressourcen ausgelagert (offloaded) werden. Bereits frühe Konzepte schlugen vor, Fahrzeuge als mobile „Cloudlets“ zu nutzen, um rechenintensive Aufgaben von Smartphones, etwa von Fußgängern oder Insassen, zu übernehmen und so deren begrenzte Batteriekapazität zu schonen \cite{Zhang2015}.
+Ein zentraler Aspekt der Forschung betrifft die Strategien, mit denen Rechenaufgaben effizient von einem Erzeuger auf die Fahrzeugressourcen ausgelagert (offloaded) werden. Bereits frühe Konzepte schlugen vor, Fahrzeuge als mobile \enquote{cloudlets} zu nutzen, um rechenintensive Aufgaben von Smartphones, etwa von Fußgängern oder Insassen, zu übernehmen und so deren begrenzte Batteriekapazität zu schonen \cite{Zhang2015}.
 
 Dieser Ansatz wurde in der Folge auf die Kommunikation zwischen Fahrzeugen (\gls{V2V}) ausgeweitet. Um Lastspitzen bei autonomen Fahrfunktionen abzufedern, können Fahrzeuge rechenintensive Aufgaben an weniger ausgelastete Nachbarfahrzeuge übertragen. Hierfür wurden spezialisierte Algorithmen entwickelt, die Aufgaben basierend auf der aktuellen Auslastung und der Mobilität der Fahrzeuge dynamisch verteilen \cite{Liao2019} \cite{Wu2020}. Um diese komplexen Interaktionen zu standardisieren, wurden Architektur-Rahmenwerke wie oneVFC oder 5G-gestützte Authentifizierungsschemata entwickelt. Diese bieten einheitliche Schnittstellen, um Fahrzeuge auch für komplexe, verteilte Aufgaben wie das Training von KI-Modellen (Federated Learning) nahtlos in moderne Netzwerkarchitekturen zu integrieren \cite{Phung2021} \cite{Almazroi2023}.
 
@@ -345,41 +345,6 @@ Da der Erfolg eines solchen verteilten Systems davon abhängt, dass private Fahr
 
 Neben der Bezahlung ist die Vertrauenswürdigkeit der Knoten eine kritische Herausforderung, da in offenen \gls{VFC} Systemen das Risiko bösartiger Teilnehmer besteht. Neuere Forschungsansätze konzentrieren sich daher auf dezentrale Reputationssysteme und zertifikatslose Authentifizierungsverfahren. Diese Mechanismen sollen sicherstellen, dass nur verifizierte und vertrauenswürdige Fahrzeuge am Netzwerk teilnehmen und manipulierte Rechenergebnisse ausgeschlossen werden \cite{Almazroi2023} \cite{Nourani2023}.
 
-
-Die Nutzung von Fahrzeugressourcen für Fahrzeugübergreifende oder Fahrzeugexterne Anwendungen wurde bereits in verschiedenen wissenschaftlichen Veröffentlichungen untersucht. 
-
-Nutzung der Kameradaten:
- 3D Karten erstellen
- Parkplatzsuche
- Straßenbauarbeiten Erkennen
- Straftaten ermitteln \cite{Zhu2018}
-
-Reduzierung von Latenzen, ermöglichung von taktilen Rückmeldungen durch Reduzierung von Latenzen \cite{Mukherjee2020}
-
-Parkende Fahrzeuge für Datenweiterleitung \cite{Malandrino2014} \cite{Liu2011}
-
-Unausgelastet Fahrzeuge für Datenverarbeitung von Smartphone Daten. Hierdurch wird Energieverbrauch und Rechenzeit im Smartphone verbessert. Fahrzeuge werden von Cloudlet server verwaltet und die Rechenaufgaben entsprechend ausgeteilt. \cite{Zhang2015}
-
-Fahrzeuge streamen gemeinsame inhalten an andere lokale Fahrzeuge weiter \cite{Kharel2019}
-
-Rechenleistung von parkenden fahrzeugen vermieten\cite{Arif2012}
-
-Verteltes Rechnen bei Fahrzeugen untereinander. Fahrzeuge können je nach Aufgabe und Umgebung die Aufgaben an andere Fahrzeuge verteilen. Verwaltung über manager module. 
-Scheduling:
-	- Übertragung der Aufgabe
-	- wenn Aufgaben beim Auftragnehmer angekommen ist, kommt es in die Bearbeitungsschleife
-	- Aufgaben werden nach FIFO Prinzip abgearbeitet\cite{Feng2017}
-
-Fahrzeuge lagern Rechenintensive und Zeitkritische Aufgaben an weniger ausgelastete Fahrzeuge aus. \cite{Liao2019} \cite{Wu2020}
-
-
-Fahrzeug Fog management software \enquote{oneVFC} für Ai Modell Training \cite{Phung2021}
-
-QoS:
-
-Sicherheit und Manipulationsprobleme bei Fahrzeug Fog Computing mit Hilfe von Blockchain und Smart Contract lösen. In diesem Beispiel werden Rechenaufgaben von Fahrzeugen auf Fog Server ausgelagert.\cite{Liao2021}
-
-Vehicle to Infrastructure Konzept mit Contract basierter Ressourcenverteilung. Bandbreite kann gegen Belohnung ausgetauscht werden, der Zusammenhang wird mit einer Funktion beschrieben.\cite{Zhao2020}
 
 
 
