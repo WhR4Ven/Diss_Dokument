@@ -325,6 +325,27 @@ Durch die erhöhte Komplexität der Softwarefunktionen und die erhöhte Rechenle
 \section{Verteiltes Rechnen in Fahrzeugen}
 \label{Verteiltes Rechnen in Fahrzeugen}
 
+Die Nutzung von Fahrzeugressourcen für fahrzeugübergreifende oder fahrzeugexterne Anwendungen stellt ein dynamisches Forschungsfeld dar, das oft unter dem Begriff \gls{VFC} zusammengefasst wird. Im Gegensatz zu klassischen Cloud-Ansätzen nutzen VFC-Systeme die ungenutzten Ressourcen von parkenden und fahrenden Fahrzeugen, um eine dezentrale Recheninfrastruktur am Netzwerkrand zu bilden.
+
+\subsection{Anwendungsfälle}
+
+Die Forschung identifiziert vielfältige Szenarien, in denen die Rechenleistung von Fahrzeugen gewinnbringend eingesetzt werden kann. Ein prominenter Anwendungsfall ist das sogenannte Vehicular Crowdsourcing, insbesondere für die Videoanalyse. Fahrzeuge können ihre lokalen Kameras nutzen, um Videodaten, beispielsweise zur Detektion von Straftaten, Straßenbauarbeiten oder zur Parkplatzsuche, bereits lokal vorzuverarbeiten, sodass lediglich die extrahierten Metadaten an die Cloud gesendet werden müssen \cite{Zhu2018}.
+
+Darüber hinaus spielt die \gls{VFC}-Technologie eine Schlüsselrolle für das Taktile Internet. Durch die Verlagerung von Berechnungen in die physische Nähe der Nutzer können Latenzen drastisch reduziert werden, was für Anwendungen mit haptischem Feedback in Echtzeit (Latenz < 1 ms) essenziell ist [MUK20]. Ergänzend hierzu wird untersucht, wie parkende Fahrzeuge als temporäre Content Delivery Nodes fungieren können. In diesem Szenario speichern und streamen Fahrzeuge Multimedia-Inhalte wie Werbung oder Unterhaltungsmedien lokal an andere Nutzer, was die Last auf dem Kernnetz signifikant reduziert \cite{Kharel2019} \cite{Malandrino2014}.
+
+\subsection{Offloading-Strategien und Architekturen}
+
+Ein zentraler Aspekt der Forschung betrifft die Strategien, mit denen Rechenaufgaben effizient von einem Erzeuger auf die Fahrzeugressourcen ausgelagert (offloaded) werden. Bereits frühe Konzepte schlugen vor, Fahrzeuge als mobile „Cloudlets“ zu nutzen, um rechenintensive Aufgaben von Smartphones, etwa von Fußgängern oder Insassen, zu übernehmen und so deren begrenzte Batteriekapazität zu schonen \cite{Zhang2015}.
+
+Dieser Ansatz wurde in der Folge auf die Kommunikation zwischen Fahrzeugen (\gls{V2V}) ausgeweitet. Um Lastspitzen bei autonomen Fahrfunktionen abzufedern, können Fahrzeuge rechenintensive Aufgaben an weniger ausgelastete Nachbarfahrzeuge übertragen. Hierfür wurden spezialisierte Algorithmen entwickelt, die Aufgaben basierend auf der aktuellen Auslastung und der Mobilität der Fahrzeuge dynamisch verteilen \cite{Liao2019} \cite{Wu2020}. Um diese komplexen Interaktionen zu standardisieren, wurden Architektur-Rahmenwerke wie oneVFC oder 5G-gestützte Authentifizierungsschemata entwickelt. Diese bieten einheitliche Schnittstellen, um Fahrzeuge auch für komplexe, verteilte Aufgaben wie das Training von KI-Modellen (Federated Learning) nahtlos in moderne Netzwerkarchitekturen zu integrieren \cite{Phung2021} \cite{Almazroi2023}.
+
+\subsection{Incentivierung und Sicherheit}
+
+Da der Erfolg eines solchen verteilten Systems davon abhängt, dass private Fahrzeugbesitzer ihre Hardware und Energie zur Verfügung stellen, sind ökonomische Anreizsysteme und Sicherheitsgarantien unabdingbar. Aktuelle Arbeiten schlagen hierfür den Einsatz von Blockchain-Technologien vor. Durch die Nutzung von Smart Contracts können Ressourcen sicher und transparent gehandelt werden, ohne dass eine vertrauenswürdige zentrale Instanz (Intermediär) erforderlich ist. So kann beispielsweise Rechenzeit direkt gegen Kryptowährung getauscht werden, was eine faire Vergütung der Fahrzeughalter sicherstellt \cite{Liao2021} \cite{Zhao2020}.
+
+Neben der Bezahlung ist die Vertrauenswürdigkeit der Knoten eine kritische Herausforderung, da in offenen \gls{VFC} Systemen das Risiko bösartiger Teilnehmer besteht. Neuere Forschungsansätze konzentrieren sich daher auf dezentrale Reputationssysteme und zertifikatslose Authentifizierungsverfahren. Diese Mechanismen sollen sicherstellen, dass nur verifizierte und vertrauenswürdige Fahrzeuge am Netzwerk teilnehmen und manipulierte Rechenergebnisse ausgeschlossen werden [\cite{Almazroi2023}] [\cite{Nourani2023}].
+
+
 Die Nutzung von Fahrzeugressourcen für Fahrzeugübergreifende oder Fahrzeugexterne Anwendungen wurde bereits in verschiedenen wissenschaftlichen Veröffentlichungen untersucht. 
 
 Nutzung der Kameradaten:
