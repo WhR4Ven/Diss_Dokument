@@ -91,7 +91,13 @@ Edge Computing ist eine Form von Distributed Computing. In diesem Kontext werden
 
 \section{Fog Computing}
 
+Fog Computing beschreibt eine dezentrale Computerinfrastruktur, bei der Daten, Rechenleistung, Speicher und Anwendungen an einem logischen Ort zwischen der Datenquelle (Edge) und der Cloud platziert werden. Das Ziel dieses Paradigmas ist es, die Lücke zwischen der zentralisierten Cloud und den lokalen IoT-Geräten zu schließen. \cite{Bonomi2012} Während beim Edge Computing die Datenverarbeitung direkt auf dem Endgerät oder in dessen unmittelbarer physischer Nähe stattfindet, bildet Fog Computing eine hierarchische Zwischenschicht („Fog Layer“), die sich über mehrere Netzwerkknoten erstrecken kann. \cite{Shi2016}
 
+Abgrenzung zu Cloud und Edge Computing Im Gegensatz zu Cloud Computing, das auf zentralisierten Rechenzentren basiert, zeichnet sich Fog Computing durch seine geografische Verteilung und Ortsbewusstsein (Location Awareness) aus. Dies ermöglicht eine Datenverarbeitung mit deutlich geringerer Latenz, da Daten nicht erst über das Backbone-Netzwerk zu einem entfernten Server gesendet werden müssen. Für zeitkritische Anwendungen, wie sie in der Fahrzeug-zu-Fahrzeug-Kommunikation (V2V) vorkommen, ist dies essenziell. Zudem reduziert Fog Computing das Datenaufkommen im Kernnetz, indem Daten lokal gefiltert und aggregiert werden, bevor nur relevante Informationen an die Cloud weitergeleitet werden. \cite{Yi2015}
+
+Vehicular Fog Computing (VFC) Eine spezifische Ausprägung dieses Konzepts ist das Vehicular Fog Computing (VFC). Hierbei fungieren Fahrzeuge nicht nur als reine Datenerzeuger (Sensoren) oder Datenkonsumenten, sondern als aktive Infrastrukturknoten („Fog Nodes“). Aufgrund ihrer leistungsstarken On-Board-Steuergeräte (siehe Abschnitt 2.7) und ihrer Energiespeicher verfügen moderne Fahrzeuge über Ressourcen, die weit über die herkömmlicher IoT-Sensoren hinausgehen. \cite{Hou2016}
+
+VFC nutzt diese Ressourcen, um eine hochdynamische Fog-Schicht zu bilden. Geparkte oder langsam fahrende Fahrzeuge können als temporäre Server fungieren, um Rechenaufgaben für andere Verkehrsteilnehmer oder die städtische Infrastruktur zu übernehmen. Dies macht das Fahrzeug zu einem idealen Kandidaten für Fog-Knoten am äußersten Rand des Netzwerks („Network Edge“), da es Rechenleistung genau dort bereitstellt, wo mobile Daten entstehen. \cite{Zhu2018}
 
 \section{Applikationsmanagement und Virtualisierung in Cloud Systemen}
 \label{Applikationsmanagement}
