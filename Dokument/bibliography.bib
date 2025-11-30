@@ -1070,14 +1070,10 @@
   editor    = {Bargende, Michael and Reuss, Hans-Christian and Wiedemann, Jochen},
   pages     = {1619--1627},
   publisher = {Springer Fachmedien},
-  abstract  = {The complexity of E/E systems increases because of many new functionalities interacting across domain boundaries as for example in the area of automated driving and parking and powertrain electrification.},
-  doi       = {10.1007/978-3-658-13255-2_118},
-  file      = {:Haas2016 - Cross Domain Vehicle Control Units in Modern E_E Architectures.pdf:PDF},
+  doi       = {10.1007/978-3-658-13255-2\_118}, % Unterstrich maskiert
   isbn      = {9783658132552},
-  keywords  = {Control Unit, Automate Driving, Electronic Control Unit, Adaptive Cruise Control, Advanced Driver Assistance System},
   language  = {en},
 }
-
  
 @Misc{continental2024,
   author       = {continental},
@@ -1701,26 +1697,155 @@
 }
 
 @Misc{AUTOSAR2023,
-  author     = {AUTOSAR},
-  month      = nov,
-  title      = {Explanation of Adaptive Platform Design - AUTOSAR_AP_EXP_PlatformDesign},
-  year       = {2023},
-  accessdate = {2025-11-28},
-  file       = {:- Explanation of Adaptive Platform Design AUTOSAR_AP_EXP_PlatformDesign.pdf:PDF:https\://www.autosar.org/fileadmin/standards/R23-11/AP/AUTOSAR_AP_EXP_PlatformDesign.pdf},
-  url        = {https://www.autosar.org/fileadmin/standards/R23-11/AP/AUTOSAR_AP_EXP_PlatformDesign.pdf},
+  author  = {{AUTOSAR}},
+  month   = nov,
+  title   = {Explanation of Adaptive Platform Design - AUTOSAR\_AP\_EXP\_PlatformDesign}, % Unterstriche maskiert
+  year    = {2023},
+  urldate = {2025-11-28},
+  url     = {https://www.autosar.org/fileadmin/standards/R23-11/AP/AUTOSAR_AP_EXP_PlatformDesign.pdf},
+}
+
+Ja, in dieser Datei sind noch mehrere kritische Fehler, die dazu führen, dass LaTeX den Kompilierungsvorgang abbricht.
+
+Das Hauptproblem ist, dass in Feldern wie doi, title und abstract Unterstriche (_) verwendet werden. In LaTeX signalisiert ein Unterstrich den Beginn eines mathematischen Indexes (Tiefstellung). Wenn dieser nicht im Mathematik-Modus steht oder nicht mit einem Backslash (\_) maskiert ("escaped") ist, stürzt der Compiler mit Fehlern wie Missing $ inserted ab.
+
+Zudem enthält der Eintrag SAEinternational HTML-Code im Abstract, der von LaTeX nicht verarbeitet werden kann.
+
+Hier sind die korrigierten Einträge. Bitte ersetzen Sie die entsprechenden Blöcke in Ihrer Datei.
+
+1. Korrektur: Unterstriche in DOIs maskieren
+
+Bei diesen Einträgen enthielt das DOI-Feld Unterstriche.
+Code snippet
+
+@InProceedings{Evensky1999,
+  author    = {Evensky, David A. and Gentile, Ann C. and Wyckoff, Pete and Armstrong, Robert C.},
+  booktitle = {Distributed {Applications} and {Interoperable} {Systems} {II}},
+  title     = {The {Lilith} {Framework} for the {Rapid} {Development} of {Secure} {Scalable} {Tools} for {Distributed} {Computing}},
+  year      = {1999},
+  address   = {Boston, MA},
+  editor    = {Kutvonen, Lea and König, Hartmut and Tienari, Martti},
+  pages     = {163--168},
+  publisher = {Springer US},
+  series    = {{IFIP} — {The} {International} {Federation} for {Information} {Processing}},
+  doi       = {10.1007/978-0-387-35565-8\_12},  % Unterstrich maskiert
+  isbn      = {9780387355658},
+  language  = {en},
+}
+
+@InProceedings{Saito2021,
+  author    = {Saito, Takumi and Nakamura, Shigenari and Enokido, Tomoya and Takizawa, Makoto},
+  booktitle = {Complex, {Intelligent} and {Software} {Intensive} {Systems}},
+  title     = {A {Topic}-{Based} {Publish}/{Subscribe} {System} in a {Fog} {Computing} {Model} for the {IoT}},
+  year      = {2021},
+  address   = {Cham},
+  editor    = {Barolli, Leonard and Poniszewska-Maranda, Aneta and Enokido, Tomoya},
+  pages     = {12--21},
+  publisher = {Springer International Publishing},
+  series    = {Advances in {Intelligent} {Systems} and {Computing}},
+  doi       = {10.1007/978-3-030-50454-0\_2}, % Unterstrich maskiert
+  isbn      = {9783030504540},
+  language  = {en},
+}
+
+@InProceedings{Qian2009,
+  author    = {Qian, Ling and Luo, Zhiguo and Du, Yujian and Guo, Leitao},
+  booktitle = {Cloud {Computing}},
+  title     = {Cloud {Computing}: {An} {Overview}},
+  year      = {2009},
+  address   = {Berlin, Heidelberg},
+  editor    = {Jaatun, Martin Gilje and Zhao, Gansen and Rong, Chunming},
+  pages     = {626--631},
+  publisher = {Springer},
+  series    = {Lecture {Notes} in {Computer} {Science}},
+  doi       = {10.1007/978-3-642-10665-1\_63}, % Unterstrich maskiert
+  isbn      = {9783642106651},
+  language  = {en},
+}
+
+@InCollection{Sunyaev2020,
+  author    = {Sunyaev, Ali},
+  publisher = {Springer International Publishing},
+  title     = {Cloud {Computing}},
+  year      = {2020},
+  address   = {Cham},
+  editor    = {Sunyaev, Ali},
+  isbn      = {9783030349578},
+  pages     = {195--236},
+  doi       = {10.1007/978-3-030-34957-8\_7}, % Unterstrich maskiert
+  language  = {en},
+  urldate   = {2022-10-24},
+}
+
+@InProceedings{Haas2016,
+  author    = {Haas, Waldemar and Langjahr, P.},
+  booktitle = {16. {Internationales} {Stuttgarter} {Symposium}},
+  title     = {Cross-domain vehicle control units in modern {E}/{E} architectures},
+  year      = {2016},
+  address   = {Wiesbaden},
+  editor    = {Bargende, Michael and Reuss, Hans-Christian and Wiedemann, Jochen},
+  pages     = {1619--1627},
+  publisher = {Springer Fachmedien},
+  doi       = {10.1007/978-3-658-13255-2\_118}, % Unterstrich maskiert
+  isbn      = {9783658132552},
+  language  = {en},
+}
+
+@InProceedings{Huang2022,
+  author    = {Huang, Chen},
+  title     = {Application {Scenarios} of {AUTOSAR} {Classic} {Platform} and {Adaptive} {Platform}},
+  year      = {2022},
+  month     = dec,
+  pages     = {1667--1671},
+  publisher = {Atlantis Press},
+  doi       = {10.2991/978-94-6463-036-7\_249}, % Unterstrich maskiert
+  isbn      = {9789464630367},
+  issn      = {2352-5428},
+  language  = {en},
+  urldate   = {2025-11-28},
+}
+
+2. Korrektur: HTML im Abstract und DOI-Fehler (SAE)
+
+Der Eintrag SAEinternational enthielt rohen HTML-Code (<div>, <span>) im Abstract. Das bringt LaTeX zum Absturz. Ich habe den Abstract bereinigt und den Unterstrich in der DOI korrigiert.
+Code snippet
+
+@Misc{SAEinternational,
+  author       = {{SAE International}},
+  title        = {Taxonomy and {Definitions} for {Terms} {Related} to {Driving} {Automation} {Systems} for {On}-{Road} {Motor} {Vehicles}},
+  year         = {2021},
+  month        = apr,
+  abstract     = {This document describes motor vehicle driving automation systems that perform part or all of the dynamic driving task (DDT) on a sustained basis. It provides a taxonomy with detailed definitions for six levels of driving automation, ranging from no driving automation (Level 0) to full driving automation (Level 5).},
+  doi          = {10.4271/J3016\_202104}, % Unterstrich maskiert
+  language     = {en},
+  publisher    = {SAE International},
+  url          = {https://saemobilus.sae.org/standards/j3016_202104-taxonomy-definitions-terms-related-driving-automation-systems-road-motor-vehicles},
+  urldate      = {2025-11-11},
+}
+
+3. Korrektur: Unterstriche in Titeln
+
+Bei diesen Einträgen waren Dateinamen mit Unterstrichen in das Titelfeld kopiert worden.
+Code snippet
+
+@Misc{AUTOSAR2023,
+  author  = {{AUTOSAR}},
+  month   = nov,
+  title   = {Explanation of Adaptive Platform Design - AUTOSAR\_AP\_EXP\_PlatformDesign}, % Unterstriche maskiert
+  year    = {2023},
+  urldate = {2025-11-28},
+  url     = {https://www.autosar.org/fileadmin/standards/R23-11/AP/AUTOSAR_AP_EXP_PlatformDesign.pdf},
 }
 
 @Article{Tischer2018,
-  author     = {Mirko Tischer},
-  journal    = {Elektronik automotive},
-  title      = {AUTOSAR Adaptive - The Computing Center in the Vehicle - AUTOSAR_Adaptive_ElektronikAutomotive_201809_PressArticle_EN},
-  year       = {2018},
-  month      = sep,
-  accessdate = {2025-11-28},
-  file       = {:- AUTOSAR Adaptive the Computing Center in the Vehicle AUTOSAR_Adaptive_ElektronikAutomotive_201809_PressArticle_EN.pdf:PDF:https\://cdn.vector.com/cms/content/know-how/_technical-articles/AUTOSAR/AUTOSAR_Adaptive_ElektronikAutomotive_201809_PressArticle_EN.pdf},
-  url        = {https://cdn.vector.com/cms/content/know-how/_technical-articles/AUTOSAR/AUTOSAR_Adaptive_ElektronikAutomotive_201809_PressArticle_EN.pdf},
+  author  = {Mirko Tischer},
+  journal = {Elektronik automotive},
+  title   = {AUTOSAR Adaptive - The Computing Center in the Vehicle - AUTOSAR\_Adaptive\_ElektronikAutomotive\_201809\_PressArticle\_EN}, % Unterstriche maskiert
+  year    = {2018},
+  month   = sep,
+  urldate = {2025-11-28},
+  url     = {https://cdn.vector.com/cms/content/know-how/_technical-articles/AUTOSAR/AUTOSAR_Adaptive_ElektronikAutomotive_201809_PressArticle_EN.pdf},
 }
-
  
 @InProceedings{Huang2022,
   author    = {Huang, Chen},
@@ -1729,16 +1854,12 @@
   month     = dec,
   pages     = {1667--1671},
   publisher = {Atlantis Press},
-  abstract  = {Nowadays, complexity in design of car systems is increasing. To make the design of software more manageable, AUTOSAR provides two platforms serving as middleware between hardware and software: AUTOSAR classic platform and AUTOSAR adaptive platform. Generally, both two platforms will be used in a car at the same time, taking care of different functions...},
-  doi       = {10.2991/978-94-6463-036-7_249},
-  file      = {Full Text PDF:Huang2022 - Application Scenarios of AUTOSAR Classic Platform and Adaptive Platform.pdf:PDF:https\://www.atlantis-press.com/article/125983659.pdf},
+  doi       = {10.2991/978-94-6463-036-7\_249}, % Unterstrich maskiert
   isbn      = {9789464630367},
   issn      = {2352-5428},
   language  = {en},
-  url       = {https://www.atlantis-press.com/proceedings/icedbc-22/125983659},
   urldate   = {2025-11-28},
 }
-
  
 @Misc{k3s2025,
   author   = {k3s},
@@ -1801,11 +1922,9 @@
 @Misc{Kluener2025,
   author     = {David Philipp Kluener},
   month      = may,
-  title      = {Automotive Middleware Performance: Comparison of FastDDS, Zenoh and vSomeIP - Automotive_Middleware_Performance_Comparison_of_Fa},
+  title      = {Automotive Middleware Performance: Comparison of FastDDS, Zenoh and vSomeIP - Automotive\_Middleware\_Performance\_Comparison\_of\_Fa},
   year       = {2025},
   accessdate = {2025-11-30},
-  file       = {:file\:///C:/Users/Gerge/Downloads/Automotive_Middleware_Performance_Comparison_of_Fa.pdf:PDF},
-  url        = {file:///C:/Users/Gerge/Downloads/Automotive_Middleware_Performance_Comparison_of_Fa.pdf},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
