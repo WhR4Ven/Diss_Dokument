@@ -70,6 +70,36 @@ In der Softwareentwicklung gibt es eine Vielzahl von Mustern, die sich für die 
 
 Die Struktur dieser Arbeit folgt den Phasen des V-Modells. Die Anforderungsanalyse in \autoref{Anforderungsanalyse} bildet die Basis. Darauf aufbauend beschreibt \autoref{Methode Softwareplattform und Scheduling} den System- und Komponentenentwurf. Die Phase der Implementierung wird in \autoref{ch:Implementierung} dargelegt. Der rechte Schenkel des V-Modells, der die Testphasen repräsentiert, wird durch die simulative Evaluation in \autoref{sec:ImplementierungScheduler} sowie die abschließende Diskussion der Anforderungserfüllung in \autoref{sec:ErreichungForschungsziele} abgebildet.
 
+\subsection{Evaluationsstrategie & Simulation}
+
+Die Validierung des in dieser Arbeit vorgestellten Systems erfolgt in zwei Stufen, die den rechten Schenkel des V-Modells abbilden: der funktionalen Validierung durch eine prototypische Implementierung und der nicht-funktionalen Leistungsbewertung durch eine ereignisbasierte Simulation. Die Evaluierung von verteilten Systemen im Kontext des \gls{VFC} stellt besondere Anforderungen an die Testumgebung. Eine Validierung ausschließlich durch Feldtests mit physischen Fahrzeugen ist im Rahmen dieser Arbeit aus mehreren Gründen nicht zielführend realisierbar. 
+
+Die Validierung der Scheduling-Algorithmen erfordert eine hohe Anzahl an Knoten (n > 100), um Effekte wie Lastverteilung und Skalierungseffekte signifikant nachzuweisen. Der Aufbau einer physischen Testflotte in dieser Größenordnung, bestehend aus Hochleistungssteuergeräten , ist mit unverhältnismäßig hohen Kosten und logistischem Aufwand verbunden. Feldtests unterliegen unkontrollierbaren Umweltfaktoren (Verkehrslage, Mobilfunkabdeckung). Eine wissenschaftliche Bewertung von Algorithmen erfordert jedoch reproduzierbare Szenarien, in denen Parameter gezielt variiert werden können, um das Systemverhalten deterministisch zu untersuchen. Kritische Szenarien, wie der gleichzeitige Ausfall einer großen Anzahl von Knotenm wie ein abruptes Losfahren einer Fahrzeuggruppe, lassen sich in der Realität schwer erzwingen, sind aber für die Bewertung der Systemrobustheit essenziell.
+
+Aus diesen Gründen wird für die Bewertung der Systemeffizienz und der Scheduling-Strategien eine simulative Evaluation gewählt. Diese ermöglicht es, die physikalischen Eigenschaften der Hardware zu modellieren und das Verhalten des Gesamtsystems unter kontrollierten Bedingungen zu analysieren.
+
+Die Evaluationsstrategie gliedert sich in zwei Phasen:
+
+\textbf{Funktionale Validierung (Prototyp):} Der erste Schritt dient dem Nachweis der technischen Machbarkeit („Proof of Concept“). Hierbei wird verifiziert, ob die Architektur in der Lage ist, die in der Anforderungsanalyse definierten funktionalen Anforderungen zu erfüllen. Dies umfasst die fogenden Punkte:
+
+\begin{itemize}
+    \item Die korrekte Erkennung von Knoten im Netzwerk mittels DDS.
+    
+    \item Die Übertragung und Isolierung von Binärdateien in Containern.
+    
+    \item Die Ausführung von Applikationen auf der Zielhardware. Diese Tests werden mit einer begrenzten Anzahl an physischen oder virtualisierten Knoten durchgeführt.
+\end{itemize}
+
+Nicht-funktionale Leistungsbewertung (Simulation): Der zweite Schritt fokussiert sich auf die Qualität der Ressourcenverteilung und das Zeitverhalten. Hierzu wird eine Simulationsumgebung implementiert, die das Verhalten eines großen Fahrzeugclusters modelliert. Die Simulation orientiert sich an realen Hardware-Parametern aktueller Level-4-Steuergeräte (z. B. 100–200 TOPS Rechenleistung, 64 GB RAM), um eine hohe Realitätsnähe zu gewährleisten. Untersucht werden hierbei:
+
+\begin{itemize}
+    \item Statische Szenarien: Bewertung der algorithmischen Güte (Vergleich von Greedy vs. Brute Force) bei fester Aufgabenlast.
+    
+    \item Dynamische Szenarien: Bewertung der Systemstabilität unter Volatilität (Churn), wobei Fahrzeuge mit einer definierten Wahrscheinlichkeit dem Netzwerk beitreten oder es verlassen.
+\end{itemize}
+
+Durch diese zweigeteilte Strategie wird sichergestellt, dass sowohl die korrekte Funktionsweise der Softwarearchitektur als auch deren Effizienz in großen, dynamischen Szenarien validiert wird.
+
 \section{Forschungsansatz}
 \label{Forschungsansatz}
 Ausgehend von den identifizierten Defiziten bestehender Systeme wird ein Konzept und eine prototypische Implementierung einer Plattform vorgenommen, die es ermöglicht, externe Applikationen auf Fahrzeugsteuergeräten zu verwalten. Die Entwicklung zu einer vollständig potentiell kommerziell nutzbaren Software würde im Rahmen einer Dissertation einen zu hohen Entwicklungsaufwand bedeuten, jedoch können mit Hilfe der prototypischen Implementierung bereits viele Erkenntnisse gewonnen werden. Abhängigkeiten und daraus resultierende Anforderungen an das Betriebssystem können genau abgeleitet werden. Darüber hinaus erleichtert es die Bestimmung des notwendigen Funktionsumfangs der Plattform. 
