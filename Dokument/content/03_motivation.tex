@@ -152,24 +152,30 @@ Um die Leistungsfähigkeit und Effizienz der entwickelten Softwareplattform sowi
 
 \section{Forschungsansatz}
 \label{Forschungsansatz}
+
 Basierend auf dem identifizierten Forschungsbedarf und den definierten Anforderungen verfolgt diese Arbeit einen konstruktiven Forschungsansatz, der die Konzeption, Implementierung und Evaluation einer domänenspezifischen Orchestrierungsplattform umfasst. Der Ansatz gliedert sich in die folgenden drei Kernbereiche:
-
-
-
-Die Plattform soll zwei Hauptkomponenten implementieren. Eine Komponente läuft auf den Steuergeräten im Fahrzeug und verwaltet die Applikationen die von extern auf das Steuergerät geladen werden. Diese Komponente wird \enquote{Runtime Node} bezeichnet Die zweite Komponente ist eine Managementkomponente, die alle für externe Berechnungen verfügbaren Steuergeräte im Netzwerk erkennt und entsprechend Applikationen auslagern kann. Diese wird \enquote{Runtime Master} bezeichnet. Die Softwarekomponenten werden insbesondere für die Kommunikationsschnittstelle für Netzwerkkommunikation modular aufgebaut, so dass je nach Anwendung flexibel entschieden werden kann, über welches Protokoll die Kommunikation im Netzwerk erfolgt. Für die programminterne Kommunikation zwischen den Modulen ist ein einheitliches Protokoll vorgesehen. 
 
 \textbf{1. Architektur der Laufzeitumgebung:} Um die Heterogenität der Fahrzeugsteuergeräte zu abstrahieren (Anforderung NF-4), wird eine strikte Trennung zwischen der Verwaltungsebene und der Ausführungsebene gewählt.
 
 \begin{itemize}
-    \item Runtime Node: Eine leichtgewichtige Agenten-Software auf dem Fahrzeugsteuergerät, die für die lokale Ressourcenverwaltung und die Isolierung externer Prozesse zuständig ist.
-    \item Runtime Master: Eine zentrale Instanz, die den globalen Systemzustand überwacht und Scheduling-Entscheidungen trifft. Diese Entkopplung ermöglicht es, die ressourcenintensiven Optimierungsalgorithmen vom Fahrzeug in das Backend zu verlagern.
+    \item \textbf{Runtime Node:} Eine leichtgewichtige Agenten-Software auf dem Fahrzeugsteuergerät, die für die lokale Ressourcenverwaltung und die Isolierung externer Prozesse zuständig ist.
+    \item \textbf{Runtime Master:} Eine zentrale Instanz, die den globalen Systemzustand überwacht und Scheduling-Entscheidungen trifft. Diese Entkopplung ermöglicht es, die ressourcenintensiven Optimierungsalgorithmen vom Fahrzeug in das Backend zu verlagern.
 \end{itemize}
 
-\textbf{Technologieauswahl für Virtualisierung und Kommunikation:} Zur Erfüllung der Anforderungen an Isolierung (NF-1) und Portierbarkeit (NF-4) wird auf Container-Virtualisierung gesetzt. Im Gegensatz zu Hypervisoren nutzen Container vorhandene Kernel-Features (Namespaces, cgroups) des ohnehin auf High-Performance-ECUs vorhandenen Linux-Betriebssystems. Dies minimiert den Overhead und erleichtert die Portierung auf verschiedene CPU-Architekturen. Für die Kommunikation (Anforderung F-2, NF-3) wird der Standard Data Distribution Service (DDS) gewählt. Der datenzentrierte Publish-Subscribe-Ansatz von DDS unterstützt die geforderte dynamische Erkennung von Teilnehmern ohne zentrale Konfigurationsserver und entspricht den modernen E/E-Architektur-Trends (\gls{SOA}).
+\textbf{2. Technologieauswahl für Virtualisierung und Kommunikation:} Zur Erfüllung der Anforderungen an Isolierung (NF-1) und Portierbarkeit (NF-4) wird auf Container-Virtualisierung gesetzt. Im Gegensatz zu Hypervisoren nutzen Container vorhandene Kernel-Features (Namespaces, cgroups) des ohnehin auf High-Performance-ECUs vorhandenen Linux-Betriebssystems. Dies minimiert den Overhead und erleichtert die Portierung auf verschiedene CPU-Architekturen. Für die Kommunikation (Anforderung F-2, NF-3) wird der Standard Data Distribution Service (DDS) gewählt. Der datenzentrierte Publish-Subscribe-Ansatz von DDS unterstützt die geforderte dynamische Erkennung von Teilnehmern ohne zentrale Konfigurationsserver und entspricht den modernen E/E-Architektur-Trends (\gls{SOA}).
 
 \textbf{3. Systemabgrenzung und Prototyping:} Ziel der Arbeit ist der Nachweis der technologischen Machbarkeit und der Effizienzpotenziale. Es wird ein voll funktionsfähiger Prototyp (Proof-of-Concept) entwickelt, der die Kernmechanismen (Deployment, Isolierung, Kommunikation) abbildet.
 
 \begin{itemize}
-    \item Fokus: Der Fokus liegt auf der Scheduling-Logik und der technischen Integration in eingebettete Linux-Systeme.
-    \item Abgrenzung: Aspekte wie eine vollumfängliche ISO-26262-Zertifizierung, ein kommerzielles Bezahlmodell (Incentivierung) oder ein gehärtetes IT-Sicherheitskonzept (Penetration Testing) werden konzeptionell betrachtet, aber nicht implementiert. Dies ermöglicht eine Fokussierung auf die Beantwortung der zentralen Forschungsfragen zur Ressourceneffizienz und Machbarkeit.
+    \item \textbf{Fokus:} Der Fokus liegt auf der Scheduling-Logik und der technischen Integration in eingebettete Linux-Systeme.
+    \item \textbf{Abgrenzung:} Aspekte wie eine vollumfängliche ISO-26262-Zertifizierung, ein kommerzielles Bezahlmodell (Incentivierung) oder ein gehärtetes IT-Sicherheitskonzept (Penetration Testing) werden konzeptionell betrachtet, aber nicht implementiert. Dies ermöglicht eine Fokussierung auf die Beantwortung der zentralen Forschungsfragen zur Ressourceneffizienz und Machbarkeit.
 \end{itemize}
+
+\section{Zusammenfassung}
+\label{sec:MethodikZusammenfassung}
+
+In diesem Kapitel wurden die methodischen Grundlagen für die vorliegende Arbeit gelegt. Ausgehend vom Stand der Technik wurde der Forschungsbedarf für eine fahrzeugspezifische Orchestrierungsplattform abgeleitet und in fünf funktionale sowie fünf nicht-funktionale Anforderungen überführt. Als Vorgehensmodell für die Entwicklung und Validierung wurde das V-Modell gewählt.
+
+Die Evaluationsstrategie basiert auf einer zweistufigen Validierung: dem Nachweis der technischen Machbarkeit durch einen funktionalen Prototypen und der Bewertung der Ressourceneffizienz durch eine dynamische Simulation. Hierfür wurden spezifische Metriken wie die Ressourcenauslastung ($U_{\text{TOPS}}$) und die Scheduling-Latenz definiert. Der vorgestellte Forschungsansatz sieht eine zweigeteilte Architektur aus Runtime Node und Runtime Master vor, die mittels Container-Technologie und DDS-Kommunikation realisiert wird.
+
+Auf Basis dieser methodischen Vorüberlegungen erfolgt im nächsten Kapitel die detaillierte Konzeption der Softwarearchitektur und der Scheduling-Algorithmen.
