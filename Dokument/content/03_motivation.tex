@@ -70,7 +70,7 @@ In der Softwareentwicklung gibt es eine Vielzahl von Mustern, die sich für die 
 
 Die Struktur dieser Arbeit folgt den Phasen des V-Modells. Die Anforderungsanalyse in \autoref{Anforderungsanalyse} bildet die Basis. Darauf aufbauend beschreibt \autoref{Methode Softwareplattform und Scheduling} den System- und Komponentenentwurf. Die Phase der Implementierung wird in \autoref{ch:Implementierung} dargelegt. Der rechte Schenkel des V-Modells, der die Testphasen repräsentiert, wird durch die simulative Evaluation in \autoref{sec:ImplementierungScheduler} sowie die abschließende Diskussion der Anforderungserfüllung in \autoref{sec:ErreichungForschungsziele} abgebildet.
 
-\subsection{Evaluationsstrategie & Simulation}
+\subsection{Evaluationsstrategie und Simulation}
 
 Die Validierung des in dieser Arbeit vorgestellten Systems erfolgt in zwei Stufen, die den rechten Schenkel des V-Modells abbilden: der funktionalen Validierung durch eine prototypische Implementierung und der nicht-funktionalen Leistungsbewertung durch eine ereignisbasierte Simulation. Die Evaluierung von verteilten Systemen im Kontext des \gls{VFC} stellt besondere Anforderungen an die Testumgebung. Eine Validierung ausschließlich durch Feldtests mit physischen Fahrzeugen ist im Rahmen dieser Arbeit aus mehreren Gründen nicht zielführend realisierbar. 
 
@@ -90,7 +90,7 @@ Die Evaluationsstrategie gliedert sich in zwei Phasen:
     \item Die Ausführung von Applikationen auf der Zielhardware. Diese Tests werden mit einer begrenzten Anzahl an physischen oder virtualisierten Knoten durchgeführt.
 \end{itemize}
 
-Nicht-funktionale Leistungsbewertung (Simulation): Der zweite Schritt fokussiert sich auf die Qualität der Ressourcenverteilung und das Zeitverhalten. Hierzu wird eine Simulationsumgebung implementiert, die das Verhalten eines großen Fahrzeugclusters modelliert. Die Simulation orientiert sich an realen Hardware-Parametern aktueller Level-4-Steuergeräte (z. B. 100–200 TOPS Rechenleistung, 64 GB RAM), um eine hohe Realitätsnähe zu gewährleisten. Untersucht werden hierbei:
+\textbf{Nicht-funktionale Leistungsbewertung (Simulation):} Der zweite Schritt fokussiert sich auf die Qualität der Ressourcenverteilung und das Zeitverhalten. Hierzu wird eine Simulationsumgebung implementiert, die das Verhalten eines großen Fahrzeugclusters modelliert. Die Simulation orientiert sich an realen Hardware-Parametern aktueller Level-4-Steuergeräte (z. B. 100–200 TOPS Rechenleistung, 64 GB RAM), um eine hohe Realitätsnähe zu gewährleisten. Untersucht werden hierbei:
 
 \begin{itemize}
     \item Statische Szenarien: Bewertung der algorithmischen Güte (Vergleich von Greedy vs. Brute Force) bei fester Aufgabenlast.
