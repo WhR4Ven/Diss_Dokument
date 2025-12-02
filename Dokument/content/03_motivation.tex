@@ -80,7 +80,7 @@ Aus diesen Gründen wird für die Bewertung der Systemeffizienz und der Scheduli
 
 Die Evaluationsstrategie gliedert sich in zwei Phasen:
 
-\textbf{Funktionale Validierung (Prototyp):} Der erste Schritt dient dem Nachweis der technischen Machbarkeit („Proof of Concept“). Hierbei wird verifiziert, ob die Architektur in der Lage ist, die in der Anforderungsanalyse definierten funktionalen Anforderungen zu erfüllen. Dies umfasst die fogenden Punkte:
+\textbf{Funktionale Validierung (Prototyp):} Der erste Schritt dient dem Nachweis der technischen Machbarkeit. Hierbei wird verifiziert, ob die Architektur in der Lage ist, die in der Anforderungsanalyse definierten funktionalen Anforderungen zu erfüllen. Dies umfasst die fogenden Punkte:
 
 \begin{itemize}
     \item Die korrekte Erkennung von Knoten im Netzwerk mittels DDS.
@@ -90,7 +90,11 @@ Die Evaluationsstrategie gliedert sich in zwei Phasen:
     \item Die Ausführung von Applikationen auf der Zielhardware. Diese Tests werden mit einer begrenzten Anzahl an physischen oder virtualisierten Knoten durchgeführt.
 \end{itemize}
 
+<<<<<<< HEAD
 \textbf{Nicht-funktionale Leistungsbewertung (Simulation):} Der zweite Schritt fokussiert sich auf die Qualität der Ressourcenverteilung und das Zeitverhalten. Hierzu wird eine Simulationsumgebung implementiert, die das Verhalten eines großen Fahrzeugclusters modelliert. Die Simulation orientiert sich an realen Hardware-Parametern aktueller Level-4-Steuergeräte (z. B. 100–200 TOPS Rechenleistung, 64 GB RAM), um eine hohe Realitätsnähe zu gewährleisten. Untersucht werden hierbei:
+=======
+\textbf{Nicht-funktionale Leistungsbewertung (Simulation):} Der zweite Schritt fokussiert sich auf die Qualität der Ressourcenverteilung und das Zeitverhalten. Hierzu wird eine Simulationsumgebung implementiert, die das Verhalten eines großen Fahrzeugclusters modelliert. Die Simulation orientiert sich an realen Hardware-Parametern aktueller Level-4-Steuergeräte, um eine hohe Realitätsnähe zu gewährleisten. Untersucht werden hierbei:
+>>>>>>> c27679d9d2a5386528a60af572598e2138a0e95f
 
 \begin{itemize}
     \item Statische Szenarien: Bewertung der algorithmischen Güte (Vergleich von Greedy vs. Brute Force) bei fester Aufgabenlast.
@@ -99,6 +103,35 @@ Die Evaluationsstrategie gliedert sich in zwei Phasen:
 \end{itemize}
 
 Durch diese zweigeteilte Strategie wird sichergestellt, dass sowohl die korrekte Funktionsweise der Softwarearchitektur als auch deren Effizienz in großen, dynamischen Szenarien validiert wird.
+
+\subsection{Metriken und Erfolgskriterien}
+
+Um die Leistungsfähigkeit und Effizienz der entwickelten Softwareplattform sowie der Scheduling-Algorithmen objektiv bewerten zu können, werden spezifische quantitative Metriken definiert. Diese unterteilen sich in Systemmetriken für die Simulation des Clusters und Komponentenmetriken für die Performance der Runtime-Umgebung.
+
+\textbf{Effizienzmetriken:} Diese Metriken bewerten, wie gut die zur Verfügung stehenden Ressourcen der Fahrzeugflotte genutzt werden. Sie dienen primär der Evaluation der Scheduling-Strategien. Die folgenden Metriken wurden für die Bewertung herangezogen:
+
+\begin{itemize}
+    \item Ressourcenauslastung: Beschreibt das Verhältnis der tatsächlich für Berechnungen genutzten Ressourcen zur theoretisch maximal verfügbaren Gesamtkapazität der aktiven Knoten. Das Hauptaugenmerk liegt hierbei auf der Rechenleistung (TOPS), da diese die kritischste Ressource darstellt. 
+    \begin{align}
+    U_{\text{TOPS}}(t) &= \frac{\sum_{i=1}^{n} \text{Genutzte TOPS}_i(t)}{\sum_{j=1}^{m} \text{Verfügbare TOPS}_j(t)}
+    \label{eq:utilization}
+    \end{align}
+    \item Verteilungsgüte (Standardabweichung): Misst die Standardabweichung der Lastverteilung über alle Knoten. Eine geringe Standardabweichung deutet auf eine faire Lastverteilung hin, was Hotspots vermeidet. (Relevant für den Vergleich der Greedy-Varianten).
+\end{itemize} 
+
+\textbf{Leistungsmetriken:} Diese Metriken bewerten die technische Implementierung des Runtime Nodes und des Runtime Masters hinsichtlich ihrer Eignung für ressourcenbeschränkte Steuergeräte und Echtzeitanforderungen. Die folgenden Metriken wurden betrachtet:
+
+\begin{itemize}
+    \item Scheduling-Latenz: Die Zeitspanne, die der Algorithmus benötigt, um für eine Menge an wartenden Aufgaben n eine Zuweisung zu berechnen.
+    \begin{align}
+    t_{\text{sched}} &= t_{\text{end}} - t_{\text{start}}
+    \label{eq:latency}
+    \end{align}
+    Da das System in dynamischen Umgebungen agiert, muss $t_{sched}$​ signifikant kleiner sein als die mittlere Ankunftsrate neuer Aufgaben, um einen Stau zu vermeiden.
+    \item Plattform-Overhead: Der Ressourcenverbrauch, der durch die Verwaltungssoftware selbst entsteht. Dazu gehört die Zeit vom Empfang des Startbefehls bis zur Ausführung der main()-Funktion der externen Applikation sowie der Speicher- und Rechenbedarf des Runtime Node Prozesses im Leerlauf. Dieser muss minimal sein, um die Primärfunktionen des Fahrzeugs nicht zu beeinträchtigen.
+\end{itemize}
+
+
 
 \section{Forschungsansatz}
 \label{Forschungsansatz}
