@@ -8,12 +8,12 @@ Der Forschungsbedarf wird im folgenden Abschnitt anhand des Stands der Technik a
 
 \subsection{Virtualisierung}
 \label{Virtualisierung}
-Im \autoref{Applikationsmanagement} wurden die gängigen Virtualisierungsmethoden vorgestellt, die vorwiegend in der IT-Infrastruktur zum Einsatz kommen. Sie bilden die Grundlage für das Applikationsmanagement in IT-Systemen. Grundsätzlich können diese Methoden auch für Fahrzeugsteuergeräte verwendet werden. Allerdings unterscheiden sich die Steuergeräte in ihren Hardwarekomponenten und ihrem Betriebssystem, sodass die vorhandenen Lösungen aus dem IT-Bereich nicht unmittelbar verwendet werden können. Um eine möglichst hohe Kompatibilität für verschiedene Architekturen zu gewährleisten, müssen die Virtualisierungsmethoden für diese verfügbar oder portierbar sein. Vorteilhaft sind hierbei Lösungen mit offenem Quellcode, da die Portierung je nach Lizenzbedingungen auch unabhängig vom Entwickler vorgenommen werden kann. Im Allgemeinen muss eine Virtualisierungstechnologie, die auf verschiedenen Plattformen zum Einsatz kommen soll, eine einfache Portierbarkeit gewährleisten. Aktuelle IT-Lösungen gewährleisten die Kompatibilität mit gängigen Hardware-Plattformen und Betriebssystemen. Die gängigste Hardwarearchitektur in IT-Infrastrukturen ist die x86-Architektur. Diese ist allerdings nicht gut für sicherheitskritische Echtzeitanwendungen geeignet, da der System Management Mode kein deterministisches Verhalten für Betriebssysteme und Anwendungen zulässt. Autonome Fahrzeugsteuergeräte verwenden Architekturen, bei denen die Echtzeitfähigkeit garantiert werden kann. Bei der Entwicklung der Virtualisierungslösungen stand die Portierbarkeit auf diese anderen Hardwarearchitekturen von Fahrzeugsteuergeräten nicht im Vordergrund. Virtuelle Maschinen erfordern hardwareseitige Unterstützung von Virtualisierungsmethoden, sodass diese Art der Virtualisierung schwieriger zu portieren ist. Containerisierung nutzt bestimmte Linux-Kernelfunktionen, sodass hier eine Einschränkung seitens des Betriebssystems auf dem Zielgerät stattfindet. 
+In \autoref{Applikationsmanagement} wurden die gängigen Virtualisierungsmethoden vorgestellt, die vorwiegend in der IT-Infrastruktur zum Einsatz kommen. Sie bilden die Grundlage für das Applikationsmanagement in IT-Systemen. Grundsätzlich können diese Methoden auch für Fahrzeugsteuergeräte verwendet werden. Allerdings unterscheiden sich die Steuergeräte in ihren Hardwarekomponenten und ihrem Betriebssystem, sodass die vorhandenen Lösungen aus dem IT-Bereich nicht unmittelbar verwendet werden können. Um eine möglichst hohe Kompatibilität für verschiedene Architekturen zu gewährleisten, müssen die Virtualisierungsmethoden für diese verfügbar oder portierbar sein. Vorteilhaft sind hierbei Lösungen mit offenem Quellcode, da die Portierung je nach Lizenzbedingungen auch unabhängig vom Entwickler vorgenommen werden kann. Im Allgemeinen muss eine Virtualisierungstechnologie, die auf verschiedenen Plattformen zum Einsatz kommen soll, eine einfache Portierbarkeit gewährleisten. Aktuelle IT-Lösungen gewährleisten die Kompatibilität mit gängigen Hardware-Plattformen und Betriebssystemen. Die gängigste Hardwarearchitektur in IT-Infrastrukturen ist die x86-Architektur. Diese ist historisch nicht primär für harte Echtzeitanforderungen in eingebetteten Systemen optimiert, wie sie in Steuergeräten vorkommen, da der System Management Mode kein deterministisches Verhalten für Betriebssysteme und Anwendungen zulässt. Autonome Fahrzeugsteuergeräte verwenden Architekturen, bei denen die Echtzeitfähigkeit garantiert werden kann. Bei der Entwicklung der Virtualisierungslösungen stand die Portierbarkeit auf diese anderen Hardwarearchitekturen von Fahrzeugsteuergeräten nicht im Vordergrund. Virtuelle Maschinen erfordern hardwareseitige Unterstützung von Virtualisierungsmethoden, sodass diese Art der Virtualisierung schwieriger zu portieren ist. Containerisierung nutzt bestimmte Linux-Kernelfunktionen, sodass hier eine Einschränkung seitens des Betriebssystems auf dem Zielgerät stattfindet. 
 
 Sowohl Software als auch Hardware im Automobil müssen Sicherheitsstandards erfüllen. Zu diesem Zweck wurde die Norm ISO 26262 entwickelt. \cite{Birch2013} Wenn also eine Virtualisierungsmethode in einem Steuergerät eingesetzt wird, muss sie gemäß dieser Norm geprüft werden. In diesem Prozess müssen mögliche Gefahren identifiziert und ihr Schweregrad bestimmt werden, die sich aus einer Fehlfunktion des Systems ergeben könnten. Je umfangreicher der Funktionsumfang der Software ist, desto aufwendiger ist diese Zertifizierung, da damit auch die Anzahl der möglichen Fehlfunktionen steigt. Virtualisierungslösungen aus der IT sind auf universelle Einsetzbarkeit optimiert und bieten eine Vielzahl von Funktionalitäten, von denen je nach Anwendungsfall viele nicht relevant sind. Der hohe Funktionsumfang erhöht jedoch den Aufwand für die Zertifizierung nach ISO 26262.
 
 \subsection{Orchestrierung}
-Für die Orchestrierung virtueller Umgebungen existiert eine Vielzahl von Anwendungen, die im \autoref{Software Virtualisierung/Container} vorgestellt wurden. Aus \autoref{Verteiltes Rechnen in Fahrzeugen} geht hervor, dass die Orchestrierung von Applikationen in Fahrzeugen ein aktuelles Forschungsfeld ist, für das es aktuell (Stand 2025) noch keine fertigen kommerziellen Lösungen gibt. Aus funktionaler Sicht sind Orchestrierungsapplikationen aus der IT auch für die Orchestrierung von Fahrzeugapplikationen geeignet. Ein wesentlicher Unterschied zwischen der Orchestrierung verteilter IT-Systeme und verteilter Systeme in Fahrzeugen besteht in der Dynamik, mit der sich die Eigenschaften der Systeme ändern. Verteilte Systeme im IT-Bereich bestehen üblicherweise aus einzelnen Servern oder Rechenclustern, die verwaltet werden. Die Verfügbarkeit dieser Systeme ist hoch; sie gehen nur im Fehlerfall oder bei geplanten Wartungen offline. Die verfügbaren Rechenressourcen sind ebenfalls einfach kalkulierbar, da die Systeme in der Regel nur die Applikationen ausführen, die sie vom Orchestrierer erhalten. Die Orchestrierung der ungenutzten Rechenressourcen von Fahrzeugen ist dagegen mit einem signifikanten Mehraufwand verbunden. Die Rechenressourcen von Fahrzeugsteuergeräten werden nämlich primär für fahrzeuginterne Funktionen genutzt. Die Menge der verfügbaren Ressourcen für externe Applikationen ist hierdurch stark vom Fahrzeugzustand abhängig und kann sich entsprechend dynamisch ändern. Zusätzlich unterliegt auch die Qualität der Netzwerkanbindung von Fahrzeugen erheblichen Schwankungen. Dies erfordert im Vergleich zu den derzeit üblichen Maßnahmen bei der Orchestrierung verteilter Systeme eine erweiterte Parameterbetrachtung und Abschätzung zukünftiger Zustände.
+Für die Orchestrierung virtueller Umgebungen existiert eine Vielzahl von Anwendungen, die in \autoref{Software Virtualisierung/Container} vorgestellt wurden. Aus \autoref{Verteiltes Rechnen in Fahrzeugen} geht hervor, dass die Orchestrierung von Applikationen in Fahrzeugen ein aktuelles Forschungsfeld ist, für das es aktuell (Stand 2025) noch keine fertigen kommerziellen Lösungen gibt. Aus funktionaler Sicht sind Orchestrierungsapplikationen aus der IT auch für die Orchestrierung von Fahrzeugapplikationen geeignet. Ein wesentlicher Unterschied zwischen der Orchestrierung verteilter IT-Systeme und verteilter Systeme in Fahrzeugen besteht in der Dynamik, mit der sich die Eigenschaften der Systeme ändern. Verteilte Systeme im IT-Bereich bestehen üblicherweise aus einzelnen Servern oder Rechenclustern, die verwaltet werden. Die Verfügbarkeit dieser Systeme ist hoch; sie gehen nur im Fehlerfall oder bei geplanten Wartungen offline. Die verfügbaren Rechenressourcen sind ebenfalls einfach kalkulierbar, da die Systeme in der Regel nur die Applikationen ausführen, die sie vom Orchestrierer erhalten. Die Orchestrierung der ungenutzten Rechenressourcen von Fahrzeugen ist dagegen mit einem signifikanten Mehraufwand verbunden. Die Rechenressourcen von Fahrzeugsteuergeräten werden primär für fahrzeuginterne Funktionen genutzt. Die Menge der verfügbaren Ressourcen für externe Applikationen ist hierdurch stark vom Fahrzeugzustand abhängig und kann sich entsprechend dynamisch ändern. Zusätzlich unterliegt auch die Qualität der Netzwerkanbindung von Fahrzeugen erheblichen Schwankungen. Dies erfordert im Vergleich zu den derzeit üblichen Maßnahmen bei der Orchestrierung verteilter Systeme eine erweiterte Parameterbetrachtung und Abschätzung zukünftiger Zustände.
  
 \subsection{Verteiltes Rechnen in Fahrzeugen}
 
@@ -33,13 +33,13 @@ Die Anforderungsanalyse ist eine weitverbreitete Methode zur Entwicklung technis
 
 Funktionale Anforderungen sind solche, die für die Zweckbestimmung des Produkts relevant sind. Bei einem Softwareprodukt werden sowohl die Funktionen, die die gesamte Anwendung umsetzen soll, als auch die Funktionen der einzelnen Komponenten definiert. 
 
-\begin{itemize}
-    \item 1: Die Softwareplattform soll es ermöglichen, externe Applikationen in Fahrzeugsteuergeräten zu platzieren, um deren Rechenleistung zu nutzen.
-    \item 2: Die im Netz verfügbaren Fahrzeuge müssen automatisch als mögliche Auslagerungsorte erkannt werden.
-    \item 3: Fahrzeuge müssen deren Verfügbarkeit sowie deren freie Ressourcen mitteilen, um eine sinnvolle Auslagerung der Applikationen zu ermöglichen
-    \item 4: Auf dem Fahrzeugsteuergerät muss eine eigene Laufzeitumgebung für die externe Applikationen errichtet werden
-    \item 5: Die im Fahrzeug ausgelagerte externe Applikationen müssen eine Kommunikationsschnittstelle erhalten
-\end{itemize}
+\begin{enumerate}
+    \item Die Softwareplattform soll es ermöglichen, externe Applikationen in Fahrzeugsteuergeräten zu platzieren, um deren Rechenleistung zu nutzen.
+    \item Die im Netz verfügbaren Fahrzeuge müssen automatisch als mögliche Auslagerungsorte erkannt werden.
+    \item Fahrzeuge müssen deren Verfügbarkeit sowie deren freie Ressourcen mitteilen, um eine sinnvolle Auslagerung der Applikationen zu ermöglichen
+    \item Auf dem Fahrzeugsteuergerät muss eine eigene Laufzeitumgebung für die externe Applikationen errichtet werden
+    \item Die im Fahrzeug ausgelagerte externe Applikationen müssen eine Kommunikationsschnittstelle erhalten
+\end{enumerate}
 
 An dieser Stelle wird auf genaue Vorgaben für die verwendeten Methoden oder die Architektur verzichtet. Die gewählte Lösung muss lediglich die gestellten Anforderungen erfüllen. 
 
@@ -47,13 +47,13 @@ An dieser Stelle wird auf genaue Vorgaben für die verwendeten Methoden oder die
 
 Nicht-funktionale Anforderungen beziehen sich in erster Linie auf die Qualität. Produktentwicklungen, die diese Anforderungen nicht erfüllen, sind zwar funktional, bieten aber nicht die vom Kunden gewünschte Nutzererfahrung. Bei Softwareprodukten fallen beispielsweise Leistung, Sicherheit und Wartbarkeit in diese Kategorie. 
 
-\begin{itemize}
-    \item 1: Applikationen sollen von der Funktionssoftware im Fahrzeug isoliert sein um unberechtigte Zugriffe auf Fahrzeugdaten zu verhindern
-    \item 2: Es soll eine Authentifizierung bei der Netzwerkkommunikation vorgesehen werden um unberechtigte Zugriffe zu verhindern
-    \item 3: Die Kommunikationsschnittstellen sollen modular und austauschbar ausgelegt werden um die Kompatibilität zu erhöhen
-    \item 4: Die Virtualisierungsapplikation für die Fahrzeugsteuergeräte soll möglichst einfach auf verschiedene Hardwarearchitekturen portierbar sein
-    \item 5: Funktionsumfang der Virtualisierungsapplikation soll für eine einfachere Sicherheitsbetrachtung möglichst auf die notwendige Funktionen zugeschnitten sein
-\end{itemize}
+\begin{enumerate}
+    \item Applikationen sollen von der Funktionssoftware im Fahrzeug isoliert sein um unberechtigte Zugriffe auf Fahrzeugdaten zu verhindern
+    \item Es soll eine Authentifizierung bei der Netzwerkkommunikation vorgesehen werden um unberechtigte Zugriffe zu verhindern
+    \item Die Kommunikationsschnittstellen sollen modular und austauschbar ausgelegt werden um die Kompatibilität zu erhöhen
+    \item Die Virtualisierungsapplikation für die Fahrzeugsteuergeräte soll möglichst einfach auf verschiedene Hardwarearchitekturen portierbar sein
+    \item Funktionsumfang der Virtualisierungsapplikation soll für eine einfachere Sicherheitsbetrachtung möglichst auf die notwendige Funktionen zugeschnitten sein
+\end{enumerate}
 
 Die Sicherheitsbetrachtung steht nicht im Fokus dieser Arbeit. Dies ist ein komplexes Feld, in dem die Entwicklung bereits sehr weit fortgeschritten ist, da es für sehr viele Anwendungen relevant ist. 
 
@@ -80,7 +80,7 @@ Aus diesen Gründen wird für die Bewertung der Systemeffizienz und der Scheduli
 
 Die Evaluationsstrategie gliedert sich in zwei Phasen:
 
-\textbf{Funktionale Validierung (Prototyp):} Der erste Schritt dient dem Nachweis der technischen Machbarkeit. Hierbei wird verifiziert, ob die Architektur in der Lage ist, die in der Anforderungsanalyse definierten funktionalen Anforderungen zu erfüllen. Dies umfasst die fogenden Punkte:
+\textbf{Funktionale Validierung (Prototyp):} Der erste Schritt dient dem Nachweis der technischen Machbarkeit. Hierbei wird verifiziert, ob die Architektur in der Lage ist, die in der Anforderungsanalyse definierten funktionalen Anforderungen zu erfüllen. Dies umfasst die folgenden Punkte:
 
 \begin{itemize}
     \item Die korrekte Erkennung von Knoten im Netzwerk mittels DDS.
@@ -90,11 +90,7 @@ Die Evaluationsstrategie gliedert sich in zwei Phasen:
     \item Die Ausführung von Applikationen auf der Zielhardware. Diese Tests werden mit einer begrenzten Anzahl an physischen oder virtualisierten Knoten durchgeführt.
 \end{itemize}
 
-<<<<<<< HEAD
-\textbf{Nicht-funktionale Leistungsbewertung (Simulation):} Der zweite Schritt fokussiert sich auf die Qualität der Ressourcenverteilung und das Zeitverhalten. Hierzu wird eine Simulationsumgebung implementiert, die das Verhalten eines großen Fahrzeugclusters modelliert. Die Simulation orientiert sich an realen Hardware-Parametern aktueller Level-4-Steuergeräte (z. B. 100–200 TOPS Rechenleistung, 64 GB RAM), um eine hohe Realitätsnähe zu gewährleisten. Untersucht werden hierbei:
-=======
 \textbf{Nicht-funktionale Leistungsbewertung (Simulation):} Der zweite Schritt fokussiert sich auf die Qualität der Ressourcenverteilung und das Zeitverhalten. Hierzu wird eine Simulationsumgebung implementiert, die das Verhalten eines großen Fahrzeugclusters modelliert. Die Simulation orientiert sich an realen Hardware-Parametern aktueller Level-4-Steuergeräte, um eine hohe Realitätsnähe zu gewährleisten. Untersucht werden hierbei:
->>>>>>> c27679d9d2a5386528a60af572598e2138a0e95f
 
 \begin{itemize}
     \item Statische Szenarien: Bewertung der algorithmischen Güte (Vergleich von Greedy vs. Brute Force) bei fester Aufgabenlast.
@@ -111,7 +107,7 @@ Um die Leistungsfähigkeit und Effizienz der entwickelten Softwareplattform sowi
 \textbf{Effizienzmetriken:} Diese Metriken bewerten, wie gut die zur Verfügung stehenden Ressourcen der Fahrzeugflotte genutzt werden. Sie dienen primär der Evaluation der Scheduling-Strategien. Die folgenden Metriken wurden für die Bewertung herangezogen:
 
 \begin{itemize}
-    \item Ressourcenauslastung: Beschreibt das Verhältnis der tatsächlich für Berechnungen genutzten Ressourcen zur theoretisch maximal verfügbaren Gesamtkapazität der aktiven Knoten. Das Hauptaugenmerk liegt hierbei auf der Rechenleistung (TOPS), da diese die kritischste Ressource darstellt. 
+    \item Ressourcenauslastung: Beschreibt das Verhältnis der tatsächlich für Berechnungen genutzten Ressourcen zur theoretisch maximal verfügbaren Gesamtkapazität der aktiven Knoten. Das Hauptaugenmerk liegt hierbei auf der Rechenleistung (TOPS), da diese die kritischste Ressource darstellt. Die Auslastung kann mit der folgenden Formel (\autoref{eq:utilization}) für $n$ Aufgaben und $m$ Runtime Nodes berechnet werden:
     \begin{align}
     U_{\text{TOPS}}(t) &= \frac{\sum_{i=1}^{n} \text{Genutzte TOPS}_i(t)}{\sum_{j=1}^{m} \text{Verfügbare TOPS}_j(t)}
     \label{eq:utilization}
@@ -119,7 +115,7 @@ Um die Leistungsfähigkeit und Effizienz der entwickelten Softwareplattform sowi
     \item Verteilungsgüte (Standardabweichung): Misst die Standardabweichung der Lastverteilung über alle Knoten. Eine geringe Standardabweichung deutet auf eine faire Lastverteilung hin, was Hotspots vermeidet. (Relevant für den Vergleich der Greedy-Varianten).
 \end{itemize} 
 
-\textbf{Leistungsmetriken:} Diese Metriken bewerten die technische Implementierung des Runtime Nodes und des Runtime Masters hinsichtlich ihrer Eignung für ressourcenbeschränkte Steuergeräte und Echtzeitanforderungen. Die folgenden Metriken wurden betrachtet:
+\textbf{Leistungsmetriken:} Diese Metriken bewerten die technische Implementierung des Runtime Nodes und des Runtime Masters hinsichtlich ihrer Eignung für ressourcenbeschränkte Steuergeräte und Echtzeitanforderungen. Die folgenden Metriken werden betrachtet:
 
 \begin{itemize}
     \item Scheduling-Latenz: Die Zeitspanne, die der Algorithmus benötigt, um für eine Menge an wartenden Aufgaben n eine Zuweisung zu berechnen.
@@ -157,8 +153,23 @@ Um die Leistungsfähigkeit und Effizienz der entwickelten Softwareplattform sowi
 
 \section{Forschungsansatz}
 \label{Forschungsansatz}
-Ausgehend von den identifizierten Defiziten bestehender Systeme wird ein Konzept und eine prototypische Implementierung einer Plattform vorgenommen, die es ermöglicht, externe Applikationen auf Fahrzeugsteuergeräten zu verwalten. Die Entwicklung zu einer vollständig potentiell kommerziell nutzbaren Software würde im Rahmen einer Dissertation einen zu hohen Entwicklungsaufwand bedeuten, jedoch können mit Hilfe der prototypischen Implementierung bereits viele Erkenntnisse gewonnen werden. Abhängigkeiten und daraus resultierende Anforderungen an das Betriebssystem können genau abgeleitet werden. Darüber hinaus erleichtert es die Bestimmung des notwendigen Funktionsumfangs der Plattform. 
+Basierend auf dem identifizierten Forschungsbedarf und den definierten Anforderungen verfolgt diese Arbeit einen konstruktiven Forschungsansatz, der die Konzeption, Implementierung und Evaluation einer domänenspezifischen Orchestrierungsplattform umfasst. Der Ansatz gliedert sich in die folgenden drei Kernbereiche:
+
+
 
 Die Plattform soll zwei Hauptkomponenten implementieren. Eine Komponente läuft auf den Steuergeräten im Fahrzeug und verwaltet die Applikationen die von extern auf das Steuergerät geladen werden. Diese Komponente wird \enquote{Runtime Node} bezeichnet Die zweite Komponente ist eine Managementkomponente, die alle für externe Berechnungen verfügbaren Steuergeräte im Netzwerk erkennt und entsprechend Applikationen auslagern kann. Diese wird \enquote{Runtime Master} bezeichnet. Die Softwarekomponenten werden insbesondere für die Kommunikationsschnittstelle für Netzwerkkommunikation modular aufgebaut, so dass je nach Anwendung flexibel entschieden werden kann, über welches Protokoll die Kommunikation im Netzwerk erfolgt. Für die programminterne Kommunikation zwischen den Modulen ist ein einheitliches Protokoll vorgesehen. 
 
-Die Isolierung der externen Anwendungen von den fahrzeuginternen Softwarekomponenten ist erforderlich, um einen unbefugten Zugriff auf die fahrzeuginternen Softwarekomponenten zu verhindern. Dies kann durch geeignete Virtualisierung erreicht werden. Im \autoref{Applikationsmanagement} wurden die zwei Virtualisierungsmethoden aus der Informationstechnik vorgestellt. Die Hardwarevirtualisierung mit virtuellen Maschinen bietet mehr Flexibilität und eine größere Isolation vom verwendeten System, aber diese Virtualisierungsmethoden müssen an die jeweilige Hardwarearchitektur angepasst werden und verursachen mehr zusätzlichen Rechenaufwand als die Softwarevirtualisierung. Software-Virtualisierung mittels Containern ist mit den meisten Linux-Distributionen nativ realisierbar. Leistungsfähige Fahrzeugsteuergeräte verwenden in der Regel eine angepasste Linux Distribution als Betriebssystem, so dass die Software Virtualisierung in den meisten Fällen ohne zusätzliche Anpassungen im Betriebssystem einsetzbar ist. Damit ist diese Methode deutlich einfacher auf verschiedene Steuergeräte portierbar. Aus diesem Grund wird die höchste Kompatibilität dann erreicht, wenn diese Virtualisierungsmethode eingesetzt wird. 
+\textbf{1. Architektur der Laufzeitumgebung:} Um die Heterogenität der Fahrzeugsteuergeräte zu abstrahieren (Anforderung NF-4), wird eine strikte Trennung zwischen der Verwaltungsebene und der Ausführungsebene gewählt.
+
+\begin{itemize}
+    \item Runtime Node: Eine leichtgewichtige Agenten-Software auf dem Fahrzeugsteuergerät, die für die lokale Ressourcenverwaltung und die Isolierung externer Prozesse zuständig ist.
+    \item Runtime Master: Eine zentrale Instanz, die den globalen Systemzustand überwacht und Scheduling-Entscheidungen trifft. Diese Entkopplung ermöglicht es, die ressourcenintensiven Optimierungsalgorithmen vom Fahrzeug in das Backend zu verlagern.
+\end{itemize}
+
+\textbf{Technologieauswahl für Virtualisierung und Kommunikation:} Zur Erfüllung der Anforderungen an Isolierung (NF-1) und Portierbarkeit (NF-4) wird auf Container-Virtualisierung gesetzt. Im Gegensatz zu Hypervisoren nutzen Container vorhandene Kernel-Features (Namespaces, cgroups) des ohnehin auf High-Performance-ECUs vorhandenen Linux-Betriebssystems. Dies minimiert den Overhead und erleichtert die Portierung auf verschiedene CPU-Architekturen. Für die Kommunikation (Anforderung F-2, NF-3) wird der Standard Data Distribution Service (DDS) gewählt. Der datenzentrierte Publish-Subscribe-Ansatz von DDS unterstützt die geforderte dynamische Erkennung von Teilnehmern ohne zentrale Konfigurationsserver und entspricht den modernen E/E-Architektur-Trends (\gls{SOA}).
+
+\textbf{3. Systemabgrenzung und Prototyping:} Ziel der Arbeit ist der Nachweis der technologischen Machbarkeit und der Effizienzpotenziale. Es wird ein voll funktionsfähiger Prototyp (Proof-of-Concept) entwickelt, der die Kernmechanismen (Deployment, Isolierung, Kommunikation) abbildet.
+
+\begin{itemize}
+    \item Fokus: Der Fokus liegt auf der Scheduling-Logik und der technischen Integration in eingebettete Linux-Systeme.
+    \item Abgrenzung: Aspekte wie eine vollumfängliche ISO-26262-Zertifizierung, ein kommerzielles Bezahlmodell (Incentivierung) oder ein gehärtetes IT-Sicherheitskonzept (Penetration Testing) werden konzeptionell betrachtet, aber nicht implementiert. Dies ermöglicht eine Fokussierung auf die Beantwortung der zentralen Forschungsfragen zur Ressourceneffizienz und Machbarkeit.
