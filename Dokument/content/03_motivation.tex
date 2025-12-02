@@ -123,11 +123,33 @@ Um die Leistungsfähigkeit und Effizienz der entwickelten Softwareplattform sowi
     t_{\text{sched}} &= t_{\text{end}} - t_{\text{start}}
     \label{eq:latency}
     \end{align}
-    Da das System in dynamischen Umgebungen agiert, muss $t_{sched}$​ signifikant kleiner sein als die mittlere Ankunftsrate neuer Aufgaben, um einen Stau zu vermeiden.
+    Da das System in dynamischen Umgebungen agiert, muss $t_{sched}$​ signifikant kleiner sein als die mittlere Ankunftsrate neuer Aufgaben sein, damit der Scheduler die Systemdynamik beherrschen kann.
     \item Plattform-Overhead: Der Ressourcenverbrauch, der durch die Verwaltungssoftware selbst entsteht. Dazu gehört die Zeit vom Empfang des Startbefehls bis zur Ausführung der main()-Funktion der externen Applikation sowie der Speicher- und Rechenbedarf des Runtime Node Prozesses im Leerlauf. Dieser muss minimal sein, um die Primärfunktionen des Fahrzeugs nicht zu beeinträchtigen.
 \end{itemize}
 
+\textbf{Qualitätsmetriken:} Diese Metriken bewerten die Stabilität des Systems unter den volatilen Bedingungen eines Fahrzeugnetzwerks. Dies wird durhch die folgenden Metriken bewertet:
 
+\begin{itemize}
+    \item Aufgaben-Erfolgsrate: Der Anteil der erfolgreich abgeschlossenen Aufgaben im Verhältnis zur Gesamtzahl der gestellten Aufgaben.
+    \begin{align}
+    R_{\text{success}} &= \frac{N_{\text{completed}}}{N_{\text{total}}}
+    \label{eq:success_rate}
+    \end{align}
+    In einem statischen System sollte diese 100\% betragen. In einem dynamischen System mit Knotenausfällen (Churn) dient sie als Maß für die Effektivität des Wiederanlauf-Mechanismus.
+    \item Kommunikationseffizienz: Das Verhältnis von Nutzdaten zu gesendeten Gesamtdaten. Aufgrund der Verwendung textbasierter Protokolle (JSON) und Kodierungen (Base64) wird hier ein Overhead erwartet.
+    \begin{align}
+    E_{\text{comm}} &= \frac{S_{\text{bin}}}{S_{\text{packet}}}
+    \label{eq:comm_efficiency}
+    \end{align}
+\end{itemize}
+
+\textbf{Erfolgskriterien:} Die Forschungsziele gelten als erreicht, wenn die Evaluation folgende Kriterien bestätigt:
+\begin{enumerate}
+    \item Funktionalität: Externe Binärdateien können fehlerfrei übertragen, isoliert ausgeführt und deren Ergebnisse zurückgemeldet werden.
+    \item Skalierbarkeit: Der gewählte Scheduling-Algorithmus ermöglicht Entscheidungen in Echtzeit (<1 ms für typische Clustergrößen), während exakte Verfahren exponentiell skalieren.
+    \item Effizienz: Die Simulation zeigt eine durchschnittliche Systemauslastung von >75\% in Hochlastszenarien, was die wirtschaftliche Tragfähigkeit des Konzepts untermauert.
+    \item Stabilität: Trotz simulierter Fahrzeugausfälle (Churn-Rate > 0) geht keine Aufgabe dauerhaft verloren (Erfolgsrate nach Retries = 100\%).
+\end{enumerate}
 
 \section{Forschungsansatz}
 \label{Forschungsansatz}
