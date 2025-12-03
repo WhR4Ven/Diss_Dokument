@@ -1,31 +1,31 @@
-\chapter{Methode Softwareplattform und Scheduling}
-\label{Methode Softwareplattform und Scheduling}
+\chapter{ch:MethodeSoftwareplattform}
+\label{ch:MethodeSoftwareplattform}
 
-In diesem Kapitel wird anhand der Anforderungen aus dem Forschungsansatz eine Gesamtarchitektur des Softwareplattforms vorgestellt, sowie die Softwarearchitektur der beiden Softwarekomponenten \enquote{Runtime Node} und \enquote{Runtime Master}. 
+In diesem Kapitel wird anhand der Anforderungen aus dem Forschungsansatz eine Gesamtarchitektur der Softwareplattform vorgestellt, sowie die Softwarearchitektur der beiden Softwarekomponenten \enquote{Runtime Node} und \enquote{Runtime Master}. 
 
-\section{Verteiltes Rechenplattform aus autonomen Fahrzeugsteuergeräten}
+\section{Verteilte Rechenplattform aus autonomen Fahrzeugsteuergeräten}
 
-Die Rechenleistung von autonomen Fahrzeugen kann in verschiedenen Nutzungskonzepten verwendet werden. Im Kapitel \autoref{Hardwareumgebung in Fahrzeugen} wurde die Hardware vorgestellt, die typischerweise in autonomen Fahrzeugsteuergeräten zu finden ist. Es wird deutlich, dass diese Steuergeräte über Hardwaremodule verfügen, die die Rechenleistung für spezifische Rechenoperationen erhöhen. Grafikprozessoren beinhalten viele Rechenkerne, die parallel auf gro0en Datenmengen opreationen ausführen können. In den meisten Architekturen können die GPU-Cores nur in Gruppen verwendet werden, wobei jede Gruppe die gleiche Rechenoperation ausführen muss. Kerne für Neuronale Netzwerk Berechnungen implementieren Matrix Operationen in Hardware, so dass diese in erheblich weniger Rechenzyklen als bei sequentieller Berechnung durchgeführt werden können. Folglich können nur solche Rechenaufgaben sinnvoll auf diese Steuergeräte ausgelagert werden, die sich in viele parallele Berechnungen aufteilen lassen. Typische Beispiele für solche Berechnungen sind:
+Die Rechenleistung von autonomen Fahrzeugen kann in verschiedenen Nutzungskonzepten verwendet werden. Im \autoref{Hardwareumgebung in Fahrzeugen} wurde die Hardware vorgestellt, die typischerweise in autonomen Fahrzeugsteuergeräten zu finden ist. Es wird deutlich, dass diese Steuergeräte über Hardwaremodule verfügen, die die Rechenleistung für spezifische Rechenoperationen erhöhen. Grafikprozessoren beinhalten viele Rechenkerne, die parallel auf großen Datenmengen Operationen ausführen können. In den meisten Architekturen können die GPU-Cores nur in Gruppen verwendet werden, wobei jede Gruppe die gleiche Rechenoperation ausführen muss. Kerne für Neuronale Netzwerk Berechnungen implementieren Matrixoperationen in Hardware, so dass diese in erheblich weniger Rechenzyklen als bei sequentieller Berechnung durchgeführt werden können. Folglich können nur solche Rechenaufgaben sinnvoll auf diese Steuergeräte ausgelagert werden, die sich in viele parallele Berechnungen aufteilen lassen. Typische Beispiele für solche Berechnungen sind:
 
 \begin{itemize}
-    \item Mathematik: Vektor und Matrixoperationen
+    \item Mathematik: Vektor- und Matrixoperationen
     \item Bildbearbeitung: FFT oder Faltungsoperationen
-    \item Simulation: Moleküldynamik, Finite-Elemente Analyze, Fluiddynamik
-    \item Finanzsegment: Monte Carlo Simulation, Optionspreisgestaltung, Portfolio Optimierung
+    \item Simulation: Moleküldynamik, Finite-Elemente Analyse, Fluiddynamik
+    \item Finanzsegment: Monte Carlo Simulation, Optionspreisgestaltung, Portfolio-Optimierung
     \item Kryptographie und Sicherheit: Hashing Algorithmen, Passwortknacken, Blockchain und Kryptowährung Mining
     \item Datenanalyse in Naturwissenschaften: Genomische und bioinformatische Berechnungen, Big Data Verarbeitung
-    \item Optimerung: Genetische Algorithmen Berechnungen
-    \item Quantum Computing: Simulation von Quantumsystemen
+    \item Optimierung: Genetische Algorithmen Berechnungen
+    \item Quantencomputing: Simulation von Quantumsystemen
 \end{itemize}
 
 Die Neuronale Netzwerk Beschleuniger können zudem für das Trainieren von neuronalen Netzwerken effizient verwendet werden. 
 
-Trotz der Einschränkung in der Art der Rechenaufgaben, die auf der Hardware effizient berechnet werden können, ergibt sich eine Vielzahl möglicher Anwendungsszenarien. Die ungenutzte Rechenleistung kann also von verschiedenen Kunden sinnvoll verwendet werden. Folgende Ansätze für die Bereitstellung der Ressourcen an Kunden wären Denkbar:
+Trotz der Einschränkung in der Art der Rechenaufgaben, die auf der Hardware effizient berechnet werden können, ergibt sich eine Vielzahl möglicher Anwendungsszenarien. Die ungenutzte Rechenleistung kann also von verschiedenen Kunden sinnvoll verwendet werden. Folgende Ansätze für die Bereitstellung der Ressourcen an Kunden wären denkbar:
 
 \begin{itemize}
-    \item Nutzung ausschließlich durch den Hersteller: Diese Methode ist die transparenteste und sicherste Methode für den Fahrzeughersteller. Nur der Hersteller selber Applikationen auf die Fahrzeuge ausrollen und die ungenutzte Rechenleistung nutzen
-    \item Nutzung durch Hersteller und ausgewählte Kunden: Der Hersteller stellt die Rechenleistung auch an ausgewählte Kunden zur Verfügung, hierbei vertraut der Hersteller den Kunden, dass sie keine illegale Aktivitäten ausüben und nicht aktiv Versuchen Schutzmechanismen des Systems umzugehen.
-    \item Nutzung durch frei verfügbaren Marktplatz: Beliebige Kunden können auf dem Marktplatz Rechenleistung einkaufen. In diesem Konzept muss sichergestellt werden dass Kunden keine illegale Aktivitäten ausüben und dass sie die Sicherheitsmechanismen des Plattforms nicht versuchen zu umgehen.
+    \item Nutzung ausschließlich durch den Hersteller: Diese Methode ist die transparenteste und sicherste Methode für den Fahrzeughersteller. Nur der Hersteller selber darf Applikationen auf die Fahrzeuge ausrollen und die ungenutzte Rechenleistung nutzen
+    \item Nutzung durch Hersteller und ausgewählte Kunden: Der Hersteller stellt die Rechenleistung auch an ausgewählte Kunden zur Verfügung, hierbei vertraut der Hersteller den Kunden, dass sie keine illegalen Aktivitäten ausüben und nicht aktiv versuchen Schutzmechanismen des Systems umzugehen.
+    \item Nutzung durch frei verfügbaren Marktplatz: Beliebige Kunden können auf dem Marktplatz Rechenleistung einkaufen. In diesem Konzept muss sichergestellt werden dass Kunden keine illegale Aktivitäten ausüben und dass sie die Sicherheitsmechanismen der Plattform nicht versuchen zu umgehen.
 \end{itemize}
 
 Für die ersten Versionen einer solchen Plattform kommen realistischerweise nur die ersten beiden Möglichkeiten in Frage. Eine freie Nutzung erfordert sehr hohe Sicherheitsstandards für die Plattform, die mit erheblichem Entwicklungs- und Erfahrungsaufwand verbunden sind. 
@@ -36,11 +36,11 @@ Plattformen, die auf freiwilliger Teilnahme und Bereitstellung von Rechenressour
 
 Wenn eine kommerzielle Nutzung der Rechenleistung vorgesehen ist, müssen die Nutzer, die Rechenleistung zur Verfügung stellen, entlohnt werden. Viele Plattformen im IT-Bereich setzen dabei auf die Bezahlung mit Kryptowährungen. Dies hat den Vorteil, dass die Zahlungsbedingungen direkt im Blockchain-Vertrag festgehalten werden können, sodass kein Vertrauen in die Einhaltung der Bedingungen durch den Plattformbetreiber erforderlich ist. Exemplarisch kann in diesem Kontext das Golem-Projekt betrachtet werden. 
 
-Das Konzept sieht die Implementierung eines Markplatzes vor, wo Benutzer Rechenleistung einkaufen und verkaufen können. Die Erstellung der Rechenaufgaben kann auf zwei verschiedene Arten erfolgen. Entweder werden bereits kompatible Funktionscodes in Form von Vorlagen genutzt, oder die Funktionscodes werden vom Benutzer implementiert. Die Aufgabenverwaltung registriert die neue Aufgabe, welche durch einen Benutzer angestoßen wurde. Der Benutzer, der die Rechenleistung der Plattform in Anspruch nehmen möchte, erstellt ein Angebot, in dem er die Höhe der Vergütung angibt. Diese Angebote werden auf dem Netzwerk an allen Benutzer übertragen, die Rechenleistung zur Verfügung stellen. Zusätzlich kann das Angebot Einschränkungen bezüglich der Hardware oder geographische Lage beinhalten.
+Das Konzept sieht die Implementierung eines Markplatzes vor, wo Benutzer Rechenleistung einkaufen und verkaufen können. Die Erstellung der Rechenaufgaben kann auf zwei verschiedene Arten erfolgen. Entweder werden bereits kompatible Funktionscodes in Form von Vorlagen genutzt, oder die Funktionscodes werden vom Benutzer implementiert. Die Aufgabenverwaltung registriert die neue Aufgabe, welche durch einen Benutzer angestoßen wurde. Der Benutzer, der die Rechenleistung der Plattform in Anspruch nehmen möchte, erstellt ein Angebot, in dem er die Höhe der Vergütung angibt. Diese Angebote werden auf dem Netzwerk an alle Benutzer übertragen, die Rechenleistung zur Verfügung stellen. Zusätzlich kann das Angebot Einschränkungen bezüglich der Hardware oder geographische Lage beinhalten.
 
-Die Bereitstellung von Rechenleistung erfolgt durch die lokalen Ausführungen eines Transaktionssystem-Moduls durch die jeweiligen Benutzer. Dieser Modul sammelt alle verfügbaren Aufgabenangebote im Netzwerk und wählt das beste Angebot aus. Des Weiteren verfügt auch derjenige, der ein Angebot erstellt, über eine Reputation auf der Plattform. Angebote von Benutzern, deren Reputation als zu gering erachtet wird, werden abgelehnt. Sofern alle Anforderungen des Angebots durch den Rechenleistung-Bereitsteller erfüllt sind, wird das Angebot angenommen. 
+Die Bereitstellung von Rechenleistung erfolgt durch die lokalen Ausführungen eines Transaktionssystem-Moduls durch die jeweiligen Benutzer. Dieses Modul sammelt alle verfügbaren Aufgabenangebote im Netzwerk und wählt das beste Angebot aus. Des Weiteren verfügt auch derjenige, der ein Angebot erstellt, über eine Reputation auf der Plattform. Angebote von Benutzern, deren Reputation als zu gering erachtet wird, werden abgelehnt. Sofern alle Anforderungen des Angebots durch den Rechenleistung-Bereitsteller erfüllt sind, wird das Angebot angenommen. 
 
-Die Rechenaufgabe, inklusive benötigte Ressourcen wird auf den PC vom Rechenleistung-Bereitsteller heruntergeladen. Der PC berechnet im Anschluss die entsprechende Aufgabe. Der Rechenleistung-Bereitsteller kann die geladenen Anwendungen in verschiedenen Umgebungen ausführen. Es kann eine Virtualisierungsmethode wie Container oder virtuelle Maschine verwendet werden, um die Anwendungen vom Hostsystem zu isolieren, oder es kann direkt auf dem Hostsystem ausgeführt werden, wenn die Anwendung als vertrauenswürdig eingestuft wird. 
+Die Rechenaufgabe, inklusive benötigter Ressourcen wird auf den PC des Rechenleistungsbereitstellers heruntergeladen. Der PC berechnet im Anschluss die entsprechende Aufgabe. Der Rechenleistung-Bereitsteller kann die geladenen Anwendungen in verschiedenen Umgebungen ausführen. Es kann eine Virtualisierungsmethode wie Container oder virtuelle Maschine verwendet werden, um die Anwendungen vom Hostsystem zu isolieren, oder es kann direkt auf dem Hostsystem ausgeführt werden, wenn die Anwendung als vertrauenswürdig eingestuft wird. 
 
 Nach der Berechnung der Aufgabe werden die Ergebnisse und Protokolle an den Auftraggeber zurückgeschickt. Die Aufgabenverwaltung validiert die Ergebnisse, indem entweder Teile der Aufgabe von anderen Teilnehmern redundant berechnet werden oder Teile lokal berechnet und überprüft werden. Sind die Ergebnisse erfolgreich validiert, wird der Benutzer, der die Rechenleistung erbracht hat, entsprechend dem Angebot bezahlt. Falls die Ergebnisse nicht korrekt sind, wird die Reputation des Rechenleistung-Bereitstellers verringert. 
 
@@ -48,7 +48,7 @@ Ein Konzept wie es im Golem-Projekt umgesetzt wurde, eignet sich auch für die B
 
 \section{Architektur der Softwareplattform}
 
-Die prototypische Implementierung der Plattform orientiert sich in ihrer Architektur an bestehenden Systemen aus der Informationstechnik. Wie im \autoref{Forschungsansatz} erarbeitet, besteht die Plattform aus zwei Hauptkomponenten. Die \enquote{Runtime Node} Komponente läuft auf den Fahrzeugsteuergeräten und ist im gesamten Netzwerk mehrfach vorhanden. Die Komponente \enquote{Runtime Master} ist einmal im Netzwerk vorhanden und verwaltet die \enquote{Runtime Node} Komponenten. Eine Gesamtarchitektur ist in der \autoref{architektur} dargestellt.
+Die prototypische Implementierung der Plattform orientiert sich in ihrer Architektur an bestehenden Systemen aus der Informationstechnik. Wie in \autoref{Forschungsansatz} erarbeitet, besteht die Plattform aus zwei Hauptkomponenten. Die \enquote{Runtime Node} Komponente läuft auf den Fahrzeugsteuergeräten und ist im gesamten Netzwerk mehrfach vorhanden. Die Komponente \enquote{Runtime Master} ist einmal im Netzwerk vorhanden und verwaltet die \enquote{Runtime Node} Komponenten. Eine Gesamtarchitektur ist in der \autoref{architektur} dargestellt.
 
 \begin{figure}[htbp]
 	\centering
@@ -64,18 +64,18 @@ Diese Komponente wird auf den Fahrzeugsteuergeräten ausgeführt und besteht aus
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./content/graphics/Runtime_Node_Arch.pdf}
-	\caption{Runtime Node Struktur}
+	\caption{Runtime Node-Struktur}
 	\label{runtime node}
 \end{figure}
 
-\subsubsection{Runtime Node Befehlsverarbeitung}
+\subsubsection{Runtime Node-Befehlsverarbeitung}
 
 Diese Komponente interpretiert die Befehle der Kommunikationsschnittstelle und erzeugt Statusrückmeldungen. Abhängig vom empfangenen Befehl ruft sie die entsprechenden Container Management Funktionen auf. Hier werden auch die für den Runtime Master relevanten Informationen und Statusrückmeldungen gesammelt und als Nachricht über die Kommunikationsschnittstelle versendet.
 
 \subsubsection{Container Management}
 \label{Container Management}
 
-Die elementare Aufgabe der Softwarekomponente Runtime Node ist die Erzeugung und Verwaltung von isolierten Laufzeitumgebungen. Im \autoref{Virtualisierung} wurde festgelegt, dass diese isolierten Laufzeitumgebungen mit der Virtualisierungsmethode der Containerisierung erzeugt werden. Dabei werden betriebssystemspezifische Isolationsmethoden verwendet, die vom Linux-Kernel zur Verfügung gestellt werden. Konkret werden die in \autoref{Software Virtualisierung/Container} vorgestellten Namespaces verwendet. 
+Die elementare Aufgabe der Softwarekomponente Runtime Node ist die Erzeugung und Verwaltung von isolierten Laufzeitumgebungen. Im \autoref{Virtualisierung} wurde festgelegt, dass diese isolierten Laufzeitumgebungen mit der Virtualisierungsmethode der Containerisierung erzeugt werden. Dabei werden betriebssystemspezifische Isolationsmethoden verwendet, die vom Linux-Kernel zur Verfügung gestellt werden. Konkret werden die in \autoref{Software-Virtualisierung/Container} vorgestellten Namespaces verwendet. 
 
 Die Komponente Container Management kann diese isolierte Laufzeitumgebung (Container) erstellen, starten, stoppen und löschen. Diese Aktionen können durch entsprechende Befehle ausgelöst werden, die über die Kommunikationsschnittstelle empfangen werden. Wird ein Befehl zur Erstellung eines Containers empfangen, wird die Erstellung der Laufzeitumgebung angestoßen. Die Isolierung erfolgt zunächst auf Dateisystemebene. Für jeden Container wird ein eigener Ordner angelegt, der als Wurzelverzeichnis konfiguriert wird. Prozesse, die im jeweiligen Container ausgeführt werden, haben nur Zugriff auf die Daten in diesem Verzeichnis. Entsprechend werden auch die benötigten Softwarebibliotheken und Frameworks in diesem Ordner abgelegt, damit sie den Anwendungen innerhalb des Containers zur Verfügung stehen. Dies kann entweder durch die Erstellung eines vorkonfigurierten Ordners erfolgen, der lokal auf dem Steuergerät zur Verfügung steht, oder durch die Übertragung von extern auf die gleiche Weise wie externe Applikationen. Zusätzlich wird der Container in einer lokalen Datenbank registriert, in der Name, Status und vorhandene ausführbare Anwendungen eingetragen werden. Diese Informationen werden an den Runtime Master übertragen, so dass das System einen Überblick über die Container hat.
 
@@ -96,7 +96,7 @@ Prozesse, die im Container laufen, sind standardmäßig durch die Verwendung von
 
 \subsection{Runtime Master}
 
-Die Runtime Master Komponente verwaltet die Runtime Nodes im Gesamtsystem. Das aktuelle Konzept sieht eine laufende Instanz von Runtime Master im System vor. Im gegensatz zu den Runtime Nodes wird diese Komponente nicht auf einem Fahrzeug ausgeführt, sondern auf einem Server. Runtime Master erkennt und verwaltet alle Runtime Node Instanzen im gleichen Netzwerk. Wie Runtime Node besteht auch Runtime Master aus mehreren Softwarekomponenten. Eine Übersicht ist in \autoref{runtime master} dargestellt. Die Kommunikationsschnittstelle ist bei Runtime Node ebenfalls eine separate Softwarekomponente, die nicht teil von Runtime Node ist. 
+Die Runtime Master-Komponente verwaltet die Runtime Nodes im Gesamtsystem. Das aktuelle Konzept sieht eine laufende Instanz von Runtime Master im System vor. Im Gegensatz zu den Runtime Nodes wird diese Komponente nicht auf einem Fahrzeug ausgeführt, sondern auf einem Server. Runtime Master erkennt und verwaltet alle Runtime Node Instanzen im gleichen Netzwerk. Wie Runtime Node besteht auch Runtime Master aus mehreren Softwarekomponenten. Eine Übersicht ist in \autoref{runtime master} dargestellt. Die Kommunikationsschnittstelle ist bei Runtime Node ebenfalls eine separate Softwarekomponente, die nicht Teil von Runtime Node ist. 
 
 \begin{figure}[htbp]
 	\centering
@@ -105,7 +105,7 @@ Die Runtime Master Komponente verwaltet die Runtime Nodes im Gesamtsystem. Das a
 	\label{runtime master}
 \end{figure}
 
-\subsubsection{Runtime Master Nachrichtenverwaltung}
+\subsubsection{Runtime Master-Nachrichtenverwaltung}
 
 Diese Komponente generiert die Befehle, die über die Kommunikationsschnittstelle an die Runtime Nodes übertragen werden und empfängt die Statusmeldungen der Runtime Nodes. Die Befehle können sowohl über eine Benutzeroberfläche manuell oder über eine Scheduler Algorithmus ausgelöst werden. Die Statusmeldungen der Runtime Nodes werden an die Datenbank oder, falls es sich um eine Fehlermeldung handelt, an die Benutzerschnittstelle oder den Scheduler gesendet. 
 
@@ -125,22 +125,22 @@ Innerhalb des Systems findet Kommunikation sowohl zwischen den Fahrzeugen als au
 \subsubsection{Kommunikation zwischen Fahrzeugen und Runtime Master}
 \label{Kommunikation zwischen Fahrzeugen und Runtime Master}
 
-Die Fahrzeuge bilden ein verteiltes System, das von einer Runtime Master Instanz verwaltet wird. Dies entspricht einer klassischen Client/Server Kommunikationsstruktur. Die Kommunikation zwischen Fahrzeugen (Runtime Nodes) und Runtime Master wird voraussichtlich über eine Internetverbindung realisiert. Denkbar wäre auch ein vom Fahrzeughersteller bereitgestelltes Netzwerk, das ähnlich der Internetverbindung über das Mobilfunknetz zur Verfügung gestellt wird. In dieser Arbeit wird generell davon ausgegangen, dass sich Fahrzeuge und Runtime Master im selben Netzwerk befinden. 
+Die Fahrzeuge bilden ein verteiltes System, das von einer Runtime Master-Instanz verwaltet wird. Dies entspricht einer klassischen Client/Server Kommunikationsstruktur. Die Kommunikation zwischen Fahrzeugen (Runtime Nodes) und Runtime Master wird voraussichtlich über eine Internetverbindung realisiert. Denkbar wäre auch ein vom Fahrzeughersteller bereitgestelltes Netzwerk, das ähnlich der Internetverbindung über das Mobilfunknetz zur Verfügung gestellt wird. In dieser Arbeit wird generell davon ausgegangen, dass sich Fahrzeuge und Runtime Master im selben Netzwerk befinden. 
 
 Für die Client/Server Kommunikation existieren bereits verschiedene Konzepte. Die folgenden Methoden werden häufig verwendet:
 
 \begin{itemize}
     \item Request/Response: Client sendet Anfragen an einen Server und wartet auf Antwort
     \item Publish/Subscribe: Publisher versenden Nachrichten zu einem definierten Thema. Subscriber erhalten die Nachrichten zu den Themen, die sie abonniert haben.
-    \item Websocket: Duplex Kommunikation über eine \gls{TCP} Verbindung. 
+    \item Websocket: Duplex-Kommunikation über eine \gls{TCP} Verbindung. 
     \item \gls{RPC}: Ermöglicht die Ausführung eines Prozesses auf einem anderen System, als ob es sich um ein lokales System handeln würde.
 \end{itemize}
 
-Hauptsächlich finden zwei verschiedene Kommunikationsarten zwischen Runtime Node und Runtime Master statt. Einerseits werden die Anweisungen an die Runtime Nodes über eine \gls{API} Schnittstelle vom Runtime Master übertragen, andererseits müssen die externe Applikationen an die Runtime Nodes übertragen werden. 
+Hauptsächlich finden zwei verschiedene Kommunikationsarten zwischen Runtime Node und Runtime Master statt. Einerseits werden die Anweisungen an die Runtime Nodes über eine \gls{API} Schnittstelle vom Runtime Master übertragen, andererseits müssen die externen Applikationen an die Runtime Nodes übertragen werden. 
 
 Die Kommunikation mit \gls{API} Schnittstellen wird häufig in Form von Request/Response über das \gls{HTTP} Protokoll realisiert. Hierfür stehen zahlreiche Tools und Softwarebibliotheken zur Verfügung. Die Kommunikation kann auch verschlüsselt erfolgen. 
 
-Das \gls{SOA} Architekturmuster gewinnt in der Informationstechnologie zunehmend an Popularität, da es die effiziente Koordination verteilter Ressourcen und die Wiederverwendbarkeit einzelner Komponenten verbessert. Dieses Muster ist auch Gegenstand der Forschung für Fahrzeugarchitekturen, da diese ebenfalls als verteilte Systeme betrachtet werden können, in denen einzelne Teilnehmer für unterschiedliche Funktionalitäten wiederverwendbar gestaltet werden müssen. Es ist davon auszugehen, dass zukünftige Fahrzeugarchitekturen diesem oder einem ähnlichen Ansatz folgen werden. Als Kommunikationsprotokoll eignet sich für \gls{SOA} Architekturen ein Protokoll, das eine lose Kopplung der einzelnen Komponenten erlaubt und die Anzahl der Teilnehmer dynamisch variieren kann. In diesen Konzepten wird häufig das Publish/Subscribe Konzept verwendet. Publisher können jederzeit Informationen zu einem bestimmten Thema (Topic) veröffentlichen. Alle Subscriber, die das Thema abonniert haben, erhalten die Daten. Die Anzahl der Subscriber und Publisher kann sich während des Betriebs dynamisch ändern, Publisher können ihre Daten auch dann publizieren, wenn es von keinem Subscriber abonniert wurde. Im Gegensatz zum Request/Response Verfahren müssen sich Subscriber und Publisher nicht kennen. Dieses Konzept erlaubt somit eine lose Kopplung und einfache Skalierbarkeit der Kommunikationsteilnehmer. Viele Implementierungen von Publish/Subscribe Kommunikationsprotokollen beinhalten \gls{QoS} Regeln in den übertragenen Nachrichten. In verteilten Systemen, wie sie in \gls{SOA} Architekturen vorkommen, haben die Teilnehmer unterschiedliche Anforderungen an die übertragenen Informationen. Um potentielle Probleme bei der Mehrfachnutzung der gleichen Daten zu vermeiden, können mit Hilfe von \gls{QoS} Regeln bestimmte Garantien definiert werden. Teilnehmer, die auf die Daten zugreifen, können anhand dieser Informationen überprüfen, ob die Daten ein für ihre Funktionalitäten geeignetes Verhalten aufweisen. Je nach Implementierung kann die Anzahl der definierbaren \gls{QoS} Regeln variieren. Als Beispiel kann eine der am weitesten verbreiteten Publish/Subscribe Implementierungen namens \gls{MQTT} betrachtet werden. Diese Implementierung stellt eine \gls{QoS} Regel zur Verfügung, die definiert, wie Nachrichten an Teilnehmer übermittelt werden. Die folgenden 3 Stufen können verwendet werden:
+Das \gls{SOA}-Architekturmuster gewinnt in der Informationstechnologie zunehmend an Popularität, da es die effiziente Koordination verteilter Ressourcen und die Wiederverwendbarkeit einzelner Komponenten verbessert. Dieses Muster ist auch Gegenstand der Forschung für Fahrzeugarchitekturen, da diese ebenfalls als verteilte Systeme betrachtet werden können, in denen einzelne Teilnehmer für unterschiedliche Funktionalitäten wiederverwendbar gestaltet werden müssen. Es ist davon auszugehen, dass zukünftige Fahrzeugarchitekturen diesem oder einem ähnlichen Ansatz folgen werden. Als Kommunikationsprotokoll eignet sich für \gls{SOA} Architekturen ein Protokoll, das eine lose Kopplung der einzelnen Komponenten erlaubt und die Anzahl der Teilnehmer dynamisch variieren kann. In diesen Konzepten wird häufig das Publish/Subscribe Konzept verwendet. Publisher können jederzeit Informationen zu einem bestimmten Thema (Topic) veröffentlichen. Alle Subscriber, die das Thema abonniert haben, erhalten die Daten. Die Anzahl der Subscriber und Publisher kann sich während des Betriebs dynamisch ändern, Publisher können ihre Daten auch dann publizieren, wenn es von keinem Subscriber abonniert wurde. Im Gegensatz zum Request/Response Verfahren müssen sich Subscriber und Publisher nicht kennen. Dieses Konzept erlaubt somit eine lose Kopplung und einfache Skalierbarkeit der Kommunikationsteilnehmer. Viele Implementierungen von Publish/Subscribe Kommunikationsprotokollen beinhalten \gls{QoS} Regeln in den übertragenen Nachrichten. In verteilten Systemen, wie sie in \gls{SOA} Architekturen vorkommen, haben die Teilnehmer unterschiedliche Anforderungen an die übertragenen Informationen. Um potentielle Probleme bei der Mehrfachnutzung der gleichen Daten zu vermeiden, können mit Hilfe von \gls{QoS} Regeln bestimmte Garantien definiert werden. Teilnehmer, die auf die Daten zugreifen, können anhand dieser Informationen überprüfen, ob die Daten ein für ihre Funktionalitäten geeignetes Verhalten aufweisen. Je nach Implementierung kann die Anzahl der definierbaren \gls{QoS} Regeln variieren. Als Beispiel kann eine der am weitesten verbreiteten Publish/Subscribe Implementierungen namens \gls{MQTT} betrachtet werden. Diese Implementierung stellt eine \gls{QoS} Regel zur Verfügung, die definiert, wie Nachrichten an Teilnehmer übermittelt werden. Die folgenden drei Stufen können verwendet werden:
 
 \begin{itemize}
     \item \gls{QoS} 0: Nachricht wird höchstens einmal gesendet, Abonnenten, die zum Zeitpunkt des Sendens das Thema der Nachricht nicht abonniert haben, erhalten die Nachricht nicht.
@@ -153,11 +153,11 @@ Bei der Konfiguration von Nachrichten kann der \gls{QoS}-Level festgelegt und da
 Publish/Subscribe-Systeme können entweder von einer zentralen Instanz, einem so genannten Broker oder Message Bus, oder ohne zentrale Instanz verwaltet werden. Wird eine zentrale Verwaltungsinstanz verwendet, verbinden sich alle Teilnehmer mit dieser Instanz. Publisher übermitteln ihre Nachrichten an diese Administration, Subscriber abonnieren Themen bei der Administration. Die Nachrichten werden entsprechend an die Abonnenten weitergeleitet. Die gesamte Kommunikation in dieser Topologie läuft über diese zentrale Instanz, diese verwaltet die Kommunikationsteilnehmer und Nachrichtenfluss.
 
 Bei der dezentralen Umsetzung entfällt die zentrale Verwaltungsinstanz. Die Teilnehmer kommunizieren direkt miteinander, welches zwei Vorteile mit sich bringt. Zum einen erhöht sich die Robustheit des Systems durch den Wegfall der zentralen Administration, zum anderen verringert sich die Latenz und der Bandbreitenbedarf im Netzwerk durch die direkte Kommunikation. Die Komplexität wird jedoch dadurch erhöht, dass die Netzwerkteilnehmer die anderen Teilnehmer selbst entdecken 
-müssen und die Publisher selbst dafür verantwortlich sind, ihre Nachrichten an alle Abonnenten zu übermitteln. Die Erkennung der Teilnehmer erfolgt durch periodische Broadcast Nachrichten, die an alle Netzwerkteilnehmer übermittelt werden. Durch diese Discovery Nachrichten werden Publisher darüber informiert, welche Netzwerkteilnehmer ihre Nachrichten Abonnieren. Die Übertragung der Nachrichten an die Abonnenten erfolgt gezielt an die Netzwerkteilnehmer die das entsprechende Thema abonnieren. Ein Nachteil dieser Methode ergibt sich aus den per Broadcast übertragenen Discovery Nachrichten. Broadcast Nachrichten werden im gesamten Netzwerk an alle Netzwerkteilnehmer verteilt. Dies kann in großen Netzwerken zu einem hohen Bandbreitenverbrauch führen. Aus diesem Grund werden Broadcasts im Internet nicht verwendet, da sie aufgrund der großen Anzahl von Geräten sehr ineffizient wären. Die dezentrale Implementierung mit Broadcast Nachrichten zur Erkennung weiterer Teilnehmer ist aus diesem Grund für die Kommunikation über das Internet nicht nutzbar. Um dieses Problem zu umgehen, bieten dezentrale Publish/Subscribe Implementierungen oft auch die Möglichkeit, Discovery Nachrichten an vorkonfigurierte Adressen zu senden. In diesem Fall müssen die Adressen allen potentiellen Teilnehmern zur Konfigurationszeit bekannt sein, so dass das Netzwerk nicht so flexibel erweiterbar ist.
+müssen und die Publisher selbst dafür verantwortlich sind, ihre Nachrichten an alle Abonnenten zu übermitteln. Die Erkennung der Teilnehmer erfolgt durch periodische Broadcast Nachrichten, die an alle Netzwerkteilnehmer übermittelt werden. Durch diese Discovery-Nachrichten werden Publisher darüber informiert, welche Netzwerkteilnehmer ihre Nachrichten Abonnieren. Die Übertragung der Nachrichten an die Abonnenten erfolgt gezielt an die Netzwerkteilnehmer die das entsprechende Thema abonnieren. Ein Nachteil dieser Methode ergibt sich aus den per Broadcast übertragenen Discovery-Nachrichten. Broadcast Nachrichten werden im gesamten Netzwerk an alle Netzwerkteilnehmer verteilt. Dies kann in großen Netzwerken zu einem hohen Bandbreitenverbrauch führen. Aus diesem Grund werden Broadcasts im Internet nicht verwendet, da sie aufgrund der großen Anzahl von Geräten sehr ineffizient wären. Die dezentrale Implementierung mit Broadcast Nachrichten zur Erkennung weiterer Teilnehmer ist aus diesem Grund für die Kommunikation über das Internet nicht nutzbar. Um dieses Problem zu umgehen, bieten dezentrale Publish/Subscribe Implementierungen oft auch die Möglichkeit, Discovery-Nachrichten an vorkonfigurierte Adressen zu senden. In diesem Fall müssen die Adressen allen potentiellen Teilnehmern zur Konfigurationszeit bekannt sein, so dass das Netzwerk nicht so flexibel erweiterbar ist.
 
 In der prototypischen Implementierung wird davon ausgegangen, dass sich die serviceorientierte Architektur im Automobil durchsetzen wird, insbesondere bei autonomen Fahrzeugen. Auch der Zusammenschluss vieler Fahrzeuge zu einer verteilten Recheneinheit kann als serviceorientierte Architektur verstanden werden. Aus diesem Grund wurde für die Kommunikation zwischen den Fahrzeugen (Runtime Nodes) und dem Runtime Master die Kommunikationsmethode Publish/Subscribe gewählt. Konkret wurde die \gls{DDS} Implementierung gewählt, da diese durch den Wegfall der zentralen Administration eine einfachere Konfiguration ermöglicht. Diese prototypische Implementierung wird zunächst nur im lokalen Netzwerk betrieben, so dass die Verwendung von Broadcast Messages zur Erkennung von Netzwerkteilnehmern kein Problem darstellt. Die grundlegende Konfiguration der Nachrichten ist für alle Publish/Subscribe Implementierungen gleich, Nachrichten haben ein definiertes Thema und ein Datenfeld, wo Variablennamen und Datentypen in der Nachricht definiert werden können. Dies kann mit geringem Aufwand auf andere Publish/Subscribe Implementierungen übertragen werden, ohne dass die Nachrichten angepasst werden müssen. Bei der Verwendung von \gls{QoS} Regeln ist jedoch zu beachten, dass diese implementierungsspezifisch und daher oft nicht auf andere Implementierungen übertragbar sind. Erfolgt die Kommunikation über das Internet, kann \gls{DDS} auch auf statische oder serverbasierte Teilnehmererkennung umkonfiguriert werden. In diesem Fall müssen entweder die Netzwerkadressen der anderen Teilnehmer oder die Adresse eines Kommunikationsservers vorkonfiguriert werden. Alternativ kann auch eine Publish/Subscribe Implementierung mit zentraler Verwaltung wie \gls{MQTT} verwendet werden, ohne dass die Struktur der Nachrichten angepasst werden muss. 
 
-Die Publish/Subscribe Methode eignet sich aufgrund der Nachrichtenstruktur gut für die Übertragung von Statusmeldungen oder Befehlen. Ein spezifischer Befehl kann ein eigenes Topic haben, Parameter können im Datenfeld der Nachricht übertragen werden. Für kleine Netzwerke kann die Konfiguration vereinfacht werden, indem für jeden Befehl ein Topic erstellt wird, das von allen Runtime Nodes abonniert wird. Bei diesem Ansatz erhalten alle Runtime Nodes im Netzwerk ein Befehl vom Runtime Master. Die Information, an welchen Runtime Node das Befehl konkret gerichtet ist, kann im Datenfeld als Parameter übermittelt werden. Runtime Nodes, für die das Befehl nicht bestimmt war, erhalten die Nachricht und ignorieren das Befehl nach Prüfung des Datenfeldes. Dieser Ansatz ist ähnlich wie die Nutzung von Broadcast Nachrichten mit dem Unterschied, dass nur alle Runtime Nodes das Netzwerkpaket mit der Nachricht bekommen und nicht alle Netzwerkteilnehmer. Dies ermöglicht, wie bei der Erkennung neuer Teilnehmer, eine einfache Erweiterung des Netzwerkes um neue Teilnehmer ohne zusätzlichen Konfigurationsaufwand. Nachteilig ist jedoch wie beim Broadcast die zunehmende Ineffizienz bei steigender Teilnehmerzahl. Für größere Netzwerke kann die Konfiguration so angepasst werden, dass jeder Runtime Node eigene Topics für seine Befehle verwendet. Dies kann erreicht werden, indem die Topics der Runtime Nodes durch eine zusätzliche eindeutige Kennung ersetzt werden. Diese Kennung kann je nach Implementierung vom Kommunikationsprotokoll bereitgestellt werden, \gls{DDS} vergibt an jeden neuen Teilnehmer eine \gls{GUID}, die nur einmal im Netzwerk existiert. Diese GUID kann an die Topics angehängt werden, so dass sie für jeden Runtime Node eindeutig sind. Nicht jede Publish/Subscribe-Implementierung bietet einen eindeutigen Identifikator, wie ihn \gls{DDS} mit \gls{GUID} implementiert. Im Allgemeinen hat jede Ethernet-Netzwerkschnittstelle eine \gls{MAC} Adresse, Mobilfunk-Netzwerkschnittstellen eine \gls{IMEI}, die für das Gerät eindeutig ist und auch als Teil des Topics verwendet werden kann. Somit können auch unabhängig von der Publish/Subscribe Implementierung individuelle Topics für die Runtime Nodes erstellt werden. 
+Die Publish/Subscribe Methode eignet sich aufgrund der Nachrichtenstruktur gut für die Übertragung von Statusmeldungen oder Befehlen. Ein spezifischer Befehl kann ein eigenes Topic haben, Parameter können im Datenfeld der Nachricht übertragen werden. Für kleine Netzwerke kann die Konfiguration vereinfacht werden, indem für jeden Befehl ein Topic erstellt wird, das von allen Runtime Nodes abonniert wird. Bei diesem Ansatz erhalten alle Runtime Nodes im Netzwerk einen Befehl vom Runtime Master. Die Information, an welchen Runtime Node der Befehl konkret gerichtet ist, kann im Datenfeld als Parameter übermittelt werden. Runtime Nodes, für die der Befehl nicht bestimmt war, erhalten die Nachricht und ignorieren den Befehl nach Prüfung des Datenfeldes. Dieser Ansatz ist ähnlich wie die Nutzung von Broadcast Nachrichten mit dem Unterschied, dass nur alle Runtime Nodes das Netzwerkpaket mit der Nachricht bekommen und nicht alle Netzwerkteilnehmer. Dies ermöglicht, wie bei der Erkennung neuer Teilnehmer, eine einfache Erweiterung des Netzwerkes um neue Teilnehmer ohne zusätzlichen Konfigurationsaufwand. Nachteilig ist jedoch wie beim Broadcast die zunehmende Ineffizienz bei steigender Teilnehmerzahl. Für größere Netzwerke kann die Konfiguration so angepasst werden, dass jeder Runtime Node eigene Topics für seine Befehle verwendet. Dies kann erreicht werden, indem die Topics der Runtime Nodes durch eine zusätzliche eindeutige Kennung ersetzt werden. Diese Kennung kann je nach Implementierung vom Kommunikationsprotokoll bereitgestellt werden, \gls{DDS} vergibt an jeden neuen Teilnehmer eine \gls{GUID}, die nur einmal im Netzwerk existiert. Diese GUID kann an die Topics angehängt werden, so dass sie für jeden Runtime Node eindeutig sind. Nicht jede Publish/Subscribe-Implementierung bietet einen eindeutigen Identifikator, wie ihn \gls{DDS} mit \gls{GUID} implementiert. Im Allgemeinen hat jede Ethernet-Netzwerkschnittstelle eine \gls{MAC}-Adresse, Mobilfunk-Netzwerkschnittstellen eine \gls{IMEI}, die für das Gerät eindeutig ist und auch als Teil des Topics verwendet werden kann. Somit können auch unabhängig von der Publish/Subscribe Implementierung individuelle Topics für die Runtime Nodes erstellt werden. 
 
 Für die prototypische Implementierung wurde auf individuelle Topics für die Runtime Nodes verzichtet, da diese Implementierung nicht in großen Netzwerken eingesetzt wird. Eine spätere Modifikation ist jedoch ohne Anpassung der Architektur oder der Grundkonzepte möglich. 
 
@@ -170,11 +170,11 @@ Zusammenfassend lässt sich festhalten, dass die Publish/Subscribe-Kommunikation
 \subsubsection{Kommunikation zwischen Softwaremodulen}
 \label{Kommunikation zwischen Softwaremodulen}
 
-Im Kapitel \autoref{Forschungsansatz} wurde erarbeitet, dass die Software einen modularen Aufbau haben soll. Die Komponenten können auch auf demselben PC ausgeführt werden, so dass eine Kommunikationsmethode verwendet werden muss, die die Kommunikation zwischen Prozessen auf demselben System ermöglicht. Für die Interprozesskommunikation können verschiedene Möglichkeiten genutzt werden. Die folgenden Methoden werden von den meisten Betriebssystemen unterstützt und häufig verwendet:
+In \autoref{Forschungsansatz} wurde erarbeitet, dass die Software einen modularen Aufbau haben soll. Die Komponenten können auch auf demselben PC ausgeführt werden, so dass eine Kommunikationsmethode verwendet werden muss, die die Kommunikation zwischen Prozessen auf demselben System ermöglicht. Für die Interprozesskommunikation können verschiedene Möglichkeiten genutzt werden. Die folgenden Methoden werden von den meisten Betriebssystemen unterstützt und häufig verwendet:
 
 \begin{itemize}
-    \item Datei: Datei: Informationen werden in eine Datei auf dem Datenträger geschrieben. Mehrere Prozesse können auf diese Datei zugreifen und ihren Inhalt lesen und schreiben.
-    \item Sockel: Daten werden über Netzwerkinterface ausgetauscht. Die Prozesse können sowohl auf dem gleichen System oder Systemübergreifend über Netzwerk kommunizieren. Synchronisierung muss in den Prozessen implementiert werden.
+    \item Datei: Informationen werden in eine Datei auf dem Datenträger geschrieben. Mehrere Prozesse können auf diese Datei zugreifen und ihren Inhalt lesen und schreiben.
+    \item Socket: Daten werden über Netzwerkinterface ausgetauscht. Die Prozesse können sowohl auf dem gleichen System als auch systemübergreifend über Netzwerk kommunizieren. Synchronisierung muss in den Prozessen implementiert werden.
     \item Message Queue: Prozesse können Nachrichten über Message Queues austauschen. Die Übertragung erfolgt asynchron, Sender und Empfänger müssen nicht gleichzeitig aktiv sein. Nicht empfangene Nachrichten werden zwischengespeichert. 
     \item Pipe: Pipes können entweder die unidirektionale Standardeingabe und -ausgabe oder ein ähnliches Verhalten wie eine geteilte Datei implementieren. Für eine bidirektionale Datenaustausch können zwei Pipes verwendet werden. Nicht ausgelesene Daten werden auch bei dieser Methode zwischengespeichert. 
     \item Shared Memory: Mehrere Prozesse können auf denselben Speicherbereich zugreifen, der für den Datenaustausch zwischen den Prozessen genutzt werden kann.
@@ -186,20 +186,20 @@ Die verschiedenen Kommunikationsmethoden bieten unterschiedliche Vorteile, so da
     \item Übertragung von Befehlen und Statusmeldungen, bidirektionale Kommunikation der Komponenten erforderlich
     \item Softwarekomponenten sind im Betriebszustand alle aktiv, keine asynchrone Kommunikation notwendig
     \item Keine hohen Latenzanforderungen. Das aktuelle Konzept sieht keine Anwendungen vor, die sehr niedrige Latenzen erfordern.
-    \item Vorteilhaft ist eine möglichst hohe Flexibilität bezüglich der Ausführungsumgebung und des Ausführungsortes.
+    \item Eine möglichst hohe Flexibilität bezüglich der Ausführungsumgebung und des Ausführungsortes ist vorteilhaft.
 \end{itemize}
 
 Aufgrund dieser Anforderungen wurde die Socket-Methode als Kommunikationsschnittstelle gewählt. Diese Methode implementiert eine asynchrone und bidirektionale Kommunikation. Sie kann sowohl auf einem lokalen System als auch systemübergreifend im Netzwerk eingesetzt werden. Somit können Softwarekomponenten, die über Sockets kommunizieren, bei Bedarf auf andere Systeme ausgelagert werden. 
 
 \subsubsection{Kommunikationsformat zwischen Softwarekomponenten}
 
-Die unter \autoref{Kommunikation zwischen Softwaremodulen} aufgeführten Kommunikationsmethoden implementieren nur die Funktionalität, dass Rohdaten ausgetauscht werden können. Das Format, in dem die Daten übertragen werden, muss vom Softwareentwickler implementiert werden. Innerhalb der Software liegen die Daten in den unterstützten Datentypen vor, in vielen Fällen gebündelt als Struct oder Class. Grundsätzlich können Daten auch in ihrem nativen Format in binärer Form zwischen Softwarekomponenten übertragen werden. Dies ist die effizienteste Methode, da keine zusätzlichen Konvertierungsschritte für die Übertragung notwendig sind und keine zusätzliche Datengröße benötigt wird. Nachteilig ist, dass die Daten auf Bit genau von beiden Teilkomponenten gleich interpretiert werden müssen. Dies ist insbesondere dann nicht immer der Fall, wenn die Softwarekomponenten in unterschiedlichen Programmiersprachen entwickelt wurden oder auf unterschiedlichen Systemen laufen. Darüber hinaus erschwert ein solches Konzept die dynamische Erweiterung der übertragenen Daten um zusätzliche Datenfelder bei gleichzeitiger Abwärtskompatibilität zu älteren Softwarekomponenten. Aus diesem Grund werden für die Kommunikation zwischen Softwaremodulen in der Regel keine Rohdaten ausgetauscht, sondern andere Nachrichtenformate verwendet. Diese Formate werden \gls{IDL} oder Schnittstellenbeschreibungssprachen genannt. Folgende Formate finden häufig Anwendung:
+Die unter \autoref{Kommunikation zwischen Softwaremodulen} aufgeführten Kommunikationsmethoden implementieren nur die Funktionalität, dass Rohdaten ausgetauscht werden können. Das Format, in dem die Daten übertragen werden, muss vom Softwareentwickler implementiert werden. Innerhalb der Software liegen die Daten in den unterstützten Datentypen vor, in vielen Fällen gebündelt als Struct oder Class. Grundsätzlich können Daten auch in ihrem nativen Format in binärer Form zwischen Softwarekomponenten übertragen werden. Dies ist die effizienteste Methode, da keine zusätzlichen Konvertierungsschritte für die Übertragung notwendig sind und keine zusätzliche Datengröße benötigt wird. Nachteilig ist, dass die Daten auf bitgenau von beiden Teilkomponenten gleich interpretiert werden müssen. Dies ist insbesondere dann nicht immer der Fall, wenn die Softwarekomponenten in unterschiedlichen Programmiersprachen entwickelt wurden oder auf unterschiedlichen Systemen laufen. Darüber hinaus erschwert ein solches Konzept die dynamische Erweiterung der übertragenen Daten um zusätzliche Datenfelder bei gleichzeitiger Abwärtskompatibilität zu älteren Softwarekomponenten. Aus diesem Grund werden für die Kommunikation zwischen Softwaremodulen in der Regel keine Rohdaten ausgetauscht, sondern andere Nachrichtenformate verwendet. Diese Formate werden \gls{IDL} oder Schnittstellenbeschreibungssprachen genannt. Folgende Formate finden häufig Anwendung:
 
 \begin{itemize}
     \item \gls{JSON}: Textbasiertes Format, von Menschen unmittelbar lesbar, hierarchische Struktur
     \item \gls{XML}: Textbasiertes Format, von Menschen unmittelbar lesbar, Label-basierte Struktur
     \item Protocol Buffers: Binärformat, kompakt, Nachrichtenstruktur wird durch eine Beschreibungsdatei definiert
-    \item MessagePack: Binärformat, ähnliche Struktir wie \gls{JSON} aber nicht von menschen lesbar, kompakt
+    \item MessagePack: Binärformat, ähnliche Struktur wie \gls{JSON} aber nicht von Menschen lesbar, kompakt
     \item \gls{YAML}: Textbasiertes Format, von Menschen unmittelbar lesbar, kann komplexe Strukturen darstellen
 \end{itemize}
 
@@ -213,9 +213,9 @@ Die aufgeführten Kommunikationsformate bieten je nach Anwendungsfall unterschie
         \hline
         Kompaktheit & Gering & Mittel & Hoch & Hoch & Gering \\
         \hline
-        unmittelbar lesbar & Ja & Ja & Nein & Nein & Ja \\
+        Menschenlesbar & Ja & Ja & Nein & Nein & Ja \\
         \hline
-        Parsing Geschwindigkeit & Langsam & Mittel & Schnell & Schnell & Langsam \\
+        Parsing-Geschwindigkeit & Langsam & Mittel & Schnell & Schnell & Langsam \\
         \hline
     \end{tabular}
     \caption{Vergleich der häufig verwendeten \gls{IDL} Methoden}
@@ -255,7 +255,7 @@ Dieser Mechanismus garantiert, dass Aufgaben auch bei abruptem Ausfall von Fahrz
 
 \subsection{Sicherheitskonzept und Authentifizierung}
 Um unberechtigten Zugriff auf die Steuergeräte zu verhindern, implementiert die Plattform ein tokenbasiertes Authentifizierungsverfahren. Bei der Initialisierung generiert der Runtime Master ein kryptografisches Token (Shared Secret). Dieses Token muss jedem Runtime Node bei der manuellen Kopplung oder der sicheren Erstkonfiguration übergeben werden.
-Jede Nachricht enthält im Header dieses Token. Empfängt ein Runtime Node einen Befehl, vergleicht er das empfangene Token mit dem lokal gespeicherten. Stimmen diese nicht überein, wird der Befehl ignoriert und ein Sicherheitsvorfall protokolliert. Dies verhindert, dass nicht autorisierte Teilnehmer im selben Netzwerkdrittanbieter-Code auf den Fahrzeugen ausführen können.
+Jede Nachricht enthält im Header dieses Token. Empfängt ein Runtime Node einen Befehl, vergleicht er das empfangene Token mit dem lokal gespeicherten. Stimmen diese nicht überein, wird der Befehl ignoriert und ein Sicherheitsvorfall protokolliert. Dies verhindert, dass nicht autorisierte Teilnehmer im selben Netzwerk Drittanbieter-Code auf den Fahrzeugen ausführen können.
 
 \section{Scheduling}
 
@@ -264,7 +264,7 @@ Das Scheduling hat die Aufgabe, die externen Applikationen so im System zu verte
 \begin{itemize}
     \item Applikation muss Kompatibel mit der Architektur der Zielhardware sein. Wenn verschiedene Hardwarearchitekturen im Gesamtsystem vorhanden sind, muss die entsprechende Kompatibilität mit der externen Applikation gewährleistet werden. 
     \item Wenn die Anwendung bestimmte Ressourcenanforderungen hat, wie z.B. Speicherbedarf, müssen die Runtime Nodes diese Anforderungen erfüllen.
-    \item Die Ressourcenverteilung soll so effizient wie möglich erfolgen, Runtime Nodes müssen dem Runtime Master entsprechend relevante Informationen über ihre aktuell verfügbaren Rechenressourcen mitteilen.o
+    \item Die Ressourcenverteilung soll so effizient wie möglich erfolgen, Runtime Nodes müssen dem Runtime Master entsprechend relevante Informationen über ihre aktuell verfügbaren Rechenressourcen mitteilen.
     \item Die Verbindungsqualität im Netzwerk ist entscheidend für die Übertragung von Anwendungen und Ergebnissen. Netzwerkeigenschaften wie Bandbreite und Latenz der einzelnen Runtime Nodes sind daher für das Scheduling relevant.
     \item Wahrscheinlichkeit von Zustandsänderungen. Parkende Fahrzeuge benötigen sehr geringe Mengen an Rechenressourcen, so dass sie den Großteil ihrer Ressourcen externen Anwendungen zur Verfügung stellen können. Fährt das Fahrzeug los, ändert sich der Zustand so, dass das Fahrzeug nur noch geringe oder gar keine Ressourcen mehr zur Verfügung stellen kann. Für ein effizientes Scheduling ist es sinnvoll, die Wahrscheinlichkeit des Zustandswechsels abzuschätzen.
     \item Identifizierung und Authentifizierung der Runtime-Knoten. Unberechtigter Zugriff muss verhindert werden und die Runtime Nodes müssen identifizierbar sein.
@@ -285,7 +285,7 @@ Ausgehend von diesen Anforderungen wurden die folgenden relevanten Informationen
         \item Latenz
         \item Position
     \end{itemize}
-    \item Characteristic:
+    \item Charakteristik:
     \begin{itemize}
         \item Betriebssystem
         \item CPU Typ und Architektur
@@ -306,26 +306,26 @@ Ausgehend von diesen Anforderungen wurden die folgenden relevanten Informationen
     \end{itemize}
 \end{itemize}
 
-Mit diesen Informationen können die oben genannten Anforderungen erfüllt werden. Die Authentifizierung ermöglicht eine eindeutige Identifizierung der Knoten. CPU-Typ, Architektur und aktuelle Auslastung ermöglichen die Bestimmung der verfügbaren Rechenleistung im Fahrzeug sowie der Kompatibilität der externen Anwendung mit der Hardware. Der Gesundheitsstatus zeigt an, ob ein Runtime Node ordnungsgemäß funktioniert. Die zusätzliche Angaben und Eigenschaften können weitere Eigenschaften definieren, die für die Verteilung der externen Anwendungen relevant sein können. Die Information über die Netzwerklatenz kann für die Verbindungsqualität verwendet werden. Die Übertragung des Standortes kann z.B. mit Hilfe von Reinforced Learning für die Schätzung von Zustandsänderungen genutzt werden. Dazu können für jedes Fahrzeug statistische Standortdaten erfasst werden, um ein typisches Nutzungsprofil für das Fahrzeug zu ermitteln. Aus dem Nutzungsprofil kann abgeschätzt werden, wann und wie lange das Fahrzeug voraussichtlich stehen wird. 
+Mit diesen Informationen können die oben genannten Anforderungen erfüllt werden. Die Authentifizierung ermöglicht eine eindeutige Identifizierung der Knoten. CPU-Typ, Architektur und aktuelle Auslastung ermöglichen die Bestimmung der verfügbaren Rechenleistung im Fahrzeug sowie der Kompatibilität der externen Anwendung mit der Hardware. Der Gesundheitsstatus zeigt an, ob ein Runtime Node ordnungsgemäß funktioniert. Die zusätzliche Angaben und Eigenschaften können weitere Eigenschaften definieren, die für die Verteilung der externen Anwendungen relevant sein können. Die Information über die Netzwerklatenz kann für die Verbindungsqualität verwendet werden. Die Übertragung des Standortes kann z.B. mit Hilfe von Reinforcement Learning für die Schätzung von Zustandsänderungen genutzt werden. Dazu können für jedes Fahrzeug statistische Standortdaten erfasst werden, um ein typisches Nutzungsprofil für das Fahrzeug zu ermitteln. Aus dem Nutzungsprofil kann abgeschätzt werden, wann und wie lange das Fahrzeug voraussichtlich stehen wird. 
 
-\subsection{Scheduling Algorithmen}
+\subsection{Scheduling-Algorithmen}
 \label{Scheduling Algorithmen}
 
-Das Scheduling Problem kann im Prinzip als eine erweiterte Form des Knapsack Problems betrachtet werden. Das Knapsackproblem ist ein Modell für Optimierungsprobleme in der Kombinatorik. Es behandelt das Problem, einen Rucksack mit begrenztem Platz mit Gegenständen von unterschiedlicher Größe und Wert zu füllen. Ziel ist es, die Kombination von Gegenständen zu finden, die in den Rucksack passt und den höchsten Gesamtwert aufweist. Dieses Problem weist eine hohe Ähnlichkeit mit Problemen bei der Ressourcenverteilung auf. In diesem Fall müssen Anwendungen, die eine bestimmte Menge an Ressourcen benötigen, auf Systeme mit begrenzt verfügbaren Ressourcen optimal verteilt werden. Das komplette Knapsackproblem geht davon aus, dass jeder Gegenstand beliebig oft vorhanden ist und in beliebiger Menge in den Rucksack gepackt werden kann. Die meisten reale Knapsackprobleme sind sogenannte 0/1 Knapsackprobleme. Das bedeutet, dass ein Objekt genau einmal in der Lösungsmenge enthalten sein kann, es kann nicht in kleinere Teilmengen aufgeteilt werden.Mathematisch lässt sich das Problem durch folgende Formel ausdrücken, für $ i $ Objekte mit jeweils dem Kapazitätsbedarf $ w_i $, der Anzahl in der Lösungsmenge $ x_i $ und der verfügbaren Gesamtkapazität $ W $:
+Das Scheduling Problem kann im Prinzip als eine erweiterte Form des Knapsack-Problems betrachtet werden. Das Knapsack-Problem ist ein Modell für Optimierungsprobleme in der Kombinatorik. Es behandelt das Problem, einen Rucksack mit begrenztem Platz mit Gegenständen von unterschiedlicher Größe und Wert zu füllen. Ziel ist es, die Kombination von Gegenständen zu finden, die in den Rucksack passt und den höchsten Gesamtwert aufweist. Dieses Problem weist eine hohe Ähnlichkeit mit Problemen bei der Ressourcenverteilung auf. In diesem Fall müssen Anwendungen, die eine bestimmte Menge an Ressourcen benötigen, auf Systeme mit begrenzt verfügbaren Ressourcen optimal verteilt werden. Das komplette Knapsack-Problem geht davon aus, dass jeder Gegenstand beliebig oft vorhanden ist und in beliebiger Menge in den Rucksack gepackt werden kann. Die meisten reale Knapsack-Probleme sind sogenannte 0/1-Knapsack-Probleme. Das bedeutet, dass ein Objekt genau einmal in der Lösungsmenge enthalten sein kann, es kann nicht in kleinere Teilmengen aufgeteilt werden.Mathematisch lässt sich das Problem durch folgende Formel ausdrücken, für $ i $ Objekte mit jeweils dem Kapazitätsbedarf $ w_i $, der Anzahl in der Lösungsmenge $ x_i $ und der verfügbaren Gesamtkapazität $ W $:
 
 \begin{equation}
-    \sum_{i=0}^n w_i x_i  \leq W, x_i \in {0,1} 
+    \sum_{i=0}^n w_i x_i  \leq W, x_i \in \{0,1\} 
     \label{Eq:Knapsack}
 \end{equation}
 
-Auch die Verteilung von Anwendungen in einem verteilten Computersystem kann als 0/1 Knapsackproblem aufgefasst werden, da die einzelnen Anwendungen in der Regel nicht aufgeteilt werden können. Zur Lösung von Knapsackproblemen existieren verschiedene Algorithmen. Grundsätzlich kann zwischen Algorithmen unterschieden werden, die eine exakte Optimallösung als Ergebnis garantieren und solchen, die nur eine lokale Optimallösung garantieren. 
+Auch die Verteilung von Anwendungen in einem verteilten Computersystem kann als 0/1-Knapsack-Problem aufgefasst werden, da die einzelnen Anwendungen in der Regel nicht aufgeteilt werden können. Zur Lösung von Knapsack-Problemen existieren verschiedene Algorithmen. Grundsätzlich kann zwischen Algorithmen unterschieden werden, die eine exakte Optimallösung als Ergebnis garantieren und solchen, die nur eine lokale Optimallösung garantieren. 
 
 \subsubsection{Exakte Algorithmen}
 \label{Exakte Algorithmen}
 
 Es existieren verschiedene Methoden, um die exakte optimale Lösung zu finden. Nachfolgend sind einige Beispiele für Algorithmen aufgeführt, die dies ermöglichen. 
 
-Die dynamische Programmierung ist eine weit verbreitete Methode zur Bestimmung der optimalen Lösung des Knapsackproblems. Bei dieser Methode wird eine Tabelle aller Möglichkeiten für Gewicht/Ressourcenverbrauch und Anzahl der Objekte erstellt. In dieser Tabelle werden alle zulässigen Kombinationen berechnet und die Kombination mit dem höchsten Wert ermittelt. Nachfolgend ist die Logik der dynamischen Programmierung als Pseudocode dargestellt. Im dargestellten Fall werden Objekte mit unterschiedlichen Gewichten und Werten betrachtet, wobei die Kombination der Objekte gesucht wird, deren Gesamtgewicht die maximale Kapazität nicht überschreitet und deren Gesamtwert maximal ist:
+Die dynamische Programmierung ist eine weit verbreitete Methode zur Bestimmung der optimalen Lösung des Knapsack-Problems. Bei dieser Methode wird eine Tabelle aller Möglichkeiten für Gewicht/Ressourcenverbrauch und Anzahl der Objekte erstellt. In dieser Tabelle werden alle zulässigen Kombinationen berechnet und die Kombination mit dem höchsten Wert ermittelt. Nachfolgend ist die Logik der dynamischen Programmierung als Pseudocode dargestellt. Im dargestellten Fall werden Objekte mit unterschiedlichen Gewichten und Werten betrachtet, wobei die Kombination der Objekte gesucht wird, deren Gesamtgewicht die maximale Kapazität nicht überschreitet und deren Gesamtwert maximal ist:
 
 \begin{algorithmic}
     \State  \textbf{Eingang:} Werte[], gewichte[], Kapazitaet
@@ -354,8 +354,8 @@ Bei jeder Iteration wird zunächst geprüft, ob das aktuell ausgewählte Objekt 
 Der Vorteil dieser Methode gegenüber der einfachen \enquote{Brute Force}. Methode, bei der alle möglichen Kombinationen berechnet werden, dass durch die Erstellung der Tabelle bereits berechnete Werte als Zwischenwerte für neue Berechnungen verwendet werden können. Dadurch können redundante Rechenoperationen vermieden werden. Bei $ n $ Objekten und einer Maximalen Kapazität von $ W $ ergeben sich die Berechnungskomplexitäten wie folgt: 
 
 \begin{align}
-    & O(2^n) (exponentiell) \\
-    & O(nW) (polynomisch)
+    & O(2^n) \text{(exponentiell)} \\
+    & O(nW) \text{(polynomisch)}
 \end{align}
 
 Aus diesem Zusammenhang ist erkennbar, dass insbesondere bei große Anzahl an Objekten $ n $, erheblich Rechenaufwand durch dynamische Programmierung eingespart werden kann. 
@@ -464,14 +464,14 @@ Die Funktion \enquote{EntfernenDominiertePaare} entfernt alle Kombinationen, der
 Beide Algorithmen berechnen die exakte optimale Lösung des Problems. Welcher der beiden Algorithmen effizienter ist, hängt von der Problemstellung ab. In den vorherigen Abschnitten wurden bereits die Berechnungskomplexitäten angegeben:
 
 
-    Dynamsiche Programmierung: \\
+    Dynamische Programmierung: \\
 \begin{align}
-    & O(n \cdot W) (pseudo-polynomiell)
+    & O(n \cdot W) \text{(pseudo-polynomiell)}
     \label{EQ:DP}
 \end{align}
     Meet-in-the-Middle: \\
 \begin{align}
-    & O(2^{(n/2)} \cdot log(2^{(n/2)})) (exponentiell-halbiert)
+    & O(2^{(n/2)} \cdot log(2^{(n/2)})) \text{(exponentiell (Basiswurzel halbiert))}
     \label{EQ:MitM}
 \end{align}
 
@@ -482,7 +482,7 @@ Auffällig ist, dass die Komplexität bei Meet-in-the-Middle nur von der Anzahl 
 
 In größeren Systemen sind oft sowohl $ n $ als auch $ W $ groß, so dass exakte Algorithmen wegen des zu hohen Rechenaufwandes nicht effizient eingesetzt werden können. In diesen Fällen wird zugunsten des Rechenaufwandes und der Rechenzeit auf eine exakte Optimallösung verzichtet. Für die Approximation stehen ebenfalls verschiedene Algorithmen zur Verfügung:
 
-Die Greedy Approximierung wurde für das komplette Knapsack Problem entworfen. Im \autoref{Scheduling Algorithmen} wurde der wesentliche Unterschied zum 0/1 Knapsack erklärt, beim vollständigen Knapsack können einzelne Objekte beliebig oft zur Lösungsmenge hinzugefügt werden. Greedy sortiert die Menge der Objekte nach Wert pro Gewicht $ v_1 / w_1 \geq ... \geq v_n / w_n $. Nach der Sortierung nimmt der Algorithmus das Objekt mit dem besten Verhältnis von Wert zu Gewicht und fügt es so oft zur Lösungsmenge hinzu, bis kein Platz mehr für ein weiteres Exemplar vorhanden ist. Grundsätzlich kann Greedy auch für 0/1 Knapsack Probleme angewendet werden, in diesem Fall werden die reihe nach die Objekte mit dem besten Wert pro Gewicht Verhältnis genommen, bis die Maximalkapazität erreicht ist. Greedy Algorithmus für einen 0/1 Knapsack kann z. B. mit folgender Logik implementiert werden:
+Die Greedy-Approximierung wurde für das komplette Knapsack-Problem entworfen. Im \autoref{Scheduling Algorithmen} wurde der wesentliche Unterschied zum 0/1-Knapsack erklärt, beim vollständigen Knapsack können einzelne Objekte beliebig oft zur Lösungsmenge hinzugefügt werden. Greedy sortiert die Menge der Objekte nach Wert pro Gewicht $ v_1 / w_1 \geq ... \geq v_n / w_n $. Nach der Sortierung nimmt der Algorithmus das Objekt mit dem besten Verhältnis von Wert zu Gewicht und fügt es so oft zur Lösungsmenge hinzu, bis kein Platz mehr für ein weiteres Exemplar vorhanden ist. Grundsätzlich kann Greedy auch für 0/1-Knapsack Probleme angewendet werden, in diesem Fall werden die reihe nach die Objekte mit dem besten Wert pro Gewicht Verhältnis genommen, bis die Maximalkapazität erreicht ist. Greedy Algorithmus für einen 0/1-Knapsack kann z. B. mit folgender Logik implementiert werden:
 
 \begin{algorithmic}
     \Function{GreedyKnapsack}{$Werte$, $Gewichte$, $Kapazitaet$}
@@ -506,7 +506,7 @@ Die Greedy Approximierung wurde für das komplette Knapsack Problem entworfen. I
 Dieser Code fügt die eingegebenen Werte und Gewichte in einer Liste zusammen und sortiert sie absteigend nach dem Wert/Gewicht Verhältnis. In der Schleife werden die Objekte der Reihe nach der Lösungsmenge hinzugefügt, beginnend mit dem Objekt mit dem besten Wert/Gewicht Verhältnis, bis die maximale Kapazität erreicht ist. Der so ermittelte Gesamtwert wird zurückgegeben. Die Berechnungskomplexität bei Greedy beträgt inklusive Sortierung:
 
 \begin{align}
-    & O(n \cdot log(n)) (logarithmisch-linear)
+    & O(n \cdot log(n)) \text{(logarithmisch-linear)}
 \end{align}
 
 Die Berechnungskomplexität ist im Vergleich zu den Algorithmen die die exakte optimale Lösung liefern (\autoref{EQ:DP}, \autoref{EQ:MitM}) deutlich geringer mit einer logarithmisch-linear ansteigendem Komplexität über die Anzahl der Objekte $ n $. 
@@ -517,7 +517,7 @@ Als Approximationsalgorithmus kann auch die dynamische Programmierung verwendet 
     & O(n \cdot W)  \rightarrow O(n \cdot V) 
 \end{align}
 
-Die Komplexität des Problems kann vereinfacht werden, indem sowohl der Maximalwert als auch die Einzelwerte der Objekte herunterskaliert und gerundet werden.  Die Komplexität der Berechnung kann durch die Einführung eines Fehlerfaktors $ \varepsilon $ reduziert werden. Dieser Faktor bestimmt den maximalen Fehler, der durch die Skalierung auftreten kann, z.B. $ \varepsilon = 0,1 $ führt zu einem maximalen Fehler von $ 10 \% $. Aus dem Fehlerfaktor und dem maximal auftretenden Einzelwert $ V_max $ in den Objekten kann der Skalierungsfaktor $ K $ nach folgender Formel berechnet werden:
+Die Komplexität des Problems kann vereinfacht werden, indem sowohl der Maximalwert als auch die Einzelwerte der Objekte herunterskaliert und gerundet werden.  Die Komplexität der Berechnung kann durch die Einführung eines Fehlerfaktors $ \varepsilon $ reduziert werden. Dieser Faktor bestimmt den maximalen Fehler, der durch die Skalierung auftreten kann, z.B. $ \varepsilon = 0,1 $ führt zu einem maximalen Fehler von $ 10\,\% $. Aus dem Fehlerfaktor und dem maximal auftretenden Einzelwert $ V_{max} $ in den Objekten kann der Skalierungsfaktor $ K $ nach folgender Formel berechnet werden:
 
 \begin{align}
     & K = \frac{\varepsilon \cdot V_{max}}{n}
@@ -529,7 +529,7 @@ Mit Hilfe des Skalierungsfaktors $ K $ werden alle Einzelwerte der Objekte skali
     & v_i^{\prime} = \lfloor \frac{v_i}{K} \rfloor
 \end{align}
 
-Diese Skalierung reduziert die Komplexitiät des Problems auf Kosten der Genauigkeit des Endergebnisses. Den Zusammenhang zwischen Fehlerfaktor und Komplexität zeigt der folgende Formel:
+Diese Skalierung reduziert die Komplexität des Problems auf Kosten der Genauigkeit des Endergebnisses. Den Zusammenhang zwischen Fehlerfaktor und Komplexität zeigt der folgende Formel:
 
 \begin{align}
     & O(\frac{n^2}{\varepsilon})
@@ -537,22 +537,22 @@ Diese Skalierung reduziert die Komplexitiät des Problems auf Kosten der Genauig
 
 Aus den obigen Formeln ist ersichtlich, warum das Problem von der ursprünglichen \enquote{Ermittlung des Maximalwertes bei gegebener Maximalkapazität} in \enquote{Ermittlung der Minimalkapazität bei gegebener Gesamtkapazität} umformuliert wurde. Die Skalierung führt zu einem Fehler im berechneten Ergebnis, der tatsächliche Wert nach Auswahl der Kombination kann um den Fehlerfaktor $ \varepsilon $ von der Approximation abweichen. Bei einer Skalierung der Kapazitäten kann es daher vorkommen, dass die berechnete optimale Lösung aufgrund des Skalierungsfehlers die zulässige Maximalkapazität überschreitet. Die umformulierte Tabelle kann dennoch verwendet werden, um den Maximalwert für eine gegebene Kapazität zu bestimmen, indem der höchste Wert, der unter der Maximalkapazität liegt, als Lösung verwendet wird. In dieser Lösung wird mit den exakten Kapazitäten gerechnet, so dass keine Kapazitätsüberschreitung durch Rundungsfehler vorkommen kann, die Ungenauigkeit durch Rundung beeinflusst den errechneten Gesamtwert.
 
-\subsubsection{Multi-Knapsackproblem}
+\subsubsection{Multi-Knapsack-Problem}
 
-Das klassische 0/1-Knapsackproblem beschreibt die Situation, dass ein Rucksack verschiedene Objekte enthalten kann. Dies entspricht dem Fall, dass verschiedene Anwendungen auf einem System mit begrenzter Ressourcenkapazität berechnet werden müssen. Verteilte Systeme bestehen hingegen aus mehreren Rechensystemen, auf denen die Anwendungen nach verschiedenen Kriterien verteilt werden müssen. Dies kann als Multi-Knapsackproblem aufgefasst werden, bei dem es sowohl mehrere Rucksäcke als auch mehrere Optimierungskriterien gibt und nicht nur einen Maximalwert bei gegebener Kapazität. 
+Das klassische 0/1-Knapsack-Problem beschreibt die Situation, dass ein Rucksack verschiedene Objekte enthalten kann. Dies entspricht dem Fall, dass verschiedene Anwendungen auf einem System mit begrenzter Ressourcenkapazität berechnet werden müssen. Verteilte Systeme bestehen hingegen aus mehreren Rechensystemen, auf denen die Anwendungen nach verschiedenen Kriterien verteilt werden müssen. Dies kann als Multi-Knapsack-Problem aufgefasst werden, bei dem es sowohl mehrere Rucksäcke als auch mehrere Optimierungskriterien gibt und nicht nur einen Maximalwert bei gegebener Kapazität. 
 
-Multi-Knapsackprobleme beschreiben zunächst den Fall, dass mehrere Knapsäcke vorhanden sind, also nicht nur eine optimale Lösung für eine einzelne maximale Kapazität gefunden werden soll, sondern eine optimale Verteilung auf mehrere Rucksäcke mit gegebenen Kapazitäten. Multi-Knapsackprobleme können mit den in den vorangegangenen Abschnitten vorgestellten Algorithmen nach entsprechender Anpassung gelöst werden.
+Multi-Knapsack-Probleme beschreiben zunächst den Fall, dass mehrere Knapsäcke vorhanden sind, also nicht nur eine optimale Lösung für eine einzelne maximale Kapazität gefunden werden soll, sondern eine optimale Verteilung auf mehrere Rucksäcke mit gegebenen Kapazitäten. Multi-Knapsack-Probleme können mit den in den vorangegangenen Abschnitten vorgestellten Algorithmen nach entsprechender Anpassung gelöst werden.
 
 Bei der \enquote{Brute Force} Methode, bei der alle möglichen Lösungen berechnet werden, steigt die Berechnungskomplexität bei $ n $ Objekten und $ m $ Knapsäcken wie folgt:
 
 \begin{align}
-    & O(2^n) (0/1-Knapsack) \rightarrow O((m+1)^n) (Multi-Knapsack)
+    & O(2^n) (0/1-Knapsack) \rightarrow O((m+1)^n) \text{(Multi-Knapsack)}
 \end{align}
 
-Die Anzahl der Lösungen wächst exponentiell mit der Anzahl der Knapsäcke. Daher werden diese Probleme nur selten und nur für kleine $ n $ und $ m $ auf diese Weise gelöst. Eine effizientere Methode bietet die dynamische Programmierung, die im \autoref{Exakte Algorithmen} für das 0/1 Knapsackproblem vorgestellt wurde. Für Multi-Knapsäcke wird die Tabelle mit jedem zusätzlichen Knapsack um eine Dimension erweitert, so dass für alle Gewichtsverteilungen in den Rucksäcken die besten Werte in die Tabelle eingetragen werden. Der Berechnungsaufwand steigt bei dieser Methode ebenfalls exponentiell mit der Anzahl an Knapsäcken $ m $:
+Die Anzahl der Lösungen wächst exponentiell mit der Anzahl der Knapsäcke. Daher werden diese Probleme nur selten und nur für kleine $ n $ und $ m $ auf diese Weise gelöst. Eine effizientere Methode bietet die dynamische Programmierung, die im \autoref{Exakte Algorithmen} für das 0/1-Knapsack-Problem vorgestellt wurde. Für Multi-Knapsäcke wird die Tabelle mit jedem zusätzlichen Knapsack um eine Dimension erweitert, so dass für alle Gewichtsverteilungen in den Rucksäcken die besten Werte in die Tabelle eingetragen werden. Der Berechnungsaufwand steigt bei dieser Methode ebenfalls exponentiell mit der Anzahl an Knapsäcken $ m $:
 
 \begin{align}
-    & O(n \cdot W) (0/1-Knapsack) \rightarrow O(n \cdot W_1 \cdot W_2 \cdot ... \cdot W_m) (Multi-Knapsack)
+    & O(n \cdot W) \text{(0/1-Knapsack)} \rightarrow O(n \cdot W_1 \cdot W_2 \cdot ... \cdot W_m) \text{(Multi-Knapsack)}
 \end{align}
 
 Aufgrund dieser exponentiell ansteigenden Komplexität werden bei Multi-Knapsack-Problemen häufiger Approximationsalgorithmen eingesetzt. Die in \autoref{Approximationsalgorithmen} vorgestellten Methoden können auch für Multi-Knapsack-Probleme angepasst werden. Der Greedy-Algorithmus kann leicht für Multi-Knapsack-Probleme adaptiert werden. Die Objekte werden weiterhin wie bei der einfachen 0/1-Knapsack-Lösung nach ihrem Wert/Gewicht-Verhältnis sortiert. Diese Objekte werden dann der Reihe nach in mehrere Rucksäcke gepackt, bis die nächsten Objekte nicht mehr hineinpassen. Die Erweiterung des Problems auf mehrere Rucksäcke hat im Vergleich zu den anderen Algorithmen einen relativ geringen Einfluss auf die Rechenkomplexität. Die folgende Formel beschreibt den Rechenaufwand für $ n $ Objekte und $ m $ Rucksäcke:
@@ -595,9 +595,9 @@ Branch and Bound ist ein Algorithmus, der sowohl für eine exakte Lösung als au
     \end{algorithmic}
 Diese Funktion nimmt verschiedene Objekte in die Variable \enquote{Items} und Rucksäcke \enquote{Knapsacks} auf. Die Variable \enquote{Queue} enthält alle Teillösungen, sortiert nach ihrer oberen Schranke, d.h. ihrem durch Schätzung ermittelten Maximalwert. Die While-Schleife wird solange gefüllt, bis \enquote{Queue} leer ist, d.h. noch ungelöste Teilprobleme existieren. Innerhalb der Schleife werden die Knoten der \enquote{Queue} der Reihe nach abgearbeitet, d.h. der Knoten mit der höchsten oberen Schranke wird zuerst abgearbeitet. Die Funktion \enquote{UpperBound} schätzt, wie hoch die bestmögliche Lösung unterhalb des Knotens sein könnte. Ist dieser Wert schlechter als \enquote{BestValue}, d.h. der Wert des Knotens mit dem bisher höchsten Wert, so wird in diesem Teilbaum nicht weitergesucht. Ist ein Knoten eine gültige vollständige Lösung und weist einen höheren Wert als der bisherige \enquote{BestValue} auf, so wird diese Lösung als neue \enquote{BestValue} gespeichert. Falls der aktuelle Knoten nicht vollständig ist, wird das nächste Objekt aus \enquote{Items} genommen und zu einen der Knapsäcke hinzugefügt. Ist die erlaubte Maximalkapazität nicht überschritten, so wird ein neuer Knoten erzeugt und den \enquote{Queue} hinzugefügt. Dies wird für alle Möglichen Knapsäcke pro Objekt wiederholt. Sobald alle möglichen Lösungen geprüft wurden (\enquote{Queue} ist leer), wird \enquote{BestValue} als beste Lösung zurückgegeben.  
 
-\subsubsection{Multi-Objective Knapsackproblem}
+\subsubsection{Multi-Objective Knapsack-Problem}
 
-Multi-Objective Knapsackprobleme beschreiben den Fall, dass nach mehreren Zielkriterien optimiert werden soll. Ein Beispiel hierfür wäre, das klassische Beispielproblem so umzuformulieren, dass nicht nur nach dem Maximalwert bei gegebenem Maximalgewicht optimiert wird, sondern z.B. nach dem Maximalwert bei gegebenem Minimalvolumen und gegebener Maximalkapazität. Bei Scheduling Problemen in verteilten Rechensystemen ist dies in der Regel auch der Fall. Typische Scheduling Probleme beinhalten mehrere Kapazitätsbeschränkungen wie Rechenzeit, Speicher, Energie, Netzwerkbandbreite, Netzwerklatenz sowie mehrere Ziele wie Laufzeit, Kosten, Energieverbrauch. Bei Multi-Objective Knapsackprobleme stehen die Ziele, auf die hin optimiert wird, oft im Widerspruch zueinander. Aus diesem Grund wird für diese Probleme eine Pareto-optimale Lösung gesucht. Pareto-optimal bedeutet, dass keine Lösung die andere dominiert, dass es also keine Lösung gibt, die alle Optimierungskriterien gleichzeitig verbessert, ohne mindestens ein Kriterium zu verschlechtern. Für mehrere Optimierungskriterien gibt es eine Vielzahl von Pareto-optimalen Lösungen, die jeweils die beste Lösung für das jeweilige Verhältnis der Optimierungskriterien sind. Diese Lösungsmenge wird Pareto-Front genannt. Es gibt verschiedene Optionen für die Ermittlung der Lösung von Multi-Objective Knapsackproblemen:
+Multi-Objective Knapsack-Probleme beschreiben den Fall, dass nach mehreren Zielkriterien optimiert werden soll. Ein Beispiel hierfür wäre, das klassische Beispielproblem so umzuformulieren, dass nicht nur nach dem Maximalwert bei gegebenem Maximalgewicht optimiert wird, sondern z.B. nach dem Maximalwert bei gegebenem Minimalvolumen und gegebener Maximalkapazität. Bei Scheduling Problemen in verteilten Rechensystemen ist dies in der Regel auch der Fall. Typische Scheduling Probleme beinhalten mehrere Kapazitätsbeschränkungen wie Rechenzeit, Speicher, Energie, Netzwerkbandbreite, Netzwerklatenz sowie mehrere Ziele wie Laufzeit, Kosten, Energieverbrauch. Bei Multi-Objective Knapsack-Probleme stehen die Ziele, auf die hin optimiert wird, oft im Widerspruch zueinander. Aus diesem Grund wird für diese Probleme eine Pareto-optimale Lösung gesucht. Pareto-optimal bedeutet, dass keine Lösung die andere dominiert, dass es also keine Lösung gibt, die alle Optimierungskriterien gleichzeitig verbessert, ohne mindestens ein Kriterium zu verschlechtern. Für mehrere Optimierungskriterien gibt es eine Vielzahl von Pareto-optimalen Lösungen, die jeweils die beste Lösung für das jeweilige Verhältnis der Optimierungskriterien sind. Diese Lösungsmenge wird Pareto-Front genannt. Es gibt verschiedene Optionen für die Ermittlung der Lösung von Multi-Objective Knapsack-Problemen:
 
 \begin{itemize}
     \item Gewichtungsmethode: Die Optimierungskriterien werden mit Gewichtungsfaktoren $ \lambda $ versehen, so dass ein ausgewählter Punkt auf der Pareto-Front zurückgegeben wird. Für ein Problem mit $ m $ Zielen, $ n $ Objekten, einer binären Variablen $ x_i \in {0, 1} $, die angibt, ob ein Objekt ausgewählt ist, und Zielwerten $ z_i^{(k)} $ für jedes Objekt $ i $ für k = 1, 2, ..., m kann das Ziel durch folgende Formel angegeben werden:
@@ -605,8 +605,8 @@ Multi-Objective Knapsackprobleme beschreiben den Fall, dass nach mehreren Zielkr
             & max \sum_{i=1}^{n} x_i \cdot (\sum_{k=1}^{m} \lambda_k \cdot z_i^{(k)})
         \end{align}
     \item $ \varepsilon $-Constraint-Methode: Optimiert ein Ziel, während für die andere Ziele Nebenbedingungen mit Schwellwerten $(\varepsilon)$ gesetzt werden. Beispielweise kann Zielwert $ z^{(1)} $ maximiert werden während $ z^{(2)} < \varepsilon $ eingehalten werden soll.
-    \item Evolutionsalgorithmen: optimierungsbasierte Alogrithmen, die an dem Prinzip der biologischen Evolution orientieren. 
-    \item Dynamische Programmierung für Multi-Objective Knapsackprobleme: Die Tabelle kann erweitert werden dass für jede Kapazität nicht nur ein Wert gespeichert wird, sondern alle nicht dominierte Lösungskombinationen.
+    \item Evolutionäre Algorithmen: optimierungsbasierte Alogrithmen, die an dem Prinzip der biologischen Evolution orientieren. 
+    \item Dynamische Programmierung für Multi-Objective Knapsack-Probleme: Die Tabelle kann erweitert werden dass für jede Kapazität nicht nur ein Wert gespeichert wird, sondern alle nicht dominierte Lösungskombinationen.
     \item Branch and Bound mit Pareto-Dominanz: Branch and Bound wird dahingehend erweitert, dass anstelle einer besten Lösung eine Menge von Pareto-optimalen Teillösungen verfolgt wird. Ein Zweig wird abgeschnitten, wenn ein Knoten von anderen, bereits bekannten Lösungen dominiert wird.
 \end{itemize}
 
@@ -619,18 +619,18 @@ Die Auswahl des konkret verwendeten Methode hängt auch in diesem Fall von der P
         \hline
         Gewichtung & \usym{2717} & \usym{2713} & \usym{2713} & \usym{2717} \\
         \varepsilon-Constraint & \usym{2713} & \usym{2713} & \usym{2717} & \usym{2713} \\
-        Evolutionsalgorithmen & \usym{2717} & \usym{2713} & \usym{2713} & \usym{2713} \\
+        Evolutionäre Algorithmen & \usym{2717} & \usym{2713} & \usym{2713} & \usym{2713} \\
         Multiobjektives DP & \usym{2713} & \usym{2717} & \usym{2717} & \usym{2713} \\ 
         B\&B mit Dominanzprüfung & \usym{2713} & \usym{2717} & \usym{2717} & \usym{2713} \\ 
     \end{tabular} 
-    \caption{Vergleich der häufig verwendeten Methoden für Multiobjektive Knapsackprobleme}
+    \caption{Vergleich der häufig verwendeten Methoden für Multiobjektive Knapsack-Probleme}
 \end{table}
 
-Zur Lösung von Scheduling-Problemen in verteilten Rechensystemen werden aufgrund der Rechenkomplexität in der Regel keine vollständigen Lösungsmengen berechnet. Bei größeren Systemen ist die Berechnung der exakten Lösung aufgrund der Anzahl der möglichen Kombinationen nicht praktikabel. In der Praxis wird meist ein Gewichtungsverfahren verwendet, da dieses ein hinreichend gutes Ergebnis liefert und die Rechenkomplexität auf ein ähnliches Niveau wie bei einem klassischen Knapsackproblem reduziert.
+Zur Lösung von Scheduling-Problemen in verteilten Rechensystemen werden aufgrund der Rechenkomplexität in der Regel keine vollständigen Lösungsmengen berechnet. Bei größeren Systemen ist die Berechnung der exakten Lösung aufgrund der Anzahl der möglichen Kombinationen nicht praktikabel. In der Praxis wird meist ein Gewichtungsverfahren verwendet, da dieses ein hinreichend gutes Ergebnis liefert und die Rechenkomplexität auf ein ähnliches Niveau wie bei einem klassischen Knapsack-Problem reduziert.
 
-\subsubsection{Multiobjektive Multi-Knapsackprobleme}
+\subsubsection{Multiobjektive Multi-Knapsack-Probleme}
 
-Typische Scheduling Probleme in verteilten Systemen beinhalten sowohl mehrere Rechensysteme (Kapazitäten) als auch mehrere Ziele, auf die hin optimiert wird. Scheduling-Algorithmen müssen daher Multiobjektive Multi-Knapsack-Probleme lösen. Dies kann durch die Erweiterung von Multi-Knapsack Algorithmen mit Methoden für multiobjektive Knapsackprobleme erreicht werden. Im folgenden Abschnitt wird eine beispielhafte Implementierung für einen Greedy-Algorithmus mit zwei Optimierungszielen vorgestellt:
+Typische Scheduling Probleme in verteilten Systemen beinhalten sowohl mehrere Rechensysteme (Kapazitäten) als auch mehrere Ziele, auf die hin optimiert wird. Scheduling-Algorithmen müssen daher Multiobjektive Multi-Knapsack-Probleme lösen. Dies kann durch die Erweiterung von Multi-Knapsack Algorithmen mit Methoden für multiobjektive Knapsack-Probleme erreicht werden. Im folgenden Abschnitt wird eine beispielhafte Implementierung für einen Greedy-Algorithmus mit zwei Optimierungszielen vorgestellt:
 
 \begin{algorithmic}
     \Function{GreedyMultiKnapsackWithTwoCriteria}{$Tasks$, $Knapsaecke$, $\alpha$, $\beta$}
@@ -657,6 +657,19 @@ Typische Scheduling Probleme in verteilten Systemen beinhalten sowohl mehrere Re
 
 Diese Funktion sortiert die Objekte \enquote{Tasks} in Knapsäcke. Die Optimierung erfolgt nach zwei Kriterien, die mit den Gewichtungsfaktoren \enquote{alpha} und \enquote{beta} gewichtet werden. Mit Hilfe dieser Faktoren wird die \enquote{Effizienz} berechnet, die den gewichteten Zielwert angibt. Nach diesem Zwischenschritt sortiert Greedy die Objekte nach ihrer Effizienz, beginnend mit der höchsten Effizienz. Anschließend werden die Objekte der Reihe nach in die Knapsäcke sortiert, bis jedes der Knapsäcke so voll ist dass das nächste Objekt nicht mehr hineinpasst. 
 
+Um die in dieser Arbeit priorisierte Maximierung der Rechenleistung zu erreichen, wird eine spezifische Kostenfunktion definiert. Der Greedy-Algorithmus berechnet für jeden Task $t$ und jeden Kandidaten-Knoten $n$ einen Eignungswert. Für die Strategie \enquote{Greedy (TOPS Prio)} berechnet sich der Score $S$ primär aus der verfügbaren Rechenleistung, unter der Nebenbedingung, dass Speicher-Constraints eingehalten werden:
+
+\begin{equation}
+    S(n, t) = 
+    \begin{cases} 
+      \frac{C_{avail}(n)}{C_{max}(n)} \cdot w_{cpu} & \text{wenn } M_{avail}(n) \ge M_{req}(t) \\
+      0 & \text{sonst}
+   \end{cases}
+   \label{eq:scoring_function}
+\end{equation}
+
+Dabei ist $C_{avail}$ die verfügbare CPU-Leistung (in TOPS), $M_{avail}$ der freie Arbeitsspeicher und $w_{cpu}$ ein Gewichtungsfaktor. Der Algorithmus weist den Task dem Knoten mit dem höchsten Score $S$ zu. Dies stellt sicher, dass leistungsstarke Knoten bevorzugt genutzt werden, solange sie über genügend Speicher verfügen.
+
 \subsubsection{dynamisches Scheduling}
 \label{dynamisches Scheduling}
 
@@ -666,4 +679,15 @@ Mit den zuvor vorgestellten Methoden kann auch dynamisches Scheduling implementi
 
 Dynamische Scheduling kann auch durch das periodische Aufrufen und neu Schedulen der Tasks stattfinden. Klassischerweise werden bei dieser Methode alle Tasks neu verteilt, so dass die Update Perioden sinnvoll gewählt werden müssen. 
 
-Reinforcement Learning eignet sich für Situationen, in denen bestimmte Muster bezüglich der Ressourcenverfügbarkeit und der eingehenden Aufgaben erkennbar sind. Diese Methode führt selbständig aktionen aus, die durch ein Belohnungssystem bewertet werden. Nach jedem Iterationsschritt werden die zukünftigen Entscheidungsstrategien so optimiert, dass daraus die maximale Belohnung resultiert. Grundlage hierfür sind statistisch voraussagbare Ereignisse, die nach genügend Lernzyklen in der Strategie berücksichtigt werden.
+Reinforcement Learning eignet sich für Situationen, in denen bestimmte Muster bezüglich der Ressourcenverfügbarkeit und der eingehenden Aufgaben erkennbar sind. Diese Methode führt selbständig Aktionen aus, die durch ein Belohnungssystem bewertet werden. Nach jedem Iterationsschritt werden die zukünftigen Entscheidungsstrategien so optimiert, dass daraus die maximale Belohnung resultiert. Grundlage hierfür sind statistisch voraussagbare Ereignisse, die nach genügend Lernzyklen in der Strategie berücksichtigt werden.
+
+\section{Zusammenfassung}
+\label{sec:MethodeZusammenfassung}
+
+In diesem Kapitel wurde das methodische und architektonische Konzept für die verteilte Rechenplattform erarbeitet. Die Systemarchitektur folgt einem hierarchischen Ansatz, bestehend aus dezentralen Runtime Node-Komponenten auf den Fahrzeugsteuergeräten und einer zentralen Runtime Master Instanz zur Orchestrierung.
+
+Als technisches Fundament für die Virtualisierung wurde die containerbasierte Isolierung mittels Linux-Namespaces spezifiziert, da diese eine hohe Portierbarkeit bei geringem Ressourcen-Overhead gewährleistet. Die Kommunikation im volatilen Fahrzeugnetzwerk wird durch das datenzentrierte Publish/Subscribe-Protokoll \gls{DDS} realisiert, welches durch Mechanismen zur Fehlererkennung und Authentifizierung ergänzt wurde.
+
+Für die Ressourcenverteilung wurden verschiedene theoretische Ansätze des Knapsack-Problems analysiert. Aufgrund der Anforderungen an die Echtzeitfähigkeit und Skalierbarkeit wurde der Algorithmus \enquote{Greedy (TOPS Prio)} als präferierte Scheduling-Strategie identifiziert und mathematisch formalisiert.
+
+Basierend auf diesen konzeptionellen Festlegungen erfolgt im nächsten Kapitel die technische Implementierung der Komponenten sowie die simulative Evaluation der Scheduling-Effizienz.
