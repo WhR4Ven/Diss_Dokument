@@ -235,6 +235,28 @@ Eine Ausnahme stellt die Übertragung von Binärdaten dar. Diese werden oft nich
 
 In der prototypischen Implementierung werden derzeit auch die Binärdaten über \gls{JSON} übertragen, um die Kommunikation einheitlich zu halten. Bei einer Weiterentwicklung ist hier jedoch ein Wechsel auf eine andere \gls{IDL} sinnvoll, um die Übertragungsgeschwindigkeit zu erhöhen.
 
+\subsection{Fehlerbehandlung und Robustheit}
+\label{sec:Fehlerbehandlung}
+
+Da Fahrzeugnetzwerke durch eine hohe Volatilität gekennzeichnet sind, beispielsweise durch Verbindungsabbrüche oder das Abschalten der Zündung, muss die Plattform über Mechanismen zur Fehlererkennung und -behandlung verfügen. Das Konzept sieht hierfür einen Heartbeat-Mechanismus vor.
+
+Jeder Runtime Node sendet periodisch (Intervall $t_{hb}$) eine \enquote{Node Info}-Nachricht an den Runtime Master. Der Master speichert den Zeitstempel der letzten Nachricht $t_{last}$ in der Node-Datenbank. Ein Überwachungsmodul im Master prüft zyklisch die Verfügbarkeit der Knoten anhand eines definierten Timeout-Schwellwerts $t_{timeout}$. Ein Knoten $n$ gilt als ausgefallen (offline), wenn:
+\begin{equation}
+    t_{current} - t_{last}(n) > t_{timeout}
+\end{equation}
+Wird ein Ausfall detektiert, greift die folgende Wiederherstellungsstrategie (\textit{Retry Logic}):
+\begin{enumerate}
+    \item Der Status des Knotens wird in der Datenbank auf \enquote{offline} gesetzt.
+    \item Alle diesem Knoten zugewiesenen Aufgaben, die noch nicht als \enquote{abgeschlossen} gemeldet wurden, werden als \enquote{fehlgeschlagen} markiert.
+    \item Die fehlgeschlagenen Aufgaben werden zurück in die globale Warteschlange (\textit{Task Pool}) verschoben.
+    \item Der Scheduler wird getriggert, um diese Aufgaben im nächsten Zyklus an andere, verfügbare Knoten neu zu verteilen.
+\end{enumerate}
+Dieser Mechanismus garantiert, dass Aufgaben auch bei abruptem Ausfall von Fahrzeugen nicht verloren gehen, sondern lediglich verzögert ausgeführt werden.
+
+\subsection{Sicherheitskonzept und Authentifizierung}
+Um unberechtigten Zugriff auf die Steuergeräte zu verhindern, implementiert die Plattform ein tokenbasiertes Authentifizierungsverfahren. Bei der Initialisierung generiert der Runtime Master ein kryptografisches Token (Shared Secret). Dieses Token muss jedem Runtime Node bei der manuellen Kopplung oder der sicheren Erstkonfiguration übergeben werden.
+Jede Nachricht enthält im Header dieses Token. Empfängt ein Runtime Node einen Befehl, vergleicht er das empfangene Token mit dem lokal gespeicherten. Stimmen diese nicht überein, wird der Befehl ignoriert und ein Sicherheitsvorfall protokolliert. Dies verhindert, dass nicht autorisierte Teilnehmer im selben Netzwerkdrittanbieter-Code auf den Fahrzeugen ausführen können.
+
 \section{Scheduling}
 
 Das Scheduling hat die Aufgabe, die externen Applikationen so im System zu verteilen, dass eine effiziente Auslastung der Fahrzeuge (Runtime Nodes) erreicht wird. Für diese Verteilung benötigt der Scheduler sowohl Informationen über die Anforderungen der auszuführenden Applikationen als auch über die Eigenschaften der Runtime Nodes in den Fahrzeugen. Um eine effiziente Auslastung für externe Applikationen zu ermöglichen, wurden folgende Anforderungen an den Scheduler identifiziert:
