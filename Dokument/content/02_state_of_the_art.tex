@@ -174,10 +174,10 @@ Für die eigentliche Orchestrierung der virtuellen Maschinen ist das Compute-Mod
 
 Das Compute-Modul abstrahiert den zugrundeliegenden Hypervisor durch eine API und unterstützt verschiedene Technologien wie KVM, Xen oder VMware, wobei KVM (Kernel-based Virtual Machine) im Linux-Umfeld am häufigsten eingesetzt wird.
 
-\paragraph{Alternative Orchestrierungslösungen}
+\subsubsection{Alternative Orchestrierungslösungen}
 Neben Open-Source-Lösungen wie OpenStack existieren am Markt diverse kommerzielle und proprietäre Plattformen zur Orchestrierung virtueller Maschinen. Im Bereich der Public Cloud dominieren Anbieter wie \textit{Amazon Web Services (AWS)}, \textit{Microsoft Azure} und die \textit{Google Compute Engine}, die ihre eigenen, hochspezialisierten Orchestrierungsschichten betreiben und dem Kunden als Dienstleistung (\gls{IaaS}) anbieten. Für private Unternehmens-Clouds ist zudem die \textit{VMware vRealize Suite} weit verbreitet, die eine tief integrierte Verwaltung von VMware-basierten Infrastrukturen ermöglicht.
 
-\paragraph{Fazit}
+\subsubsection{Fazit}
 Obwohl die Orchestrierung virtueller Maschinen in stationären Rechenzentren der Standard ist, bringt sie durch den Overhead eines vollständigen Gast-Betriebssystems für jede Instanz einen hohen Ressourcenverbrauch mit sich. Für den Einsatz auf Fahrzeugsteuergeräten, die begrenzten Ressourcen unterliegen, rücken daher leichtgewichtigere Verfahren wie die Container Orchestrierung in den Fokus, welche im folgenden Abschnitt behandelt wird.
 
 \subsection{Container Orchestrierung}
@@ -195,7 +195,7 @@ Eine der meistverbreiteten Implementierungen für Container Orchestrierung ist K
     \label{kubernetes_arch}
 \end{figure}
 
-\paragraph{Worker Nodes}
+\subsubsection{Worker Nodes}
 Die containerisierten Applikationen werden in sogenannten \enquote{Pods} zusammengefasst und auf den Worker Nodes ausgeführt. Ein Node besteht aus folgenden Kernkomponenten:
 
 \begin{description}
@@ -204,7 +204,7 @@ Die containerisierten Applikationen werden in sogenannten \enquote{Pods} zusamme
     \item[Container Runtime:] Die Software, die für das Ausführen der Container zuständig ist. Kubernetes unterstützt verschiedene Runtimes, wobei \enquote{containerd} oder \enquote{CRI-O} (ehemals oft Docker) am häufigsten verwendet werden.
 \end{description}
 
-\paragraph{Control Plane}
+\subsubsection{Control Plane}
 Die Control Plane trifft globale Entscheidungen über das Cluster (z.\,B. Scheduling) und detektiert sowie reagiert auf Cluster-Ereignisse. In Produktionsumgebungen werden diese Komponenten meist auf dedizierten Maschinen ausgeführt. Die Control Plane besteht aus:
 
 \begin{description}
@@ -354,14 +354,14 @@ Am Beispiel des Betriebssystems \enquote{DriveOS} wird vorgestellt, wie ein Betr
 
 Mit dem Wandel von signalbasierter Kommunikation (wie CAN oder FlexRay) hin zu \gls{SOA} auf Ethernet-Basis haben sich spezifische Middleware-Lösungen etabliert, um die Komplexität des Datenaustauschs zu abstrahieren. Diese Zwischenschichten stellen vereinfachte APIs bereit und nutzen den IP-Stack des zugrundeliegenden Betriebssystems. \cite{Kluener2025} Die zwei dominierenden Standards in der Automobilindustrie sind SOME/IP und DDS.
 
-\paragraph{SOME/IP (Scalable service-Oriented MiddlewarE over IP)}
+\textbf{SOME/IP (Scalable service-Oriented MiddlewarE over IP)}
 SOME/IP wurde vom AUTOSAR-Konsortium spezifiziert und ist speziell auf die Anforderungen der Automobilindustrie zugeschnitten. \cite{Autosar2023SomeIP} Das Protokoll baut auf klassischen Transportschichten auf und nutzt TCP für zuverlässige sowie UDP für Best-Effort-Kommunikation. \cite{Kluener2025}
 Es unterstützt drei wesentliche Interaktionsmodelle: \textit{Methoden} für Remote Procedure Calls (RPC), \textit{Events} für Publish-Subscribe-Nachrichten und \textit{Felder} (Fields) für den Zugriff auf Variablen mittels Getter/Setter-Methoden. \cite{Kluener2025}
 Ein integraler Bestandteil ist der Service-Discovery-Mechanismus (SOME/IP-SD), der Dienste im lokalen Netzwerk mittels UDP-Multicast dynamisch auffindbar macht. \cite{Kluener2025}
 
 In Performance-Untersuchungen zeigt sich jedoch, dass SOME/IP-Implementierungen (wie vSomeIP) im Vergleich zu anderen Middlewares signifikant höhere Latenzen bei der initialen Erkennung von Teilnehmern (Discovery) aufweisen. So wurde eine bis zu 8,3-fach längere Zeit bis zur ersten Nachrichtenübertragung gemessen als bei konkurrierenden Technologien. \cite{Kluener2025} Dies macht das Protokoll robust für statische Fahrzeugnetzwerke mit großen Datenmengen (z.\,B. Kameradaten), aber weniger agil für hochdynamische Ad-hoc-Szenarien.
 
-\paragraph{DDS (Data Distribution Service)}
+\textbf{DDS (Data Distribution Service)}
 Im Gegensatz zum methodenorientierten Ansatz von SOME/IP ist DDS ein datenzentrierter Standard (\textit{Data-Centric Publish-Subscribe}, DCPS) der Object Management Group (OMG). \cite{OMG2015} DDS abstrahiert die Kommunikation als \enquote{Global Data Space}, in dem Teilnehmer Daten zu bestimmten Themen (Topics) veröffentlichen oder abonnieren.
 Technisch basiert DDS auf dem \textit{Real-Time Publish-Subscribe} (RTPS) Wire-Protokoll, das einen nahtlosen Wechsel zwischen verschiedenen Transportschichten wie UDP, TCP oder Shared Memory (für lokale Interprozesskommunikation) ermöglicht. \cite{Kluener2025}
 
