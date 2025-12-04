@@ -396,10 +396,10 @@ Zuerst wird eine Liste erstellt, in der die Objektwerte und Gewichte als Paar ge
     
     \Function{GeneriereMengen}{$Items$}
     \State $Mengen \leftarrow$ leere Liste
-    \State $n \leftarrow$ Länge von $Items$
-    \For{$Maske \leftarrow 0$ bis $2^n - 1$}
+    \State $n \leftarrow$ \text{Länge von} $Items$  % \text{} für Wörter in Formeln
+    \For{$Maske \leftarrow 0$ \text{bis} $2^n - 1$}
         \State $Wert \leftarrow 0$, $Gewicht \leftarrow 0$
-        \For{$i \leftarrow 0$ bis $n - 1$}
+        \For{$i \leftarrow 0$ \text{bis} $n - 1$}
             \If{Bit $i$ in $Maske$ gesetzt}
                 \State $Gewicht \leftarrow Gewicht + Items[i].Gewicht$
                 \State $Wert \leftarrow Wert + Items[i].Wert$
@@ -407,7 +407,7 @@ Zuerst wird eine Liste erstellt, in der die Objektwerte und Gewichte als Paar ge
         \EndFor
         \State Füge $(Gewicht, Wert)$ zu $Mengen$ hinzu
     \EndFor
-    \State \turn $Mengen$
+    \State \Return $Mengen$  % Hier war der Fehler (\turn -> \Return)
     \EndFunction
 
 \end{algorithmic}
