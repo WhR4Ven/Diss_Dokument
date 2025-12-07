@@ -8,7 +8,7 @@ Dieses Kapitel beschreibt die technische Umsetzung der Komponenten Runtime Node 
 
 Die Komponente Runtime Node wird auf Fahrzeugsteuergeräten ausgeführt, weshalb deren spezifische Anforderungen bei der Implementierung berücksichtigt werden müssen. Die Wahl der Programmiersprache erfolgte unter den Gesichtspunkten einer möglichst hohen Kompatibilität mit benötigten Softwarebibliotheken sowie der Kompilierbarkeit auf diversen Hardwarearchitekturen. 
 
-In \autoref{ch:Methode} wurde festgelegt, dass der Runtime Node ein Linux-Kernel-basiertes Betriebssystem voraussetzt. Da der Kernel dieser Systeme in der Programmiersprache C implementiert ist, bietet diese Sprache im Vergleich zu anderen weit verbreiteten Sprachen wie C++, Java, Python oder Rust eine deutlich höhere Hardwarenähe. Gängige C-Compiler wie GCC, Clang/LLVM oder MSVC unterstützen nahezu alle relevanten Hardwarearchitekturen. Auch für spezialisierte Plattformen im Embedded-Bereich existiert sehr häufig eine proprietäre C-Toolchain. Aus diesem Grund eignet sich die Programmiersprache C hervorragend für die Implementierung des Runtime Node. 
+In \autoref{ch:MethodeSoftwareplattform} wurde festgelegt, dass der Runtime Node ein Linux-Kernel-basiertes Betriebssystem voraussetzt. Da der Kernel dieser Systeme in der Programmiersprache C implementiert ist, bietet diese Sprache im Vergleich zu anderen weit verbreiteten Sprachen wie C++, Java, Python oder Rust eine deutlich höhere Hardwarenähe. Gängige C-Compiler wie GCC, Clang/LLVM oder MSVC unterstützen nahezu alle relevanten Hardwarearchitekturen. Auch für spezialisierte Plattformen im Embedded-Bereich existiert sehr häufig eine proprietäre C-Toolchain. Aus diesem Grund eignet sich die Programmiersprache C hervorragend für die Implementierung des Runtime Node. 
 
 Die Softwareentwicklung erfolgte in einer Linux-Entwicklungsumgebung auf einem Desktop-PC. Diese Umgebung ist ausreichend, da Linux als Betriebssystem für die Fahrzeugsteuergeräte vorausgesetzt wird und somit die Kompatibilität der Software gewährleistet ist. Im Folgenden werden die konkreten Vorgehensweisen zur Implementierung der einzelnen Softwaremodule des Runtime Node beschrieben.
 
@@ -92,10 +92,38 @@ Die Übertragungslogik ist als Zustandsautomat (\textit{State Machine}) implemen
 
 Nach einer erfolgreichen Bestätigung beginnt der Runtime Master damit, die Binärdaten der Datei zu übertragen. Die Binärdaten werden Base64-kodiert im Feld \texttt{Binary\_Data} übertragen. Dieses Feld hat eine Größe von 3.076 Bytes. Durch die Base64-Kodierung sind davon allerdings nur 2.307 Bytes Nutzdaten. In der Praxis muss eine Datei daher in der Regel auf mehrere Pakete aufgeteilt werden. Während der Übertragung werden die empfangenen Daten dekodiert und in die erstellte Datei geschrieben. Wurden alle empfangenen Bytes erfolgreich geschrieben, wird eine Statusmeldung an den Runtime Master gesendet. Wurde die Datei vollständig übertragen, wird im \texttt{Action}-Feld der Inhalt \texttt{end\_exchange} gesendet. Dies signalisiert dem Runtime Node, dass die aktuelle Datei vollständig übertragen wurde und geschlossen werden kann.
 
+\subsection{Performance-Evaluation des Runtime Node}
+
+Zur Überprüfung der in \autoref{sec:MetrikenundErfolgskriterien} definierten Effizienzmetriken (\enquote{Plattform-Overhead} und \enquote{Reaktionszeit}) wurde der Runtime Node einer experimentellen Untersuchung unterzogen.
+
+Um eine realitätsnahe Bewertung zu ermöglichen, wurden die Messungen auf einer Hardware durchgeführt, die in ihrer Architektur vergleichbar mit modernen Hochleistungssteuergeräten im Automobilbereich ist. Als Referenzplattform diente ein Raspberry Pi 5 mit folgender Spezifikation:
+
+\begin{itemize}
+    \item Prozessor: Broadcom BCM2712 (Quad-Core ARM Cortex-A76 @ 2,4 GHz)
+    
+    \item Arbeitsspeicher: 8 GB LPDDR4X SDRAM
+    
+    \item Betriebssystem: Raspberry Pi OS (Linux-basiert, Kernel 6.x)
+\end{itemize}
+
+Die Wahl einer ARM-basierten Plattform gewährleistet die Übertragbarkeit der Ergebnisse auf automotive SoCs, die überwiegend ebenfalls die ARM-Instruktionssatzarchitektur nutzen.
+
+Um die Reaktionszeit zu bsetimmen, wird die Latenzzeit gemessen. Die Latenzzeit (tstartup​) beschreibt die Verzögerung zwischen dem Eingang des start_container-Befehls und der tatsächlichen Prozessausführung (execve). Die Zeitmessung erfolgte instrumentiert innerhalb des Codes mittels clock_gettime (CLOCK_MONOTONIC). Über eine Testreihe von n=100 Iterationen wurde eine durchschnittliche Latenz von 1,5 ms bis 1,7 ms ermittelt. Dieser Wert bestätigt, dass die Softwarearchitektur in C keine signifikanten Verzögerungen einführt und Befehle nahezu in Echtzeit verarbeitet werden.
+
+Der Ressourcenbedarf (\enquote{Footprint}) des Runtime Node Prozesses wurde mittels des Analysetools htop unter Standardbedingungen ermittelt:
+
+\begin{itemize}
+    \item CPU-Auslastung: Im Leerlauf (Idle) sowie bei reiner Aufrechterhaltung der DDS-Kommunikation war die CPU-Last des Prozesses nicht messbar (Anzeige < 0,1\,\%). Dies belegt, dass die Verwaltungssoftware keine Rechenleistung bindet, die für Fahrfunktionen benötigt wird.
+    
+    \item Speicherbedarf (RAM): Die Speicherauslastung lag konstant bei ca. 1,5\,\% des verfügbaren Gesamtspeichers (bezogen auf 8 GB RAM). Dieser geringe Speicherabdruck stellt sicher, dass genügend Kapazität für speicherintensive externe Applikationen (z. B. Bildverarbeitung) oder das Training von KI-Modellen verbleibt.
+\end{itemize}
+
+ Die Ergebnisse auf der Referenzhardware zeigen, dass der Runtime Node die Anforderungen an eine leichtgewichtige Middleware erfüllt. Mit einem minimalen Overhead bei CPU und RAM sowie Latenzen im einstelligen Millisekundenbereich eignet sich die Implementierung für den Einsatz auf ressourcenbeschränkten Fahrzeugsteuergeräten.
+
 \section{Implementierung der Kommunikationsschnittstelle}
 \label{sec:ImplementierungKommunikation}
 
-Die Kommunikationsschnittstelle ist ein eigenständiges Softwaremodul, das ein Publish/Subscribe-Protokoll über das Netzwerk verwendet und eine socketbasierte Schnittstelle mit \gls{JSON} zu den internen Softwarekomponenten nutzt. In \autoref{ch:Methode} wurde das Kommunikationsprotokoll Publish/Subscribe und die konkrete Implementierung \gls{DDS} (\textit{Data Distribution Service}) ausgewählt. Die Hauptaufgabe der Kommunikationsschnittstelle ist die bidirektionale Konvertierung zwischen \gls{DDS}- und \gls{JSON}-Nachrichten. Sowohl für \gls{JSON} als auch für \gls{DDS} werden spezialisierte Softwarebibliotheken verwendet. Das Modul implementiert die Nachrichtenstrukturen und die nötigen Parsing-Funktionen, um die Daten zwischen den Formaten zu übersetzen.
+Die Kommunikationsschnittstelle ist ein eigenständiges Softwaremodul, das ein Publish/Subscribe-Protokoll über das Netzwerk verwendet und eine socketbasierte Schnittstelle mit \gls{JSON} zu den internen Softwarekomponenten nutzt. In \autoref{ch:MethodeSoftwareplattform} wurde das Kommunikationsprotokoll Publish/Subscribe und die konkrete Implementierung \gls{DDS} (\textit{Data Distribution Service}) ausgewählt. Die Hauptaufgabe der Kommunikationsschnittstelle ist die bidirektionale Konvertierung zwischen \gls{DDS}- und \gls{JSON}-Nachrichten. Sowohl für \gls{JSON} als auch für \gls{DDS} werden spezialisierte Softwarebibliotheken verwendet. Das Modul implementiert die Nachrichtenstrukturen und die nötigen Parsing-Funktionen, um die Daten zwischen den Formaten zu übersetzen.
 
 In der prototypischen Umsetzung wird die \gls{DDS}-Bibliothek \textit{Fast DDS} der Firma eProsima verwendet. C++ kann als eine Erweiterung von C betrachtet werden, und C-Code ist in der Regel auch in einer C++-Umgebung lauffähig. \textit{eProsima Fast DDS} ist eine weit verbreitete Implementierung, die auch im \gls{ROS} 2 Ökosystem verwendet wird. Das Kommunikationsmodul selbst wurde ebenfalls hauptsächlich in C++ implementiert, um eine einfachere Integration mit der C++-basierten \gls{DDS}-Bibliothek zu ermöglichen.
 
@@ -149,7 +177,7 @@ Da die \gls{JSON}-Nachricht maximal 3.072 Bytes groß ist (davon ca. 2.307 Bytes
 \section{Implementierung und Evaluation des Schedulers}
 \label{sec:ImplementierungScheduler}
 
-Der Scheduler hat die Aufgabe, externe Applikationen automatisch nach bestimmten Optimierungskriterien auf die verfügbaren Runtime Nodes zu verteilen. Eine Auswahl theoretischer Methoden wurde in \autoref{ch:Methode} vorgestellt. Da die Softwareplattform aktuell prototypisch vorliegt und keine physische Flotte von Hunderten Fahrzeugen zur Verfügung steht, wurden die Scheduling-Methoden simulativ implementiert und ausgewertet.
+Der Scheduler hat die Aufgabe, externe Applikationen automatisch nach bestimmten Optimierungskriterien auf die verfügbaren Runtime Nodes zu verteilen. Eine Auswahl theoretischer Methoden wurde in \autoref{ch:MethodeSoftwareplattform} vorgestellt. Da die Softwareplattform aktuell prototypisch vorliegt und keine physische Flotte von Hunderten Fahrzeugen zur Verfügung steht, wurden die Scheduling-Methoden simulativ implementiert und ausgewertet.
 
 Das Problem wurde als multiobjektives Multi-Knapsack-Problem modelliert. Für die Simulation werden Methoden untersucht, die auf dieses Problem anwendbar sind.
 
@@ -166,7 +194,7 @@ Für den Anwendungsfall \enquote{Verteiltes Rechnen im Fahrzeug} ist das Finden 
 \subsection{Implementierung der Scheduling-Algorithmen}
 \label{sec:ImplementierungAlgorithmen}
 
-In \autoref{ch:Methode} wurde eine Auswahl gängiger Algorithmen vorgestellt. Um die Qualität des zu wählenden Algorithmus bewerten zu können, wurde eine Vergleichssimulation durchgeführt. Das Ziel ist es, die CPU-Auslastung auf allen Runtime Nodes möglichst hoch zu halten.
+In \autoref{ch:MethodeSoftwareplattform} wurde eine Auswahl gängiger Algorithmen vorgestellt. Um die Qualität des zu wählenden Algorithmus bewerten zu können, wurde eine Vergleichssimulation durchgeführt. Das Ziel ist es, die CPU-Auslastung auf allen Runtime Nodes möglichst hoch zu halten.
 
 Es wurden drei fundamentale Algorithmen verglichen, wobei sowohl die Lösungsgüte als auch die benötigte Rechenzeit ausgewertet wurden:
 \begin{itemize}
