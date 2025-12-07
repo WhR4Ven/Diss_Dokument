@@ -351,7 +351,7 @@ Um die Auswahl zu verfeinern, wurde das Szenario auf 2.000 Aufgaben und 200 Node
 
 Die Ergebnisse in \autoref{fig:Simulation_Heuristic_Comparison} zeigen, dass \textit{Greedy (TOPS Prio)} die höchste CPU-Auslastung erzielt. Da das primäre Forschungsziel die effiziente Nutzung brachliegender Rechenleistung ist, wurde dieser Algorithmus für die finale dynamische Validierung ausgewählt.
 
-\subsubsection{Dynamische Validierung:}
+\subsubsection{Dynamische Validierung}
 In einem dynamischen Szenario über 100 Zeitschritte wurde untersucht, wie sich der Algorithmus bei schwankender Node-Verfügbarkeit verhält. Nodes treten dem Netzwerk bei und verlassen es mit einer Wahrscheinlichkeit (\textit{Churn Rate}) von 5\,\%. Wenn ein Node das Netzwerk verlässt, werden dessen laufende Aufgaben zurück in den Pool gelegt (\textit{Retry}-Mechanismus). Die Parameter sind in \autoref{tab:simulation_parameters} zusammengefasst.
 
 \begin{table}[htbp]
