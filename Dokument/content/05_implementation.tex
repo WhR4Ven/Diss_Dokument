@@ -145,7 +145,7 @@ Die Node Datenbank speichert die Informationen über alle Runtime Nodes, die sic
 In der prototypischen Implementierung ist die Datenbank als interne In-Memory-Datenstruktur umgesetzt. Diese Methode speichert alle Einträge im Arbeitsspeicher des Systems. Je nach Objektgröße können so problemlos 100.000 Einträge verwaltet werden. Diese sind jedoch nicht persistent, da die Datenstruktur nach Beenden der Applikation gelöscht wird. Für größere Netzwerke mit vielen Teilnehmern und der Anforderung an Persistenz ist es sinnvoll, auf eine externe Datenbanklösung zurückzugreifen. Datenbanken sind eigenständige Softwarekomponenten, die Daten persistent auf die Festplatte schreiben und eine standardisierte API bieten. Für diese Anwendung können relationale Datenbanken (z.\,B. SQL) sinnvoll verwendet werden. In einer solchen Struktur werden die Daten in tabellarischer Form gespeichert. Jede Runtime Node erhielte einen eigenen Tabelleneintrag. Die Container der Nodes würden ebenfalls in einer eigenen Tabelle gespeichert, die relational mit der Node-Tabelle verknüpft ist. Dies erlaubt eine effiziente Speicherausnutzung.
 
 \subsection{Implementierung Benutzeroberfläche}
-Die Benutzeroberfläche wurde als grafische 2D-Bedienoberfläche implementiert. Sie ermöglicht es Nutzern, die Runtime Nodes manuell zu kontrollieren und deren Statusmeldungen zu visualisieren. Für die Implementierung wurde die Softwarebibliothek \textit{Dear ImGui} verwendet. ImGui ist eine C++-Bibliothek, für die jedoch Wrapper für andere Programmiersprachen existieren. Go kann mithilfe der \texttt{cgo}-Mechanik C-Funktionen aufrufen. Der verwendete Wrapper implementiert ein Interface für ImGui sowie Go-Bindings, die diese Funktionen aufrufen. 
+Die Benutzeroberfläche wurde als grafische 2D-Bedienoberfläche implementiert. Sie ermöglicht es Nutzern, die Runtime Nodes manuell zu kontrollieren und deren Statusmeldungen zu visualisieren sowie die enthaltene Applikationen. \autoref{fig:gui_screenshot} Diese Visualisierung dient im Prototyp zur Validierung der Discovery-Funktionalität und ermöglicht dem Operator eine schnelle Übersicht über die Cluster-Topologie. Für die Implementierung wurde die Softwarebibliothek \textit{Dear ImGui} verwendet. ImGui ist eine C++-Bibliothek, für die jedoch Wrapper für andere Programmiersprachen existieren. Go kann mithilfe der \texttt{cgo}-Mechanik C-Funktionen aufrufen. Der verwendete Wrapper implementiert ein Interface für ImGui sowie Go-Bindings, die diese Funktionen aufrufen. 
 
 Es wurden vier Hauptfenster implementiert:
 \begin{itemize}
@@ -156,6 +156,18 @@ Es wurden vier Hauptfenster implementiert:
 \end{itemize}
 
 In der prototypischen Implementierung sind die einzelnen Softwarekomponenten nicht als eigenständige Prozesse, sondern als \textit{Goroutines} (Threads) realisiert. Durch diese Architektur kann die Benutzeroberfläche direkt auf die Funktionen und Datenstrukturen der anderen Komponenten zugreifen.
+
+\begin{figure}[htbp]
+    \centering
+    % Bildbreite auf 80% der Textbreite skalieren (empfohlen)
+    \includegraphics[width=0.8\textwidth]{./content/graphics/Runtime_Node_Liste.png}
+    
+    % Die Bildunterschrift, wie im Text besprochen
+    \caption{Screenshot der Runtime Master Benutzeroberfläche. Das System detektiert automatisch alle aktiven Runtime Nodes im Testnetzwerk und listet deren Container sowie den aktuellen Status auf.}
+    
+    % Das Label für Referenzen im Text (z.B. \ref{fig:gui_screenshot})
+    \label{fig:gui_screenshot}
+\end{figure}
 
 \subsection{Implementierung Nachrichtenverwaltung}
 Die Runtime Master Komponente empfängt diverse Nachrichten von den Runtime Node Komponenten. In diesem Modul werden diese Nachrichten ausgewertet und an die passenden Subkomponenten weitergeleitet. Grundsätzlich werden drei verschiedene Nachrichtenkategorien unterschieden:
