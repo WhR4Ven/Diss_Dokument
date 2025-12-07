@@ -108,7 +108,7 @@ Um eine realitätsnahe Bewertung zu ermöglichen, wurden die Messungen auf einer
 
 Die Wahl einer ARM-basierten Plattform gewährleistet die Übertragbarkeit der Ergebnisse auf automotive SoCs, die überwiegend ebenfalls die ARM-Instruktionssatzarchitektur nutzen.
 
-Um die Reaktionszeit zu bsetimmen, wird die Latenzzeit gemessen. Die Latenzzeit (tstartup​) beschreibt die Verzögerung zwischen dem Eingang des start_container-Befehls und der tatsächlichen Prozessausführung (execve). Die Zeitmessung erfolgte instrumentiert innerhalb des Codes mittels clock_gettime (CLOCK_MONOTONIC). Über eine Testreihe von n=100 Iterationen wurde eine durchschnittliche Latenz von 1,5 ms bis 1,7 ms ermittelt. Dieser Wert bestätigt, dass die Softwarearchitektur in C keine signifikanten Verzögerungen einführt und Befehle nahezu in Echtzeit verarbeitet werden.
+Um die Reaktionszeit zu bsetimmen, wird die Latenzzeit gemessen. Die Latenzzeit (tstartup​) beschreibt die Verzögerung zwischen dem Eingang des start\_container-Befehls und der tatsächlichen Prozessausführung (execve). Die Zeitmessung erfolgte instrumentiert innerhalb des Codes mittels clock\_gettime (CLOCK\_MONOTONIC). Über eine Testreihe von $n=100$ Iterationen wurde eine durchschnittliche Latenz von 1,5 ms bis 1,7 ms ermittelt. Dieser Wert bestätigt, dass die Softwarearchitektur in C keine signifikanten Verzögerungen einführt und Befehle nahezu in Echtzeit verarbeitet werden.
 
 Der Ressourcenbedarf (\enquote{Footprint}) des Runtime Node Prozesses wurde mittels des Analysetools htop unter Standardbedingungen ermittelt:
 
@@ -351,7 +351,7 @@ Um die Auswahl zu verfeinern, wurde das Szenario auf 2.000 Aufgaben und 200 Node
 
 Die Ergebnisse in \autoref{fig:Simulation_Heuristic_Comparison} zeigen, dass \textit{Greedy (TOPS Prio)} die höchste CPU-Auslastung erzielt. Da das primäre Forschungsziel die effiziente Nutzung brachliegender Rechenleistung ist, wurde dieser Algorithmus für die finale dynamische Validierung ausgewählt.
 
-\paragraph{Dynamische Validierung:}
+\subsubsection{Dynamische Validierung:}
 In einem dynamischen Szenario über 100 Zeitschritte wurde untersucht, wie sich der Algorithmus bei schwankender Node-Verfügbarkeit verhält. Nodes treten dem Netzwerk bei und verlassen es mit einer Wahrscheinlichkeit (\textit{Churn Rate}) von 5\,\%. Wenn ein Node das Netzwerk verlässt, werden dessen laufende Aufgaben zurück in den Pool gelegt (\textit{Retry}-Mechanismus). Die Parameter sind in \autoref{tab:simulation_parameters} zusammengefasst.
 
 \begin{table}[htbp]
