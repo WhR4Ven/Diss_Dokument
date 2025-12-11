@@ -7,7 +7,7 @@
    viewBox="0 0 203.98944 89.332169"
    version="1.1"
    id="svg1"
-   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
    sodipodi:docname="opemstack_arch.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -24,11 +24,11 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="1.4142136"
-     inkscape:cx="263.75083"
-     inkscape:cy="182.08"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="1912"
+     inkscape:cx="264.10438"
+     inkscape:cy="125.51145"
+     inkscape:window-width="5120"
+     inkscape:window-height="1417"
+     inkscape:window-x="3432"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer2" />
@@ -577,7 +577,7 @@
          sodipodi:role="line"
          id="tspan41"
          x="15.946701"
-         y="81.906708">(Keytone)</tspan></text>
+         y="81.906708">(Keystone)</tspan></text>
     <path
        style="fill:none;stroke:#0b7b00;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:0.264583, 0.264583;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#Triangle);marker-end:url(#marker44)"
        d="M 15.012717,71.296065 V 46.377033 H 87.08263"
