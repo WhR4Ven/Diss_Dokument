@@ -7,7 +7,7 @@
    viewBox="0 0 115 55.599998"
    version="1.1"
    id="svg1"
-   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
    sodipodi:docname="V-model.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -24,12 +24,12 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showguides="false"
-     inkscape:zoom="1.0480502"
-     inkscape:cx="41.982721"
-     inkscape:cy="27.193353"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="3832"
+     inkscape:zoom="2.0961004"
+     inkscape:cx="-173.17873"
+     inkscape:cy="111.39734"
+     inkscape:window-width="5120"
+     inkscape:window-height="1417"
+     inkscape:window-x="3432"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
@@ -139,7 +139,7 @@
          sodipodi:role="line"
          id="tspan1"
          x="22.521698"
-         y="14.347771">Systemanforerungen</tspan></text>
+         y="14.347771">Systemanforderungen</tspan></text>
     <rect
        style="fill:#aaeeff;fill-opacity:1;stroke:#000000;stroke-width:0.317764;stroke-linecap:square;stroke-miterlimit:8"
        id="rect1-4-2-9-1-8-0-0-2"
@@ -290,7 +290,7 @@
          sodipodi:role="line"
          id="tspan4"
          x="52.428688"
-         y="49.010094">Komonenten-</tspan><tspan
+         y="49.010094">Komponenten-</tspan><tspan
          sodipodi:role="line"
          id="tspan5"
          x="52.428688"
