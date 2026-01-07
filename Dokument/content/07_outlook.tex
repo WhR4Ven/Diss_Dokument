@@ -1,26 +1,26 @@
 \chapter{Ausblick}
 \label{Ausblick}
 
-Die in dieser Arbeit vorgestellte Plattform liefert einen funktionalen Nachweis dafür, dass Fahrzeugsteuergeräte als verteilte Rechenressourcen genutzt werden können. Aus den gewonnenen Erkenntnissen ergeben sich konkrete Anknüpfungspunkte für zukünftige Forschungs- und Entwicklungsarbeiten.
+Die in dieser Arbeit vorgestellte Plattform liefert einen funktionalen Nachweis dafür, dass Fahrzeugsteuergeräte als verteilte Rechenressourcen genutzt werden können. Aus den gewonnenen Erkenntnissen ergeben sich konkrete Anknüpfungspunkte für zukünftige Forschungs- und Entwicklungsarbeiten. Diese lassen sich in drei Kategorien einteilen.
 
 \section{Technische Weiterentwicklung}
 
-Effiziente Kommunikation: Der Overhead der Base64-Kodierung (33\%) ist für mobile Netzwerke ineffizient. Zukünftige Arbeiten sollten die Kommunikation auf binäre Serialisierungsformate wie Protocol Buffers oder MessagePack umstellen. Diese bieten nicht nur eine kompaktere Datenübertragung, sondern auch schnellere Parsing-Geschwindigkeiten.
+Insbesondere bei der Datenübertragung kann die Effizienz der Kommunikation erhöht werden. Der Overhead der Base64-Kodierung (33\%) ist für mobile Netzwerke ineffizient. Zukünftige Arbeiten sollten die Kommunikation auf binäre Serialisierungsformate wie Protocol Buffers oder MessagePack umstellen. Diese bieten nicht nur eine kompaktere Datenübertragung, sondern auch schnellere Parsing-Geschwindigkeiten.
 
-Sicherheitsarchitektur: Die Implementierung einer robusten Sicherheitsarchitektur ist für den Serieneinsatz unabdingbar. Dies umfasst die Einführung einer Public-Key-Infrastruktur (PKI) zur Authentifizierung mittels TLS-Zertifikaten. Zudem sollte die Container Isolation durch Technologien wie \enquote{Secure Containers} (z. B. Kata Containers) gehärtet werden, um die Sicherheit des Fahrzeugbordnetzes zu garantieren.
+Die Sicherheitsarchitektur war nicht Fokus der Arbeit. Die Implementierung einer robusten Sicherheitsarchitektur ist jedoch für den Serieneinsatz unabdingbar. Dies umfasst die Einführung einer Public-Key-Infrastruktur zur Authentifizierung mittels TLS-Zertifikaten. Zudem sollte die Container Isolation durch Technologien wie \enquote{Secure Containers} (z. B. Kata Containers) gehärtet werden, um die Sicherheit des Fahrzeugbordnetzes zu garantieren.
 
-OCI-Kompatibilität: Um die Akzeptanz bei Entwicklern zu erhöhen, sollte die \enquote{Container Management} Komponente konform zur Open Container Initiative (OCI) erweitert werden. Dies würde ermöglichen, Standard Docker Images direkt auf den Fahrzeugen auszuführen.
+Das \gls{API} des Managementsystems sollte auf verbreitete Standards angepasst werden. Um die Akzeptanz bei Entwicklern zu erhöhen, sollte die \enquote{Container Management} Komponente konform zur \gls{OCI} erweitert werden. Dies würde ermöglichen, Standard Docker Images direkt auf den Fahrzeugen auszuführen.
 
 \section{Erweiterung der Scheduling Intelligenz}
 
-Energiebewusstes Scheduling: Da die Berechnungen die Fahrzeugbatterie belasten, muss der Ladezustand (SoC) als Restriktion in den Scheduler aufgenommen werden. Zukünftige Algorithmen könnten Aufgaben priorisiert an Fahrzeuge verteilen, die gerade an einer Ladesäule angeschlossen sind.
+Der Scheduler sollte den Ladezustand der Batterien berücksichtigen. Da die Berechnungen die Fahrzeugbatterie belasten, muss der Ladezustand (SoC) als Restriktion in den Scheduler aufgenommen werden. Zukünftige Algorithmen könnten Aufgaben priorisiert an Fahrzeuge verteilen, die gerade an einer Ladesäule angeschlossen sind.
 
-Prädiktive Verfügbarkeit: Ein großes Hindernis ist die Unvorhersehbarkeit der Parkdauer. Durch den Einsatz von Machine Learning könnte auf Basis historischer Bewegungsdaten vorhergesagt werden, wie lange ein Fahrzeug verfügbar bleibt. Dies würde die Anzahl abgebrochener Tasks reduzieren.
+Der aktuell verwendete Greedy-Scheduler erreicht nicht die Effizienz von gut trainierten prädiktiven Algorithmen. Ein großes Hindernis ist die Unvorhersehbarkeit der Parkdauer. Durch den Einsatz von Machine Learning könnte auf Basis historischer Bewegungsdaten vorhergesagt werden, wie lange ein Fahrzeug verfügbar bleibt. Dies würde die Anzahl abgebrochener Tasks reduzieren.
 
-Constraint-based Scheduling: Der Scheduler muss erweitert werden, um Hardware-Restriktionen (z. B. B\enquote{enötigt ARM64 Architektur} oder \enquote{Benötigt NPU}) zu berücksichtigen und so die Heterogenität der Fahrzeugflotte abzubilden.
+Restiktionen bezüglich der Hardwarearchitektur müssen berücktsichtig werden. Der Scheduler muss erweitert werden, um Hardware-Restriktionen (z. B. B\enquote{enötigt ARM64 Architektur} oder \enquote{Benötigt NPU}) zu berücksichtigen und so die Heterogenität der Fahrzeugflotte abzubilden.
 
 \section{Wirtschaftliche Einbettung}
 
-Incentivierung: Fahrzeugbesitzer werden ihre Hardware nur bei entsprechender Kompensation zur Verfügung stellen. Zukünftige Arbeiten sollten untersuchen, wie Blockchain-Technologien und Smart Contracts genutzt werden können, um Mikrotransaktionen sicher und transparent zwischen Auftraggebern und Fahrzeughaltern abzuwickeln.
+Fahrzeugbesitzer werden ihre Hardware nur bei entsprechender Kompensation zur Verfügung stellen. Zukünftige Arbeiten sollten untersuchen, wie Blockchain-Technologien und Smart Contracts genutzt werden können, um Mikrotransaktionen sicher und transparent zwischen Auftraggebern und Fahrzeughaltern abzuwickeln.
 
 Die Umsetzung dieser Punkte würde effektiv dazu beitragen, um die bisher ungenutzte Rechenleistung unserer Fahrzeugflotten in ein produktives, verteiltes Rechenzentrum für Smart Cities zu verwandeln.
