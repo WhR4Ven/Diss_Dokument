@@ -1,11 +1,11 @@
-\newcommand{\dissAuthorFirstName}{Vorname}
-\newcommand{\dissAuthorLastName}{Nachname}
-\newcommand{\dissTitleDE}{DissTitelDE}
-\newcommand{\dissTitleEN}{DissTitelEN}
+\newcommand{\dissAuthorFirstName}{Gergely}
+\newcommand{\dissAuthorLastName}{Bilkei-Gorzo}
+\newcommand{\dissTitleDE}{Verteiltes Rechnen mit Hilfe von autonomen Fahrzeugsteuergeräten}
+\newcommand{\dissTitleEN}{Distributed Computing with the Aid of Autonomous Vehicle Control Units}
 \newcommand{\dissSuperviserFirst}{Universitätsprofessor Dr.-Ing. Lutz Eckstein}
 \newcommand{\dissSuperviserSecond}{Universitätsprofessor Dr.-Ing. Max Mustermann}
 \newcommand{\dissIKACoverIndex}{xxx/yy}
-\newcommand{\dissCoverImage}{./images/title/coverImage.png}
+\newcommand{\dissCoverImage}{./content/graphics/title/coverImage.png}
 
 \thispagestyle{empty}
 
@@ -14,7 +14,7 @@
 
 \begin{tikzpicture}[remember picture, overlay]
   \fill[yellow] (current page.south west) rectangle ++(0.14514285714\pagewidth,\pageheight);
-  \node[anchor=north east] at ($(current page.north east)+(-0.12671428571\pagewidth,-0.1041077441\pageheight)$) {\includegraphics[width=0.43847619047\pagewidth]{./graphics/title/ika_logo.pdf}};
+  \node[anchor=north east] at ($(current page.north east)+(-0.12671428571\pagewidth,-0.1041077441\pageheight)$) {\includegraphics[width=0.43847619047\pagewidth]{./content/graphics/title/ika_logo.pdf}};
   % %\node[anchor=south east,inner sep=0,outer sep=0] at (current page.south east) {\includegraphics[width=0.85485714286\pagewidth] {\dissCoverImage}};
 
   % \node[anchor=south east,inner sep=0,outer sep=0] at ($(current page.south east)+(0\pagewidth,0\pagewidth)$) (coverImage) {\includegraphics[width=0.85485714286\pagewidth]  {\dissCoverImage}};
@@ -25,9 +25,9 @@
 
   \node[text=dissIKACoverDarkGrey, anchor=north east, align=right, inner sep=0,outer sep=0, font={\bfseries\fontsize{0.02222222222\pageheight}{0.03208754208\pageheight}\selectfont}] at ($(current page.north east)+(-0.12671428571\pagewidth,-0.37791245791\pageheight)$)  {\dissAuthorFirstName\ \dissAuthorLastName};
 
-  \node[text=dissIKACoverDarkGrey, anchor=north east, align=right, text width=0.7\pagewidth, font={\bfseries\fontsize{0.02873226491\pageheight}{0.03208754208\pageheight}\selectfont}, inner sep=0,outer sep=0] at ($(current page.north east)+(-0.12671428571\pagewidth,-0.46127946127\pageheight)$)  {\dissTitleEN};
+  \node[text=dissIKACoverDarkGrey, anchor=north east, align=right, text width=0.7\pagewidth, font={\bfseries\fontsize{0.02873226491\pageheight}{0.03208754208\pageheight}\selectfont}, inner sep=0,outer sep=0] at ($(current page.north east)+(-0.12671428571\pagewidth,-0.46127946127\pageheight)$)  {\dissTitleDE};
 
-  \node[text=dissIKACoverDarkGrey, anchor=north west, inner sep=0,outer sep=0, rotate=90,font={\bfseries\fontsize{0.01582491582\pageheight}{0.01898989898\pageheight}\selectfont}] at ($(current page.south west)+(0.015\pagewidth,0.07367003367\pageheight)$)  {ika\ \dissIKACoverIndex\ \dissAuthorLastName:\ \dissTitleEN};
+  \node[text=dissIKACoverDarkGrey, anchor=north west, inner sep=0,outer sep=0, rotate=90,font={\bfseries\fontsize{0.01582491582\pageheight}{0.01898989898\pageheight}\selectfont}] at ($(current page.south west)+(0.015\pagewidth,0.07367003367\pageheight)$)  {ika\ \dissIKACoverIndex\ \dissAuthorLastName:\ \dissTitleDE};
 
   %\node[text=Crimson, align=center, font=\Huge, rotate=45] at (0.2\pagewidth,-0.2\pageheight) {Draft Version\\\today\\\currenttime};
 \end{tikzpicture}
