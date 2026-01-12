@@ -5,7 +5,7 @@
 \newcommand{\dissSuperviserFirst}{Universitätsprofessor Dr.-Ing. Lutz Eckstein}
 \newcommand{\dissSuperviserSecond}{Universitätsprofessor Dr.-Ing. Max Mustermann}
 \newcommand{\dissIKACoverIndex}{xxx/yy}
-\newcommand{\dissCoverImage}{./content/graphics/title/coverImage.png}
+\newcommand{\dissCoverImage}{./content/graphics/title/titel.png}
 
 \thispagestyle{empty}
 
@@ -15,11 +15,11 @@
 \begin{tikzpicture}[remember picture, overlay]
   \fill[yellow] (current page.south west) rectangle ++(0.14514285714\pagewidth,\pageheight);
   \node[anchor=north east] at ($(current page.north east)+(-0.12671428571\pagewidth,-0.1041077441\pageheight)$) {\includegraphics[width=0.43847619047\pagewidth]{./content/graphics/title/ika_logo.pdf}};
-  % %\node[anchor=south east,inner sep=0,outer sep=0] at (current page.south east) {\includegraphics[width=0.85485714286\pagewidth] {\dissCoverImage}};
+  % \node[anchor=south east,inner sep=0,outer sep=0] at (current page.south east) {\includegraphics[width=0.4\pagewidth] {\dissCoverImage}};
 
-  % \node[anchor=south east,inner sep=0,outer sep=0] at ($(current page.south east)+(0\pagewidth,0\pagewidth)$) (coverImage) {\includegraphics[width=0.85485714286\pagewidth]  {\dissCoverImage}};
+  \node[anchor=south east,inner sep=0,outer sep=0] at ($(current page.south east)+(-0.25\pagewidth,0.08\pagewidth)$) (coverImage) {\includegraphics[width=0.4\pagewidth]  {\dissCoverImage}};
 
-  % \fill[white,path fading=south] (coverImage.north east) rectangle ++(-0.85485714286\pagewidth, -0.2\pageheight);
+  % \fill[white,path fading=south] (coverImage.north east) rectangle ++(-0.4\pagewidth, -0.2\pageheight);
 
   \node[text=dissIKACoverGrey, anchor=north east, inner sep=0,outer sep=0, align=right, font={\bfseries\fontsize{0.02222222222\pageheight}{0.02484848484\pageheight}\selectfont}] at ($(current page.north east)+(-0.12671428571\pagewidth,-0.17552188552\pageheight)$)  {SCHRIFTENREIHE\\AUTOMOBILTECHNIK};
 
